@@ -26,5 +26,15 @@ namespace conncetASPwithTemplate.Controllers
 
             return View();
         }
+
+        public ActionResult IndexBurgers()
+        {
+            return View();
+        }
+
+        public ActionResult IndexFullwidth()
+        {
+            return View();
+        }
     }
 }
