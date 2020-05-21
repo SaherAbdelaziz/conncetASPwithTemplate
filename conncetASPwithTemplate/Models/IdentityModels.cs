@@ -29,5 +29,16 @@ namespace conncetASPwithTemplate.Models
         {
             return new ApplicationDbContext();
         }
+
+
+        public DbSet<SubCategory> SubCategories { get; set; }
+        public DbSet<Item> Items { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            
+        }
     }
 }

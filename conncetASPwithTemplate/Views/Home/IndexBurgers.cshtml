@@ -1,62 +1,58 @@
-﻿
+﻿@model IList<conncetASPwithTemplate.Models.Item>
 @{
     ViewBag.Title = "IndexBurgers";
     Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
 
-<!-- Content -->
-<div id="content">
+<!-- Section - Main -->
+<section class="section section-main bg-dark dark">
 
-    <!-- Section - Main -->
-    <section class="section section-main bg-dark dark">
+    <div class="bg-image bg-fixed"><img src="../../Content/mytemplate/assets/img/photos/hero-burger.jpg" alt=""></div>
 
-        <div class="bg-image bg-fixed"><img src="../../Content/mytemplate/assets/img/photos/hero-burger.jpg" alt=""></div>
+    <div class="container v-center">
+        <div class="row">
+            <div class="col-md-7 push-md-3">
+                <h1 class="display-2">We do <strong>The Best Burgers</strong> in London</h1>
+                <h4 class="text-muted mb-5">Taste it now with our online order!</h4>
+                <a href="page-offers.html" class="btn btn-outline-primary btn-lg"><span>Order now</span></a>
+            </div>
+        </div>
+    </div>
 
-        <div class="container v-center">
-            <div class="row">
-                <div class="col-md-7 push-md-3">
-                    <h1 class="display-2">We do <strong>The Best Burgers</strong> in London</h1>
-                    <h4 class="text-muted mb-5">Taste it now with our online order!</h4>
-                    <a href="page-offers.html" class="btn btn-outline-primary btn-lg"><span>Order now</span></a>
+</section>
+
+<!-- Section - About -->
+<section class="section section-bg-edge">
+
+    <div class="image right col-md-6 push-md-6">
+        <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/bg-burger.jpg" alt=""></div>
+    </div>
+
+    <div class="container">
+        <div class="col-lg-5 col-md-9">
+            <div class="rate mb-5 rate-lg"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star"></i></div>
+            <h1 class="display-2">Why <strong>our</strong> Burgers?</h1>
+            <p class="lead text-muted mb-5">Donec a eros metus. Vivamus volutpat leo dictum risus ullamcorper condimentum. Cras sollicitudin varius condimentum. Praesent a dolor sem....</p>
+            <!-- Feature -->
+            <div class="feature feature-1">
+                <div class="feature-icon icon icon-primary"><i class="ti ti-desktop"></i></div>
+                <div class="feature-content">
+                    <h4 class="mb-2">Online Order</h4>
+                    <p class="text-muted mb-0">Vivamus volutpat leo dictum risus ullamcorper condimentum.</p>
+                </div>
+            </div>
+            <!-- Feature -->
+            <div class="feature feature-1">
+                <div class="feature-icon icon icon-primary"><i class="ti-heart"></i></div>
+                <div class="feature-content">
+                    <h4 class="mb-2">Perfect Taste</h4>
+                    <p class="text-muted mb-0">Vivamus volutpat leo dictum risus ullamcorper condimentum.</p>
                 </div>
             </div>
         </div>
+    </div>
 
-    </section>
-
-    <!-- Section - About -->
-    <section class="section section-bg-edge">
-
-        <div class="image right col-md-6 push-md-6">
-            <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/bg-burger.jpg" alt=""></div>
-        </div>
-
-        <div class="container">
-            <div class="col-lg-5 col-md-9">
-                <div class="rate mb-5 rate-lg"><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star active"></i><i class="fa fa-star"></i></div>
-                <h1 class="display-2">Why <strong>our</strong> Burgers?</h1>
-                <p class="lead text-muted mb-5">Donec a eros metus. Vivamus volutpat leo dictum risus ullamcorper condimentum. Cras sollicitudin varius condimentum. Praesent a dolor sem....</p>
-                <!-- Feature -->
-                <div class="feature feature-1">
-                    <div class="feature-icon icon icon-primary"><i class="ti ti-desktop"></i></div>
-                    <div class="feature-content">
-                        <h4 class="mb-2">Online Order</h4>
-                        <p class="text-muted mb-0">Vivamus volutpat leo dictum risus ullamcorper condimentum.</p>
-                    </div>
-                </div>
-                <!-- Feature -->
-                <div class="feature feature-1">
-                    <div class="feature-icon icon icon-primary"><i class="ti-heart"></i></div>
-                    <div class="feature-content">
-                        <h4 class="mb-2">Perfect Taste</h4>
-                        <p class="text-muted mb-0">Vivamus volutpat leo dictum risus ullamcorper condimentum.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-</div>
-
-        </section>
+</section>
 
 <!-- Section - Menu -->
 <section class="section cover protrude pull-up-10">
@@ -144,57 +140,24 @@
                     </div>
                     <div id="menuBurgersContent" class="menu-category-content">
                         <!-- Menu Item -->
-                        <div class="menu-item menu-list-item">
-                            <div class="row align-items-center">
-                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                    <h6 class="mb-0">Beef Burger</h6>
-                                    <span class="text-muted text-sm">Beef, cheese, potato, onion, fries</span>
-                                </div>
-                                <div class="col-sm-6 text-sm-right">
-                                    <span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span>
-                                    <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Menu Item -->
-                        <div class="menu-item menu-list-item">
-                            <div class="row align-items-center">
-                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                    <h6 class="mb-0">Broccoli</h6>
-                                    <span class="text-muted text-sm">Chicken, cheese, potato, onion, fries</span>
-                                </div>
-                                <div class="col-sm-6 text-sm-right">
-                                    <span class="text-md mr-4"><span class="text-muted">from</span> $11.00</span>
-                                    <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
+                        @for (int i = 0; i < 4; i++)
+                        {
+                            <div class="menu-item menu-list-item">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-6 mb-2 mb-sm-0">
+                                        <h6 class="mb-0">@Model[i].Name</h6>
+                                        <span class="text-muted text-sm">@Model[i].Name2</span>
+                                    </div>
+                                    <div class="col-sm-6 text-sm-right">
+                                        <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
+                                        <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-toggle-cart"
+                                                @*data-target="#productModal" data-toggle="modal"*@>
+                                            <span>Add to cart</span>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Menu Item -->
-                        <div class="menu-item menu-list-item">
-                            <div class="row align-items-center">
-                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                    <h6 class="mb-0">Chicken Burger</h6>
-                                    <span class="text-muted text-sm">Chicken, cheese, potato, onion, fries</span>
-                                </div>
-                                <div class="col-sm-6 text-sm-right">
-                                    <span class="text-md mr-4"><span class="text-muted">from</span> $11.00</span>
-                                    <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Menu Item -->
-                        <div class="menu-item menu-list-item">
-                            <div class="row align-items-center">
-                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                    <h6 class="mb-0">Creste di Galli</h6>
-                                    <span class="text-muted text-sm">Pasta, cheese, potato, onion, fries</span>
-                                </div>
-                                <div class="col-sm-6 text-sm-right">
-                                    <span class="text-md mr-4"><span class="text-muted">from</span> $9.00</span>
-                                    <button class="btn btn-outline-secondary btn-sm" data-target="#productModal" data-toggle="modal"><span>Add to cart</span></button>
-                                </div>
-                            </div>
-                        </div>
+                        }
                     </div>
                 </div>
             </div>
@@ -261,3 +224,52 @@
     </div>
 
 </section>
+
+@*<button data-item-id="@Model[i].ID" class="btn btn-outline-secondary btn-sm .js-toggle-cart"*@
+@*data-target="#productModal" data-toggle="modal"*@>
+@*<span>Add to cart</span>
+    </button>*@
+
+
+@section scripts{
+    <script>
+        $(document).ready(function() {
+            $(".js-toggle-cart").click(function(e) {
+                var target = $(e.target);
+                var span = $(e.target).find("span");
+                $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
+                    .done(function() {
+                        span
+                            .text("Added");
+                    })
+                    .fail(function() {
+                        alert("Something failed!");
+                    });
+
+                //console.log(button);
+                //console.log(button.attr("data-item-id"));
+            //    var itemDto = {
+
+            //        'ItemId': button.attr("data-item-id")
+            //};
+
+            //    $.ajax({
+            //        url: 'http://localhost:62762/api/shoppingcarts',
+            //        type: 'POST',
+            //        dataType: 'json',
+            //        data: itemDto,
+            //        success: function(data, textStatus, xhr) {
+            //            console.log(data);
+            //            button.text("Added");
+            //        },
+            //        error: function (xhr, textStatus, errorThrown) {
+            //            console.log(data);
+            //            console.log('Error in Operation');
+            //        }
+            //    });
+            });
+        });
+
+
+    </script>
+}

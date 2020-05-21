@@ -3,11 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using conncetASPwithTemplate.Models;
 
 namespace conncetASPwithTemplate.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        private ApplicationDbContext _context;
+
+
+        public HomeController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -29,12 +39,30 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult IndexBurgers()
         {
-            return View();
+            var items = _context.Items.ToList();
+            return View(items);
         }
 
         public ActionResult IndexFullwidth()
         {
             return View();
+        }
+
+        public ActionResult IndexVideo()
+        {
+            return View();
+        }
+
+        public ActionResult Navigation()
+        {
+            return View();
+        }
+
+        public ActionResult ShowItems()
+        {
+            var items = _context.Items.ToList();
+
+            return View(items);
         }
     }
 }
