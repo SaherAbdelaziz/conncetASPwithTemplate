@@ -194,6 +194,10 @@
     <Compile Include="Migrations\202005211623412_AddCartItems.Designer.cs">
       <DependentUpon>202005211623412_AddCartItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202005211749079_modifyDataType.cs" />
+    <Compile Include="Migrations\202005211749079_modifyDataType.Designer.cs">
+      <DependentUpon>202005211749079_modifyDataType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -1338,6 +1342,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005211623412_AddCartItems.resx">
       <DependentUpon>202005211623412_AddCartItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005211749079_modifyDataType.resx">
+      <DependentUpon>202005211749079_modifyDataType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

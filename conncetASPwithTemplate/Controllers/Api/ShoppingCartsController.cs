@@ -41,15 +41,11 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             if (cartItem == null)
             {
-
                 // Create a new cart item if no cart item exists.                 
                 cartItem = new CartItem
                 {
-                    Id = Guid.NewGuid().ToString(),
                     ItemId = itemId,
                     CartId = shoppingCartId,
-                    Item = _context.Items.SingleOrDefault(
-                        i => i.Id == itemId),
                     Quantity = 1,
                     DateCreated = DateTime.Now
                 };

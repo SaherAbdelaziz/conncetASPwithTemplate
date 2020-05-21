@@ -7,7 +7,7 @@ namespace conncetASPwithTemplate.Models
 {
     public class CartItem
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         public string CartId { get; set; }
 
