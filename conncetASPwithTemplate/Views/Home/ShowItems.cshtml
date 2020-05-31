@@ -8,24 +8,56 @@
 <div id="images">dsad</div>
 @section scripts{
     <script>
-        (function() {
-            var flickerAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
-            $.getJSON(flickerAPI,
-                    {
-                        tags: "mount rainier",
-                        tagmode: "any",
-                        format: "json"
-                    })
-                .done(function(data) {
-                    $.each(data.items,
-                        function(i, item) {
-                            $("<img>").attr("src", item.media.m).appendTo("#images");
-                            if (i === 3) {
-                                return false;
-                            }
-                        });
-                });
-        })();
+
+
+
+
+        var input = [
+            { foo: 'f', bar: 'b' },
+            { foo: 'ff', bar: 'bb' },
+            { foo: 'fff', bar: 'bbb' },
+            { foo: 'f', bar: 'b' },
+        ];
+        var table = document.body.appendChild(document.createElement('table'));
+        var thead = table.appendChild(document.createElement('thead'));
+        var tr = thead.appendChild(document.createElement('tr'));
+        var columnTexts = Object.keys(input[0]);
+        columnTexts.forEach((columnText) => {
+            tr.appendChild(document.createElement('td'))
+                .textContent = columnText;
+        });
+        var tbody = table.appendChild(document.createElement('tbody'));
+        input.forEach((item) => {
+            var tr = tbody.appendChild(document.createElement('tr'));
+            var values = Object.values(item);
+            values.forEach(value => {
+                tr.appendChild(document.createElement('td'))
+                    .textContent = value;
+            });
+        });
+
+
+
+
+
+        //(function() {
+        //    var flickerAPI = "https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?";
+        //    $.getJSON(flickerAPI,
+        //            {
+        //                tags: "mount rainier",
+        //                tagmode: "any",
+        //                format: "json"
+        //            })
+        //        .done(function(data) {
+        //            $.each(data.items,
+        //                function(i, item) {
+        //                    $("<img>").attr("src", item.media.m).appendTo("#images");
+        //                    if (i === 3) {
+        //                        return false;
+        //                    }
+        //                });
+        //        });
+        //})();
     </script>
 
 }
