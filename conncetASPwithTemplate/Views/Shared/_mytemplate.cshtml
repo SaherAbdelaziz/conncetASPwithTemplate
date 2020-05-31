@@ -130,7 +130,7 @@
                         <a href="#" class="module module-cart right" data-toggle="panel-cart">
                             <span class="cart-icon">
                                 <i class="ti ti-shopping-cart"></i>
-                                <span class="notification">2</span>
+                                <span class="notification hide badge js-notifications-count ">2</span>
                             </span>
                             <span class="cart-value">$32.98</span>
                         </a>
@@ -253,35 +253,6 @@
                                 <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
                                 <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
                             </td>
-                        </tr>
-                        <tr>
-                            <td class="title">
-                                <span class="name"><a href="#productModal" data-toggle="modal">Beef Burger</a></span>
-                                <span class="caption text-muted">Large (500g)</span>
-                            </td>
-                            <td class="price">$9.82</td>
-                            <td class="actions">
-                                <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="title">
-                                <span class="name"><a href="#productModal" data-toggle="modal">Extra Burger</a></span>
-                                <span class="caption text-muted">Small (200g)</span>
-                            </td>
-                            <td class="price text-success">$0.00</td>
-                            <td class="actions">
-                                <a href="#productModal" data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>
-                                <a href="#" class="action-icon"><i class="ti ti-close"></i></a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="title">
-                                <span class="name">Weekend 20% OFF</span>
-                            </td>
-                            <td class="price text-success">-$8.22</td>
-                            <td class="actions"></td>
                         </tr>
                     </table>
                     <div class="cart-summary">
@@ -485,6 +456,25 @@
     @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+
+
+
+<script>
+    $(document).ready(function () {
+
+        $.getJSON("/api/shoppingcarts", function (notifications) {
+            if (notifications.length == 0)
+                return;
+            //alert("dsds");
+            $(".js-notifications-count")
+                .text(notifications.length);
+            alert(notifications[0].item.name2);
+
+        });
+    });
+
+
+</script>
 </body>
 
 </html>

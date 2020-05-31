@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -21,9 +22,16 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // GET: api/ShoppingCarts
-        public IEnumerable<string> Get()
+        public IEnumerable<CartItem> Get()
         {
-            return new string[] { "value1", "value2" };
+            var userId = User.Identity.GetUserId();
+
+
+            var items = _context.CartItems
+                .Where(c => c.CartId == userId)
+                .Include(c => c.Item).ToList();
+
+            return items;
         }
 
         // GET: api/ShoppingCarts/5
