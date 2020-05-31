@@ -241,32 +241,58 @@
                     .done(function() {
                         span
                             .text("Added");
+                        $.getJSON("/api/shoppingcarts", function (notifications) {
+                            if (notifications.length == 0)
+                                return;
+                            //alert("dsds");
+                            $(".js-notifications-count")
+                                .text(notifications.length);
+                            console.log(notifications);
+                            var totalPrice = 0;
+
+                            for (var i = 0 ; i < notifications.length ; i++) {
+                                var dataa = '';
+                                dataa += '<tr>';
+                                dataa += '<td class="title">' +
+                                    '<span class="name"><a href="#productModal" data-toggle="modal"> '
+                                    + notifications[i].item.name +
+                                    ' BBQ</a></span>' +
+                                    '<td>';
+                                dataa += ' <span class="caption text-muted">' +
+                                    notifications[i].item.name2 +
+                                    '</span>';
+                                dataa += '<td class="price">' + notifications[i].item.staticPrice + '$' + '<td>';
+                                dataa += '<td  class="actions">' + '<a href="#productModal" ' +
+                                    'data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>' +
+                                    '<a href="#" class="action-icon"><i class="ti ti-close"></i></a>' + '<td>';
+                                dataa += '<tr>';
+                                totalPrice += notifications[i].item.staticPrice;
+                                $('#seed_items').append(dataa);
+
+                            }
+                            Delivery = 3.99;
+                            var dataa = '';
+                            dataa = ' <div class="row"> <div class="col-7 text-right text-muted">' +
+                                'Order total:</div> ' + '<div class="col-5"><strong>$' + totalPrice + '</strong></div>  </div>';
+                            dataa += ' <div class="row"> <div class="col-7 text-right text-muted">' +
+                                'Delivery:</div> ' + '<div class="col-5"><strong>$' + Delivery + '</strong></div>  </div>';
+                            totalPrice += Delivery;
+
+                            dataa += '<hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">' +
+                                'Total:</div> <div class="col-5"><strong>$' +
+                                totalPrice +
+                                '</strong></div> </div>';
+
+
+
+                            $('#seed_price').append(dataa);
+
+                        });
                     })
                     .fail(function() {
                         alert("Something failed!");
                     });
 
-                //console.log(button);
-                //console.log(button.attr("data-item-id"));
-            //    var itemDto = {
-
-            //        'ItemId': button.attr("data-item-id")
-            //};
-
-            //    $.ajax({
-            //        url: 'http://localhost:62762/api/shoppingcarts',
-            //        type: 'POST',
-            //        dataType: 'json',
-            //        data: itemDto,
-            //        success: function(data, textStatus, xhr) {
-            //            console.log(data);
-            //            button.text("Added");
-            //        },
-            //        error: function (xhr, textStatus, errorThrown) {
-            //            console.log(data);
-            //            console.log('Error in Operation');
-            //        }
-            //    });
             });
         });
 

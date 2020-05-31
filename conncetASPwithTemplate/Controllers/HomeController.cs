@@ -64,5 +64,30 @@ namespace conncetASPwithTemplate.Controllers
 
             return View(items);
         }
+
+        public ActionResult Offers()
+        {
+            return View();
+        }
+
+        public ActionResult Services()
+        {
+            return View();
+        }
+
+        public ActionResult Gallery()
+        {
+            return View();
+        }
+
+        public ActionResult Reviews()
+        {
+            return View();
+        }
+
+        public ActionResult FaQ()
+        {
+            return View();
+        }
     }
 }

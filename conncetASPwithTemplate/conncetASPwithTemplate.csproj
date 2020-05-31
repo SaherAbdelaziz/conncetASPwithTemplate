@@ -1319,6 +1319,11 @@
     <Content Include="Views\Home\IndexVideo.cshtml" />
     <Content Include="Views\Home\Navigation.cshtml" />
     <Content Include="Views\Home\ShowItems.cshtml" />
+    <Content Include="Views\Home\Offers.cshtml" />
+    <Content Include="Views\Home\Services.cshtml" />
+    <Content Include="Views\Home\Gallery.cshtml" />
+    <Content Include="Views\Home\Reviews.cshtml" />
+    <Content Include="Views\Home\FaQ.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

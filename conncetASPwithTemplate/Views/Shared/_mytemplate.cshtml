@@ -67,10 +67,11 @@
                                     <div class="dropdown-container">
                                         <ul class="dropdown-mega">
                                             <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                                            <li><a href="page-services.html">Services</a></li>
-                                            <li><a href="page-gallery.html">Gallery</a></li>
-                                            <li><a href="page-reviews.html">Reviews</a></li>
-                                            <li><a href="page-faq.html">FAQ</a></li>
+                                            <li><a href="@Url.Action("Services", "Home")">Services</a></li>
+                                            <li><a href="@Url.Action("Gallery", "Home")">Gallery</a></li>
+                                            <li><a href="@Url.Action("Reviews", "Home")">Reviews</a></li>
+                                            <li><a href="@Url.Action("FaQ", "Home")">FAQ</a></li>
+                                           
 
                                         </ul>
                                         <div class="dropdown-image">
@@ -99,8 +100,8 @@
                                         </ul>
                                     </div>
                                 </li>
-                                <li><a href="page-offers.html">Offers</a></li>
-                                <li><a href="page-contact.html">Contact</a></li>
+                                <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                                 <li class="has-dropdown">
                                     <a href="#">More</a>
                                     <div class="dropdown-container">
@@ -132,7 +133,7 @@
                                 <i class="ti ti-shopping-cart"></i>
                                 <span class="notification hide badge js-notifications-count ">2</span>
                             </span>
-                            <span class="cart-value">$32.98</span>
+                            <span  class="cart-value js-notifications-price">$32.98</span>
                         </a>
                     </div>
                 </div>
@@ -448,7 +449,7 @@
                 .text(notifications.length);
             console.log(notifications);
             var totalPrice = 0;
-            
+
             for(var i=0 ; i< notifications.length ; i++)
             {
                 var dataa = '';
@@ -463,13 +464,25 @@
                     '</span>';
                 dataa += '<td class="price">' + notifications[i].item.staticPrice + '$' + '<td>';
                 dataa += '<td  class="actions">' + '<a href="#productModal" ' +
+                    // delete
                     'data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>' +
-                    '<a href="#" class="action-icon"><i class="ti ti-close"></i></a>' + '<td>';
+                    '<a href="#" class="action-icon js-cancel-item"><i class="  ti ti-close "></i></a>' + '<td>';
                 dataa += '<tr>';
+                var myVar = notifications[i].id;
+                console.log(myVar);
+                //if(myVar != $(".js-cancel-item").attr("data-item-id"))
+                //     $(".js-cancel-item").attr("data-item-id", myVar);
                 totalPrice += notifications[i].item.staticPrice;
                 $('#seed_items').append(dataa);
 
             }
+            var i = 0;
+            $('.js-cancel-item[data-item-id]').each(function () {
+                $(this).attr("data-item-id", notifications[i].id);
+                i++;
+
+            });
+            //data-item-id=notifications[i].id
             Delivery = 3.99;
             var dataa = '';
             dataa = ' <div class="row"> <div class="col-7 text-right text-muted">' +
@@ -484,9 +497,27 @@
                 '</strong></div> </div>';
 
 
-
+            $(".js-notifications-price")
+                .text(totalPrice);
             $('#seed_price').append(dataa);
 
+        });
+
+        $(".js-cancel-item").click(function (e) {
+            var link = $(e.target);
+
+            $.ajax({
+                url: "/api/shoppingcarts" + link.attr("data-item-id"),
+                method: "DELETE"
+            })
+                .done(function () {
+                    link.parents("li").fadeOut(function () {
+                        $(this).remove();
+                    });
+                })
+                .fail(function () {
+                    alert("Something failed!");
+                });
         });
     });
 
