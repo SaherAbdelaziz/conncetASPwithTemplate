@@ -130,8 +130,8 @@
                     <div class="col-md-2">
                         <a href="#" class="module module-cart right" data-toggle="panel-cart">
                             <span class="cart-icon">
-                                <i class="ti ti-shopping-cart"></i>
-                                <span class="notification hide badge js-notifications-count ">2</span>
+                                <i class="ti ti-shopping-cart js-shopping-cart"></i>
+                                <span class="notification hide badge js-notifications-count ">0</span>
                             </span>
                             <span  class="cart-value js-notifications-price">$32.98</span>
                         </a>
@@ -240,10 +240,10 @@
             <div class="panel-cart-container ">
                 <div class="panel-cart-title">
                     <h5 class="title">Your Cart</h5>
-                    <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
+                    <button class="close" data-toggle="panel-cart"><i class="ti ti-close js-cancel-item"></i></button>
                 </div>
                 <div class="panel-cart-content" >
-                    <table class="table-cart" id="seed_items">
+                    <table class="table-cart" id="seed_items" js-cancel-item>
                         
                     </table>
                     <div class="cart-summary" id="seed_price">
@@ -258,7 +258,7 @@
         <nav id="panel-mobile">
             <div class="module module-logo bg-dark dark">
                 <a href="#">
-                    <img src="assets/img/logo-light.svg" alt="" width="88">
+                    <img src="../../Content/mytemplate/assets/img/logo-light.svg" alt="" width="88">
                 </a>
                 <button class="close" data-toggle="panel-mobile"><i class="ti ti-close"></i></button>
             </div>
@@ -440,85 +440,92 @@
 
 <script>
     $(document).ready(function () {
-
+    //js-shopping-cart
         $.getJSON("/api/shoppingcarts", function (notifications) {
-            if (notifications.length == 0)
+            var delivery = 3.99;
+            var price = 0;
+            var totalPrice = 0;
+            if (notifications.length == 0) {
+                $(".js-notifications-price")
+                    .text('$0');
                 return;
+            }
             //alert("dsds");
             $(".js-notifications-count")
                 .text(notifications.length);
-            console.log(notifications);
-            var totalPrice = 0;
+            //console.log(notifications);
+           
 
             for(var i=0 ; i< notifications.length ; i++)
             {
-                var dataa = '';
-                dataa += '<tr>';
-                dataa += '<td class="title">' + 
-                    '<span class="name"><a href="#productModal" data-toggle="modal"> '
-                    + notifications[i].item.name +
-                    ' BBQ</a></span>'+
-                    '<td>';
-                dataa += ' <span class="caption text-muted">' +
-                    notifications[i].item.name2 +
-                    '</span>';
-                dataa += '<td class="price">' + notifications[i].item.staticPrice + '$' + '<td>';
-                dataa += '<td  class="actions">' + '<a href="#productModal" ' +
-                    // delete
-                    'data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>' +
-                    '<a href="#" class="action-icon js-cancel-item"><i class="  ti ti-close "></i></a>' + '<td>';
-                dataa += '<tr>';
-                var myVar = notifications[i].id;
-                console.log(myVar);
-                //if(myVar != $(".js-cancel-item").attr("data-item-id"))
-                //     $(".js-cancel-item").attr("data-item-id", myVar);
-                totalPrice += notifications[i].item.staticPrice;
+
+                var dataa =
+                    `<tr>
+                        <td class ="title">
+                            <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
+                            <span class ="caption text-muted">${notifications[i].item.name2}</span>
+                        <td>
+
+
+                        <td class ="price">  ${notifications[i].item.staticPrice}$ <td>
+
+                        <td  class ="actions">
+                         <a href="#productModal"data-toggle="modal" class ="action-icon js-cancel-item"> <i class ="ti ti-pencil"></i></a>
+                         <a href="#" class ="action-icon js-cancel-item"> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
+                        <td>
+                        <tr>
+                    `;
+
+                price += notifications[i].item.staticPrice;
+                totalPrice = price+delivery;
                 $('#seed_items').append(dataa);
-
+                
+                $('.itemval').attr("data-item-id", notifications[i].id);
             }
-            var i = 0;
-            $('.js-cancel-item[data-item-id]').each(function () {
-                $(this).attr("data-item-id", notifications[i].id);
-                i++;
+            dataaa = ` <div class=" row"> <div class="col-7 text-right text-muted">
+                Order total: </div>  <div class="col-5"><strong>$  ${price} </strong></div>  </div>
+            <div class="row"> <div class="col-7 text-right text-muted">
+                    Delivery: </div> <div class="col-5"><strong>$ ${delivery} </strong></div>  </div>
 
-            });
-            //data-item-id=notifications[i].id
-            Delivery = 3.99;
-            var dataa = '';
-            dataa = ' <div class="row"> <div class="col-7 text-right text-muted">' +
-                'Order total:</div> '+ '<div class="col-5"><strong>$' +  totalPrice + '</strong></div>  </div>';
-            dataa += ' <div class="row"> <div class="col-7 text-right text-muted">' +
-                'Delivery:</div> ' + '<div class="col-5"><strong>$' + Delivery + '</strong></div>  </div>';
-            totalPrice += Delivery;
+            <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
+                Total:</div> <div class="col-5"><strong>$ ${totalPrice} </strong></div> </div>`;
 
-            dataa += '<hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">' +
-                'Total:</div> <div class="col-5"><strong>$' +
-                totalPrice +
-                '</strong></div> </div>';
-
-
+            // price beside cart
             $(".js-notifications-price")
-                .text(totalPrice);
-            $('#seed_price').append(dataa);
+                .text(totalPrice.toFixed(2));
+            $('#seed_price').append(dataaa);
 
         });
 
-        $(".js-cancel-item").click(function (e) {
-            var link = $(e.target);
+       
+    });
 
-            $.ajax({
-                url: "/api/shoppingcarts" + link.attr("data-item-id"),
-                method: "DELETE"
-            })
-                .done(function () {
-                    link.parents("li").fadeOut(function () {
-                        $(this).remove();
-                    });
+
+    
+    $(".js-shopping-cart").click(function (e) {
+        if ($('.js-cancel-item').length > 0) {
+            console.log("dsds");
+            $(".js-cancel-item").click(function (e) {
+                console.log("worked");
+                var link = $(e.target);
+                console.log(link.attr("data-item-id"));
+                $.ajax({
+                    url: "/api/shoppingcarts/" + link.attr("data-item-id"),
+                    method: "DELETE"
                 })
-                .fail(function () {
-                    alert("Something failed!");
-                });
-        });
+                    .done(function () {
+                        link.parents("tr").fadeOut(function () {
+                            $(this).remove();
+                        });
+                    })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+            });
+        } 
+        else {
+            console.log("cccc");
+        }
     });
 
 

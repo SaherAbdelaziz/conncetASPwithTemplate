@@ -139,7 +139,7 @@
                         <h2 class="title">Burgers</h2>
                     </div>
                     <div id="menuBurgersContent" class="menu-category-content">
-                        <!-- Menu Item -->
+                        <!-- Menu Items -->
                         @for (int i = 0; i < 4; i++)
                         {
                             <div class="menu-item menu-list-item">
@@ -241,53 +241,56 @@
                     .done(function() {
                         span
                             .text("Added");
-                        $.getJSON("/api/shoppingcarts", function (notifications) {
-                            if (notifications.length == 0)
-                                return;
-                            //alert("dsds");
-                            $(".js-notifications-count")
-                                .text(notifications.length);
-                            console.log(notifications);
-                            var totalPrice = 0;
 
-                            for (var i = 0 ; i < notifications.length ; i++) {
-                                var dataa = '';
-                                dataa += '<tr>';
-                                dataa += '<td class="title">' +
-                                    '<span class="name"><a href="#productModal" data-toggle="modal"> '
-                                    + notifications[i].item.name +
-                                    ' BBQ</a></span>' +
-                                    '<td>';
-                                dataa += ' <span class="caption text-muted">' +
-                                    notifications[i].item.name2 +
-                                    '</span>';
-                                dataa += '<td class="price">' + notifications[i].item.staticPrice + '$' + '<td>';
-                                dataa += '<td  class="actions">' + '<a href="#productModal" ' +
-                                    'data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>' +
-                                    '<a href="#" class="action-icon"><i class="ti ti-close"></i></a>' + '<td>';
-                                dataa += '<tr>';
-                                totalPrice += notifications[i].item.staticPrice;
-                                $('#seed_items').append(dataa);
+                        // call api to add to cart
 
-                            }
-                            Delivery = 3.99;
-                            var dataa = '';
-                            dataa = ' <div class="row"> <div class="col-7 text-right text-muted">' +
-                                'Order total:</div> ' + '<div class="col-5"><strong>$' + totalPrice + '</strong></div>  </div>';
-                            dataa += ' <div class="row"> <div class="col-7 text-right text-muted">' +
-                                'Delivery:</div> ' + '<div class="col-5"><strong>$' + Delivery + '</strong></div>  </div>';
-                            totalPrice += Delivery;
+                        //$.getJSON("/api/shoppingcarts", function (notifications) {
+                        //    if (notifications.length == 0)
+                        //        return;
+                        //    //alert("dsds");
+                        //    $(".js-notifications-count")
+                        //        .text(notifications.length);
+                        //    console.log(notifications);
+                        //    var totalPrice = 0;
 
-                            dataa += '<hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">' +
-                                'Total:</div> <div class="col-5"><strong>$' +
-                                totalPrice +
-                                '</strong></div> </div>';
+                        //    for (var i = 0 ; i < notifications.length ; i++) {
+                        //        var dataa = '';
+                        //        dataa += '<tr>';
+                        //        dataa += '<td class="title">' +
+                        //            '<span class="name"><a href="#productModal" data-toggle="modal"> '
+                        //            + notifications[i].item.name +
+                        //            ' BBQ</a></span>' +
+                        //            '<td>';
+                        //        dataa += ' <span class="caption text-muted">' +
+                        //            notifications[i].item.name2 +
+                        //            '</span>';
+                        //        dataa += '<td class="price">' + notifications[i].item.staticPrice + '$' + '<td>';
+                        //        dataa += '<td  class="actions">' + '<a href="#productModal" ' +
+                        //            'data-toggle="modal" class="action-icon"><i class="ti ti-pencil"></i></a>' +
+                        //            '<a href="#" class="action-icon"><i class="ti ti-close"></i></a>' + '<td>';
+                        //        dataa += '<tr>';
+                        //        totalPrice += notifications[i].item.staticPrice;
+                        //        $('#seed_items').append(dataa);
+
+                        //    }
+                        //    Delivery = 3.99;
+                        //    var dataa = '';
+                        //    dataa = ' <div class="row"> <div class="col-7 text-right text-muted">' +
+                        //        'Order total:</div> ' + '<div class="col-5"><strong>$' + totalPrice + '</strong></div>  </div>';
+                        //    dataa += ' <div class="row"> <div class="col-7 text-right text-muted">' +
+                        //        'Delivery:</div> ' + '<div class="col-5"><strong>$' + Delivery + '</strong></div>  </div>';
+                        //    totalPrice += Delivery;
+
+                        //    dataa += '<hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">' +
+                        //        'Total:</div> <div class="col-5"><strong>$' +
+                        //        totalPrice +
+                        //        '</strong></div> </div>';
 
 
 
-                            $('#seed_price').append(dataa);
+                        //    $('#seed_price').append(dataa);
 
-                        });
+                        //});
                     })
                     .fail(function() {
                         alert("Something failed!");

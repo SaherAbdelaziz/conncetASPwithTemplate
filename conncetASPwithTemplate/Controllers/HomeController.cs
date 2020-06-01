@@ -55,7 +55,8 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult Navigation()
         {
-            return View();
+            var items = _context.Items.ToList();
+            return View(items);
         }
 
         public ActionResult ShowItems()

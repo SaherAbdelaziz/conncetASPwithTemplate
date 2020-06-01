@@ -28,7 +28,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
 
             var items = _context.CartItems
-                .Where(c => c.CartId == userId)
+                .Where(c => c.CartId == userId && !c.Removed)
                 .Include(c => c.Item).ToList();
 
             return items;
@@ -74,8 +74,21 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // DELETE: api/ShoppingCarts/5
-        public void Delete(int id)
+        public IHttpActionResult Delete(int id)
         {
+            var userId = User.Identity.GetUserId();
+            var cartItem = _context.CartItems
+                .Single(c => c.Id == id && c.CartId == userId);
+
+            if (cartItem.Removed)
+                return NotFound();
+
+            cartItem.Removed = true;
+
+
+            _context.SaveChanges();
+
+            return Ok();
         }
     }
 }
