@@ -84,7 +84,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 return NotFound();
 
             cartItem.Removed = true;
-
+            _context.CartItems.Remove(cartItem);
 
             _context.SaveChanges();
 

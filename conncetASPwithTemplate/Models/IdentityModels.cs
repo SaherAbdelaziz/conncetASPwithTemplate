@@ -35,6 +35,13 @@ namespace conncetASPwithTemplate.Models
         public DbSet<Item> Items { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
 
+        public virtual DbSet<HD_Areas> HdAreas { get; set; }
+        public virtual DbSet<HD_Areas_Services> HdAreasServices { get; set; }
+        public virtual DbSet<ItemsModifier> ItemsModifiers { get; set; }
+        public virtual DbSet<Modifier> Modifiers { get; set; }
+        public virtual DbSet<ModifiersGroup> ModifiersGroups { get; set; }
+        public virtual DbSet<OutLet> OutLets { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

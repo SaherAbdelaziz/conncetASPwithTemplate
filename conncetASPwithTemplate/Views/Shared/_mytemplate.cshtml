@@ -440,12 +440,13 @@
 
 <script>
     $(document).ready(function () {
-    //js-shopping-cart
+        //js-shopping-cart
+        // here we get cart items from api and put in in table in cart
         $.getJSON("/api/shoppingcarts", function (notifications) {
             var delivery = 3.99;
             var price = 0;
             var totalPrice = 0;
-            if (notifications.length == 0) {
+            if (notifications.length === 0) {
                 $(".js-notifications-price")
                     .text('$0');
                 return;
@@ -456,21 +457,21 @@
             //console.log(notifications);
            
 
-            for(var i=0 ; i< notifications.length ; i++)
+            for(let i=0 ; i< notifications.length ; i++)
             {
-
-                var dataa =
+                //names//price// delete and edit
+                var data1 =
                     `<tr>
+                    
                         <td class ="title">
                             <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
                             <span class ="caption text-muted">${notifications[i].item.name2}</span>
                         <td>
 
-
                         <td class ="price">  ${notifications[i].item.staticPrice}$ <td>
 
                         <td  class ="actions">
-                         <a href="#productModal"data-toggle="modal" class ="action-icon js-cancel-item"> <i class ="ti ti-pencil"></i></a>
+                         <a href="#productModal"data-toggle="modal" class ="action-icon"> <i class ="ti ti-pencil"></i></a>
                          <a href="#" class ="action-icon js-cancel-item"> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
                         <td>
                         <tr>
@@ -478,11 +479,13 @@
 
                 price += notifications[i].item.staticPrice;
                 totalPrice = price+delivery;
-                $('#seed_items').append(dataa);
+                $('#seed_items').append(data1);
                 
                 $('.itemval').attr("data-item-id", notifications[i].id);
             }
-            dataaa = ` <div class=" row"> <div class="col-7 text-right text-muted">
+
+            //
+            var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
                 Order total: </div>  <div class="col-5"><strong>$  ${price} </strong></div>  </div>
             <div class="row"> <div class="col-7 text-right text-muted">
                     Delivery: </div> <div class="col-5"><strong>$ ${delivery} </strong></div>  </div>
@@ -493,7 +496,7 @@
             // price beside cart
             $(".js-notifications-price")
                 .text(totalPrice.toFixed(2));
-            $('#seed_price').append(dataaa);
+            $('#seed_price').append(data2);
 
         });
 
