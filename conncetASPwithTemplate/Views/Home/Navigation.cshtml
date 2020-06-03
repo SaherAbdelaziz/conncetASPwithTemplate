@@ -60,8 +60,8 @@
                                             </div>
                                             <div class="col-sm-6 text-sm-right">
                                                 <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-toggle-cart"
-                                                        @*data-target="#productModal" data-toggle="modal"*@>
+                                                <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                        data-target="#productModal" data-toggle="modal">
                                                     <span>Add to cart</span>
                                                 </button>
                                             </div>
@@ -103,8 +103,8 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-toggle-cart"
-                                                            @*data-target="#productModal" data-toggle="modal"*@>
+                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                            data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
                                                 </div>
@@ -149,8 +149,8 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-toggle-cart"
-                                                            @*data-target="#productModal" data-toggle="modal"*@>
+                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                            data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
                                                 </div>
@@ -194,8 +194,8 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-toggle-cart"
-                                                            @*data-target="#productModal" data-toggle="modal"*@>
+                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                            data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
                                                 </div>
@@ -239,8 +239,8 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-toggle-cart"
-                                                            @*data-target="#productModal" data-toggle="modal"*@>
+                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                            data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
                                                 </div>
@@ -284,7 +284,7 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-toggle-cart"
+                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
                                                             @*data-target="#productModal" data-toggle="modal"*@>
                                                         <span>Add to cart</span>
                                                     </button>
@@ -312,22 +312,22 @@
 
 @section scripts{
     <script>
-        $(document).ready(function() {
-            $(".js-toggle-cart").click(function(e) {
-                var target = $(e.target);
-                var span = $(e.target).find("span");
-                $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
-                    .done(function() {
-                        span
-                            .text("Added");
+        //$(document).ready(function() {
+        //    $(".js-toggle-cart").click(function(e) {
+        //        var target = $(e.target);
+        //        var span = $(e.target).find("span");
+        //        $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
+        //            .done(function() {
+        //                span
+        //                    .text("Added");
 
-                    })
-                    .fail(function() {
-                        alert("Something failed!");
-                    });
+        //            })
+        //            .fail(function() {
+        //                alert("Something failed!");
+        //            });
 
-            });
-        });
+        //    });
+        //});
 
 
     </script>

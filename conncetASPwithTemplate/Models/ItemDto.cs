@@ -1,4 +1,4 @@
-﻿namespace conncetASPwithTemplate.Controllers.Api
+﻿namespace conncetASPwithTemplate.Models
 {
     public class ItemDto
     {

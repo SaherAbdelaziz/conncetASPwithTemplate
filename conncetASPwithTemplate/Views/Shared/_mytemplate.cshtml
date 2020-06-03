@@ -42,8 +42,8 @@
                     <div class="col-md-3">
                         <!-- Logo -->
                         <div class="module module-logo dark">
-                            <a href="@Url.Action("Index", "Home")" About Us>    
-                            <img src="../../Content/mytemplate/assets/img/logo-light.svg" alt="" width="88">
+                            <a href="@Url.Action("Index", "Home")" About Us>
+                                <img src="../../Content/mytemplate/assets/img/logo-light.svg" alt="" width="88">
                             </a>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                             <li><a href="@Url.Action("Gallery", "Home")">Gallery</a></li>
                                             <li><a href="@Url.Action("Reviews", "Home")">Reviews</a></li>
                                             <li><a href="@Url.Action("FaQ", "Home")">FAQ</a></li>
-                                           
+
 
                                         </ul>
                                         <div class="dropdown-image">
@@ -133,7 +133,7 @@
                                 <i class="ti ti-shopping-cart js-shopping-cart"></i>
                                 <span class="notification hide badge js-notifications-count ">0</span>
                             </span>
-                            <span  class="cart-value js-notifications-price">$32.98</span>
+                            <span class="cart-value js-notifications-price">$32.98</span>
                         </a>
                     </div>
                 </div>
@@ -164,12 +164,11 @@
         <!-- Content -->
         <div id="content">
 
-            
-        <div>
-            @RenderBody()
-        </div>
-        <!-- Footer -->
 
+            <div>
+                @RenderBody()
+            </div>
+            <!-- Footer -->
             <!-- Footer -->
             <footer id="footer" class="bg-dark dark">
 
@@ -242,12 +241,10 @@
                     <h5 class="title">Your Cart</h5>
                     <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
                 </div>
-                <div class="panel-cart-content" >
-                    <table class="table-cart" id="seed_items" js-cancel-item>
-                        
-                    </table>
+                <div class="panel-cart-content">
+                    <table class="table-cart" id="seed_items" js-cancel-item></table>
                     <div class="cart-summary" id="seed_price">
-                        
+
                     </div>
                 </div>
             </div>
@@ -278,8 +275,8 @@
 
     </div>
 
-<!-- Modal                                              / Product -->
-<!-- -->
+    <!-- Modal                                              / Product -->
+    <!-- -->
     <div class="modal fade " id="productModal" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -292,11 +289,11 @@
                     <div class="row align-items-center">
                         <div class="col-9">
                             <!-- first and second name-->
-                            <h6 class="mb-0">Boscaiola Pasta</h6>
-                            <span class="text-muted">Pasta, Cheese, Tomatoes, Olives</span>
+                            <h6 class="mb-0 js-item-name1" js-item-name1="">Boscaiola Pasta</h6>
+                            <span class="text- js-item-name2" js-item-name2="">Pasta, Cheese, Tomatoes, Olives</span>
                         </div>
                         <!-- price -->
-                        <div class="col-3 text-lg text-right">$9.00</div>
+                        <div class="col-3 text-lg text-right js-item-staticPrice">$9.00</div>
                     </div>
                 </div>
                 <div class="modal-body panel-details-container">
@@ -318,7 +315,7 @@
                                         <span class="custom-control-description">Small - 100g ($9.99)</span>
                                     </label>
                                 </div>
-                               
+
                             </div>
                         </div>
                     </div>
@@ -342,7 +339,7 @@
                                                 <span class="custom-control-description">Tomato ($1.29)</span>
                                             </label>
                                         </div>
-                                        
+
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="form-group">
@@ -352,7 +349,7 @@
                                                 <span class="custom-control-description">Cheese($1.29)</span>
                                             </label>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -402,38 +399,38 @@
     <script src="../../Content/mytemplate/assets/plugins/animsition/dist/js/animsition.min.js"></script>
 
     <!-- JS Core -->
-<script src="../../Content/mytemplate/assets/js/core.js"></script>
+    <script src="../../Content/mytemplate/assets/js/core.js"></script>
     @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
 
 
-<script>
-    $(document).ready(function () {
-        //js-shopping-cart
-        // here we get cart items from api and put in in table in cart
-        $.getJSON("/api/shoppingcarts", function (notifications) {
-            var delivery = 3.99;
-            var price = 0;
-            var totalPrice = 0;
-            if (notifications.length === 0) {
-                $(".js-notifications-price")
-                    .text('$0');
-                return;
-            }
-            //alert("dsds");
-            $(".js-notifications-count")
-                .text(notifications.length);
-            //console.log(notifications);
-           
+    <script>
+        $(document).ready(function () {
+            //js-shopping-cart
+            // here we get cart items from api and put in in table in cart
+            $.getJSON("/api/shoppingcarts", function (notifications) {
+                var delivery = 3.99;
+                var price = 0;
+                var totalPrice = 0;
+                if (notifications.length === 0) {
+                    $(".js-notifications-price")
+                        .text('$0');
+                    return;
+                }
+                //alert("dsds");
+                $(".js-notifications-count")
+                    .text(notifications.length);
+                //console.log(notifications);
 
-            for(let i=0 ; i< notifications.length ; i++)
-            {
-                //names//price// delete and edit
-                var data1 =
-                    `<tr>
-                    
+
+                for(let i=0 ; i< notifications.length ; i++)
+                {
+                    //names//price// delete and edit
+                    var data1 =
+                        `<tr>
+
                         <td class ="title">
                             <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
                             <span class ="caption text-muted">${notifications[i].item.name2}</span>
@@ -448,14 +445,14 @@
                         <tr>
                     `;
 
-                price += notifications[i].item.staticPrice;
-                totalPrice = price+delivery;
-                $('#seed_items').append(data1);
-                
-            }
+                    price += notifications[i].item.staticPrice;
+                    totalPrice = price+delivery;
+                    $('#seed_items').append(data1);
 
-            //
-            var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
+                }
+
+                //
+                var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
                 Order total: </div>  <div class="col-5"><strong>$  ${price} </strong></div>  </div>
             <div class="row"> <div class="col-7 text-right text-muted">
                     Delivery: </div> <div class="col-5"><strong>$ ${delivery} </strong></div>  </div>
@@ -463,76 +460,156 @@
             <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
                 Total:</div> <div class="col-5"><strong>$ ${totalPrice} </strong></div> </div>`;
 
-            // price beside cart
-            $(".js-notifications-price")
-                .text(totalPrice.toFixed(2));
-            $('#seed_price').append(data2);
+                // price beside cart
+                $(".js-notifications-price")
+                    .text(totalPrice.toFixed(2));
+                $('#seed_price').append(data2);
 
-        });
+            });
 
-        // here we get specifected item and put it in database
-        $(".js-toggle-cart").click(function (e) {
-            var target = $(e.target);
-            var span = $(e.target).find("span");
-            $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
-                .done(function () {
-                    span
-                        .text("Added");
-                })
-                .fail(function () {
-                    alert("Something failed!");
-                });
-
-        });
-
-        //delete specifected item from cart
-    $(".js-shopping-cart").click(function (e) {
-        if ($('.js-cancel-item').length > 0) {
-            console.log("dsds");
-            $(".js-cancel-item").click(function (e) {
-                console.log("worked");
-                var link = $(e.target);
-                console.log(link.attr("data-item-id"));
-                $.ajax({
-                    url: "/api/shoppingcarts/" + link.attr("data-item-id"),
-                    method: "DELETE"
-                })
+            // here we get specifected item and put it in database
+            $(".js-toggle-cart").click(function (e) {
+                var target = $(e.target);
+                var span = $(e.target).find("span");
+                $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
                     .done(function () {
-                        link.parents("tr").fadeOut(function () {
-                            $(this).remove();
-                        });
+                        span
+                            .text("Added");
                     })
                     .fail(function () {
                         alert("Something failed!");
                     });
+
             });
-        } 
-        else {
-            console.log("cccc");
-        }
-    });
 
-    $(".js-chosen-item").on('click',
-        function (e , status) {
-            var button = $(e.target);
-            var id = button.attr("data-item-id");
-           // $.ajax
-            $.ajax({ url: "/api/items/" + id, method: "GET" })
-                .done(function (data) {
-                    // now have the item
-                    })
-                .fail(function () {
-                    alert("Something failed!");
-                });
+            //delete specifected item from cart
+            $(".js-shopping-cart").click(function (e) {
+                if ($('.js-cancel-item').length > 0) {
+                    console.log("dsds");
+                    $(".js-cancel-item").click(function (e) {
+                        console.log("worked");
+                        var link = $(e.target);
+                        console.log(link.attr("data-item-id"));
+                        $.ajax({
+                            url: "/api/shoppingcarts/" + link.attr("data-item-id"),
+                            method: "DELETE"
+                        })
+                            .done(function () {
+                                link.parents("tr").fadeOut(function () {
+                                    $(this).remove();
+                                });
+                            })
+                            .fail(function () {
+                                alert("Something failed!");
+                            });
+                    });
+                }
+                else {
+                    console.log("cccc");
+                }
+            });
 
-        
-    });
+            // when click on item we get its information like id and name
+            $(".js-chosen-item").on('click', function (e , status) {
+                var button = $(e.target);
+                var id = button.attr("data-item-id");
+                // $.ajax
+                $.ajax({ url: "/api/items/" + id, method: "GET" })
+                    .done(function (data) {
+                        // now have the item
+                        //console.log(data.staticPrice);
+                        $(".modal-product-details .js-item-name1").text(data.name);
+                        $(".modal-product-details .js-item-name2").text(data.name2);
+                        $(".modal-product-details .js-item-staticPrice").text(data.staticPrice);
 
-    });
-    
+
+                        // here we check of item has modifier or not
+                        $.ajax({ url: "/api/ItemsModifiers/", method: "GET" })
+                            .done(function (data) {
+                                // console.log(data);
+                                let exist = false, myModifierId;
 
 
-</script>
+                                data.forEach(function(val, ind) {
+                                    //console.log(id);
+                                    //console.log(val);
+                                    //console.log(id + "  " + val.itemId);
+                                    if (val.itemId == id) {
+                                        console.log("item selected has modifiers");
+                                        myModifierId = val.modifierId;
+                                        console.log(val);
+                                        exist = true;
+
+
+                                        let existModifiers = false;
+                                        $.ajax({ url: "/api/Modifiers/", method: "GET" })
+                                            .done(function(dataModifiers) {
+                                                //console.log(dataModifiers);
+
+                                                dataModifiers.forEach(function(val, ind) {
+                                                    //console.log(id);
+                                                    //console.log(val);
+                                                    //console.log(id + "  " + val.itemId);
+                                                    if (val.id == myModifierId || existModifiers) {
+                                                        if (!existModifiers)
+                                                        {
+                                                            console.log(myModifierId + " is equal " + val.modifiersGroupId);
+                                                            myModifierId = val.modifierId;
+                                                        }
+
+
+                                                        console.log(val);
+                                                        existModifiers = true;
+                                                    }
+                                                });
+                                            })
+                                            .fail(function() { alert("Something failed! in modifiersID"); });
+
+
+                                        //console.log(exist);
+
+                                    }
+
+                                });
+
+                            })
+                            .fail(function () {
+                                alert("Something failed! in modifiers");
+                            });
+
+                            })
+                    .fail(function () {
+                        alert("Something failed!");
+                    });
+
+                        //<!-- Panel Details / Size -->
+                        //    <div class="panel-details">
+                        //    <h5 class="panel-details-title">
+                        //    <label class="custom-control custom-radio">
+                        //    <input name="radio_title_size" type="radio" class="custom-control-input">
+                        //    <span class="custom-control-indicator"></span>
+                        //    </label>
+                        //    <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        //    </h5>
+                        //    <div id="panelDetailsSize" class="collapse show">
+                        //    <div class="panel-details-content">
+                        //    <div class="form-group">
+                        //    <label class="custom-control custom-radio">
+                        //    <input name="radio_size" type="radio" class="custom-control-input" checked>
+                        //    <span class="custom-control-indicator"></span>
+                        //    <span class="custom-control-description">Small - 100g ($9.99)</span>
+                        //    </label>
+                        //    </div>
+
+                        //    </div>
+                        //    </div>
+                        //    </div>
+                    });
+
+            });
+
+
+    </script>
 </body>
 
 </html>

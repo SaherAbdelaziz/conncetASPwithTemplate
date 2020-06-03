@@ -233,21 +233,21 @@
 
 @section scripts{
     <script>
-        $(document).ready(function() {
-            $(".js-toggle-cart").click(function(e) {
-                var target = $(e.target);
-                var span = $(e.target).find("span");
-                $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
-                    .done(function() {
-                        span
-                            .text("Added");
-                    })
-                    .fail(function() {
-                        alert("Something failed!");
-                    });
+        //$(document).ready(function() {
+        //    $(".js-toggle-cart").click(function(e) {
+        //        var target = $(e.target);
+        //        var span = $(e.target).find("span");
+        //        $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
+        //            .done(function() {
+        //                span
+        //                    .text("Added");
+        //            })
+        //            .fail(function() {
+        //                alert("Something failed!");
+        //            });
 
-            });
-        });
+        //    });
+        //});
 
 
     </script>
