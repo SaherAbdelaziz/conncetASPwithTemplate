@@ -1,8 +1,8 @@
-namespace conncetASPwithTemplate
-{
-    using System;
-    using System.ComponentModel.DataAnnotations;
+using System;
+using System.ComponentModel.DataAnnotations;
 
+namespace conncetASPwithTemplate.Models
+{
     public class OutLet
     {
         public int Id { get; set; }
