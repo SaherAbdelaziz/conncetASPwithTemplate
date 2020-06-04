@@ -185,6 +185,7 @@
     <Compile Include="Controllers\Api\ItemsController.cs" />
     <Compile Include="Controllers\Api\ItemsModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersController.cs" />
+    <Compile Include="Controllers\Api\ModifiersGroupsController.cs" />
     <Compile Include="Controllers\Api\ShoppingCartsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -210,6 +211,10 @@
     <Compile Include="Migrations\202006021206068_AddModifersTables.cs" />
     <Compile Include="Migrations\202006021206068_AddModifersTables.Designer.cs">
       <DependentUpon>202006021206068_AddModifersTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031312088_changeModifierToModieverGrpoupAsIunderstand.cs" />
+    <Compile Include="Migrations\202006031312088_changeModifierToModieverGrpoupAsIunderstand.Designer.cs">
+      <DependentUpon>202006031312088_changeModifierToModieverGrpoupAsIunderstand.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1378,6 +1383,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006021206068_AddModifersTables.resx">
       <DependentUpon>202006021206068_AddModifersTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031312088_changeModifierToModieverGrpoupAsIunderstand.resx">
+      <DependentUpon>202006031312088_changeModifierToModieverGrpoupAsIunderstand.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

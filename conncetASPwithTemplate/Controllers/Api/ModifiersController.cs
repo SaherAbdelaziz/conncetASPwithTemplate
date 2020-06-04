@@ -24,10 +24,9 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // GET: api/Modifiers/5
-        [ResponseType(typeof(Modifier))]
-        public IHttpActionResult GetModifier(int id1 ,int id2)
+        public IHttpActionResult GetModifier(int id )
         {
-            Modifier modifier = _context.Modifiers.Find(id1, id2);//.Where(m=>m.ModifiersGroupId==id1);
+            Modifier modifier = _context.Modifiers.Find(id);//.Where(m=>m.ModifiersGroupId==id1);
             if (modifier == null)
             {
                 return NotFound();

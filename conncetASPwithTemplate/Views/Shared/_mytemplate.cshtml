@@ -289,11 +289,11 @@
                     <div class="row align-items-center">
                         <div class="col-9">
                             <!-- first and second name-->
-                            <h6 class="mb-0 js-item-name1" js-item-name1="">Boscaiola Pasta</h6>
-                            <span class="text- js-item-name2" js-item-name2="">Pasta, Cheese, Tomatoes, Olives</span>
+                            <h6 class="mb-0 js-item-name1" js-item-name1=""><!-- first name--></h6>
+                            <span class="text- js-item-name2" js-item-name2=""><!-- second name--></span>
                         </div>
                         <!-- price -->
-                        <div class="col-3 text-lg text-right js-item-staticPrice">$9.00</div>
+                        <div class="col-3 text-lg text-right js-item-staticPrice"><!-- price --></div>
                     </div>
                 </div>
                 <div class="modal-body panel-details-container">
@@ -307,16 +307,11 @@
                             <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
                         </h5>
                         <div id="panelDetailsSize" class="collapse show">
+                            <form>
                             <div class="panel-details-content">
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
-                                    </label>
-                                </div>
-
+                               
                             </div>
+                            </form>
                         </div>
                     </div>
                     <!-- Panel Details / Additions -->
@@ -369,7 +364,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg" data-dismiss="modal"><span>Add to Cart</span></button>
+                <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-Add-Cart" data-dismiss="modal"><span>Add to Cart</span></button>
             </div>
         </div>
     </div>
@@ -510,7 +505,7 @@
             });
 
             // when click on item we get its information like id and name
-            $(".js-chosen-item").on('click', function (e , status) {
+            $(".js-chosen-item").on('click', function (e ) {
                 var button = $(e.target);
                 var id = button.attr("data-item-id");
                 // $.ajax
@@ -527,51 +522,83 @@
                         $.ajax({ url: "/api/ItemsModifiers/", method: "GET" })
                             .done(function (data) {
                                 // console.log(data);
-                                let exist = false, myModifierId;
-
-
-                                data.forEach(function(val, ind) {
+                                let exist = false, myModifierGroupId , items=[];
+                                data.forEach(function (val, ind) {
                                     //console.log(id);
                                     //console.log(val);
                                     //console.log(id + "  " + val.itemId);
                                     if (val.itemId == id) {
-                                        console.log("item selected has modifiers");
-                                        myModifierId = val.modifierId;
-                                        console.log(val);
+                                        //console.log("item selected has modifiers and myModifierGroupId is " + val.modifiersGroupId);
+                                        myModifierGroupId = val.modifiersGroupId;
+                                        //console.log(val);
                                         exist = true;
 
 
                                         let existModifiers = false;
                                         $.ajax({ url: "/api/Modifiers/", method: "GET" })
-                                            .done(function(dataModifiers) {
+                                            .done(function (dataModifiers) {
                                                 //console.log(dataModifiers);
 
-                                                dataModifiers.forEach(function(val, ind) {
+                                                dataModifiers.forEach(function (val, ind) {
                                                     //console.log(id);
                                                     //console.log(val);
                                                     //console.log(id + "  " + val.itemId);
-                                                    if (val.id == myModifierId || existModifiers) {
-                                                        if (!existModifiers)
-                                                        {
-                                                            console.log(myModifierId + " is equal " + val.modifiersGroupId);
-                                                            myModifierId = val.modifierId;
-                                                        }
-
-
-                                                        console.log(val);
-                                                        existModifiers = true;
+                                                    if (val.modifiersGroupId == myModifierGroupId) {
+                                                       // console.log(myModifierGroupId + " is equal " + val.modifiersGroupId);
+                                                       // console.log(val);
+                                                        items.push(val.item);
                                                     }
                                                 });
-                                            })
-                                            .fail(function() { alert("Something failed! in modifiersID"); });
+                                               // console.log("modifers items");
+                                                //console.log("dsds " + items.length);
 
+                                                for (let j = 0; j < items.length; j++)
+                                                {
+                                                    let name = items[j].name;
+                                                    let radioName = name + (j + 1).toString();
+                                                    let data1 = `<div class="form-group">
+                                                        <label class ="custom-control custom-radio" >
+                                                        <input name="radio_size" type="radio">
+                                                        <span class ="custom-control-indicator"></span>
+                                                        <span class ="custom-control-description">${name} </span>
+                                                        <p id="#result"></p>
+                                                        </label>
+                                                        </div>`;
+
+                                                    $('#panelDetailsSize .panel-details-content').append(data1);
+                                                }
+                                                //class="custom-control-input"
+
+                                               // $('#productModal  button.js-Add-Cart').text("dsadsa");
+                                               // console.log($('#productModal  button.js-Add-Cart').text());
+                                               // var ele = $("#productModal input:radio[name='radio_size']");  //document.getElementsByName('radio_size');
+                                               // var selectedIndex = ele.index(ele.find(':checked'));
+
+                                               // console.log(selectedIndex);
+                                               //// console.log("in");
+                                               // for (let k = 0; k < ele.length; k++) {
+                                               //     if (ele[k].checked) {
+                                               //         console.log("in");
+                                               //         document.getElementById("result").innerHTML
+                                               //             = ele[k].value;
+                                               //     }
+                                               // }
+
+                                            })
+                                            .fail(function () { alert("Something failed! in modifiersID"); });
+                                        //<div class="form-group">
+                                        //    <label class="custom-control custom-radio">
+                                        //    <input name="radio_size" type="radio" class="custom-control-input" checked>
+                                        //    <span class="custom-control-indicator"></span>
+                                        //    <span class="custom-control-description">Small - 100g ($9.99)</span>
+                                        //    </label>
+                                        //    </div>
 
                                         //console.log(exist);
 
                                     }
 
                                 });
-
                             })
                             .fail(function () {
                                 alert("Something failed! in modifiers");
@@ -582,30 +609,11 @@
                         alert("Something failed!");
                     });
 
-                        //<!-- Panel Details / Size -->
-                        //    <div class="panel-details">
-                        //    <h5 class="panel-details-title">
-                        //    <label class="custom-control custom-radio">
-                        //    <input name="radio_title_size" type="radio" class="custom-control-input">
-                        //    <span class="custom-control-indicator"></span>
-                        //    </label>
-                        //    <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                        //    </h5>
-                        //    <div id="panelDetailsSize" class="collapse show">
-                        //    <div class="panel-details-content">
-                        //    <div class="form-group">
-                        //    <label class="custom-control custom-radio">
-                        //    <input name="radio_size" type="radio" class="custom-control-input" checked>
-                        //    <span class="custom-control-indicator"></span>
-                        //    <span class="custom-control-description">Small - 100g ($9.99)</span>
-                        //    </label>
-                        //    </div>
-
-                        //    </div>
-                        //    </div>
-                        //    </div>
+                 
                     });
-
+            //$("body").on("change", "input:radio[name='radio_size']", function() {
+            //    console.log("dsdsadasasfas");
+            //});
             });
 
 

@@ -11,10 +11,10 @@ namespace conncetASPwithTemplate.Models
 
         [Key]
         [Column(Order = 1)]
-        public int ModifierId { get; set; }
+        public int ModifiersGroupId { get; set; }
 
         public Item Item { get; set; }
-        public Modifier Modifier { get; set; }
+        public ModifiersGroup ModifiersGroup { get; set; }
 
         public bool? Active { get; set; }
 

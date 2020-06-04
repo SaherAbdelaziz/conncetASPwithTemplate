@@ -21,9 +21,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         public IQueryable<ItemsModifier> GetItemsModifiers()
         {
             var itemsModifiers = _context.ItemsModifiers
-                .Include(i=>i.Modifier)
-                .Include(i => i.Modifier.Item)
-                .Include(i => i.Modifier.ModifiersGroup);
+                .Include(i => i.ModifiersGroup);
             return itemsModifiers;
         }
         // GET: api/ItemsModifiers/5
