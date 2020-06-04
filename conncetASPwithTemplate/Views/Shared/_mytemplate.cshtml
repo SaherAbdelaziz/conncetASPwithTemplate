@@ -277,7 +277,7 @@
 
     <!-- Modal                                              / Product -->
     <!-- -->
-    <div class="modal fade " id="productModal" role="dialog">
+    <div class="modal  " id="productModal" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-lg dark bg-dark">
@@ -364,7 +364,7 @@
                         </div>
                     </div>
                 </div>
-                <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-Add-Cart" data-dismiss="modal"><span>Add to Cart</span></button>
+                <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-add-cart" data-item-id="1" data-modiefier-id="1" data-dismiss="modal"><span>Add to Cart</span></button>
             </div>
         </div>
     </div>
@@ -401,30 +401,50 @@
 
 
 
-    <script>
-        $(document).ready(function () {
-            //js-shopping-cart
-            // here we get cart items from api and put in in table in cart
-            $.getJSON("/api/shoppingcarts", function (notifications) {
-                var delivery = 3.99;
-                var price = 0;
-                var totalPrice = 0;
-                if (notifications.length === 0) {
-                    $(".js-notifications-price")
-                        .text('$0');
-                    return;
-                }
-                //alert("dsds");
-                $(".js-notifications-count")
-                    .text(notifications.length);
-                //console.log(notifications);
+<script>
+
+    // all apis calls
+    $(document).ready(function () {
+
+        function AddItem(button ,id) {
+            
+            $.post("/api/shoppingcarts", { "": button.attr("data-item-id") })
+                .done(function () {
+                    console.log("got in");
+                    console.log(button.attr("data-item-id"));
+                    console.log("last id is " + id);
+                    //span.text("Added");
+                })
+                .fail(function () {
+                    alert("Something failed! in adding item to cart");
+                });
 
 
-                for(let i=0 ; i< notifications.length ; i++)
-                {
-                    //names//price// delete and edit
-                    var data1 =
-                        `<tr>
+        }
+
+
+        //js-shopping-cart
+        // here we get cart items from api and put in in table in cart
+        $.getJSON("/api/shoppingcarts", function (notifications) {
+            var delivery = 3.99;
+            var price = 0;
+            var totalPrice = 0;
+            if (notifications.length === 0) {
+                $(".js-notifications-price")
+                    .text('$0');
+                return;
+            }
+            //alert("dsds");
+            $(".js-notifications-count")
+                .text(notifications.length);
+            //console.log(notifications);
+
+
+            for(let i=0 ; i< notifications.length ; i++)
+            {
+                //names//price// delete and edit
+                var data1 =
+                    `<tr>
 
                         <td class ="title">
                             <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
@@ -440,14 +460,14 @@
                         <tr>
                     `;
 
-                    price += notifications[i].item.staticPrice;
-                    totalPrice = price+delivery;
-                    $('#seed_items').append(data1);
+                price += notifications[i].item.staticPrice;
+                totalPrice = price+delivery;
+                $('#seed_items').append(data1);
 
-                }
+            }
 
-                //
-                var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
+            //
+            var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
                 Order total: </div>  <div class="col-5"><strong>$  ${price} </strong></div>  </div>
             <div class="row"> <div class="col-7 text-right text-muted">
                     Delivery: </div> <div class="col-5"><strong>$ ${delivery} </strong></div>  </div>
@@ -455,169 +475,163 @@
             <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
                 Total:</div> <div class="col-5"><strong>$ ${totalPrice} </strong></div> </div>`;
 
-                // price beside cart
-                $(".js-notifications-price")
-                    .text(totalPrice.toFixed(2));
-                $('#seed_price').append(data2);
+            // price beside cart
+            $(".js-notifications-price")
+                .text(totalPrice.toFixed(2));
+            $('#seed_price').append(data2);
 
-            });
+        });
 
-            // here we get specifected item and put it in database
-            $(".js-toggle-cart").click(function (e) {
-                var target = $(e.target);
-                var span = $(e.target).find("span");
-                $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
-                    .done(function () {
-                        span
-                            .text("Added");
-                    })
-                    .fail(function () {
-                        alert("Something failed!");
-                    });
+        // here we get specifected item and put it in database
+        $(".js-add-cart").click(function (e) {
+            var button = $(e.target);
+            if ($(e.target).get(0).tagName == "SPAN") {
 
-            });
+                button = $(e.target).parent();
+            }
+            else {
+                button = $(e.target);
+            }
+            var id = $("#productModal .js-add-cart").attr("data-modiefier-id");
+            AddItem(button, id);
+            
 
-            //delete specifected item from cart
-            $(".js-shopping-cart").click(function (e) {
-                if ($('.js-cancel-item').length > 0) {
-                    console.log("dsds");
-                    $(".js-cancel-item").click(function (e) {
-                        console.log("worked");
-                        var link = $(e.target);
-                        console.log(link.attr("data-item-id"));
-                        $.ajax({
+        });
+
+            
+        $(".js-shopping-cart").click(function (e) {
+            if ($('.js-cancel-item').length > 0) {
+                console.log("dsds");
+                $(".js-cancel-item").click(function (e) {
+                    console.log("worked");
+                    var link = $(e.target);
+                    console.log(link.attr("data-item-id"));
+                    //delete specifected item from cart
+                    $.ajax({
                             url: "/api/shoppingcarts/" + link.attr("data-item-id"),
                             method: "DELETE"
                         })
-                            .done(function () {
-                                link.parents("tr").fadeOut(function () {
-                                    $(this).remove();
-                                });
-                            })
-                            .fail(function () {
-                                alert("Something failed!");
+                        .done(function () {
+                            link.parents("tr").fadeOut(function () {
+                                $(this).remove();
                             });
-                    });
+                        })
+                        .fail(function () {
+                            alert("Something failed! in deleting items");
+                        });
+                });
+            }
+            else {
+                console.log("cccc");
+            }
+        });
+
+        // when click on item we get its information like id and name
+        $(".js-chosen-item").on('click',
+            function (e) {
+                var button = $(e.target);
+                if ($(e.target).get(0).tagName == "SPAN") {
+
+                     button = $(e.target).parent();
                 }
                 else {
-                    console.log("cccc");
-                }
-            });
-
-            // when click on item we get its information like id and name
-            $(".js-chosen-item").on('click', function (e ) {
-                var button = $(e.target);
+                     button = $(e.target);
+                    }
+                console.log(button);
+                
                 var id = button.attr("data-item-id");
                 // $.ajax
-                $.ajax({ url: "/api/items/" + id, method: "GET" })
+                // first retruferd id is the selected item and other ids is modifiers
+
+                $.ajax({ url: "/api/ModifiersGroups/" + id, method: "GET" })
                     .done(function (data) {
-                        // now have the item
-                        //console.log(data.staticPrice);
-                        $(".modal-product-details .js-item-name1").text(data.name);
-                        $(".modal-product-details .js-item-name2").text(data.name2);
-                        $(".modal-product-details .js-item-staticPrice").text(data.staticPrice);
+                        var $radioChecked ;
+                        var $radio ;
+                        var index  ;
+                        
 
+                        if (data.length == 1) {
+                            AddItem(button , -1);
 
-                        // here we check of item has modifier or not
-                        $.ajax({ url: "/api/ItemsModifiers/", method: "GET" })
-                            .done(function (data) {
-                                // console.log(data);
-                                let exist = false, myModifierGroupId , items=[];
-                                data.forEach(function (val, ind) {
-                                    //console.log(id);
-                                    //console.log(val);
-                                    //console.log(id + "  " + val.itemId);
-                                    if (val.itemId == id) {
-                                        //console.log("item selected has modifiers and myModifierGroupId is " + val.modifiersGroupId);
-                                        myModifierGroupId = val.modifiersGroupId;
-                                        //console.log(val);
-                                        exist = true;
+                        }
+                        else {
+                            $("#productModal").addClass("fade");
+                            $("#productModal").modal();
+                            $("#productModal").removeClass("fade");
+                            $("#productModal .js-add-cart").attr("data-item-id", id);
 
+                            console.log("get in else");
+                            $(".modal-product-details .js-item-name1").text(data[0].name);
+                            $(".modal-product-details .js-item-name2").text(data[0].name2);
+                            $(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
 
-                                        let existModifiers = false;
-                                        $.ajax({ url: "/api/Modifiers/", method: "GET" })
-                                            .done(function (dataModifiers) {
-                                                //console.log(dataModifiers);
+                            for (let j = 1; j < data.length; j++) {
+                                let name = data[j].name;
+                                let price = data[j].staticPrice;
+                                // add modifiers to details of item
+                                let data1 = `<div class="form-group">
+                            <label class ="custom-control custom-radio" >
+                            <input name="radio_size" type="radio" value=${name}>
+                            <span class ="custom-control-indicator"></span>
+                            <span class ="custom-control-description">${name} -(${price}) </span>
+                            </label>
+                            </div>`;
 
-                                                dataModifiers.forEach(function (val, ind) {
-                                                    //console.log(id);
-                                                    //console.log(val);
-                                                    //console.log(id + "  " + val.itemId);
-                                                    if (val.modifiersGroupId == myModifierGroupId) {
-                                                       // console.log(myModifierGroupId + " is equal " + val.modifiersGroupId);
-                                                       // console.log(val);
-                                                        items.push(val.item);
-                                                    }
-                                                });
-                                               // console.log("modifers items");
-                                                //console.log("dsds " + items.length);
+                                $('#panelDetailsSize .panel-details-content').append(data1);
 
-                                                for (let j = 0; j < items.length; j++)
-                                                {
-                                                    let name = items[j].name;
-                                                    let radioName = name + (j + 1).toString();
-                                                    let data1 = `<div class="form-group">
-                                                        <label class ="custom-control custom-radio" >
-                                                        <input name="radio_size" type="radio">
-                                                        <span class ="custom-control-indicator"></span>
-                                                        <span class ="custom-control-description">${name} </span>
-                                                        <p id="#result"></p>
-                                                        </label>
-                                                        </div>`;
+                            }
 
-                                                    $('#panelDetailsSize .panel-details-content').append(data1);
-                                                }
-                                                //class="custom-control-input"
-
-                                               // $('#productModal  button.js-Add-Cart').text("dsadsa");
-                                               // console.log($('#productModal  button.js-Add-Cart').text());
-                                               // var ele = $("#productModal input:radio[name='radio_size']");  //document.getElementsByName('radio_size');
-                                               // var selectedIndex = ele.index(ele.find(':checked'));
-
-                                               // console.log(selectedIndex);
-                                               //// console.log("in");
-                                               // for (let k = 0; k < ele.length; k++) {
-                                               //     if (ele[k].checked) {
-                                               //         console.log("in");
-                                               //         document.getElementById("result").innerHTML
-                                               //             = ele[k].value;
-                                               //     }
-                                               // }
-
-                                            })
-                                            .fail(function () { alert("Something failed! in modifiersID"); });
-                                        //<div class="form-group">
-                                        //    <label class="custom-control custom-radio">
-                                        //    <input name="radio_size" type="radio" class="custom-control-input" checked>
-                                        //    <span class="custom-control-indicator"></span>
-                                        //    <span class="custom-control-description">Small - 100g ($9.99)</span>
-                                        //    </label>
-                                        //    </div>
-
-                                        //console.log(exist);
-
-                                    }
-
-                                });
-                            })
-                            .fail(function () {
-                                alert("Something failed! in modifiers");
+                            //get the selected radio button
+                            
+                            $("input[name='radio_size']").click(function () {
+                                $radioChecked = $("input[name='radio_size']:checked");
+                                $radio = $("input[name='radio_size']");
+                                index = $radio.index($radioChecked) + 1;
+                                index = data[index].id;
+                                //console.log(index);
+                                //console.log(data[index]);//data-modiefier-id
+                                $("#productModal .js-add-cart").attr("data-modiefier-id", index);
                             });
+                            
 
-                            })
-                    .fail(function () {
-                        alert("Something failed!");
+                            //$("#productModal .js-add-cart").text("Hide");
+                            //console.log($("#productModal .jjs-add-cart"));
+                            
+                            
+
+                            }
+
+                        
+                    })
+                    .fail(function() {
+                        alert("Something failed! in modifiers");
                     });
 
-                 
-                    });
-            //$("body").on("change", "input:radio[name='radio_size']", function() {
-            //    console.log("dsdsadasasfas");
-            //});
             });
+        //$("#productModal .js-add-cart").on("hidden.bs.modal", function() {
+        //    $.automation.worker.bindIntervalEvent("#TanksContent", "/Tank/GetTanks", function () {
+        //        $.automation.tanks.tableInit();
+        //    });
+
+        //$('#productModal').on('shown',
+        //    function() {
+        //        $('body').on('click',
+        //            function(e) {
+        //                // your function...
+        //                console.log("close");
+        //                $("#productModal").removeClass("fade");
+        //                e.stopPropagation();
+        //            });
+        //    });
+
+        //$('#productModal').modal('toggle');
+        //$("body").on("change", "input:radio[name='radio_size']", function() {
+        //    console.log("dsdsadasasfas");
+        //});
+    });
 
 
-    </script>
+</script>
 </body>
 
 </html>

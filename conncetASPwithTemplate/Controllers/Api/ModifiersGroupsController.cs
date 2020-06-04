@@ -24,9 +24,11 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         // GET: api/ModifiersGroups/5
         //[ResponseType(typeof(ModifiersGroup))]
+        // first retruferd id is the selected item and other ids is modifiers
         public List<Item> GetModifiersGroup(int id)
         {
-
+            List<int> ids = new List<int>();
+            ids.Add(id);
 
             var item = _context.Items.FirstOrDefault(i => i.Id == id);
             var itemsModifiers = _context.ItemsModifiers.ToList();
@@ -40,7 +42,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                     
                 }
             }
-            List<int> ids = new List<int>();
+           
             var modifiers = _context.Modifiers
                 .Where(m => m.ModifiersGroupId == modifierGroupId)
                 .ToList();
