@@ -1,4 +1,9 @@
-﻿@model IList<conncetASPwithTemplate.Models.Item>
+﻿@using Newtonsoft.Json
+@model IList<conncetASPwithTemplate.Models.Item>
+
+@functions {
+   // public List<int> ids = new List<int>();
+}
 @{
     ViewBag.Title = "IndexBurgers";
     Layout = "~/Views/Shared/_mytemplate.cshtml";
@@ -142,6 +147,10 @@
                         <!-- Menu Items -->
                         @for (int i = 0; i < 4; i++)
                         {
+                            List<int> ids = new List<int>();
+                            ids.Add(Model[i].Id);
+                            var myJSON = JsonConvert.SerializeObject(ids);
+
                             <div class="menu-item menu-list-item">
                                 <div class="row align-items-center">
                                     <div class="col-sm-6 mb-2 mb-sm-0">
@@ -150,7 +159,7 @@
                                     </div>
                                     <div class="col-sm-6 text-sm-right">
                                         <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                        <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item "
+                                        <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item "
                                                 data-target="#productModal" data-toggle="modal">
                                             <span>Add to cart</span>
                                         </button>
@@ -158,6 +167,7 @@
                                     </div>
                                 </div>
                             </div>
+                            ids.Clear();
                         }
                     </div>
                 </div>

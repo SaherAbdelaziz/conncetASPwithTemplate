@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using conncetASPwithTemplate.Dtos;
 using conncetASPwithTemplate.Models;
 using Microsoft.AspNet.Identity;
 
@@ -41,32 +42,88 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // POST: api/ShoppingCarts
-        public CartItem Post([FromBody]int itemId)
+        [HttpPost]
+        //[Route("api/ShoppingCarts/{id1}/{id2}")]
+        public CartItem PostModefiers(CartItemDto cartItemDto)
         {
             var shoppingCartId = User.Identity.GetUserId();
             var cartItem = _context.CartItems.SingleOrDefault(
-                c => c.CartId == shoppingCartId && c.ItemId == itemId);
-
-            if (cartItem == null)
+                c => c.CartId == shoppingCartId && c.ItemId == cartItemDto.ItemId);
+            if (cartItemDto.ItemsId != -1)
             {
-                // Create a new cart item if no cart item exists.                 
-                cartItem = new CartItem
+                var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
+                if (cartItem == null)
                 {
-                    ItemId = itemId,
-                    CartId = shoppingCartId,
-                    Quantity = 1,
-                    DateCreated = DateTime.Now
-                };
+                    // Create a new cart item if no cart item exists.                 
+                    cartItem = new CartItem
+                    {
+                        ItemId = cartItemDto.ItemId,
+                        CartId = shoppingCartId,
+                        Quantity = 1,
+                        DateCreated = DateTime.Now,
+                        Items = { item }
+                    };
 
-                _context.CartItems.Add(cartItem);
+                    _context.CartItems.Add(cartItem);
+                }
+                else
+                    cartItem.Quantity++;
+
             }
+
             else
-                cartItem.Quantity++;
+            {
+
+                if (cartItem == null)
+                {
+                    // Create a new cart item if no cart item exists.                 
+                    cartItem = new CartItem
+                    {
+                        ItemId = cartItemDto.ItemId,
+                        CartId = shoppingCartId,
+                        Quantity = 1,
+                        DateCreated = DateTime.Now
+                    };
+
+                    _context.CartItems.Add(cartItem);
+                }
+                else
+                    cartItem.Quantity++;
+            }
+
 
             _context.SaveChanges();
 
             return cartItem;
         }
+        //[HttpPost]
+        //public CartItem PostItem([FromBody] int itemId)
+        //{
+        //    var shoppingCartId = User.Identity.GetUserId();
+        //    var cartItem = _context.CartItems.SingleOrDefault(
+        //        c => c.CartId == shoppingCartId && c.ItemId == itemId);
+
+        //    if (cartItem == null)
+        //    {
+        //        // Create a new cart item if no cart item exists.                 
+        //        cartItem = new CartItem
+        //        {
+        //            ItemId = itemId,
+        //            CartId = shoppingCartId,
+        //            Quantity = 1,
+        //            DateCreated = DateTime.Now,
+        //            Items = { }
+        //        };
+
+        //        _context.CartItems.Add(cartItem);
+        //    }
+        //    else
+        //        cartItem.Quantity++;
+
+        //    _context.SaveChanges();
+
+        //    return cartItem;
+        //}
 
         // PUT: api/ShoppingCarts/5
         public void Put(int id, [FromBody]string value)

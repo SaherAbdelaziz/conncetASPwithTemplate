@@ -187,8 +187,11 @@
     <Compile Include="Controllers\Api\ModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersGroupsController.cs" />
     <Compile Include="Controllers\Api\ShoppingCartsController.cs" />
+    <Compile Include="Controllers\Api\test.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Dtos\CartItemDto.cs" />
+    <Compile Include="Dtos\ItemDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +219,10 @@
     <Compile Include="Migrations\202006031312088_changeModifierToModieverGrpoupAsIunderstand.Designer.cs">
       <DependentUpon>202006031312088_changeModifierToModieverGrpoupAsIunderstand.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006070934515_AddModifiersItemToCart.cs" />
+    <Compile Include="Migrations\202006070934515_AddModifiersItemToCart.Designer.cs">
+      <DependentUpon>202006070934515_AddModifiersItemToCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -223,7 +230,6 @@
     <Compile Include="Models\HD_Areas_Services.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\ItemDto.cs" />
     <Compile Include="Models\ItemsModifier.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modifier.cs" />
@@ -1386,6 +1392,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006031312088_changeModifierToModieverGrpoupAsIunderstand.resx">
       <DependentUpon>202006031312088_changeModifierToModieverGrpoupAsIunderstand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006070934515_AddModifiersItemToCart.resx">
+      <DependentUpon>202006070934515_AddModifiersItemToCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

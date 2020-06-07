@@ -13,6 +13,13 @@ namespace conncetASPwithTemplate
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            //// will allow for Products/Item/2/1
+            //routes.MapRoute(
+            //    "ItemDetailsWithSender",
+            //    "{controller}/{action}/{id}/{sender}",
+            //    new { controller = "Products", action = "Item" }
+            //);
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

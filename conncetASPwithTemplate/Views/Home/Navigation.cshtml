@@ -1,4 +1,9 @@
-﻿@model IList<conncetASPwithTemplate.Models.Item>
+﻿@using Newtonsoft.Json
+@model IList<conncetASPwithTemplate.Models.Item>
+
+@functions {
+    private readonly int itemsToShowCount =10;
+}
 
 @{
     ViewBag.Title = "Navigation";
@@ -44,14 +49,15 @@
                     <div class="menu-category-content">
                         <!-- Menu Items -->
                        @{
-                           int count = 0;
                            for (int j = 0; j < Model.Count; j++)
                            {
                                if (Model[j].SubCategryId == 1)
                                {
-                                   for (int i = j; i < j + 4; i++)
+                                   for (int i = j; i < j + itemsToShowCount; i++)
                                    {
-                                       count++;
+                                       List<int> ids = new List<int>();
+                                       ids.Add(Model[i].Id);
+                                       var myJSON = JsonConvert.SerializeObject(ids);
                                     <div class="menu-item menu-list-item">
                                         <div class="row align-items-center">
                                             <div class="col-sm-6 mb-2 mb-sm-0">
@@ -60,7 +66,7 @@
                                             </div>
                                             <div class="col-sm-6 text-sm-right">
                                                 <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item js-add-cart"
+                                                <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
                                                         data-target="#productModal" data-toggle="modal">
                                                     <span>Add to cart</span>
                                                 </button>
@@ -68,10 +74,7 @@
                                         </div>
                                     </div>
                                    }
-                                   if (count == 4)
-                                   {
-                                       break;
-                                   }
+                                   break;
                                }
                            }
                     }
@@ -87,14 +90,15 @@
                     <div class="menu-category-content">
                         <!-- Menu Items -->
                         @{
-                            count = 0;
                             for (int j = 0; j < Model.Count; j++)
                             {
                                 if (Model[j].SubCategryId == 2)
                                 {
-                                    for (int i = j; i < j + 4; i++)
+                                    for (int i = j; i < j + itemsToShowCount; i++)
                                     {
-                                        count++;
+                                        List<int> ids = new List<int>();
+                                        ids.Add(Model[i].Id);
+                                        var myJSON = JsonConvert.SerializeObject(ids);
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
@@ -103,7 +107,7 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
                                                             data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
@@ -111,13 +115,8 @@
                                             </div>
                                         </div>
                                     }
-                                    if (count == 4)
-                                    {
-                                        break;
-                                    }
+                                    break;
                                 }
-
-
                             }
                         }
 
@@ -133,14 +132,15 @@
                     <div class="menu-category-content">
                         <!-- Menu Items -->
                         @{
-                            count = 0;
                             for (int j = 0; j < Model.Count; j++)
                             {
                                 if (Model[j].SubCategryId == 3)
                                 {
-                                    for (int i = j; i < j + 4; i++)
+                                    for (int i = j; i < j + itemsToShowCount; i++)
                                     {
-                                        count++;
+                                        List<int> ids = new List<int>();
+                                        ids.Add(Model[i].Id);
+                                        var myJSON = JsonConvert.SerializeObject(ids);
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
@@ -149,7 +149,7 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
                                                             data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
@@ -157,13 +157,8 @@
                                             </div>
                                         </div>
                                     }
-                                    if (count == 4)
-                                    {
-                                        break;
-                                    }
+                                    break;
                                 }
-
-
                             }
                         }
 
@@ -178,14 +173,15 @@
                     <div class="menu-category-content">
                         <!-- Menu Items -->
                         @{
-                            count = 0;
                             for (int j = 0; j < Model.Count; j++)
                             {
                                 if (Model[j].SubCategryId == 4)
                                 {
-                                    for (int i = j; i < j + 4; i++)
+                                    for (int i = j; i < j + itemsToShowCount; i++)
                                     {
-                                        count++;
+                                        List<int> ids = new List<int>();
+                                        ids.Add(Model[i].Id);
+                                        var myJSON = JsonConvert.SerializeObject(ids);
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
@@ -194,7 +190,7 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
                                                             data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
@@ -202,13 +198,8 @@
                                             </div>
                                         </div>
                                     }
-                                    if (count == 4)
-                                    {
-                                        break;
-                                    }
+                                    break;
                                 }
-
-
                             }
                         }
 
@@ -223,14 +214,15 @@
                     <div class="menu-category-content">
                         <!-- Menu Items -->
                         @{
-                            count = 0;
                             for (int j = 0; j < Model.Count; j++)
                             {
                                 if (Model[j].SubCategryId == 5)
                                 {
-                                    for (int i = j; i < j + 4; i++)
+                                    for (int i = j; i < j + itemsToShowCount; i++)
                                     {
-                                        count++;
+                                        List<int> ids = new List<int>();
+                                        ids.Add(Model[i].Id);
+                                        var myJSON = JsonConvert.SerializeObject(ids);
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
@@ -239,7 +231,7 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
                                                             data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
@@ -247,13 +239,8 @@
                                             </div>
                                         </div>
                                     }
-                                    if (count == 4)
-                                    {
-                                        break;
-                                    }
+                                    break;
                                 }
-
-
                             }
                         }
 
@@ -268,14 +255,15 @@
                     <div class="menu-category-content">
                         <!-- Menu Items -->
                         @{
-                            count = 0;
                             for (int j = 0; j < Model.Count; j++)
                             {
                                 if (Model[j].SubCategryId == 6)
                                 {
-                                    for (int i = j; i < j + 4; i++)
+                                    for (int i = j; i < j + itemsToShowCount; i++)
                                     {
-                                        count++;
+                                        List<int> ids = new List<int>();
+                                        ids.Add(Model[i].Id);
+                                        var myJSON = JsonConvert.SerializeObject(ids);
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
@@ -284,21 +272,16 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@Model[i].Id" class="btn btn-outline-secondary btn-sm js-chosen-item"
-                                                            @*data-target="#productModal" data-toggle="modal"*@>
+                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                            data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
                                                 </div>
                                             </div>
                                         </div>
                                     }
-                                    if (count == 4)
-                                    {
-                                        break;
-                                    }
+                                    break;
                                 }
-
-
                             }
                         }
 

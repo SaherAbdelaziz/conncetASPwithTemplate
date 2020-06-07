@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Web;
 
-namespace conncetASPwithTemplate.Models
+namespace conncetASPwithTemplate.Dtos
 {
-    public class CartItem
+    public class CartItemDto
     {
-        public int Id { get; set; }
+        //public int Id { get; set; }
 
         public string CartId { get; set; }
 
@@ -20,13 +18,10 @@ namespace conncetASPwithTemplate.Models
 
         public int ItemId { get; set; }
 
-        public Item Item { get; set; }
+        public ItemDto Item { get; set; }
 
-        public ICollection<Item> Items { get; private set; }
+        public int ItemsId { get; set; }
 
-        public CartItem()
-        {
-            Items = new Collection<Item>();
-        }
+        
     }
 }
