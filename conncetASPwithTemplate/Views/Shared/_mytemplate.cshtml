@@ -242,7 +242,11 @@
                     <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
                 </div>
                 <div class="panel-cart-content">
-                    <table class="table-cart" id="seed_items" js-cancel-item></table>
+                    <table class="table-cart" id="seed_items" js-cancel-item>
+                        
+
+
+                    </table>
                     <div class="cart-summary" id="seed_price">
 
                     </div>
@@ -308,63 +312,15 @@
                         </h5>
                         <div id="panelDetailsSize" class="collapse show">
                             <form>
-                            <div class="panel-details-content">
+                                <div class="panel-details-content">
                                
-                            </div>
+                                </div>
                             </form>
                         </div>
                     </div>
-                    <!-- Panel Details / Additions -->
-                    <div class="panel-details">
-                        <h5 class="panel-details-title">
-                            <label class="custom-control custom-radio">
-                                <input name="radio_title_additions" type="radio" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                            </label>
-                            <a href="#panelDetailsAdditions" data-toggle="collapse">Additions</a>
-                        </h5>
-                        <div id="panelDetailsAdditions" class="collapse">
-                            <div class="panel-details-content">
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input">
-                                                <span class="custom-control-indicator"></span>
-                                                <span class="custom-control-description">Tomato ($1.29)</span>
-                                            </label>
-                                        </div>
-
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <label class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input">
-                                                <span class="custom-control-indicator"></span>
-                                                <span class="custom-control-description">Cheese($1.29)</span>
-                                            </label>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Panel Details / Other -->
-                    <div class="panel-details">
-                        <h5 class="panel-details-title">
-                            <label class="custom-control custom-radio">
-                                <input name="radio_title_other" type="radio" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                            </label>
-                            <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
-                        </h5>
-                        <div id="panelDetailsOther" class="collapse">
-                            <textarea cols="30" rows="4" class="form-control" placeholder="Put this any other informations..."></textarea>
-                        </div>
-                    </div>
                 </div>
-                <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-add-cart" data-item-id="1" data-modiefier-id="1" data-dismiss="modal"><span>Add to Cart</span></button>
+            <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-add-cart" data-item-id="1" data-modiefier-id="1" data-dismiss="modal"><span>Add to Cart</span></button>
+
             </div>
         </div>
     </div>
@@ -404,69 +360,16 @@
 <script>
 
     // all apis calls
-    $(document).ready(function () {
+    $(document).ready(function() {
 
-        //function AddItem(button ,id) {
-            
-
-        //}
-
-
-        //js-shopping-cart
-        // here we get cart items from api and put in in table in cart
-        $.getJSON("/api/shoppingcarts", function (notifications) {
-            var delivery = 3.99, price = 0, totalPrice = 0;
-
-            if (notifications.length === 0)
-                return $(".js-notifications-price").text('$0');
-            $(".js-notifications-count").text(notifications.length);
-
-
-            for(let i=0 ; i< notifications.length ; i++)
-            {
-                //names//price// delete and edit
-                var data1 =
-                    `<tr>
-                        <td class ="title">
-                            <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
-                            <span class ="caption text-muted">${notifications[i].item.name2}</span>
-                        <td>
-
-                        <td class ="price">  ${notifications[i].item.staticPrice}$ <td>
-
-                        <td  class ="actions">
-                         <a href="#" class ="action-icon js-edit-item"> <i class ="ti ti-pencil"></i></a>
-                         <a href="#" class ="action-icon js-cancel-item"> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
-                        <td>
-                        <tr>
-                    `;
-
-                price += notifications[i].item.staticPrice;
-                totalPrice = price + delivery;
-                $('#seed_items').append(data1);
-
-            }
-
-            // price and total
-            var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
-                Order total: </div>  <div class="col-5"><strong>$  ${price} </strong></div>  </div>
-            <div class="row"> <div class="col-7 text-right text-muted">
-                    Delivery: </div> <div class="col-5"><strong>$ ${delivery} </strong></div>  </div>
-
-            <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
-                Total:</div> <div class="col-5"><strong>$ ${totalPrice} </strong></div> </div>`;
-
-            // price beside cart
-            $(".js-notifications-price").text(totalPrice.toFixed(2));
-            $('#seed_price').append(data2);
-
-        });
+        var refreshIntervalId = setInterval(AJAXRequest, 2000);
 
         //delete specifected item from cart    
         $(".js-shopping-cart").click(function (e) {
+            clearInterval(refreshIntervalId);
             if ($('.js-cancel-item').length > 0) {
                 console.log("dsds");
-                $(".js-cancel-item").click(function (e) {
+                $(".js-cancel-item").click(function(e) {
                     console.log("worked");
                     var link = $(e.target);
                     console.log(link.attr("data-item-id"));
@@ -475,12 +378,12 @@
                             url: "/api/shoppingcarts/" + link.attr("data-item-id"),
                             method: "DELETE"
                         })
-                        .done(function () {
-                            link.parents("tr").fadeOut(function () {
+                        .done(function() {
+                            link.parents("tr").fadeOut(function() {
                                 $(this).remove();
                             });
                         })
-                        .fail(function () {
+                        .fail(function() {
                             alert("Something failed! in deleting items");
                         });
                 });
@@ -492,44 +395,33 @@
 
         // when click on item we get its information like id and name
         $(".js-chosen-item").on('click',
-            function (e) {
+            function(e) {
                 var button = $(e.target);
                 if ($(e.target).get(0).tagName == "SPAN") {
 
-                     button = $(e.target).parent();
+                    button = $(e.target).parent();
+                } else {
+                    button = $(e.target);
                 }
-                else {
-                     button = $(e.target);
-                    }
                 console.log(button);
-                
-                //console.log(button.attr("data-item-id"));
-                //console.log(JSON.parse(button.attr("data-item-id")));
-                var myIds = JSON.parse(button.attr("data-item-id"));
-                console.log(button.attr("data-item-id"));
-                console.log(myIds);
-                console.log(myIds[0]);
-                 //$.ajax
-                 //first retruferd id is the selected item and other ids is modifiers
 
-                $.ajax({ url: "/api/ModifiersGroups/" + myIds[0], method: "GET" })
-                    .done(function (data) {
-                        var index  ;
-                        
+                var myIdsModefiers = JSON.parse(button.attr("data-item-modefiers"));
+                var myId = button.attr("data-item-id");
+                console.log(button.attr("data-item-id"));
+                console.log(myId);
+
+                //first retruferd id is the selected item and other ids is modifiers
+                $.ajax({ url: "/api/ModifiersGroups/" + myId, method: "GET" })
+                    .done(function(data) {
+                        var index;
+
                         //first item is the chosen item
                         if (data.length == 1) {
                             var cartItemDto = {
-                                ItemId: myIds[0],
-                                ItemsId: -1
-                                // phone: $("#id-phone").val()
+                                ItemId: myId,
+                                ItemsId: -1 // there is no modiferis for this item
                             }
 
-                            console.log('cart + ' + cartItemDto.ItemId);
-                            console.log('cart + ' + cartItemDto.ItemsId);
-
-
-                            //var cartItemDto = JSON.stringify(x);
-                            // orderedAppointmens = JSON.stringify(orderedAppointmens);
                             $.ajax({
                                     url: "/api/shoppingcarts",
                                     method: "POST",
@@ -537,35 +429,37 @@
                                     contentType: 'application/json; charset=utf-8',
                                     dataType: "Json"
                                 })
-                                .done(function () {
+                                .done(function() {
                                     console.log("got in adding itms ");
                                     console.log(button.attr("data-item-id"));
                                 })
-                                .fail(function () {
+                                .fail(function() {
                                     alert("Something failed! in adding item to cart");
                                 });
 
 
-                        }
-                        else {
+                        } else {
+                            // $('#panelDetailsSize .panel-details-content').delete();
                             $("#productModal").addClass("fade");
                             $("#productModal").modal();
                             $("#productModal").removeClass("fade");
 
-                            var myJSON = JSON.stringify(myIds);
-
-
-                            $("#productModal .js-add-cart").attr("data-item-id", myJSON);
+                            //var myJSON = JSON.stringify(myIdsModefiers);
+                            //$("#productModal .js-add-cart").attr("data-item-id", myJSON);
 
                             console.log("get in else");
-                            $(".modal-product-details .js-item-name1").text(data[0].name);
-                            $(".modal-product-details .js-item-name2").text(data[0].name2);
-                            $(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
+                            console.log($(".modal-product-details .js-item-name1").val());
+                            if ($(".modal-product-details .js-item-name1").text() == "") {
 
-                            for (let j = 1; j < data.length; j++) {
 
-                                // add modifiers to details of item
-                                let data1 = `<div class="form-group">
+                                $(".modal-product-details .js-item-name1").text(data[0].name);
+                                $(".modal-product-details .js-item-name2").text(data[0].name2);
+                                $(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
+
+                                for (let j = 1; j < data.length; j++) {
+
+                                    // add modifiers to details of item
+                                    let data1 = `<div class="form-group">
                                 <label class ="custom-control custom-radio" >
                                 <input name="radio_size" type="radio" value=${data[j].name}>
                                 <span class ="custom-control-indicator"></span>
@@ -573,89 +467,134 @@
                                 </label>
                                 </div>`;
 
-                                $('#panelDetailsSize .panel-details-content').append(data1);
+                                    $('#panelDetailsSize .panel-details-content').append(data1);
+
+                                }
 
                             }
 
                             //get the selected radio button
-                            
-                            $("input[name='radio_size']").click(function () {
+
+                            $("input[name='radio_size']").click(function() {
 
                                 index = $("input[name='radio_size']").index($("input[name='radio_size']:checked")) + 1;
-                               
-                                $("#productModal .js-add-cart").attr("data-modiefier-id", data[index].id);
+
+                                $("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
                             });
 
-                        
 
-                        // here we get specifected item that has modifiers and put it in database
-                        $(".js-add-cart").click(function (e) {
-                            
-                            var id = $("#productModal .js-add-cart").attr("data-modiefier-id");
-                            var myIds = JSON.parse(button.attr("data-item-id"));
-                            console.log(id);
-                            console.log(myIds);
-                            console.log(myIds[0]);
-                            
-                            //$.post("/api/shoppingcarts", { ItemId: myIds[0], ItemsId: id })
-                            //    .done(function () {
-                            //        console.log("got in adding itms has modifiers ");
-                            //        console.log(button.attr("data-item-id"));
-                            //    })
-                            //    .fail(function () {
-                            //        alert("Something failed! in adding item to cart");
-                            //    });
+                            // here we get specifected item that has modifiers and put it in database
+                            $(".js-add-cart").click(function(e) {
 
-                            var cartItemDto = {
-                                ItemId: myIds[0],
-                                ItemsId: id
-                               // phone: $("#id-phone").val()
-                            }
+                                var id = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
 
-                            console.log('cart + ' + cartItemDto.ItemId);
-                            console.log('cart + ' + cartItemDto.ItemsId);
+                                var cartItemDto = {
+                                    ItemId: myId,
+                                    ItemsId: id
+                                    // phone: $("#id-phone").val()
+                                }
 
+                                $.ajax({
+                                        url: "/api/shoppingcarts",
+                                        method: "POST",
+                                        data: JSON.stringify(cartItemDto),
+                                        contentType: 'application/json; charset=utf-8',
+                                        dataType: "Json"
+                                    })
+                                    .done(function() {
+                                        console.log("got in adding itms has modifiers ");
+                                        console.log(button.attr("data-item-id"));
+                                    })
+                                    .fail(function() {
+                                        alert("Something failed! in adding item to cart");
+                                    });
+                            });
 
-                            //var cartItemDto = JSON.stringify(x);
-                           // orderedAppointmens = JSON.stringify(orderedAppointmens);
-                            $.ajax({
-                                url: "/api/shoppingcarts",
-                                method: "POST",
-                                data: JSON.stringify(cartItemDto),
-                                contentType: 'application/json; charset=utf-8',
-                                dataType: "Json"
-                            })
-                                .done(function () {
-                                    console.log("got in adding itms has modifiers ");
-                                    console.log(button.attr("data-item-id"));
-                                })
-                                .fail(function () {
-                                    alert("Something failed! in adding item to cart");
-                                });
+                        }
 
 
-                        });
-
-                            }
-
-                        
                     })
                     .fail(function() {
                         alert("Something failed! in modifiers");
                     });
 
             });
-        
 
 
-        $(".js-edit-item").on('click', function (e) {
-            console.log("edit pressed");
-            $("#productModal").addClass("fade");
-            $("#productModal").modal();
-            $("#productModal").removeClass("fade");
-        });
+        //$(".js-edit-item").on('click',
+        //    function(e) {
+        //        console.log("edit pressed");
+        //        $("#productModal").addClass("fade");
+        //        $("#productModal").modal();
+        //        $("#productModal").removeClass("fade");
+        //    });
+
+
     });
 
+
+    function AJAXRequest() {
+        //js-shopping-cart
+        // here we get cart items from api and put in in table in cart
+        
+
+        $.ajax({
+            url: "/api/shoppingcarts",
+            type: "GET",
+            dataType: 'json',
+            success: function (notifications) {
+                var delivery = 3.99, price = 0, totalPrice = 0;
+                console.log("called " + notifications.length);
+                if (notifications.length === 0)
+                    return $(".js-notifications-price").text('$0');
+                $(".js-notifications-count").text(notifications.length);
+
+                $('#seed_items').empty();
+                $('#seed_price').empty();
+                for (let i = 0; i < notifications.length; i++) {
+                    //names//price// delete and edit
+                    var data1 =
+                        `<tr>
+                        <td class ="title">
+                            <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
+                            <span class ="caption text-muted">${notifications[i].item.name2}</span>
+                        <td>
+
+                        <td class ="price">  ${notifications[i].item.staticPrice}$ <td>
+
+                        <td  class ="actions">
+                         
+                         <a href="#" class ="action-icon js-cancel-item"> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
+                        <td>
+                        <tr>
+                    `;
+
+                    price += notifications[i].item.staticPrice;
+                    totalPrice = price + delivery;
+                    $('#seed_items').append(data1);
+
+                }
+
+                //<a href="#" class ="action-icon js-edit-item"> <i data-item-id=${notifications[i].id} class ="ti ti-pencil"></i></a>
+
+                // price and total
+                var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
+                Order total: </div>  <div class="col-5"><strong>$  ${price} </strong></div>  </div>
+            <div class="row"> <div class="col-7 text-right text-muted">
+                    Delivery: </div> <div class="col-5"><strong>$ ${delivery} </strong></div>  </div>
+
+            <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
+                Total:</div> <div class="col-5"><strong>$ ${totalPrice} </strong></div> </div>`;
+
+                // price beside cart
+                $(".js-notifications-price").text(totalPrice.toFixed(2));
+                $('#seed_price').append(data2);
+            },
+            error: function (xhr, status, error) {
+                //
+            }
+        });
+    }
 
 </script>
 </body>
