@@ -219,10 +219,6 @@
     <Compile Include="Migrations\202006031312088_changeModifierToModieverGrpoupAsIunderstand.Designer.cs">
       <DependentUpon>202006031312088_changeModifierToModieverGrpoupAsIunderstand.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006070934515_AddModifiersItemToCart.cs" />
-    <Compile Include="Migrations\202006070934515_AddModifiersItemToCart.Designer.cs">
-      <DependentUpon>202006070934515_AddModifiersItemToCart.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -1357,6 +1353,7 @@
     <Content Include="Views\Home\Gallery.cshtml" />
     <Content Include="Views\Home\Reviews.cshtml" />
     <Content Include="Views\Home\FaQ.cshtml" />
+    <Content Include="Views\Home\checkout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1392,9 +1389,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006031312088_changeModifierToModieverGrpoupAsIunderstand.resx">
       <DependentUpon>202006031312088_changeModifierToModieverGrpoupAsIunderstand.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006070934515_AddModifiersItemToCart.resx">
-      <DependentUpon>202006070934515_AddModifiersItemToCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

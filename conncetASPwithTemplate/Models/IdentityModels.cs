@@ -45,7 +45,10 @@ namespace conncetASPwithTemplate.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            
+            //modelBuilder.Entity<ItemsModifier>()
+            //    .HasMany(c => c. )
+            //    .WithOptional()
+            //    .WillCascadeOnDelete(false);
         }
     }
 }

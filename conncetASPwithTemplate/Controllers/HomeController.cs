@@ -90,5 +90,13 @@ namespace conncetASPwithTemplate.Controllers
         {
             return View();
         }
+
+        public ActionResult checkout()
+        {
+            return View();
+        }
+
+
+        
     }
 }

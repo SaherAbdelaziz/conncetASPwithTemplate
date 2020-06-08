@@ -22,11 +22,11 @@ namespace conncetASPwithTemplate.Models
 
         public Item Item { get; set; }
 
-        public ICollection<Item> Items { get; private set; }
+        public ICollection<int> Items { get; private set; }
 
         public CartItem()
         {
-            Items = new Collection<Item>();
+            Items = new Collection<int>();
         }
     }
 }

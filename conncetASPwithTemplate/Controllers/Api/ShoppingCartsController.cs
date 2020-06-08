@@ -14,7 +14,7 @@ namespace conncetASPwithTemplate.Controllers.Api
     [Authorize]
     public class ShoppingCartsController : ApiController
     {
-        
+
         private ApplicationDbContext _context;
 
         public ShoppingCartsController()
@@ -61,7 +61,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                         CartId = shoppingCartId,
                         Quantity = 1,
                         DateCreated = DateTime.Now,
-                        Items = { item }
+                        Items = { cartItemDto.ItemsId }
                     };
 
                     _context.CartItems.Add(cartItem);
@@ -96,35 +96,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             return cartItem;
         }
-        //[HttpPost]
-        //public CartItem PostItem([FromBody] int itemId)
-        //{
-        //    var shoppingCartId = User.Identity.GetUserId();
-        //    var cartItem = _context.CartItems.SingleOrDefault(
-        //        c => c.CartId == shoppingCartId && c.ItemId == itemId);
-
-        //    if (cartItem == null)
-        //    {
-        //        // Create a new cart item if no cart item exists.                 
-        //        cartItem = new CartItem
-        //        {
-        //            ItemId = itemId,
-        //            CartId = shoppingCartId,
-        //            Quantity = 1,
-        //            DateCreated = DateTime.Now,
-        //            Items = { }
-        //        };
-
-        //        _context.CartItems.Add(cartItem);
-        //    }
-        //    else
-        //        cartItem.Quantity++;
-
-        //    _context.SaveChanges();
-
-        //    return cartItem;
-        //}
-
+       
         // PUT: api/ShoppingCarts/5
         public void Put(int id, [FromBody]string value)
         {

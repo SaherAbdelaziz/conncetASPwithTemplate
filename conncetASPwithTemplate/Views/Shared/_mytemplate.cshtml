@@ -128,9 +128,9 @@
                         </div>
                     </div>
                     <div class="col-md-2">
-                        <a href="#" class="module module-cart right" data-toggle="panel-cart">
+                        <a href="#" class="module module-cart right js-shopping-cart" data-toggle="panel-cart">
                             <span class="cart-icon">
-                                <i class="ti ti-shopping-cart js-shopping-cart"></i>
+                                <i class="ti ti-shopping-cart "></i>
                                 <span class="notification hide badge js-notifications-count ">0</span>
                             </span>
                             <span class="cart-value js-notifications-price">$32.98</span>
@@ -242,17 +242,17 @@
                     <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
                 </div>
                 <div class="panel-cart-content">
-                    <table class="table-cart" id="seed_items" js-cancel-item>
+                    <table class="table-cart seed_items" >
                         
 
 
                     </table>
-                    <div class="cart-summary" id="seed_price">
+                    <div class="cart-summary seed_price">
 
                     </div>
                 </div>
             </div>
-            <a href="checkout.html" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
+            <a href="@Url.Action("checkout", "Home")" class="panel-cart-action btn btn-secondary btn-block btn-lg"><span>Go to checkout</span></a>
         </div>
 
         <!-- Panel Mobile -->
@@ -362,17 +362,23 @@
     // all apis calls
     $(document).ready(function() {
 
-        var refreshIntervalId = setInterval(AJAXRequest, 2000);
+        var refreshIntervalId = setInterval(AJAXRequest, 1500);
 
         //delete specifected item from cart    
         $(".js-shopping-cart").click(function (e) {
-            clearInterval(refreshIntervalId);
-            if ($('.js-cancel-item').length > 0) {
-                console.log("dsds");
-                $(".js-cancel-item").click(function(e) {
-                    console.log("worked");
+             clearInterval(refreshIntervalId);
+
+            $('.js-cancel-item').bind('click',
+                function(e) {
+
+                    //if ($('.js-cancel-item').length > 0) {
+                    console.log("dsds");
+                    console.log(e.target);
+                    //$(".js-cancel-item").click(function(e) {
+                    
                     var link = $(e.target);
-                    console.log(link.attr("data-item-id"));
+                    //console.log(link.attr("data-item-id").get(0).tagName);
+                    //console.log(link.attr("data-item-id"));
                     //delete specifected item from cart
                     $.ajax({
                             url: "/api/shoppingcarts/" + link.attr("data-item-id"),
@@ -386,11 +392,11 @@
                         .fail(function() {
                             alert("Something failed! in deleting items");
                         });
+                    //});
                 });
-            }
-            else {
-                console.log("cccc");
-            }
+            //else {
+            // console.log("cccc");
+            // }
         });
 
         // when click on item we get its information like id and name
@@ -549,8 +555,8 @@
                     return $(".js-notifications-price").text('$0');
                 $(".js-notifications-count").text(notifications.length);
 
-                $('#seed_items').empty();
-                $('#seed_price').empty();
+                $('.seed_items').empty();
+                $('.seed_price').empty();
                 for (let i = 0; i < notifications.length; i++) {
                     //names//price// delete and edit
                     var data1 =
@@ -560,7 +566,7 @@
                             <span class ="caption text-muted">${notifications[i].item.name2}</span>
                         <td>
 
-                        <td class ="price">  ${notifications[i].item.staticPrice}$ <td>
+                        <td class ="price">  ${notifications[i].item.staticPrice}LE <td>
 
                         <td  class ="actions">
                          
@@ -571,7 +577,7 @@
 
                     price += notifications[i].item.staticPrice;
                     totalPrice = price + delivery;
-                    $('#seed_items').append(data1);
+                    $('.seed_items').append(data1);
 
                 }
 
@@ -579,16 +585,16 @@
 
                 // price and total
                 var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
-                Order total: </div>  <div class="col-5"><strong>$  ${price} </strong></div>  </div>
+                Order total: </div>  <div class="col-5"><strong>  ${price}LE </strong></div>  </div>
             <div class="row"> <div class="col-7 text-right text-muted">
-                    Delivery: </div> <div class="col-5"><strong>$ ${delivery} </strong></div>  </div>
+                    Delivery: </div> <div class="col-5"><strong> ${delivery}LE </strong></div>  </div>
 
             <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
-                Total:</div> <div class="col-5"><strong>$ ${totalPrice} </strong></div> </div>`;
+                        Total: </div> <div class="col-5"><strong> ${totalPrice}LE </strong></div> </div>`;
 
                 // price beside cart
                 $(".js-notifications-price").text(totalPrice.toFixed(2));
-                $('#seed_price').append(data2);
+                $('.seed_price').append(data2);
             },
             error: function (xhr, status, error) {
                 //
