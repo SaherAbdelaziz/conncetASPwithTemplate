@@ -435,7 +435,7 @@
                         <td class ="price">  ${notifications[i].item.staticPrice}$ <td>
 
                         <td  class ="actions">
-                         <a href="#productModal"data-toggle="modal" class ="action-icon"> <i class ="ti ti-pencil"></i></a>
+                         <a href="#" class ="action-icon js-edit-item"> <i class ="ti ti-pencil"></i></a>
                          <a href="#" class ="action-icon js-cancel-item"> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
                         <td>
                         <tr>
@@ -645,7 +645,15 @@
                     });
 
             });
+        
 
+
+        $(".js-edit-item").on('click', function (e) {
+            console.log("edit pressed");
+            $("#productModal").addClass("fade");
+            $("#productModal").modal();
+            $("#productModal").removeClass("fade");
+        });
     });
 
 

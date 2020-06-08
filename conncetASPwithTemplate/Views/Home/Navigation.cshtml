@@ -1,14 +1,29 @@
 ﻿@using Newtonsoft.Json
 @model IList<conncetASPwithTemplate.Models.Item>
 
-@functions {
-    private readonly int itemsToShowCount =10;
-}
 
 @{
-    ViewBag.Title = "Navigation";
+    ViewBag.Title = "IndexBurgers";
     Layout = "~/Views/Shared/_mytemplate.cshtml";
 }
+
+
+
+@functions {
+    private readonly int itemsToShowCount =10;
+    private int categriesCount=6 ;
+    private List<string> idsStrings = new List<string>() { "Burgers", "Pasta" , "Pizza" ,
+        "Sushi" , "Desserts" , "Drinks" };
+    private List<string> surcs = new List<string>() { "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
+        "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
+        "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
+        "../../Content/mytemplate/assets/img/photos/menu-title-sushi.jpg",
+        "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
+        "../../Content/mytemplate/assets/img/photos/menu-title-drinks.jpg"
+    };
+    //private List<string> titles = new List<string>() { "Burgers", "Pasta", "Pizza" };
+}
+
 <!-- Page Title -->
 <div class="page-title bg-light">
     <div class="container">
@@ -20,7 +35,6 @@
         </div>
     </div>
 </div>
-
 <!-- Page Content -->
 <div class="page-content">
 
@@ -40,253 +54,58 @@
                 </nav>
             </div>
             <div class="col-md-9">
-                <!-- Menu Category / Burgers -->
-                <div id="Burgers" class="menu-category">
-                    <div class="menu-category-title">
-                        <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg" alt=""></div>
-                        <h2 class="title">Burgers</h2>
-                    </div>
-                    <div class="menu-category-content">
-                        <!-- Menu Items -->
-                       @{
-                           for (int j = 0; j < Model.Count; j++)
-                           {
-                               if (Model[j].SubCategryId == 1)
-                               {
-                                   for (int i = j; i < j + itemsToShowCount; i++)
-                                   {
-                                       List<int> ids = new List<int>();
-                                       ids.Add(Model[i].Id);
-                                       var myJSON = JsonConvert.SerializeObject(ids);
-                                    <div class="menu-item menu-list-item">
-                                        <div class="row align-items-center">
-                                            <div class="col-sm-6 mb-2 mb-sm-0">
-                                                <h6 class="mb-0">@Model[i].Name</h6>
-                                                <span class="text-muted text-sm">@Model[i].Name2</span>
-                                            </div>
-                                            <div class="col-sm-6 text-sm-right">
-                                                <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
-                                                        data-target="#productModal" data-toggle="modal">
-                                                    <span>Add to cart</span>
-                                                </button>
+            <!-- Menu Category / Burgers -->
+            @{
+                for (int i = 0; i < categriesCount; i++)
+                {
+                    <div id="@idsStrings[i]" class="menu-category">
+                        <div class="menu-category-title">
+                            <div class="bg-image"><img src="@surcs[i]" alt=""></div>
+                            <h2 class="title">@idsStrings[i]</h2>
+                        </div>
+                        <div class="menu-category-content">
+                            <!-- Menu Items -->
+
+                            @{
+                                var count = 0;
+                                for (int j = 0; j < Model.Count; j++)
+                                {
+                                    if (Model[j].SubCategryId == i+1)
+                                    {
+                                        count++;
+                                        List<int> ids = new List<int> {Model[j].Id};
+                                        var myJSON = JsonConvert.SerializeObject(ids);
+                                        <div class="menu-item menu-list-item">
+                                            <div class="row align-items-center">
+                                                <div class="col-sm-6 mb-2 mb-sm-0">
+                                                    <h6 class="mb-0">@Model[j].Name</h6>
+                                                    <span class="text-muted text-sm">@Model[j].Name2</span>
+                                                </div>
+                                                <div class="col-sm-6 text-sm-right">
+                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[j].StaticPrice</span>
+                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                            data-target="#productModal" data-toggle="modal">
+                                                        <span>Add to cart</span>
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                   }
-                                   break;
-                               }
-                           }
+
+                                        
+                                    }
+                                    if(count == itemsToShowCount)
+                                    {
+                                        break;
+                                    }
+                                    
+                                }
+                            }
+
+                        </div>
+                    </div>
                     }
-
-                    </div>
-                </div>
-                <!-- Menu Category / Pasta -->
-                <div id="Pasta" class="menu-category">
-                    <div class="menu-category-title">
-                        <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg" alt=""></div>
-                        <h2 class="title">Pasta</h2>
-                    </div>
-                    <div class="menu-category-content">
-                        <!-- Menu Items -->
-                        @{
-                            for (int j = 0; j < Model.Count; j++)
-                            {
-                                if (Model[j].SubCategryId == 2)
-                                {
-                                    for (int i = j; i < j + itemsToShowCount; i++)
-                                    {
-                                        List<int> ids = new List<int>();
-                                        ids.Add(Model[i].Id);
-                                        var myJSON = JsonConvert.SerializeObject(ids);
-                                        <div class="menu-item menu-list-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                                    <h6 class="mb-0">@Model[i].Name</h6>
-                                                    <span class="text-muted text-sm">@Model[i].Name2</span>
-                                                </div>
-                                                <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
-                                                            data-target="#productModal" data-toggle="modal">
-                                                        <span>Add to cart</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-
-
-                    </div>
-                </div>
-                <!-- Menu Category / Pizza -->
-                <div id="Pizza" class="menu-category">
-                    <div class="menu-category-title">
-                        <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" alt=""></div>
-                        <h2 class="title">Pizza</h2>
-                    </div>
-                    <div class="menu-category-content">
-                        <!-- Menu Items -->
-                        @{
-                            for (int j = 0; j < Model.Count; j++)
-                            {
-                                if (Model[j].SubCategryId == 3)
-                                {
-                                    for (int i = j; i < j + itemsToShowCount; i++)
-                                    {
-                                        List<int> ids = new List<int>();
-                                        ids.Add(Model[i].Id);
-                                        var myJSON = JsonConvert.SerializeObject(ids);
-                                        <div class="menu-item menu-list-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                                    <h6 class="mb-0">@Model[i].Name</h6>
-                                                    <span class="text-muted text-sm">@Model[i].Name2</span>
-                                                </div>
-                                                <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
-                                                            data-target="#productModal" data-toggle="modal">
-                                                        <span>Add to cart</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-
-                    </div>
-                </div>
-                <!-- Menu Category / Sushi -->
-                <div id="Sushi" class="menu-category">
-                    <div class="menu-category-title">
-                        <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/menu-title-sushi.jpg" alt=""></div>
-                        <h2 class="title">Sushi</h2>
-                    </div>
-                    <div class="menu-category-content">
-                        <!-- Menu Items -->
-                        @{
-                            for (int j = 0; j < Model.Count; j++)
-                            {
-                                if (Model[j].SubCategryId == 4)
-                                {
-                                    for (int i = j; i < j + itemsToShowCount; i++)
-                                    {
-                                        List<int> ids = new List<int>();
-                                        ids.Add(Model[i].Id);
-                                        var myJSON = JsonConvert.SerializeObject(ids);
-                                        <div class="menu-item menu-list-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                                    <h6 class="mb-0">@Model[i].Name</h6>
-                                                    <span class="text-muted text-sm">@Model[i].Name2</span>
-                                                </div>
-                                                <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
-                                                            data-target="#productModal" data-toggle="modal">
-                                                        <span>Add to cart</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-
-                    </div>
-                </div>
-                <!-- Menu Category / Desserts -->
-                <div id="Desserts" class="menu-category">
-                    <div class="menu-category-title">
-                        <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg" alt=""></div>
-                        <h2 class="title">Desserts</h2>
-                    </div>
-                    <div class="menu-category-content">
-                        <!-- Menu Items -->
-                        @{
-                            for (int j = 0; j < Model.Count; j++)
-                            {
-                                if (Model[j].SubCategryId == 5)
-                                {
-                                    for (int i = j; i < j + itemsToShowCount; i++)
-                                    {
-                                        List<int> ids = new List<int>();
-                                        ids.Add(Model[i].Id);
-                                        var myJSON = JsonConvert.SerializeObject(ids);
-                                        <div class="menu-item menu-list-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                                    <h6 class="mb-0">@Model[i].Name</h6>
-                                                    <span class="text-muted text-sm">@Model[i].Name2</span>
-                                                </div>
-                                                <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
-                                                            data-target="#productModal" data-toggle="modal">
-                                                        <span>Add to cart</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-
-                    </div>
-                </div>
-                <!-- Menu Category / Drinks -->
-                <div id="Drinks" class="menu-category">
-                    <div class="menu-category-title">
-                        <div class="bg-image"><img src="../../Content/mytemplate/assets/img/photos/menu-title-drinks.jpg" alt=""></div>
-                        <h2 class="title">Drinks</h2>
-                    </div>
-                    <div class="menu-category-content">
-                        <!-- Menu Items -->
-                        @{
-                            for (int j = 0; j < Model.Count; j++)
-                            {
-                                if (Model[j].SubCategryId == 6)
-                                {
-                                    for (int i = j; i < j + itemsToShowCount; i++)
-                                    {
-                                        List<int> ids = new List<int>();
-                                        ids.Add(Model[i].Id);
-                                        var myJSON = JsonConvert.SerializeObject(ids);
-                                        <div class="menu-item menu-list-item">
-                                            <div class="row align-items-center">
-                                                <div class="col-sm-6 mb-2 mb-sm-0">
-                                                    <h6 class="mb-0">@Model[i].Name</h6>
-                                                    <span class="text-muted text-sm">@Model[i].Name2</span>
-                                                </div>
-                                                <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[i].StaticPrice</span>
-                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
-                                                            data-target="#productModal" data-toggle="modal">
-                                                        <span>Add to cart</span>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    break;
-                                }
-                            }
-                        }
-
-                    </div>
-                </div>
+                    }
+                    
             </div>
         </div>
     </div>
@@ -294,24 +113,8 @@
 
 
 @section scripts{
-    <script>
-        //$(document).ready(function() {
-        //    $(".js-toggle-cart").click(function(e) {
-        //        var target = $(e.target);
-        //        var span = $(e.target).find("span");
-        //        $.post("/api/shoppingcarts", { "": target.attr("data-item-id") })
-        //            .done(function() {
-        //                span
-        //                    .text("Added");
+    <script >
+        
 
-        //            })
-        //            .fail(function() {
-        //                alert("Something failed!");
-        //            });
-
-        //    });
-        //});
-
-
-    </script>
+</script>
 }
