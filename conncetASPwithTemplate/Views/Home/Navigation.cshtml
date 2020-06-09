@@ -1,5 +1,5 @@
 ﻿@using Newtonsoft.Json
-@model IList<conncetASPwithTemplate.Models.Item>
+@model conncetASPwithTemplate.ViewModels.ItemsCategories
 
 
 @{
@@ -10,10 +10,10 @@
 
 
 @functions {
-    private readonly int itemsToShowCount =10;
-    private int categriesCount=6 ;
-    private List<string> idsStrings = new List<string>() { "Burgers", "Pasta" , "Pizza" ,
-        "Sushi" , "Desserts" , "Drinks" };
+    //private readonly int itemsToShowCount =10;
+   // private int categriesCount=6 ;
+   // private List<string> idsStrings = new List<string>() { "Burgers", "Pasta" , "Pizza" ,
+   //     "Sushi" , "Desserts" , "Drinks" };
     private List<string> surcs = new List<string>() { "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
                                                         "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
                                                         "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
@@ -43,32 +43,39 @@
                 <!-- Menu Navigation -->
                 <nav id="menu-navigation" class="stick-to-content" data-local-scroll>
                     <ul class="nav nav-menu bg-dark dark">
-                        <li><a href="#Burgers">Burgers</a></li>
-                        <li><a href="#Pasta">Pasta</a></li>
+                        
+                        @{
+                            for (int i = 0; i<6; i++)
+                            {
+                                <li><a href="#@Model.SubCategories[i].Name">@Model.SubCategories[i].Name</a></li>
+                            }
+                        }
+                        
+                        @*<li><a href="#Pasta">Pasta</a></li>
                         <li><a href="#Pizza">Pizza</a></li>
                         <li><a href="#Sushi">Sushi</a></li>
                         <li><a href="#Desserts">Desserts</a></li>
-                        <li><a href="#Drinks">Drinks</a></li>
+                        <li><a href="#Drinks">Drinks</a></li>*@
                     </ul>
                 </nav>
             </div>
             <div class="col-md-9">
             @{
-                for (int i = 0; i < categriesCount; i++)
+                for (int i = 0; i < 6; i++)
                 {
-                    <div id="@idsStrings[i]" class="menu-category">
+                    <div id="@Model.SubCategories[i].Name" class="menu-category">
                         <div class="menu-category-title">
                             <div class="bg-image"><img src="@surcs[i]" alt=""></div>
-                            <h2 class="title">@idsStrings[i]</h2>
+                            <h2 class="title">@Model.SubCategories[i].Name</h2>
                         </div>
                         <div class="menu-category-content">
                             <!-- Menu Items -->
 
                             @{
                                 var count = 0;
-                                for (int j = 0; j < Model.Count; j++)
+                                for (int j = 0; j < Model.Items.Count; j++)
                                 {
-                                    if (Model[j].SubCategryId == i+1)
+                                    if (Model.Items[j].SubCategryId == i+1)
                                     {
                                         count++;
 
@@ -79,12 +86,12 @@
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
-                                                    <h6 class="mb-0">@Model[j].Name</h6>
-                                                    <span class="text-muted text-sm">@Model[j].Name2</span>
+                                                    <h6 class="mb-0">@Model.Items[j].Name</h6>
+                                                    <span class="text-muted text-sm">@Model.Items[j].Name2</span>
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[j].StaticPrice</span>
-                                                    <button data-item-id="@Model[j].Id" data-item-modefiers="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item "
+                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model.Items[j].StaticPrice</span>
+                                                    <button data-item-id="@Model.Items[j].Id" data-item-modefiers="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item "
                                                             data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
@@ -95,7 +102,7 @@
 
                                         
                                     }
-                                    if(count == itemsToShowCount)
+                                    if(count == Model.ItemsToShowCount)
                                     {
                                         break;
                                     }

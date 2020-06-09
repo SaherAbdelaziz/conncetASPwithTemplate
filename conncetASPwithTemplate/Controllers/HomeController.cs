@@ -4,10 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using conncetASPwithTemplate.Models;
+using conncetASPwithTemplate.ViewModels;
 
 namespace conncetASPwithTemplate.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class HomeController : Controller
     {
         private ApplicationDbContext _context;
@@ -56,7 +57,12 @@ namespace conncetASPwithTemplate.Controllers
         public ActionResult Navigation()
         {
             var items = _context.Items.ToList();
-            return View(items);
+            var subCategory = _context.SubCategories.ToList();
+            var itemsToShowCount = 5;
+            ItemsCategories itemsCategories =new ItemsCategories(items , subCategory , itemsToShowCount);
+            //itemsCategories.Items= items.ToList();
+
+            return View(itemsCategories);
         }
 
         public ActionResult ShowItems()
@@ -91,7 +97,7 @@ namespace conncetASPwithTemplate.Controllers
             return View();
         }
 
-        public ActionResult checkout()
+        public ActionResult Checkout()
         {
             return View();
         }

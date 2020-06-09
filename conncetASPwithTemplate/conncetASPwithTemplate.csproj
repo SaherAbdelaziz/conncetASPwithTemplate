@@ -230,10 +230,13 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modifier.cs" />
     <Compile Include="Models\ModifiersGroup.cs" />
+    <Compile Include="Models\Modifys.cs" />
     <Compile Include="Models\OutLet.cs" />
+    <Compile Include="Models\WebPresets.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\SubCategory.cs" />
+    <Compile Include="ViewModels\ItemsCategories.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\mytemplate\assets\css\prettify.css" />
@@ -1354,6 +1357,7 @@
     <Content Include="Views\Home\Reviews.cshtml" />
     <Content Include="Views\Home\FaQ.cshtml" />
     <Content Include="Views\Home\checkout.cshtml" />
+    <Content Include="Views\Shared\logintemplate.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
