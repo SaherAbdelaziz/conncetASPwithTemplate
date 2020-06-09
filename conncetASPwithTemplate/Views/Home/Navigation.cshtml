@@ -15,11 +15,11 @@
     private List<string> idsStrings = new List<string>() { "Burgers", "Pasta" , "Pizza" ,
         "Sushi" , "Desserts" , "Drinks" };
     private List<string> surcs = new List<string>() { "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
-        "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
-        "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
-        "../../Content/mytemplate/assets/img/photos/menu-title-sushi.jpg",
-        "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
-        "../../Content/mytemplate/assets/img/photos/menu-title-drinks.jpg"
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-sushi.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-drinks.jpg"
     };
 }
 
@@ -71,8 +71,11 @@
                                     if (Model[j].SubCategryId == i+1)
                                     {
                                         count++;
-                                        List<int> ids = new List<int> {Model[j].Id};
+
+                                        List<int> ids = new List<int>();
+                                        //ids.Add(Model[i].Id);
                                         var myJSON = JsonConvert.SerializeObject(ids);
+
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
@@ -81,10 +84,11 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model[j].StaticPrice</span>
-                                                    <button data-item-id="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item"
+                                                    <button data-item-id="@Model[j].Id" data-item-modefiers="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item "
                                                             data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
+                                                    <!--js-add-cart-->
                                                 </div>
                                             </div>
                                         </div>

@@ -110,7 +110,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 .Single(c => c.Id == id && c.CartId == userId);
 
             if (cartItem.Removed)
-                return NotFound();
+                return Ok();
 
             cartItem.Removed = true;
             _context.CartItems.Remove(cartItem);
