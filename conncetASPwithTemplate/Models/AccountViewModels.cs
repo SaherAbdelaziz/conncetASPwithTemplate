@@ -65,6 +65,26 @@ namespace conncetASPwithTemplate.Models
     public class RegisterViewModel
     {
         [Required]
+        [Display(Name = "Name")]
+        public string Name { get; set; }
+
+
+        [Required]
+        [Display(Name = "Phone")]
+        public string Phone { get; set; }
+
+
+        [Required]
+        [Display(Name = "Adress")]
+        public string Adress { get; set; }
+
+
+        [Required]
+        [Display(Name = "Adress2")]
+        public string Adress2 { get; set; }
+
+
+        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }

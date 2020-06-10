@@ -10,6 +10,7 @@ namespace conncetASPwithTemplate.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+
         [Required]
         [StringLength(100)]
         public string Name { get; set; }
@@ -18,8 +19,7 @@ namespace conncetASPwithTemplate.Models
         public string Phone { get; set; }
         public string Adress { get; set; }
         public string Adress2 { get; set; }
-       
-        
+
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
