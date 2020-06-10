@@ -58,8 +58,10 @@ namespace conncetASPwithTemplate.Controllers
         {
             var items = _context.Items.ToList();
             var subCategory = _context.SubCategories.ToList();
-            var itemsToShowCount = 5;
-            ItemsCategories itemsCategories =new ItemsCategories(items , subCategory , itemsToShowCount);
+            var presets = _context.WebPresets.ToList();
+            var menuItems = _context.WebMenuItems.ToList();
+            var itemsToShowCount = 10;
+            ItemsCategories itemsCategories =new ItemsCategories(items , presets, menuItems , itemsToShowCount);
             //itemsCategories.Items= items.ToList();
 
             return View(itemsCategories);

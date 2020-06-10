@@ -1,85 +1,31 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
-    <!-- Meta -->
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
 
-    <!-- Title -->
-    <title>Soup - Restaurant with Online Ordering System Template</title>
-
-    <!-- Favicons -->
-    <link rel="shortcut icon" href="../../Content/mytemplate/assets/img/favicon.png">
-    <link rel="apple-touch-icon" href="../../Content/mytemplate/assets/img/favicon_60x60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="../../Content/mytemplate/assets/img/favicon_76x76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="../../Content/mytemplate/assets/img/favicon_120x120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="../../Content/mytemplate/assets/img/favicon_152x152.png">
-
-    <!-- CSS Plugins -->
-    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/slick-carousel/slick/slick.css" />
-    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/animate.css/animate.min.css" />
-    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/animsition/dist/css/animsition.min.css" />
-
-    <!-- CSS Icons -->
-    <link rel="stylesheet" href="../../Content/mytemplate/assets/css/themify-icons.css" />
-    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/font-awesome/css/font-awesome.min.css" />
-
-    <!-- CSS Theme -->
-    <link id="theme" rel="stylesheet" href="../../Content/mytemplate/assets/css/themes/theme-beige.min.css" />
 </head>
 <body>
-
-    <!-- Body Wrapper -->
-    <div id="body-wrapper" class="animsition">
-
-        <!-- Header -->
-        <header id="header" class="light">
-
-            <div class="container">
-                <div class="row">
-                    
-                   
-                </div>
-            </div>
-
-        </header>
-        <!-- Header / End -->
-        
-        <!-- Header / End -->
-        <!-- Content -->
-        <div id="content">
-
-
-        <div>
-            @RenderBody()
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+       
+        <div class="navbar-collapse collapse">
+            
+            @Html.Partial("_LoginPartial")
         </div>
-        
-        </div>
-          
+    </div>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+       
+</div>
 
-        <!-- JS Plugins -->
-    <script src="../../Content/mytemplate/assets/plugins/jquery/dist/jquery.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/tether/dist/js/tether.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/slick-carousel/slick/slick.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/jquery.appear/jquery.appear.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/jquery.localscroll/demo/js/jquery.scrollTo.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/skrollr/dist/skrollr.min.js"></script>
-    <script src="../../Content/mytemplate/assets/plugins/animsition/dist/js/animsition.min.js"></script>
-
-    <!-- JS Core -->
-    <script src="../../Content/mytemplate/assets/js/core.js"></script>
-    @*@Scripts.Render("~/bundles/jquery")*@
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
-
-
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
 </body>
-
 </html>

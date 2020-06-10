@@ -19,6 +19,12 @@
                                                         "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
                                                         "../../Content/mytemplate/assets/img/photos/menu-title-sushi.jpg",
                                                         "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-drinks.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-sushi.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
                                                         "../../Content/mytemplate/assets/img/photos/menu-title-drinks.jpg"
     };
 }
@@ -28,8 +34,10 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 push-lg-4">
-                <h1 class="mb-0">Menu List</h1>
-                <h4 class="text-muted mb-0">Some informations about our restaurant</h4>
+                <h1 class="mb-0">Our Menu
+                </h1>
+                <h4 class="text-muted mb-0">GRILL & ORIENTAL RESTAURANT SINCE 1890
+                </h4>
             </div>
         </div>
     </div>
@@ -45,9 +53,9 @@
                     <ul class="nav nav-menu bg-dark dark">
                         
                         @{
-                            for (int i = 0; i<6; i++)
+                            for (int i = 0; i<12; i++)
                             {
-                                <li><a href="#@Model.SubCategories[i].Name">@Model.SubCategories[i].Name</a></li>
+                                <li><a href="#@Model.WebPresets[i].Name">@Model.WebPresets[i].Name</a></li>
                             }
                         }
                         
@@ -61,24 +69,23 @@
             </div>
             <div class="col-md-9">
             @{
-                for (int i = 0; i < 6; i++)
+                for (int i = 0; i < 12; i++)
                 {
-                    <div id="@Model.SubCategories[i].Name" class="menu-category">
+                    <div id="@Model.WebPresets[i].Name" class="menu-category">
                         <div class="menu-category-title">
                             <div class="bg-image"><img src="@surcs[i]" alt=""></div>
-                            <h2 class="title">@Model.SubCategories[i].Name</h2>
+                            <h2 class="title">@Model.WebPresets[i].Name</h2>
                         </div>
                         <div class="menu-category-content">
                             <!-- Menu Items -->
 
                             @{
                                 var count = 0;
-                                for (int j = 0; j < Model.Items.Count; j++)
+                                for (int j = 0; j < Model.WebMenuItems.Count; j++)
                                 {
-                                    if (Model.Items[j].SubCategryId == i+1)
+                                    if(Model.WebMenuItems[j].PresetId == Model.WebPresets[i].Id)
                                     {
                                         count++;
-
                                         List<int> ids = new List<int>();
                                         //ids.Add(Model[i].Id);
                                         var myJSON = JsonConvert.SerializeObject(ids);
@@ -86,12 +93,14 @@
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
                                                 <div class="col-sm-6 mb-2 mb-sm-0">
-                                                    <h6 class="mb-0">@Model.Items[j].Name</h6>
-                                                    <span class="text-muted text-sm">@Model.Items[j].Name2</span>
+                                                    <h6 class="mb-0">@Model.Items[(int) Model.WebMenuItems[j].ItemId].Name</h6>
+                                                    <span class="text-muted text-sm">@Model.Items[(int) Model.WebMenuItems[j].ItemId].Name2</span>
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model.Items[j].StaticPrice</span>
-                                                    <button data-item-id="@Model.Items[j].Id" data-item-modefiers="@myJSON" class="btn btn-outline-secondary btn-sm js-chosen-item "
+                                                    <span class="text-md mr-4"><span class="text-muted">from</span> $@Model.Items[(int) Model.WebMenuItems[j].ItemId].StaticPrice</span>
+                                                    <button data-item-id="@Model.Items[(int) Model.WebMenuItems[j].ItemId].Id" 
+                                                            data-item-modefiers="@myJSON"
+                                                            class="btn btn-outline-secondary btn-sm js-chosen-item "
                                                             data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
                                                     </button>
@@ -99,17 +108,20 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        if (count == Model.ItemsToShowCount)
+                                        {
+                                            break;
+                                        }
+                                        }
 
                                         
-                                    }
-                                    if(count == Model.ItemsToShowCount)
-                                    {
-                                        break;
-                                    }
-                                    
                                 }
-                            }
+                                // j = k;
 
+
+
+                                }
+                           
                         </div>
                     </div>
                     }

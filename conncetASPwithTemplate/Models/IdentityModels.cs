@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.ComponentModel.DataAnnotations;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -9,6 +10,16 @@ namespace conncetASPwithTemplate.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
+        [Required]
+        [StringLength(100)]
+        public string Name { get; set; }
+        [Required]
+        [StringLength(100)]
+        public string Phone { get; set; }
+        public string Adress { get; set; }
+        public string Adress2 { get; set; }
+       
+        
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
@@ -34,6 +45,8 @@ namespace conncetASPwithTemplate.Models
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Item> Items { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<WebPreset> WebPresets { get; set; }
+        public DbSet<WebMenuItem> WebMenuItems { get; set; }
 
         public virtual DbSet<HD_Areas> HdAreas { get; set; }
         public virtual DbSet<HD_Areas_Services> HdAreasServices { get; set; }
@@ -41,6 +54,7 @@ namespace conncetASPwithTemplate.Models
         public virtual DbSet<Modifier> Modifiers { get; set; }
         public virtual DbSet<ModifiersGroup> ModifiersGroups { get; set; }
         public virtual DbSet<OutLet> OutLets { get; set; }
+
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

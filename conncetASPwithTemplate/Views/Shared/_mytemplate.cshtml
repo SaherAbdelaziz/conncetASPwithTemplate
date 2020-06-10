@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 
 <html>
 <head>
@@ -21,6 +22,7 @@
     <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/slick-carousel/slick/slick.css" />
     <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/animate.css/animate.min.css" />
     <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/animsition/dist/css/animsition.min.css" />
+    <link rel="stylesheet" href="../../Content/Site.css" />
 
     <!-- CSS Icons -->
     <link rel="stylesheet" href="../../Content/mytemplate/assets/css/themify-icons.css" />
@@ -102,40 +104,56 @@
                                 </li>
                                 <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
                                 <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                                <li class="has-dropdown">
-                                    <a href="#">More</a>
-                                    <div class="dropdown-container">
-                                        <ul class="dropdown-mega">
-                                            <li><a href="page-offer-single.html">Offer single</a></li>
-                                            <li><a href="page-product.html">Product</a></li>
-                                            <li><a href="book-a-table.html">Book a table</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="confirmation.html">Confirmation</a></li>
-                                            <li><a href="blog.html">Blog</a></li>
-                                            <li><a href="blog-sidebar.html">Blog + Sidebar</a></li>
-                                            <li><a href="blog-post.html">Blog Post</a></li>
-                                            <li><a href="documentation.html">Documentation</a></li>
-                                        </ul>
-                                        <div class="dropdown-image">
-                                            <img src="../../Content/mytemplate/assets/img/photos/dropdown-more.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                                    <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+                                }
+                                
                             </ul>
                         </nav>
+                    @if (User.Identity.IsAuthenticated)
+                    {
                         <div class="module left">
+                            
+                            
                             <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
+                            
                         </div>
-                    </div>
+                        <div class="module left">
+                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                            @Html.AntiForgeryToken()
+                            <li class="dropdown list-unstyled">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
+                                <ul class="dropdown-menu">
+                                    <li><a href="@Url.Action("Index" , "Manage")">Manage Account</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                </ul>
+                            </li>
+                            }
+                        </div>
+
+                       
+
+
+                            }
+                        </div>
+                @if (User.Identity.IsAuthenticated)
+                {
                     <div class="col-md-2">
+
                         <a href="#" class="module module-cart right js-shopping-cart" data-toggle="panel-cart">
                             <span class="cart-icon">
                                 <i class="ti ti-shopping-cart "></i>
                                 <span class="notification hide badge js-notifications-count ">0</span>
                             </span>
-                            <span class="cart-value js-notifications-price">$32.98</span>
+                            <span class="cart-value js-notifications-price">0 LE</span>
                         </a>
+
                     </div>
+                }
                 </div>
             </div>
 
@@ -377,13 +395,43 @@
 
     // all apis calls
     $(document).ready(function() {
+        var refreshIntervalId;
 
-        var refreshIntervalId = setInterval(AJAXRequest, 1500);
+        var x = "5";
+        var y = "6";
+
+        var z = Number(x) + Number(y);
+        console.log(z);
+        AJAXRequest();
+        //var toggle = 1;
+        //function clickedIt() {   
+        //    if($("#panel-cart").hasClass('show')){
+        //        clearInterval(refreshIntervalId);
+        //        console.log("work");
+        //        toggle = 0;
+        //    }
+        //    else {
+        //        if(toggle == 0)
+        //        {
+        //            refreshIntervalId = setInterval(AJAXRequest, 1500);
+        //            toggle = 1;
+        //        }
+        //        console.log("off");
+        //        console.log(refreshIntervalId);
+
+        //    }
+        //}
+
+
+        
+        //var chickId = setInterval(clickedIt, 1500);
+
+        
 
         //delete specifected item from cart    
-        $(".js-shopping-cart").click(function (e) {
-             clearInterval(refreshIntervalId);
-
+        $(".js-shopping-cart").click(function(e) {
+            //clearInterval(refreshIntervalId);
+            
             $('.js-cancel-item').bind('click',
                 function(e) {
 
@@ -391,7 +439,7 @@
                     console.log("dsds");
                     console.log(e.target);
                     //$(".js-cancel-item").click(function(e) {
-                    
+
                     var link = $(e.target);
                     //console.log(link.attr("data-item-id").get(0).tagName);
                     //console.log(link.attr("data-item-id"));
@@ -402,10 +450,22 @@
                         })
                         .done(function() {
                             link.parents("tr").fadeOut(function() {
-                                $(this).remove();
-                                console.log($('.ordertotal'));
+                                var itemPrice = link.parents("tr").find('.price').attr('price');
+                                var totalPrice = $('.ordertotal').attr('ordertotal');
+                                console.log("itemPrice " + itemPrice);
+                                console.log("totalPrice " + totalPrice);
 
-                                $('.ordertotal').innerText = "dsds";
+                                var price = Number(totalPrice) - Number(itemPrice) ;
+                                $('.ordertotal').attr('ordertotal', price);
+                                console.log("total " + price);
+                               // console.log($('.ordertotal').attr('ordertotal'));
+                                $(this).remove();
+
+                                //console.log($('.ordertotal').text(5));
+                                //console.log($(this));
+                                var total = price + 3.99;
+                                $('.ordertotal strong').text(price+"LE");
+                                $('.total strong').text(total+"LE");
                             });
                         })
                         .fail(function() {
@@ -421,6 +481,21 @@
         // when click on item we get its information like id and name
         $(".js-chosen-item").on('click',
             function(e) {
+                //refreshIntervalId = setInterval(AJAXRequest, 1500)
+                var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+
+                if (userAuthorized) {
+                    console.log(userAuthorized);
+                }
+                else {
+                    console.log("false " + userAuthorized);
+
+                    var url = '@Url.Action("Login", "Account" )';
+                    window.location.href = url;
+                    return;
+
+                }
+                //alert("dsds");
                 var button = $(e.target);
                 if ($(e.target).get(0).tagName == "SPAN") {
 
@@ -440,6 +515,7 @@
                     .done(function(data) {
                         var index;
 
+
                         //first item is the chosen item
                         if (data.length == 1) {
                             var cartItemDto = {
@@ -457,6 +533,7 @@
                                 .done(function() {
                                     console.log("got in adding itms ");
                                     console.log(button.attr("data-item-id"));
+                                    AJAXRequest();
                                 })
                                 .fail(function() {
                                     alert("Something failed! in adding item to cart");
@@ -529,6 +606,7 @@
                                     .done(function() {
                                         console.log("got in adding itms has modifiers ");
                                         console.log(button.attr("data-item-id"));
+                                        AJAXRequest();
                                     })
                                     .fail(function() {
                                         alert("Something failed! in adding item to cart");
@@ -542,6 +620,9 @@
                     .fail(function() {
                         alert("Something failed! in modifiers");
                     });
+
+               
+
 
             });
 
@@ -561,13 +642,13 @@
     function AJAXRequest() {
         //js-shopping-cart
         // here we get cart items from api and put in in table in cart
-        
+
 
         $.ajax({
             url: "/api/shoppingcarts",
             type: "GET",
             dataType: 'json',
-            success: function (notifications) {
+            success: function(notifications) {
                 var delivery = 3.99, price = 0, totalPrice = 0;
                 console.log("called " + notifications.length);
                 if (notifications.length === 0)
@@ -585,7 +666,7 @@
                             <span class ="caption text-muted">${notifications[i].item.name2}</span>
                         <td>
 
-                        <td class ="price">  ${notifications[i].item.staticPrice}LE <td>
+                        <td class ="price" price =${notifications[i].item.staticPrice}>  ${notifications[i].item.staticPrice}LE <td>
 
                         <td  class ="actions">
                          
@@ -604,18 +685,18 @@
 
                 // price and total
                 var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
-                Order total: </div>  <div class="col-5 ordertotal"><strong>  ${price}LE </strong></div>  </div>
+                Order total: </div>  <div class="col-5 ordertotal" ordertotal=${price}><strong>  ${price}LE </strong></div>  </div>
             <div class="row"> <div class="col-7 text-right text-muted">
                     Delivery: </div> <div class="col-5"><strong> ${delivery}LE </strong></div>  </div>
 
             <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
-                        Total: </div> <div class="col-5"><strong> ${totalPrice}LE </strong></div> </div>`;
+                        Total: </div> <div class="col-5 total" total=${totalPrice}><strong> ${totalPrice}LE </strong></div> </div>`;
 
                 // price beside cart
                 $(".js-notifications-price").text(totalPrice.toFixed(2));
                 $('.seed_price').append(data2);
             },
-            error: function (xhr, status, error) {
+            error: function(xhr, status, error) {
                 //
             }
         });
