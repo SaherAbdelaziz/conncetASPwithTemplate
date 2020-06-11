@@ -151,7 +151,8 @@ namespace conncetASPwithTemplate.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Name = model.Name };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
+                    Name = model.Name , Phone = model.Phone , Adress = model.Adress , Adress2 = model.Adress2};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

@@ -551,13 +551,13 @@
 
                             console.log("get in else");
                             console.log($(".modal-product-details .js-item-name1").val());
-                            if ($(".modal-product-details .js-item-name1").text() == "") {
+                            if ($(".modal-product-details .js-item-name1").text() != data[0].name) {
 
 
                                 $(".modal-product-details .js-item-name1").text(data[0].name);
                                 $(".modal-product-details .js-item-name2").text(data[0].name2);
                                 $(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
-
+                                $('#panelDetailsSize .panel-details-content').empty();
                                 for (let j = 1; j < data.length; j++) {
 
                                     // add modifiers to details of item
