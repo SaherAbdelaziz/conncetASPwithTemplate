@@ -61,6 +61,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                         CartId = shoppingCartId,
                         Quantity = 1,
                         DateCreated = DateTime.Now,
+                        Details = cartItemDto.Details,
                         Items = { cartItemDto.ItemsId }
                     };
 

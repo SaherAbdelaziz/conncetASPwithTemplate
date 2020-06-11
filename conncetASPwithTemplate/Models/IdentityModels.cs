@@ -19,6 +19,11 @@ namespace conncetASPwithTemplate.Models
         public string Phone { get; set; }
         public string Adress { get; set; }
         public string Adress2 { get; set; }
+        public HD_Areas Area { get; set; }
+
+        [Required]
+        public int AreaId { get; set; }
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {

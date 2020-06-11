@@ -18,14 +18,18 @@ namespace conncetASPwithTemplate.Controllers
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
 
+        private readonly ApplicationDbContext _context;
+
         public AccountController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = new ApplicationDbContext();
         }
 
         public ApplicationSignInManager SignInManager
@@ -139,7 +143,11 @@ namespace conncetASPwithTemplate.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            var model = new RegisterViewModel
+            {
+                Areas = _context.HdAreas.ToList()
+            };
+            return View(model);
         }
 
         //
@@ -151,8 +159,11 @@ namespace conncetASPwithTemplate.Controllers
         {
             if (ModelState.IsValid)
             {
+                model.Areas = _context.HdAreas.ToList();
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
-                    Name = model.Name , Phone = model.Phone , Adress = model.Adress , Adress2 = model.Adress2};
+                    Name = model.Name , Phone = model.Phone ,
+                    Adress = model.Adress , Adress2 = model.Adress2 , AreaId = model.Area// , Area = model.Areas[model.Area]
+                };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

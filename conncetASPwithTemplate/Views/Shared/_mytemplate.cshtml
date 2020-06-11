@@ -59,12 +59,12 @@
                                         <ul>
                                             <li><a href="@Url.Action("Index", "Home")">Home Basic</a></li>
                                             <li><a href="@Url.Action("IndexBurgers", "Home")">Home Burgers</a></li>
-                                            <li><a href="@Url.Action("IndexFullwidth", "Home")">Home Fullwidth Slider</a></li>
-                                            <li><a href="@Url.Action("IndexVideo", "Home")">Home Video</a></li>
+                                            @*<li><a href="@Url.Action("IndexFullwidth", "Home")">Home Fullwidth Slider</a></li>
+                                            <li><a href="@Url.Action("IndexVideo", "Home")">Home Video</a></li>*@
                                         </ul>
                                     </div>
                                 </li>
-                                <li class="has-dropdown">
+                                @*<li class="has-dropdown">
                                     <a href="#">About</a>
                                     <div class="dropdown-container">
                                         <ul class="dropdown-mega">
@@ -80,8 +80,9 @@
                                             <img src="../../Content/mytemplate/assets/img/photos/dropdown-about.jpg" alt="">
                                         </div>
                                     </div>
-                                </li>
-                                <li class="has-dropdown">
+                                </li>*@
+                                <li><a href="@Url.Action("Navigation", "Home")">MENU</a></li>
+                                @*<li class="has-dropdown">
                                     <a href="#">Menu</a>
                                     <div class="dropdown-container">
                                         <ul>
@@ -101,13 +102,28 @@
                                             </li>
                                         </ul>
                                     </div>
-                                </li>
+                                </li>*@
                                 <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
                                 <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                                 @if (!User.Identity.IsAuthenticated)
                                 {
                                     <li><a href="@Url.Action("Login", "Account")">Login</a></li>
                                     <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <li >
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Index" , "Manage")">Manage Account</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                            </ul>
+                                        </li>
+                                    }
                                 }
                                 
                             </ul>
@@ -121,18 +137,7 @@
                             
                         </div>
                         <div class="module left">
-                            @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                            {
-                            @Html.AntiForgeryToken()
-                            <li class="dropdown list-unstyled">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="@Url.Action("Index" , "Manage")">Manage Account</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                </ul>
-                            </li>
-                            }
+                           
                         </div>
 
                        
@@ -315,7 +320,7 @@
 
     <!-- Modal                                              / Product -->
     <!-- -->
-    <div class="modal  " id="productModal" role="dialog">
+    <div class="modal  fade " id="productModal" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-lg dark bg-dark">
@@ -350,6 +355,19 @@
                                
                                 </div>
                             </form>
+                        </div>
+                    </div>
+                    <!-- Panel Details / Other -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_other" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
+                        </h5>
+                        <div id="panelDetailsOther" class="collapse">
+                            <textarea id="#messagedetails" cols="30" rows="4" class="form-control" placeholder="Put this any other informations..."></textarea>
                         </div>
                     </div>
                 </div>
@@ -397,11 +415,7 @@
     $(document).ready(function() {
         var refreshIntervalId;
 
-        var x = "5";
-        var y = "6";
-
-        var z = Number(x) + Number(y);
-        console.log(z);
+       
         AJAXRequest();
         //var toggle = 1;
         //function clickedIt() {   
@@ -452,12 +466,12 @@
                             link.parents("tr").fadeOut(function() {
                                 var itemPrice = link.parents("tr").find('.price').attr('price');
                                 var totalPrice = $('.ordertotal').attr('ordertotal');
-                                console.log("itemPrice " + itemPrice);
-                                console.log("totalPrice " + totalPrice);
+                                //console.log("itemPrice " + itemPrice);
+                                //console.log("totalPrice " + totalPrice);
 
                                 var price = Number(totalPrice) - Number(itemPrice) ;
                                 $('.ordertotal').attr('ordertotal', price);
-                                console.log("total " + price);
+                                //console.log("total " + price);
                                // console.log($('.ordertotal').attr('ordertotal'));
                                 $(this).remove();
 
@@ -542,15 +556,15 @@
 
                         } else {
                             // $('#panelDetailsSize .panel-details-content').delete();
-                            $("#productModal").addClass("fade");
-                            $("#productModal").modal();
-                            $("#productModal").removeClass("fade");
+                            //$("#productModal").addClass("fade");
+                            //$("#productModal").modal();
+                            //$("#productModal").removeClass("fade");
 
                             //var myJSON = JSON.stringify(myIdsModefiers);
                             //$("#productModal .js-add-cart").attr("data-item-id", myJSON);
 
                             console.log("get in else");
-                            console.log($(".modal-product-details .js-item-name1").val());
+                            //console.log($(".modal-product-details .js-item-name1").val());
                             if ($(".modal-product-details .js-item-name1").text() != data[0].name) {
 
 
@@ -587,12 +601,14 @@
 
                             // here we get specifected item that has modifiers and put it in database
                             $(".js-add-cart").click(function(e) {
-
+                                console.log($('#messagedetails').text());
+                                console.log($('#messagedetails'));
                                 var id = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
 
                                 var cartItemDto = {
                                     ItemId: myId,
-                                    ItemsId: id
+                                    ItemsId: id,
+                                    Details:"dsds"
                                     // phone: $("#id-phone").val()
                                 }
 
@@ -658,12 +674,16 @@
                 $('.seed_items').empty();
                 $('.seed_price').empty();
                 for (let i = 0; i < notifications.length; i++) {
+                    //console.log(notifications.items);
                     //names//price// delete and edit
                     var data1 =
                         `<tr>
                         <td class ="title">
                             <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
                             <span class ="caption text-muted">${notifications[i].item.name2}</span>
+                           
+                           
+                           
                         <td>
 
                         <td class ="price" price =${notifications[i].item.staticPrice}>  ${notifications[i].item.staticPrice}LE <td>

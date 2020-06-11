@@ -98,11 +98,18 @@
                                                 </div>
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-4"><span class="text-muted">from</span> $@Model.Items[(int) Model.WebMenuItems[j].ItemId].StaticPrice</span>
-                                                    <button data-item-id="@Model.Items[(int) Model.WebMenuItems[j].ItemId].Id" 
-                                                            data-item-modefiers="@myJSON"
-                                                            class="btn btn-outline-secondary btn-sm js-chosen-item "
-                                                            data-target="#productModal" data-toggle="modal">
+                                                    <button 
+                                                        class="btn btn-outline-secondary btn-sm js-chosen-item "
+                                                        data-item-id="@Model.Items[(int) Model.WebMenuItems[j].ItemId].Id" 
+                                                        data-item-modefiers="@myJSON"
+                                                        data-target="#productModal" data-toggle="modal">
                                                         <span>Add to cart</span>
+                                                    </button>
+                                                    
+                                                    <button class="btn btn-outline-secondary btn-sm js-chosen-item ">
+                                                        
+                                                        <span>Modify Your Dish </span>
+
                                                     </button>
                                                     <!--js-add-cart-->
                                                 </div>

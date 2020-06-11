@@ -83,6 +83,14 @@ namespace conncetASPwithTemplate.Models
         [Display(Name = "Adress2")]
         public string Adress2 { get; set; }
 
+        [Required]
+        public int Area { get; set; }
+        
+        [Display(Name = "Area")]
+        public IEnumerable<HD_Areas> Areas { get; set; }
+
+        
+
 
         [Required]
         [EmailAddress]

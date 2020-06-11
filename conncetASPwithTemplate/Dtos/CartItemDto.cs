@@ -16,9 +16,9 @@ namespace conncetASPwithTemplate.Dtos
 
         public bool Removed { get; set; }
 
-        public int ItemId { get; set; }
+        public string Details { get; set; }
 
-        public ItemDto Item { get; set; }
+        public int ItemId { get; set; }
 
         public int ItemsId { get; set; }
 

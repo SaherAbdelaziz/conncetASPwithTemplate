@@ -231,6 +231,14 @@
     <Compile Include="Migrations\202006101442429_addSomeDataAttributeToUser.Designer.cs">
       <DependentUpon>202006101442429_addSomeDataAttributeToUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006111037030_AddPropapertyAreasToUser.cs" />
+    <Compile Include="Migrations\202006111037030_AddPropapertyAreasToUser.Designer.cs">
+      <DependentUpon>202006111037030_AddPropapertyAreasToUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006111200571_AddDetailsMessageToCartItem.cs" />
+    <Compile Include="Migrations\202006111200571_AddDetailsMessageToCartItem.Designer.cs">
+      <DependentUpon>202006111200571_AddDetailsMessageToCartItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -1415,6 +1423,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006101442429_addSomeDataAttributeToUser.resx">
       <DependentUpon>202006101442429_addSomeDataAttributeToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006111037030_AddPropapertyAreasToUser.resx">
+      <DependentUpon>202006111037030_AddPropapertyAreasToUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006111200571_AddDetailsMessageToCartItem.resx">
+      <DependentUpon>202006111200571_AddDetailsMessageToCartItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

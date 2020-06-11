@@ -17,6 +17,7 @@ namespace conncetASPwithTemplate.Models
         public DateTime DateCreated { get; set; }
 
         public bool Removed { get; set; }
+        public string Details { get; set; }
 
         public int ItemId { get; set; }
 
