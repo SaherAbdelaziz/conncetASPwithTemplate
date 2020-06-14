@@ -1,46 +1,295 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
+
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <!-- Meta -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
+    <!-- Title -->
+    <title>Soup - Restaurant with Online Ordering System Template</title>
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="../../Content/mytemplate/assets/img/favicon.png">
+    <link rel="apple-touch-icon" href="../../Content/mytemplate/assets/img/favicon_60x60.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="../../Content/mytemplate/assets/img/favicon_76x76.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="../../Content/mytemplate/assets/img/favicon_120x120.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="../../Content/mytemplate/assets/img/favicon_152x152.png">
+
+    <!-- CSS Plugins -->
+    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/slick-carousel/slick/slick.css" />
+    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/animate.css/animate.min.css" />
+    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/animsition/dist/css/animsition.min.css" />
+    <link rel="stylesheet" href="../../Content/Site.css" />
+
+    <!-- CSS Icons -->
+    <link rel="stylesheet" href="../../Content/mytemplate/assets/css/themify-icons.css" />
+    <link rel="stylesheet" href="../../Content/mytemplate/assets/plugins/font-awesome/css/font-awesome.min.css" />
+
+    <!-- CSS Theme -->
+    <link id="theme" rel="stylesheet" href="../../Content/mytemplate/assets/css/themes/theme-beige.min.css" />
 </head>
 <body>
-<div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-       
-        <div class="navbar-collapse collapse">
-            
-            @Html.Partial("_LoginPartial")
+
+    <!-- Body Wrapper -->
+    <div id="body-wrapper" class="animsition">
+
+        <!-- Header -->
+        <header id="header" class="light">
+
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <!-- Logo -->
+                        <div class="module module-logo dark">
+                            <a href="@Url.Action("Index", "Home")" About Us>
+                                <img src="../../Content/mytemplate/assets/img/logo-light.svg" alt="" width="88">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-7">
+                        <!-- Navigation -->
+                        <nav class="module module-navigation left mr-4">
+                            <ul id="nav-main" class="nav nav-main">
+                                <li class="has-dropdown">
+                                    <a href="#">Home</a>
+                                    <div class="dropdown-container">
+                                        <ul>
+                                            <li><a href="@Url.Action("Index", "Home")">Home Basic</a></li>
+                                            <li><a href="@Url.Action("IndexBurgers", "Home")">Home Burgers</a></li>
+                                            @*<li><a href="@Url.Action("IndexFullwidth", "Home")">Home Fullwidth Slider</a></li>
+                                                <li><a href="@Url.Action("IndexVideo", "Home")">Home Video</a></li>*@
+                                        </ul>
+                                    </div>
+                                </li>
+                                @*<li class="has-dropdown">
+                                        <a href="#">About</a>
+                                        <div class="dropdown-container">
+                                            <ul class="dropdown-mega">
+                                                <li><a href="@Url.Action("About", "Home")">About Us</a></li>
+                                                <li><a href="@Url.Action("Services", "Home")">Services</a></li>
+                                                <li><a href="@Url.Action("Gallery", "Home")">Gallery</a></li>
+                                                <li><a href="@Url.Action("Reviews", "Home")">Reviews</a></li>
+                                                <li><a href="@Url.Action("FaQ", "Home")">FAQ</a></li>
+
+
+                                            </ul>
+                                            <div class="dropdown-image">
+                                                <img src="../../Content/mytemplate/assets/img/photos/dropdown-about.jpg" alt="">
+                                            </div>
+                                        </div>
+                                    </li>*@
+                                <li><a href="@Url.Action("Navigation", "Home")">MENU</a></li>
+                                @*<li class="has-dropdown">
+                                        <a href="#">Menu</a>
+                                        <div class="dropdown-container">
+                                            <ul>
+                                                <li class="has-dropdown">
+                                                    <a href="#">List</a>
+                                                    <ul>
+                                                        <li><a href="@Url.Action("Navigation", "Home")">Navigation</a></li>
+                                                        <li><a href="menu-list-collapse.html">Collapse</a></li>
+                                                    </ul>
+                                                </li>
+                                                <li class="has-dropdown">
+                                                    <a href="#">Grid</a>
+                                                    <ul>
+                                                        <li><a href="menu-grid-navigation.html">Navigation</a></li>
+                                                        <li><a href="menu-grid-collapse.html">Collapse</a></li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>*@
+                                <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
+                                <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                @if (!User.Identity.IsAuthenticated)
+                                {
+                                    <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                                    <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+                                }
+                                else
+                                {
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <li>
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
+                                            <ul class="dropdown-menu">
+                                                <li><a href="@Url.Action("Index" , "Manage")">Manage Account</a></li>
+                                                <li role="separator" class="divider"></li>
+                                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+                                            </ul>
+                                        </li>
+                                    }
+                                }
+
+                            </ul>
+                        </nav>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <div class="module left">
+
+
+                                <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
+
+                            </div>
+                            <div class="module left">
+
+                            </div>
+
+
+
+
+                        }
+                    </div>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div class="col-md-2">
+
+                            <a href="#" class="module module-cart right js-shopping-cart" data-toggle="panel-cart">
+                                <span class="cart-icon">
+                                    <i class="ti ti-shopping-cart "></i>
+                                    <span class="notification hide badge js-notifications-count ">0</span>
+                                </span>
+                                <span class="cart-value js-notifications-price">0 LE</span>
+                            </a>
+
+                        </div>
+                    }
+                </div>
+            </div>
+
+        </header>
+        <!-- Header / End -->
+        <!-- Content -->
+        <div id="content">
+
+
+            <div>
+                @RenderBody()
+            </div>
+            <!-- Footer -->
+            <footer id="footer" class="bg-dark dark">
+
+                <div class="container">
+                    <!-- Footer 1st Row -->
+                    <div class="footer-first-row row">
+                        <div class="col-lg-3 text-center">
+                            <a href="index.html"><img src="../../Content/mytemplate/assets/img/logo-light.svg" alt="" width="88" class="mt-5 mb-5"></a>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <h5 class="text-muted">Our Barches</h5>
+                            <ul class="list-posts">
+                                <li>
+                                    <a href="https://goo.gl/maps/hdtdLfTrtKEtE72b6" class="title">El Rehab</a>
+                                    <span>Shop no. 163 & 164 Service area, Al Rehab Souk</span>
+                                    <p>Telephone : 26078965, 01225959100</p>
+                                </li>
+                                <li>
+                                    <a href="https://goo.gl/maps/A4kDZwgtA9pa6tQP9" class="title">El Rehab 2</a>
+                                    <span>The Open Food court</span>
+                                    <p>Telephone : 26071964, 01203111585</p>
+                                </li>
+                                <li>
+                                    <a href="https://goo.gl/maps/MFnyVqSXpVDmRqTNA" class="title">5th settelment</a>
+                                    <span>Silver Star Mall, Akhnaton St., First District</span>
+                                    <p>Telephone : 26183383, 01225555050</p>
+                                </li>
+
+                                <li>
+                                    <a href="https://goo.gl/maps/R6v6i4qabFMFt3q37" class="title">Heliopolis</a>
+                                    <span>70 El Marghany St.</span>
+                                    <p>Telephone : 26901601, 01277711867</p>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-lg-5 col-md-6">
+                            <h5 class="text-muted"></h5>
+                            <ul class="list-posts">
+                                <li>
+                                    <a href="https://goo.gl/maps/gwZTSWXQ7SWyQSvr5" class="title">Mohandessin</a>
+                                    <span>38 Gameet Eldowal Elarabia St.</span>
+                                    <p>Telephone : 33035755, 01210107042</p>
+                                </li>
+                                <li>
+                                    <a href="https://goo.gl/maps/Y9FPrLCEjxYFtppw9" class="title">Madinaty</a>
+                                    <span>South Park Food Court</span>
+                                    <p>Telephone : 01111105787</p>
+                                </li>
+                                <li>
+                                    <a class="title">El Hussein</a>
+                                    <span>16 Gawhar Elkaek=d St., Shopping Mall.</span>
+                                    <p>Telephone : 25939325</p>
+                                </li>
+                                <li>
+                                    <a href="https://goo.gl/maps/GUkH7tcaHTNVH2hcA" class="title">Nasr City</a>
+                                    <span>84 hassan Elmaamon</span>
+                                    <p>Telephone : 26774444, 26774440</p>
+                                </li>
+                                <h5 class="text-muted mb-3">Social Media</h5>
+                                <a href="https://facebook.com/eldahangrill" class="icon icon-social icon-circle icon-sm icon-facebook"><i class="fa fa-facebook"></i></a>
+                                <a href="#" class="icon icon-social icon-circle icon-sm icon-google"><i class="fa fa-google"></i></a>
+                                <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
+                                <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
+                                <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Footer 2nd Row -->
+                    <div class="footer-second-row">
+                        <span class="text-muted">Copyright Eldahan Grill 2020.</span>
+                    </div>
+                </div>
+
+                <!-- Back To Top -->
+                <a href="#" id="back-to-top"><i class="ti ti-angle-up"></i></a>
+
+            </footer>
+            <!-- Footer / End -->
+
+
+        </div>
+        <!-- Content / End -->
+
+        <!-- Body Overlay -->
+        <div id="body-overlay"></div>
+
+    </div>
+
+    <!-- Video Modal / Demo -->
+    <div class="modal modal-video fade" id="modalVideo" role="dialog">
+        <button class="close" data-dismiss="modal"><i class="ti-close"></i></button>
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <iframe height="500"></iframe>
+            </div>
         </div>
     </div>
-</div>
-<div class="container body-content">
-    @RenderBody()
-    <hr />
-       
-</div>
-<!-- JS Plugins -->
-<script src="../../Content/mytemplate/assets/plugins/jquery/dist/jquery.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/tether/dist/js/tether.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/slick-carousel/slick/slick.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/jquery.appear/jquery.appear.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/jquery.localscroll/demo/js/jquery.scrollTo.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/skrollr/dist/skrollr.min.js"></script>
-<script src="../../Content/mytemplate/assets/plugins/animsition/dist/js/animsition.min.js"></script>
 
-<!-- JS Core -->
-<script src="../../Content/mytemplate/assets/js/core.js"></script>
-@*@Scripts.Render("~/bundles/jquery")*@
-@Scripts.Render("~/bundles/bootstrap")
-@RenderSection("scripts", required: false)
+    <!-- JS Plugins -->
+    <script src="../../Content/mytemplate/assets/plugins/jquery/dist/jquery.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/tether/dist/js/tether.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/slick-carousel/slick/slick.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/jquery.appear/jquery.appear.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/jquery.localscroll/demo/js/jquery.scrollTo.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/jquery.localscroll/jquery.localScroll.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/jquery.mb.ytplayer/dist/jquery.mb.YTPlayer.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/twitter-fetcher/js/twitterFetcher_min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/skrollr/dist/skrollr.min.js"></script>
+    <script src="../../Content/mytemplate/assets/plugins/animsition/dist/js/animsition.min.js"></script>
+
+    <!-- JS Core -->
+    <script src="../../Content/mytemplate/assets/js/core.js"></script>
+    @*@Scripts.Render("~/bundles/jquery")*@
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+
 </body>
+
 </html>
