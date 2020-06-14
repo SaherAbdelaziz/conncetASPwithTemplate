@@ -106,7 +106,10 @@
                                                         <span>Add to cart</span>
                                                     </button>
                                                     
-                                                    <button class="btn btn-outline-secondary btn-sm js-chosen-item ">
+                                                    <button  class="btn btn-outline-secondary btn-sm js-chosen-item "
+                                                             data-item-id="@Model.Items[(int) Model.WebMenuItems[j].ItemId].Id" 
+                                                             data-item-modefiers="@myJSON"
+                                                             data-target="#productModal" data-toggle="modal">
                                                         
                                                         <span>Modify Your Dish </span>
 
