@@ -20,9 +20,12 @@ namespace conncetASPwithTemplate.Models
         public string Adress { get; set; }
         public string Adress2 { get; set; }
         public HD_Areas Area { get; set; }
+        public OutLet Outlet { get; set; }
 
         [Required]
         public int AreaId { get; set; }
+        [Required]
+        public int OutletId { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

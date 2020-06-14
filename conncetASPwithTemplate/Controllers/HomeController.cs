@@ -104,7 +104,21 @@ namespace conncetASPwithTemplate.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult GetDefault(int val)
+        {
 
-        
+            var data = _context.HdAreasServices
+                .Where(id => id.AreaId==val).Select(hd => hd.OutLet).ToList();
+            return Json(new { success = true, message = "Hello world" , outlets= data });
+
+            //if (val != null)
+            //{
+            //    var data = _context.OutLets.ToList();
+            //    return Json(new {Success = "true", Data = data});
+            //}
+            //return Json(new { Success = "false" });
+        }
+
     }
 }

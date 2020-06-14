@@ -239,6 +239,10 @@
     <Compile Include="Migrations\202006111200571_AddDetailsMessageToCartItem.Designer.cs">
       <DependentUpon>202006111200571_AddDetailsMessageToCartItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006141127111_AddOutletProperatyTouUser.cs" />
+    <Compile Include="Migrations\202006141127111_AddOutletProperatyTouUser.Designer.cs">
+      <DependentUpon>202006141127111_AddOutletProperatyTouUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -1429,6 +1433,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006111200571_AddDetailsMessageToCartItem.resx">
       <DependentUpon>202006111200571_AddDetailsMessageToCartItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006141127111_AddOutletProperatyTouUser.resx">
+      <DependentUpon>202006141127111_AddOutletProperatyTouUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

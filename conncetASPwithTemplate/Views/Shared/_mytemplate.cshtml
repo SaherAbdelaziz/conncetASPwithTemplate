@@ -734,6 +734,27 @@
         });
     }
 
+    @*$.ajax({
+        url: @Url.Action("GetDefault", "Home"),
+        type: "GET",
+        data: 1,
+        contentType: 'application/json; charset=utf-8',
+        dataType: "Json",
+        success: function(newData) {
+            console.log("ok");
+            console.log(newData);
+
+
+        },
+
+
+        error: function(xhr, status, error) {
+
+            console.log("Error retrieving data");
+        }
+
+    });*@
+
 </script>
 </body>
 

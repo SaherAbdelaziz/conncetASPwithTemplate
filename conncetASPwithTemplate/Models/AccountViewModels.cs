@@ -89,6 +89,12 @@ namespace conncetASPwithTemplate.Models
         [Display(Name = "Area")]
         public IEnumerable<HD_Areas> Areas { get; set; }
 
+        [Required]
+        public int Outlet { get; set; }
+        
+        [Display(Name = "OutLet")]
+        public IEnumerable<OutLet> Outlets { get; set; }
+
         
 
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
@@ -145,7 +146,8 @@ namespace conncetASPwithTemplate.Controllers
         {
             var model = new RegisterViewModel
             {
-                Areas = _context.HdAreas.ToList()
+                Areas = _context.HdAreas.ToList(),
+                Outlets = new List<OutLet>()
             };
             return View(model);
         }
@@ -160,9 +162,10 @@ namespace conncetASPwithTemplate.Controllers
             if (ModelState.IsValid)
             {
                 model.Areas = _context.HdAreas.ToList();
+                model.Outlets = new List<OutLet>();
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
-                    Name = model.Name , Phone = model.Phone ,
-                    Adress = model.Adress , Adress2 = model.Adress2 , AreaId = model.Area// , Area = model.Areas[model.Area]
+                    Name = model.Name , Phone = model.Phone , Adress = model.Adress ,
+                    Adress2 = model.Adress2 , AreaId = model.Area , OutletId = model.Outlet// , Area = model.Areas[model.Area]
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
