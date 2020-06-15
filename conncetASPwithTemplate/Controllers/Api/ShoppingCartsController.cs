@@ -62,6 +62,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                         Quantity = 1,
                         DateCreated = DateTime.Now,
                         Details = cartItemDto.Details,
+                        //OrderId = 1,
                         Items = { cartItemDto.ItemsId }
                     };
 
@@ -83,7 +84,8 @@ namespace conncetASPwithTemplate.Controllers.Api
                         ItemId = cartItemDto.ItemId,
                         CartId = shoppingCartId,
                         Quantity = 1,
-                        DateCreated = DateTime.Now
+                        DateCreated = DateTime.Now,
+                        //OrderId = 1
                     };
 
                     _context.CartItems.Add(cartItem);

@@ -59,52 +59,23 @@
                                         <ul>
                                             <li><a href="@Url.Action("Index", "Home")">Home Basic</a></li>
                                             <li><a href="@Url.Action("IndexBurgers", "Home")">Home Burgers</a></li>
-                                            @*<li><a href="@Url.Action("IndexFullwidth", "Home")">Home Fullwidth Slider</a></li>
-                                            <li><a href="@Url.Action("IndexVideo", "Home")">Home Video</a></li>*@
                                         </ul>
                                     </div>
                                 </li>
-                                @*<li class="has-dropdown">
-                                    <a href="#">About</a>
-                                    <div class="dropdown-container">
-                                        <ul class="dropdown-mega">
-                                            <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                                            <li><a href="@Url.Action("Services", "Home")">Services</a></li>
-                                            <li><a href="@Url.Action("Gallery", "Home")">Gallery</a></li>
-                                            <li><a href="@Url.Action("Reviews", "Home")">Reviews</a></li>
-                                            <li><a href="@Url.Action("FaQ", "Home")">FAQ</a></li>
+                                @if (!User.IsInRole("Manger"))
+                                {
+                                    <li><a href="@Url.Action("Navigation", "Home")">MENU</a></li>
 
+                                    <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
+                                    <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                }
+                                @if (!User.IsInRole("Manger"))
+                                {
+                                    <li><a href="@Url.Action("Index", "Order")">Orders</a></li>
+                                    <li><a href="@Url.Action("Items", "Order")">Items</a></li>
 
-                                        </ul>
-                                        <div class="dropdown-image">
-                                            <img src="../../Content/mytemplate/assets/img/photos/dropdown-about.jpg" alt="">
-                                        </div>
-                                    </div>
-                                </li>*@
-                                <li><a href="@Url.Action("Navigation", "Home")">MENU</a></li>
-                                @*<li class="has-dropdown">
-                                    <a href="#">Menu</a>
-                                    <div class="dropdown-container">
-                                        <ul>
-                                            <li class="has-dropdown">
-                                                <a href="#">List</a>
-                                                <ul>
-                                                    <li><a href="@Url.Action("Navigation", "Home")">Navigation</a></li>
-                                                    <li><a href="menu-list-collapse.html">Collapse</a></li>
-                                                </ul>
-                                            </li>
-                                            <li class="has-dropdown">
-                                                <a href="#">Grid</a>
-                                                <ul>
-                                                    <li><a href="menu-grid-navigation.html">Navigation</a></li>
-                                                    <li><a href="menu-grid-collapse.html">Collapse</a></li>
-                                                </ul>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </li>*@
-                                <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
-                                <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
+                                }
+
                                 @if (!User.Identity.IsAuthenticated)
                                 {
                                     <li><a href="@Url.Action("Login", "Account")">Login</a></li>
@@ -112,7 +83,7 @@
                                 }
                                 else
                                 {
-                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right " }))
                                     {
                                         @Html.AntiForgeryToken()
                                         <li >
@@ -128,25 +99,17 @@
                                 
                             </ul>
                         </nav>
-                    @if (User.Identity.IsAuthenticated)
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
                     {
                         <div class="module left">
-                            
-                            
                             <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
-                            
                         </div>
                         <div class="module left">
-                           
                         </div>
-
-                       
-
-
-                            }
+                    }
                         </div>
-                @if (User.Identity.IsAuthenticated)
-                {
+                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
+                    {
                     <div class="col-md-2">
 
                         <a href="#" class="module module-cart right js-shopping-cart" data-toggle="panel-cart">
@@ -664,6 +627,31 @@
            // $("#productModal").removeClass('show');
         });
 
+        $(".js-ordernow").on('click',
+            function (e) {
+
+                console.log("create order");
+                var order = { CartId: "dsds" };
+
+                $.ajax({
+                        url: "/api/MyOrders",
+                        method: "POST",
+                        data: JSON.stringify(order),
+                        contentType: 'application/json; charset=utf-8',
+                        dataType: "Json"
+                    })
+                    .done(function() { 
+                        console.log("added new order ");
+                
+                    })
+                    .fail(function() {
+                        alert("Something failed! in adding order");
+                    });
+
+            });
+
+        
+
     });
 
 
@@ -733,27 +721,7 @@
             }
         });
     }
-
-    @*$.ajax({
-        url: @Url.Action("GetDefault", "Home"),
-        type: "GET",
-        data: 1,
-        contentType: 'application/json; charset=utf-8',
-        dataType: "Json",
-        success: function(newData) {
-            console.log("ok");
-            console.log(newData);
-
-
-        },
-
-
-        error: function(xhr, status, error) {
-
-            console.log("Error retrieving data");
-        }
-
-    });*@
+    
 
 </script>
 </body>

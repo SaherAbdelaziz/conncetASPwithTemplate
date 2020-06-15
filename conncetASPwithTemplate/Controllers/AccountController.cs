@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using conncetASPwithTemplate.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace conncetASPwithTemplate.Controllers
 {
@@ -163,13 +164,19 @@ namespace conncetASPwithTemplate.Controllers
             {
                 model.Areas = _context.HdAreas.ToList();
                 model.Outlets = new List<OutLet>();
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
+                var user = new ApplicationUser { UserName = model.Name, Email = model.Email,
                     Name = model.Name , Phone = model.Phone , Adress = model.Adress ,
                     Adress2 = model.Adress2 , AreaId = model.Area , OutletId = model.Outlet// , Area = model.Areas[model.Area]
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //var roleStore = new RoleStore<IdentityRole>(new ApplicationDbContext());
+                    //var roleManger = new RoleManager<IdentityRole>(roleStore);
+                    //await roleManger.CreateAsync(new IdentityRole("Manger"));
+                    //await UserManager.AddToRoleAsync(user.Id, "Manger");
+
+
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

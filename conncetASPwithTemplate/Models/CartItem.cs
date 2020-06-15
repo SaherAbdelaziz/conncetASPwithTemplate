@@ -24,7 +24,8 @@ namespace conncetASPwithTemplate.Models
         public Item Item { get; set; }
 
         public ICollection<int> Items { get; private set; }
-
+        //public int OrderId { get; set; }
+        //public Order Order { get; set; }
         public CartItem()
         {
             Items = new Collection<int>();

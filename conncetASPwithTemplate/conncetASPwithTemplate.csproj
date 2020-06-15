@@ -186,10 +186,13 @@
     <Compile Include="Controllers\Api\ItemsModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersGroupsController.cs" />
+    <Compile Include="Controllers\Api\MyOrdersController.cs" />
     <Compile Include="Controllers\Api\ShoppingCartsController.cs" />
     <Compile Include="Controllers\Api\test.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Dtos\CartItemDto.cs" />
     <Compile Include="Dtos\ItemDto.cs" />
     <Compile Include="Global.asax.cs">
@@ -243,8 +246,21 @@
     <Compile Include="Migrations\202006141127111_AddOutletProperatyTouUser.Designer.cs">
       <DependentUpon>202006141127111_AddOutletProperatyTouUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006151320402_SeedAdmin.cs" />
+    <Compile Include="Migrations\202006151320402_SeedAdmin.Designer.cs">
+      <DependentUpon>202006151320402_SeedAdmin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006151638528_AddOrderTable.cs" />
+    <Compile Include="Migrations\202006151638528_AddOrderTable.Designer.cs">
+      <DependentUpon>202006151638528_AddOrderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006151906272_typo.cs" />
+    <Compile Include="Migrations\202006151906272_typo.Designer.cs">
+      <DependentUpon>202006151906272_typo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
@@ -255,6 +271,7 @@
     <Compile Include="Models\Modifier.cs" />
     <Compile Include="Models\ModifiersGroup.cs" />
     <Compile Include="Models\Modifys.cs" />
+    <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OutLet.cs" />
     <Compile Include="Models\WebMenuItem.cs" />
     <Compile Include="Models\WebPreset.cs" />
@@ -1383,6 +1400,16 @@
     <Content Include="Views\Home\FaQ.cshtml" />
     <Content Include="Views\Home\checkout.cshtml" />
     <Content Include="Views\Shared\logintemplate.cshtml" />
+    <Content Include="Views\Items\Create.cshtml" />
+    <Content Include="Views\Items\Delete.cshtml" />
+    <Content Include="Views\Items\Details.cshtml" />
+    <Content Include="Views\Items\Edit.cshtml" />
+    <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1436,6 +1463,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006141127111_AddOutletProperatyTouUser.resx">
       <DependentUpon>202006141127111_AddOutletProperatyTouUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151320402_SeedAdmin.resx">
+      <DependentUpon>202006151320402_SeedAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151638528_AddOrderTable.resx">
+      <DependentUpon>202006151638528_AddOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006151906272_typo.resx">
+      <DependentUpon>202006151906272_typo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

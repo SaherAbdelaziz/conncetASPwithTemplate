@@ -55,6 +55,7 @@ namespace conncetASPwithTemplate.Models
         public DbSet<CartItem> CartItems { get; set; }
         public DbSet<WebPreset> WebPresets { get; set; }
         public DbSet<WebMenuItem> WebMenuItems { get; set; }
+        public DbSet<Order> Orders { get; set; }
 
         public virtual DbSet<HD_Areas> HdAreas { get; set; }
         public virtual DbSet<HD_Areas_Services> HdAreasServices { get; set; }
@@ -67,9 +68,9 @@ namespace conncetASPwithTemplate.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.Entity<ItemsModifier>()
-            //    .HasMany(c => c. )
-            //    .WithOptional()
+            //modelBuilder.Entity<Order>()
+            //    .HasMany(c => c.CartItems )
+            //    .WithRequired(c=>c.Order)
             //    .WillCascadeOnDelete(false);
         }
     }
