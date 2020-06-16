@@ -9,6 +9,10 @@ namespace conncetASPwithTemplate.Models
     {
         public int Id { get; set; }
         public string CustomerName { get; set; }
+        public DateTime? DateCreated { get; set; }
+        public double Price { get; set; }
+        public double Delivery { get; set; }
+        public double TotalPrice { get; set; }
         public string CartId { get; set; }
 
         public string Details { get; set; }
@@ -29,6 +33,6 @@ namespace conncetASPwithTemplate.Models
         //    CartItems = cartItems;
         //}
 
-        
+
     }
 }

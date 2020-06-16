@@ -207,6 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -431,6 +432,7 @@
     <Content Include="Service References\Application Insights\ConnectedService.json" />
     <Content Include="Views\Shared\_adminPanel.cshtml" />
     <Content Include="Views\Home\Tables.cshtml" />
+    <Content Include="Views\Home\test.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

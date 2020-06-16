@@ -8,22 +8,22 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
-using conncetASPwithTemplate.Models;
+using AdminPanel.Models;
 using Microsoft.AspNet.Identity;
 
-namespace conncetASPwithTemplate.Controllers.Api
+namespace AdminPanel.Controllers.API
 {
-    public class MyOrdersController : ApiController
+    public class OrdersController : ApiController
     {
-        private ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
-        // GET: api/MyOrders
+        // GET: api/Orders
         public IQueryable<Order> GetOrders()
         {
             return _context.Orders;
         }
 
-        // GET: api/MyOrders/5
+        // GET: api/Orders/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(int id)
         {
@@ -36,7 +36,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             return Ok(order);
         }
 
-        // PUT: api/MyOrders/5
+        // PUT: api/Orders/5
         [ResponseType(typeof(void))]
         public IHttpActionResult PutOrder(int id, Order order)
         {
@@ -71,7 +71,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/MyOrders
+        // POST: api/Orders
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)
         {
@@ -82,7 +82,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             string tmp = "";
             var Idd = User.Identity.GetUserId();
-            var cartItems = _context.CartItems.Where(c => c.CartId == Idd).Include(c=> c.Item).ToList();
+            var cartItems = _context.CartItems.Where(c => c.CartId == Idd).Include(c => c.Item).ToList();
             foreach (var cart in cartItems)
             {
                 tmp += cart.Item.Name + " ";
@@ -91,7 +91,10 @@ namespace conncetASPwithTemplate.Controllers.Api
             {
                 CartId = User.Identity.GetUserId(),
                 CustomerName = User.Identity.GetUserName(),
-                Details = tmp
+                Details = tmp,
+                Delivery = order.Delivery,
+                Price = order.Price,
+                TotalPrice = order.TotalPrice
 
             };
 
@@ -101,7 +104,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);
         }
 
-        // DELETE: api/MyOrders/5
+        // DELETE: api/Orders/5
         [ResponseType(typeof(Order))]
         public IHttpActionResult DeleteOrder(int id)
         {

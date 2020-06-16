@@ -627,10 +627,17 @@
             function (e) {
 
                 console.log("create order");
-                var order = { CartId: "dsds" };
+                
+                console.log($(".js-notifications-price").val());
+                var order = {
+                    CartId: "dsds",
+                    Price:Number($(".js-notifications-price").val()),
+                    Delivery:5,
+                    TotalPrice:$(".js-notifications-price").val()
+                };
 
                 $.ajax({
-                        url: "/api/MyOrders",
+                        url: "/api/Orders",
                         method: "POST",
                         data: JSON.stringify(order),
                         contentType: 'application/json; charset=utf-8',
@@ -643,15 +650,8 @@
                     .fail(function() {
                         alert("Something failed! in adding order");
                     });
-
             });
-
-        
-
     });
-
-
-
 
     function AJAXRequest() {
         //js-shopping-cart
@@ -709,7 +709,8 @@
                         Total: </div> <div class="col-5 total" total=${totalPrice}><strong> ${totalPrice}LE </strong></div> </div>`;
 
                 // price beside cart
-                $(".js-notifications-price").text(totalPrice.toFixed(2));
+                $(".js-notifications-price").val(totalPrice.toFixed(2));
+                $(".js-notifications-price").text(totalPrice.toFixed(2)+" LE");
                 $('.seed_price').append(data2);
             },
             error: function(xhr, status, error) {

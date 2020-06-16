@@ -40,6 +40,11 @@ namespace AdminPanel.Controllers
             return View();
         }
 
+        public ActionResult test()
+        {
+            return View();
+        }
+
         [HttpPost]
         public ActionResult GetDefault(int val)
         {

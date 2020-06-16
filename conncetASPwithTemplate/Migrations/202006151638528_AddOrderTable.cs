@@ -13,8 +13,12 @@ namespace conncetASPwithTemplate.Migrations
                     {
                         Id = c.Int(nullable: false, identity: true),
                         CustomerName = c.String(),
+                        DateCreated = c.DateTime(),
+                        Price = c.Double(nullable: false),
+                        Delivery = c.Double(nullable: false),
+                        TotalPrice = c.Double(nullable: false),
                         CartId = c.String(),
-                        Detials = c.String(),
+                        Details = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
