@@ -14,7 +14,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 push-lg-4">
-                    <h1 style="text-align: center" class="mb-0">Create New Account</h1>
+                    <h1 class="mb-0 text-center">Create New Account</h1>
                 </div>
             </div>
         </div>
@@ -31,9 +31,9 @@
                         {
                             @Html.AntiForgeryToken()
 
-                            @Html.ValidationSummary("", new { @class = " text-danger" })
+                            @Html.ValidationSummary("", new { @class = " text-danger col-sm-10" })
 
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-10">
                                 @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
                                 <div >
                                     @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
@@ -41,21 +41,45 @@
                             </div>
 
 
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-10">
                                 @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
                                 <div >
                                     @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-6">
+
+                            <div class="form-group col-sm-10">
+                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                <div>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-10">
+                                @Html.LabelFor(m => m.Area, new { @class = "col-md-2 control-label " })
+                                <div>
+                                    @Html.DropDownListFor(m => m.Area, new SelectList(Model.Areas, "Id", "Name"), "", new { @class = "form-control Area" })
+                                </div>
+                            </div>
+
+                            <div class="form-group col-sm-10">
+                                @Html.LabelFor(m => m.Outlet, new { @class = "col-md-4 control-label" })
+                                <div>
+                                    @Html.DropDownListFor(m => m.Outlet, new SelectList(Model.Outlets, "Id", "Name"), "", new { @class = "form-control Outlet" })
+                                </div>
+
+                            </div>
+
+
+                            <div class="form-group col-sm-10">
                                 @Html.LabelFor(m => m.Adress, new { @class = "col-md-2 control-label" })
                                 <div>
                                     @Html.TextBoxFor(m => m.Adress, new { @class = "form-control" })
                                 </div>
                             </div>
 
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-10">
                                 @Html.LabelFor(m => m.Adress2, new { @class = "col-md-2 control-label" })
                                 <div >
                                     @Html.TextBoxFor(m => m.Adress2, new { @class = "form-control" })
@@ -64,44 +88,22 @@
 
 
 
-                            <div class="form-group col-sm-6">
-                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                                <div >
-                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                </div>
-                            </div>
 
-                            <div class="form-group col-sm-6">
-                                @Html.LabelFor(m => m.Area, new { @class = "col-md-2 control-label " })
-                                <div >
-                                    @Html.DropDownListFor(m => m.Area, new SelectList(Model.Areas, "Id", "Name"), "", new { @class = "form-control Area" })
-                                </div>
-                            </div>
-
-                            <div class="form-group col-sm-6">
-                                @Html.LabelFor(m => m.Outlet, new { @class = "col-md-2 control-label" })
-                                <div >
-                                    @Html.DropDownListFor(m => m.Outlet, new SelectList(Model.Outlets, "Id", "Name"), "", new { @class = "form-control Outlet" })
-                                </div>
-
-                            </div>
-
-
-                            <div class="form-group col-sm-6">
+                            <div class="form-group col-sm-10">
                                 @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
                                 <div >
                                     @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
                                 </div>
                             </div>
-                            <div class="form-group col-sm-6">
-                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                            <div class="form-group col-sm-10">
+                                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-4 control-label" })
                                 <div c>
                                     @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
                                 </div>
                             </div>
-                            <div class="form-group ">
-                                <div >
-                                    <input type="submit" class="btn btn-default" value="Register" />
+                            <div class="form-group col-sm-10">
+                                <div class="text-center">
+                                    <input type="submit" class="btn btn-primary btn-lg " value="Register" />
                                 </div>
                             </div>
 

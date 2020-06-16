@@ -64,101 +64,12 @@
                                         </ul>
                                     </div>
                                 </li>
-                                @*<li class="has-dropdown">
-                                        <a href="#">About</a>
-                                        <div class="dropdown-container">
-                                            <ul class="dropdown-mega">
-                                                <li><a href="@Url.Action("About", "Home")">About Us</a></li>
-                                                <li><a href="@Url.Action("Services", "Home")">Services</a></li>
-                                                <li><a href="@Url.Action("Gallery", "Home")">Gallery</a></li>
-                                                <li><a href="@Url.Action("Reviews", "Home")">Reviews</a></li>
-                                                <li><a href="@Url.Action("FaQ", "Home")">FAQ</a></li>
-
-
-                                            </ul>
-                                            <div class="dropdown-image">
-                                                <img src="../../Content/mytemplate/assets/img/photos/dropdown-about.jpg" alt="">
-                                            </div>
-                                        </div>
-                                    </li>*@
-                                <li><a href="@Url.Action("Navigation", "Home")">MENU</a></li>
-                                @*<li class="has-dropdown">
-                                        <a href="#">Menu</a>
-                                        <div class="dropdown-container">
-                                            <ul>
-                                                <li class="has-dropdown">
-                                                    <a href="#">List</a>
-                                                    <ul>
-                                                        <li><a href="@Url.Action("Navigation", "Home")">Navigation</a></li>
-                                                        <li><a href="menu-list-collapse.html">Collapse</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li class="has-dropdown">
-                                                    <a href="#">Grid</a>
-                                                    <ul>
-                                                        <li><a href="menu-grid-navigation.html">Navigation</a></li>
-                                                        <li><a href="menu-grid-collapse.html">Collapse</a></li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </li>*@
-                                <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
-                                <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                                @if (!User.Identity.IsAuthenticated)
-                                {
-                                    <li><a href="@Url.Action("Login", "Account")">Login</a></li>
-                                    <li><a href="@Url.Action("Register", "Account")">Register</a></li>
-                                }
-                                else
-                                {
-                                    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-                                    {
-                                        @Html.AntiForgeryToken()
-                                        <li>
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
-                                            <ul class="dropdown-menu">
-                                                <li><a href="@Url.Action("Index" , "Manage")">Manage Account</a></li>
-                                                <li role="separator" class="divider"></li>
-                                                <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
-                                            </ul>
-                                        </li>
-                                    }
-                                }
-
+                                <li><a href="@Url.Action("Login", "Account")">Login</a></li>
+                                <li><a href="@Url.Action("Register", "Account")">Register</a></li>
+                                
                             </ul>
                         </nav>
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                            <div class="module left">
-
-
-                                <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
-
-                            </div>
-                            <div class="module left">
-
-                            </div>
-
-
-
-
-                        }
                     </div>
-                    @if (User.Identity.IsAuthenticated)
-                    {
-                        <div class="col-md-2">
-
-                            <a href="#" class="module module-cart right js-shopping-cart" data-toggle="panel-cart">
-                                <span class="cart-icon">
-                                    <i class="ti ti-shopping-cart "></i>
-                                    <span class="notification hide badge js-notifications-count ">0</span>
-                                </span>
-                                <span class="cart-value js-notifications-price">0 LE</span>
-                            </a>
-
-                        </div>
-                    }
                 </div>
             </div>
 
@@ -248,7 +159,7 @@
                 <a href="#" id="back-to-top"><i class="ti ti-angle-up"></i></a>
 
             </footer>
-            <!-- Footer / End -->
+            <!-- Footer / End -->   
 
 
         </div>

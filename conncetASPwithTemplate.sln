@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1082
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "conncetASPwithTemplate", "conncetASPwithTemplate\conncetASPwithTemplate.csproj", "{C0D2AF01-6B00-4979-94F9-38C1A8611532}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel", "AdminPanel\AdminPanel.csproj", "{A8C14729-B9E0-458F-B918-FE51CC6B15B0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{C0D2AF01-6B00-4979-94F9-38C1A8611532}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0D2AF01-6B00-4979-94F9-38C1A8611532}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0D2AF01-6B00-4979-94F9-38C1A8611532}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A8C14729-B9E0-458F-B918-FE51CC6B15B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A8C14729-B9E0-458F-B918-FE51CC6B15B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A8C14729-B9E0-458F-B918-FE51CC6B15B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A8C14729-B9E0-458F-B918-FE51CC6B15B0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,129 @@
+﻿@model AdminPanel.Models.RegisterViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>@ViewBag.Title.</h2>
+
+@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+<h4>Create a new account.</h4>
+<hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+<div class="form-group">
+    @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Phone, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group ">
+    @Html.LabelFor(m => m.Area, new { @class = "col-md-2 control-label " })
+    <div class="col-md-10">
+        @Html.DropDownListFor(m => m.Area, new SelectList(Model.Areas, "Id", "Name"), "", new { @class = "form-control Area" })
+    </div>
+</div>
+
+<div class="form-group ">
+    @Html.LabelFor(m => m.Outlet, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+         @Html.DropDownListFor(m => m.Outlet, new SelectList(Model.Outlets, "Id", "Name"), "", new {@class = "form-control Outlet"})
+    </div>
+
+</div>
+
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Adress, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Adress, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Adress2, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Adress2, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+    </div>
+</div>
+
+
+<div class="form-group">
+    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" class="btn btn-default" value="Register" />
+    </div>
+</div>
+}
+
+
+@section scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            var myUrl = '@Url.Action("GetDefault", "Home")';
+
+            $(function () {
+
+                $(".Area").change(function () {
+                    //console.log(this.value);
+
+                    var t = $(this).val();
+                    // console.log(t);
+
+                    if (t !== "") {
+                        $.ajax({
+                            url: myUrl,
+                            dataType: "json",
+                            type: "POST",
+                            cache: false,
+                            data: { val: t },
+                            success: function (data) {
+                                //console.log(myUrl);
+                                if (data.success) {
+                                    $('.Outlet').empty();
+                                    for (var i = 0; i < data.outlets.length; i++) {
+                                        console.log(data.outlets[i]);
+                                        $('.Outlet').append($('<option></option>').text(data.outlets[i].Name).val(data.outlets[i].Id));
+                                    }
+                                }
+                            },
+                            error: function (xhr) {
+                                alert(xhr.responseText);
+                            }
+                        });
+                    }
+
+                });
+            });
+        });
+
+
+    </script>
+}
