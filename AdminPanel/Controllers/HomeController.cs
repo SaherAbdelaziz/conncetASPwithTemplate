@@ -35,6 +35,10 @@ namespace AdminPanel.Controllers
 
             return View();
         }
+        public ActionResult Tables()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult GetDefault(int val)
