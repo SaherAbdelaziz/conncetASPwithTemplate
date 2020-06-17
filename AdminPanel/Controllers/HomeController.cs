@@ -37,7 +37,9 @@ namespace AdminPanel.Controllers
         }
         public ActionResult Tables()
         {
-            return View();
+            var orders = _context.Orders.ToList();
+
+            return View(orders);
         }
 
         public ActionResult test()
