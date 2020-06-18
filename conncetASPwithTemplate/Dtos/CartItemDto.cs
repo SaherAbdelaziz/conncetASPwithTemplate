@@ -20,7 +20,7 @@ namespace conncetASPwithTemplate.Dtos
 
         public int ItemId { get; set; }
 
-        public int ItemsId { get; set; }
+        public List<int> ItemsId { get; set; }
 
         
     }

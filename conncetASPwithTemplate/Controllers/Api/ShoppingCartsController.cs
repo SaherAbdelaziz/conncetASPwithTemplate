@@ -49,9 +49,9 @@ namespace conncetASPwithTemplate.Controllers.Api
             var shoppingCartId = User.Identity.GetUserId();
             var cartItem = _context.CartItems.SingleOrDefault(
                 c => c.CartId == shoppingCartId && c.ItemId == cartItemDto.ItemId);
-            if (cartItemDto.ItemsId != -1)
+            if (cartItemDto.ItemsId[0] != -1)
             {
-                var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
+                //var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
                 if (cartItem == null)
                 {
                     // Create a new cart item if no cart item exists.                 
@@ -62,8 +62,6 @@ namespace conncetASPwithTemplate.Controllers.Api
                         Quantity = 1,
                         DateCreated = DateTime.Now,
                         Details = cartItemDto.Details,
-                        //OrderId = 1,
-                        Items = { cartItemDto.ItemsId }
                     };
 
                     _context.CartItems.Add(cartItem);

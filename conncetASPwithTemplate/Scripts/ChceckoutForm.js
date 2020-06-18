@@ -3,9 +3,10 @@
 
                 console.log("create order");
 
-                console.log($(".js-notifications-price").val());
+                console.log($(".ordertotal").val());
+                console.log($('.ordertotal').attr('ordertotal'));
                 var order = {
-                    Price: Number($(".js-notifications-price").val()),
+                    Price: Number($('.ordertotal').attr('ordertotal')),
                 };
 
                 $.ajax({

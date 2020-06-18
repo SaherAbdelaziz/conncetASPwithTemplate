@@ -1,4 +1,4 @@
-﻿@model IList<AdminPanel.Models.Order>
+﻿@model AdminPanel.ViewModels.OrdersShow
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_adminPanel.cshtml";
@@ -468,155 +468,172 @@
                     <div class="row">
                         <div class="col-xs-12">
                             <table id="simple-table" class="table  table-bordered table-hover">
-                                  <thead>
+                                <thead>
+                                <tr>
+                                    <th class="center">
+                                        <label class="pos-rel">
+                                            <input type="checkbox" class="ace" />
+                                            <span class="lbl"></span>
+                                        </label>
+                                    </th>
+                                    <th class="detail-col"> Details</th>
+                                    <th> Name </th>
+                                    <th> Phone </th>
+                                    <th> Price </th>
+                                    <th class="hidden-480"> Delivery </th>
+
+                                    <th> Total </th>
+                                    <th> Outlet </th>
+                                    <th> Area </th>
+
+                                    <th class="hidden-480">Status</th>
+
+                                    <th></th>
+                                </tr>
+                                </thead>
+
+                                <tbody>
+                                    @for (var i = 0; i < Model.Orders.Count; i++)
+                                    {
                                     <tr>
-                                        <th class="center">
+                                        <td class="center">
                                             <label class="pos-rel">
                                                 <input type="checkbox" class="ace" />
                                                 <span class="lbl"></span>
                                             </label>
-                                        </th>
-                                        <th class="detail-col"> Details</th>
-                                        <th> Name </th>
-                                        <th> Phone </th>
-                                        <th> Price </th>
-                                        <th class="hidden-480"> Delivery </th>
+                                        </td>
 
-                                        <th> Total </th>
-                                        <th> Outlet </th>
-                                        <th> Area </th>
+                                        <td class="center">
+                                            <div class="action-buttons">
+                                                <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
+                                                    <i class="ace-icon fa fa-angle-double-down"></i>
+                                                    <span class="sr-only">Details</span>
+                                                </a>
+                                            </div>
+                                        </td>
 
-                                        <th class="hidden-480">Status</th>
+                                        <td> @Model.Orders[i].CustomerName </td>
+                                        <td> @Model.Orders[i].CustomerPhone </td>
+                                        <td> @Model.Orders[i].Price </td>
+                                        <td class="hidden-480"> @Model.Orders[i].Delivery </td>
+                                        <td> @Model.Orders[i].TotalPrice </td>
+                                        <td> @Model.Orders[i].OutLet.Name </td>
+                                        <td> @Model.Orders[i].HdAreas.Name </td>
 
-                                        <th></th>
+                                        <td class="hidden-480">
+                                            <span class="label label-sm label-success"> New </span>
+                                        </td>
+
+                                        <td>
+                                            <div class="hidden-sm hidden-xs btn-group">
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
+
+                                                <button class="btn btn-xs btn-info">
+                                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                </button>
+
+                                                <button class="btn btn-xs btn-danger">
+                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                </button>
+
+                                                <button class="btn btn-xs btn-warning">
+                                                    <i class="ace-icon fa fa-flag bigger-120"></i>
+                                                </button>
+                                            </div>
+
+                                            <div class="hidden-md hidden-lg">
+                                                <div class="inline pos-rel">
+                                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                    </button>
+
+                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                        <li>
+                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                                <span class="blue">
+                                                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                <span class="green">
+                                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+
+                                                        <li>
+                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                <span class="red">
+                                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                </span>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </td>
                                     </tr>
-                                </thead>
+                                    <!-- Details info will be for items-->
 
-                                  <tbody>
-                                      @for (var i = 0; i < Model.Count; i++)
-                                      {
-                                          <tr>
-                                              <td class="center">
-                                                  <label class="pos-rel">
-                                                      <input type="checkbox" class="ace" />
-                                                      <span class="lbl"></span>
-                                                  </label>
-                                              </td>
+                                        <tr class="detail-row">
 
-                                              <td class="center">
-                                                  <div class="action-buttons">
-                                                      <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-                                                          <i class="ace-icon fa fa-angle-double-down"></i>
-                                                          <span class="sr-only">Details</span>
-                                                      </a>
-                                                  </div>
-                                              </td>
+                                            <td colspan="8">
+                                                <table class="table  table-bordered table-hover">
+                                                    <thead>
+                                                        <tr>
+                                                            <th> Name </th>
+                                                            <th> Arabic Name </th>
+                                                            <th> Quantity </th>
+                                                            <th> Price </th>
+                                                        </tr>
+                                                    </thead>
 
-                                              <td> @Model[i].CustomerName </td>
-                                              <td> @Model[i].CustomerPhone </td>
-                                              <td> @Model[i].Price </td>
-                                              <td class="hidden-480"> @Model[i].Delivery </td>
-                                              <td> @Model[i].TotalPrice </td>
-                                              <td> @Model[i].OutLet.Name </td>
-                                              <td> @Model[i].HdAreas.Name </td>
+                                                    <tbody>
 
-                                              <td class="hidden-480">
-                                                  <span class="label label-sm label-warning">Expiring</span>
-                                              </td>
+                                                        @for (int j = 0; j < @Model.CartItems.Count; j++)
+                                                        {
 
-                                              <td>
-                                                  <div class="hidden-sm hidden-xs btn-group">
-                                                      <button class="btn btn-xs btn-success">
-                                                          <i class="ace-icon fa fa-check bigger-120"></i>
-                                                      </button>
+                                                            var cartItem = Model.CartItems[j];
+                                                            if (cartItem.CartId == Model.Orders[i].CartId)
+                                                            {
 
-                                                      <button class="btn btn-xs btn-info">
-                                                          <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                      </button>
 
-                                                      <button class="btn btn-xs btn-danger">
-                                                          <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                      </button>
 
-                                                      <button class="btn btn-xs btn-warning">
-                                                          <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                      </button>
-                                                  </div>
+                                                                <tr>
+                                                                    <td class="center">
+                                                                        @Model.CartItems[j].Item.Name
+                                                                    </td>
+                                                                    
+                                                                    <td class="center">
+                                                                        @Model.CartItems[j].Item.Name2
+                                                                    </td>
+                                                                    
+                                                                    
+                                                                    <td class="center">
+                                                                        @Model.CartItems[j].Quantity
+                                                                    </td>
 
-                                                  <div class="hidden-md hidden-lg">
-                                                      <div class="inline pos-rel">
-                                                          <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                              <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                                                          </button>
+                                                                    <td class="center">
+                                                                        @Model.CartItems[j].Item.StaticPrice
+                                                                    </td>
+                                                                </tr>
 
-                                                          <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                              <li>
-                                                                  <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                      <span class="blue">
-                                                                          <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                      </span>
-                                                                  </a>
-                                                              </li>
 
-                                                              <li>
-                                                                  <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                      <span class="green">
-                                                                          <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                      </span>
-                                                                  </a>
-                                                              </li>
+                                                            }
+                                                        }
+                                                    <tbody>
+                                                </table>
 
-                                                              <li>
-                                                                  <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                      <span class="red">
-                                                                          <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                      </span>
-                                                                  </a>
-                                                              </li>
-                                                          </ul>
-                                                      </div>
-                                                  </div>
-                                              </td>
-                                          </tr>
-                                          <!-- Details info will be for items-->
+                                            </td>
+                                        </tr>
+                                    }
 
-                                          <tr class="detail-row">
-
-                                              <td colspan="8">
-                                                  <div class="table-detail">
-                                                      <div class="row">
-
-                                                          <div class="col-xs-12 col-sm-7">
-                                                              <div class="space visible-xs"></div>
-
-                                                              <div class="profile-user-info profile-user-info-striped">
-                                                                  <div class="profile-info-row">
-                                                                      <div class="profile-info-name"> Item Name </div>
-
-                                                                      <div class="profile-info-value">
-                                                                          <span> x </span>
-                                                                      </div>
-                                                                  </div>
-
-                                                                  <div class="profile-info-row">
-                                                                      <div class="profile-info-name"> Item Price </div>
-
-                                                                      <div class="profile-info-value">
-                                                                          <span> 45</span>
-                                                                      </div>
-                                                                  </div>
-
-                                                              </div>
-                                                          </div>
-
-                                                      </div>
-                                                  </div>
-                                              </td>
-                                          </tr>
-
-                                      }
-
-                                  </tbody>
+                                </tbody>
                             </table>
                         </div><!-- /.span -->
                     </div><!-- /.row -->

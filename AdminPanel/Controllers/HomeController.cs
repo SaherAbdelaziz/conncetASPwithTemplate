@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AdminPanel.Models;
 using System.Data.Entity;
+using AdminPanel.ViewModels;
 
 namespace AdminPanel.Controllers
 {
@@ -38,13 +39,24 @@ namespace AdminPanel.Controllers
         }
         public ActionResult Tables()
         {
+
+
             var orders = _context.Orders
                 .Include(o=>o.OutLet)
                 .Include(o=>o.HdAreas)
                 .Include(o=>o.Services)
                 .ToList();
+            var cartItems = _context.CartItems
+                .Include(c=>c.Item)
+                .ToList();
 
-            return View(orders);
+            OrdersShow ordersShowViewModel = new OrdersShow()
+            {
+                CartItems = cartItems,
+                Orders = orders
+            };
+
+            return View(ordersShowViewModel);
         }
 
         public ActionResult Items()

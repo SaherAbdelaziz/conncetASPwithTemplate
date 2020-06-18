@@ -268,6 +268,7 @@
     <Compile Include="Models\Modifys.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OutLet.cs" />
+    <Compile Include="Models\SelectedModifiers.cs" />
     <Compile Include="Models\WebMenuItem.cs" />
     <Compile Include="Models\WebPreset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

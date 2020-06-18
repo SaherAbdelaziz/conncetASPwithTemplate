@@ -510,7 +510,7 @@
                          if (data.length == 1) {
                              cartItemDto = {
                                  ItemId: myId,
-                                 ItemsId: -1 // there is no modiferis for this item
+                                 ItemsId: [-1] // there is no modiferis for this item
                                
                              }
                             $.ajax({
@@ -599,7 +599,7 @@
 
             var cartItemDto = {
                 ItemId: id,
-                ItemsId: idModified,
+                ItemsId: [idModified],
                 Details:detailsMessage
                 // phone: $("#id-phone").val()
             }
@@ -664,7 +664,7 @@
                         <tr>
                     `;
 
-                    price += notifications[i].item.staticPrice;
+                    price += notifications[i].item.staticPrice*notifications[i].quantity;
                     totalPrice = price + delivery;
                     $('.seed_items').append(data1);
 
