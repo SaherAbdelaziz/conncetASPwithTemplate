@@ -433,6 +433,7 @@
     <Content Include="Views\Shared\_adminPanel.cshtml" />
     <Content Include="Views\Home\Tables.cshtml" />
     <Content Include="Views\Home\test.cshtml" />
+    <Content Include="Views\Home\Items.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

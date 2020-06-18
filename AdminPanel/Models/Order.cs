@@ -9,10 +9,17 @@ namespace AdminPanel.Models
     {
         public int Id { get; set; }
         public string CustomerName { get; set; }
+        public string CustomerPhone { get; set; }
         public DateTime? DateCreated { get; set; }
         public double Price { get; set; }
         public double Delivery { get; set; }
         public double TotalPrice { get; set; }
+        public OutLet OutLet { get; set; }
+        public int OutLetId { get; set; }
+        public HD_Areas HdAreas { get; set; }
+        public int HdAreasId { get; set; }
+        public HD_Areas_Services Services { get; set; }
+        public int ServicesId { get; set; }
         public string CartId { get; set; }
 
         public string Details { get; set; }

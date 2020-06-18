@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AdminPanel.Models;
+using System.Data.Entity;
 
 namespace AdminPanel.Controllers
 {
@@ -37,10 +38,22 @@ namespace AdminPanel.Controllers
         }
         public ActionResult Tables()
         {
-            var orders = _context.Orders.ToList();
+            var orders = _context.Orders
+                .Include(o=>o.OutLet)
+                .Include(o=>o.HdAreas)
+                .Include(o=>o.Services)
+                .ToList();
 
             return View(orders);
         }
+
+        public ActionResult Items()
+        {
+            var items = _context.Items.ToList();
+
+            return View(items);
+        }
+        
 
         public ActionResult test()
         {
@@ -62,5 +75,7 @@ namespace AdminPanel.Controllers
             //}
             //return Json(new { Success = "false" });
         }
+
+        
     }
 }

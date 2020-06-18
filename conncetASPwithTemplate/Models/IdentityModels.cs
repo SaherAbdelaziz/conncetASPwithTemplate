@@ -1,6 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -33,9 +35,58 @@ namespace conncetASPwithTemplate.Models
             // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
             // Add custom user claims here
+            userIdentity.AddClaim(new Claim("Name", this.Name));
+            userIdentity.AddClaim(new Claim("Phone", this.Phone ));
+            userIdentity.AddClaim(new Claim("OutletId", this.OutletId.ToString()));
+            userIdentity.AddClaim(new Claim("AreaId", this.AreaId.ToString()));
+
             return userIdentity;
         }
+        
     }
+
+    public static class IdentityHelper
+    {
+
+        public static string GetUserFirstName(this IIdentity identity)
+        {
+            var claimIdent = identity as ClaimsIdentity;
+            return claimIdent != null
+                   && claimIdent.HasClaim(c => c.Type == "Name")
+                ? claimIdent.FindFirst("Name").Value
+                : string.Empty;
+        }
+
+        public static string GetUserPhone(this IIdentity identity)
+        {
+            var claimIdent = identity as ClaimsIdentity;
+            return claimIdent != null
+                   && claimIdent.HasClaim(c => c.Type == "Phone")
+                ? claimIdent.FindFirst("Phone").Value
+                : string.Empty;
+        }
+
+        public static int GetUserOutletId(this IIdentity identity)
+                {
+                    var claimIdent = identity as ClaimsIdentity;
+                    return claimIdent != null
+                           && claimIdent.HasClaim(c => c.Type == "OutletId") 
+                        ? Int32.Parse(claimIdent.FindFirstValue("OutletId"))
+                        : 0;
+                }
+        
+        public static int GetUserAreaId(this IIdentity identity)
+                {
+            var claimIdent = identity as ClaimsIdentity;
+            return claimIdent != null
+                   && claimIdent.HasClaim(c => c.Type == "AreaId")
+                    ? Int32.Parse(claimIdent.FindFirstValue("AreaId"))
+                    : 0;
+               }
+
+
+    }
+
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {

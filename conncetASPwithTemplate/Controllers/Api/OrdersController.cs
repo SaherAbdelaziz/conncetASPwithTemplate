@@ -87,15 +87,29 @@ namespace conncetASPwithTemplate.Controllers.Api
             {
                 tmp += cart.Item.Name + " ";
             }
+
+            var CustomerName = User.Identity.GetUserFirstName();
+            var OutLetId = User.Identity.GetUserOutletId();
+            var HdAreasId = User.Identity.GetUserAreaId();
+            var delivery = _context.HdAreasServices
+                .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId==OutLetId).Services;
+
+
+
             Order myOrder = new Order()
             {
                 CartId = User.Identity.GetUserId(),
-                CustomerName = User.Identity.GetUserName(),
+                CustomerName = User.Identity.GetUserFirstName(),
+                CustomerPhone = User.Identity.GetUserPhone(),
+                OutLetId = User.Identity.GetUserOutletId(),
+                HdAreasId = User.Identity.GetUserAreaId(),
+                
                 Details = tmp,
                 DateCreated = DateTime.Now,
-                Delivery = order.Delivery,
+                
+                Delivery = (double) delivery,
                 Price = order.Price,
-                TotalPrice = order.TotalPrice
+                TotalPrice = order.Price + (double)delivery,
 
             };
 
