@@ -88,25 +88,33 @@ namespace conncetASPwithTemplate.Controllers.Api
                 tmp += cart.Item.Name + " ";
             }
 
-            var CustomerName = User.Identity.GetUserFirstName();
-            var OutLetId = User.Identity.GetUserOutletId();
-            var HdAreasId = User.Identity.GetUserAreaId();
+            string currentUserId = User.Identity.GetUserId();
+            ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
+            var CustomerName = currentUser.Name;
+            var CustomerPhone = currentUser.Phone;
+            var outLetId = currentUser.OutletId;
+            var hdAreasId = currentUser.AreaId;
+
+
+            //var CustomerName = User.Identity.GetUserFirstName();
+            //var OutLetId = User.Identity.GetUserOutletId();
+            //var HdAreasId = User.Identity.GetUserAreaId();
             var delivery = _context.HdAreasServices
-                .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId==OutLetId).Services;
+                .SingleOrDefault(h => h.AreaId == hdAreasId && h.OutLetId==outLetId).Services;
 
 
 
             Order myOrder = new Order()
             {
                 CartId = User.Identity.GetUserId(),
-                CustomerName = User.Identity.GetUserFirstName(),
-                CustomerPhone = User.Identity.GetUserPhone(),
-                OutLetId = User.Identity.GetUserOutletId(),
-                HdAreasId = User.Identity.GetUserAreaId(),
+                CustomerName = CustomerName,
+                CustomerPhone = CustomerPhone,
+                OutLetId = outLetId,
+                HdAreasId = hdAreasId,
                 
                 Details = tmp,
                 DateCreated = DateTime.Now,
-                
+                DeliveryTimeIndex = order.DeliveryTimeIndex,
                 Delivery = (double) delivery,
                 Price = order.Price,
                 TotalPrice = order.Price + (double)delivery,

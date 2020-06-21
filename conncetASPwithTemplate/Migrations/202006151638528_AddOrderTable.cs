@@ -22,6 +22,7 @@ namespace conncetASPwithTemplate.Migrations
                         HdAreasId = c.Int(nullable: false),
                         ServicesId = c.Int(nullable: false),
                         CartId = c.String(),
+                        DeliveryTimeIndex = c.Int(nullable: false),
                         Details = c.String(),
                         Services_AreaId = c.Int(),
                         Services_OutLetId = c.Int(),

@@ -21,7 +21,7 @@ namespace AdminPanel.Models
         public HD_Areas_Services Services { get; set; }
         public int ServicesId { get; set; }
         public string CartId { get; set; }
-
+        public int DeliveryTimeIndex { get; set; }
         public string Details { get; set; }
         //public List<int> CartItemsId { get; set; }
         //public List<CartItem> CartItems { get; set; }

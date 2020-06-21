@@ -480,13 +480,14 @@
                                     <th> Name </th>
                                     <th> Phone </th>
                                     <th> Price </th>
-                                    <th class="hidden-480"> Delivery </th>
+                                    <th > Delivery Price </th>
 
                                     <th> Total </th>
                                     <th> Outlet </th>
                                     <th> Area </th>
+                                    <th > Delivery Time</th>
 
-                                    <th class="hidden-480">Status</th>
+                                    <th >Status</th>
 
                                     <th></th>
                                 </tr>
@@ -518,7 +519,23 @@
                                         <td class="hidden-480"> @Model.Orders[i].Delivery </td>
                                         <td> @Model.Orders[i].TotalPrice </td>
                                         <td> @Model.Orders[i].OutLet.Name </td>
-                                        <td> @Model.Orders[i].HdAreas.Name </td>
+                                        <td> @Model.Orders[i].HdAreas.Name </td>    
+                                        
+                                        @if (Model.Orders[i].DeliveryTimeIndex == 0)
+                                        {
+                                            <td> as fast as possible </td>
+                                        }
+
+                                        else if (Model.Orders[i].DeliveryTimeIndex == 1)
+                                        {
+                                            <td> in one hour </td>
+                                        }
+                                        else
+                                        {
+                                            <td> in two hour </td>
+
+                                        }
+                                       
 
                                         <td class="hidden-480">
                                             <span class="label label-sm label-success"> New </span>
@@ -717,11 +734,6 @@
         /***************/
         $('.show-details-btn').on('click', function (e) {
             e.preventDefault();
-
-            if ($(this).find(ace.vars['.icon']).hasClass('fa-angle-double-down')) {
-                $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down');
-
-            }
             $(this).closest('tr').next().toggleClass('open');
             $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
         });

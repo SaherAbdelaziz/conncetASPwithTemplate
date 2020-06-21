@@ -75,31 +75,32 @@ namespace AdminPanel.Controllers.API
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return BadRequest(ModelState);
+            //}
 
-            string tmp = "";
-            var Idd = User.Identity.GetUserId();
-            var cartItems = _context.CartItems.Where(c => c.CartId == Idd).Include(c => c.Item).ToList();
-            foreach (var cart in cartItems)
-            {
-                tmp += cart.Item.Name + " ";
-            }
-            Order myOrder = new Order()
-            {
-                CartId = User.Identity.GetUserId(),
-                CustomerName = User.Identity.GetUserName(),
-                Details = tmp,
-                Delivery = order.Delivery,
-                Price = order.Price,
-                TotalPrice = order.TotalPrice
+            //string tmp = "";
+            //var Idd = User.Identity.GetUserId();
+            //var cartItems = _context.CartItems.Where(c => c.CartId == Idd).Include(c => c.Item).ToList();
+            //foreach (var cart in cartItems)
+            //{
+            //    tmp += cart.Item.Name + " ";
+            //}
+            //Order myOrder = new Order()
+            //{
+            //    CartId = User.Identity.GetUserId(),
+            //    CustomerName = User.Identity.GetUserName(),
+            //    Details = tmp,
+            //    DeliveryTimeIndex = order.DeliveryTimeIndex,
+            //    Delivery = order.Delivery,
+            //    Price = order.Price,
+            //    TotalPrice = order.TotalPrice
 
-            };
+            //};
 
-            _context.Orders.Add(myOrder);
-            _context.SaveChanges();
+            //_context.Orders.Add(myOrder);
+            //_context.SaveChanges();
 
             return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);
         }

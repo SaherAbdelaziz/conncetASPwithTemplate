@@ -21,6 +21,14 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult Index()
         {
+
+            //var OutLetId = User.Identity.GetUserOutletId();
+            //var HdAreasId = User.Identity.GetUserAreaId();
+            //var delivery = _context.HdAreasServices
+            //    .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId == OutLetId).Services;
+
+
+            //ViewBag.Delivery = delivery;
             return View();
         }
 

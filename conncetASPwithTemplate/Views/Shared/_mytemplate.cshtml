@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+
 <!DOCTYPE html>
 
 <html>
@@ -30,7 +31,9 @@
 
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="../../Content/mytemplate/assets/css/themes/theme-beige.min.css" />
-</head>
+
+    @Styles.Render("~/Content/css")
+    </head>
 <body>
 
     <!-- Body Wrapper -->
@@ -69,12 +72,7 @@
                                     <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
                                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                                 }
-                                @if (!User.IsInRole("Manger"))
-                                {
-                                    <li><a href="@Url.Action("Index", "Order")">Orders</a></li>
-                                    <li><a href="@Url.Action("Items", "Order")">Items</a></li>
-
-                                }
+                               
 
                                 @if (!User.Identity.IsAuthenticated)
                                 {
@@ -380,7 +378,7 @@
     $(document).ready(function() {
         var refreshIntervalId;
 
-
+        //ViewBag.Delivery
         AJAXRequest();
         //var toggle = 1;
         //function clickedIt() {
@@ -456,12 +454,6 @@
             // console.log("cccc");
             // }
         });
-
-
-        $(".js-modify-item").on('click',
-            function(e) {
-
-            });
 
 
         // when click on item we get its information like id and name
@@ -622,76 +614,15 @@
 
            // $("#productModal").removeClass('show');
         });
+        $("#deliverytime").change(function () {
+            console.log("selected is " + $('#deliverytime option:selected').index());
 
+            // I personally prefer using console.log(), but if you want you can still go with the alert().
+            console.log($(this).children('option:selected').index());
+        });
         
     });
 
-    function AJAXRequest() {
-        //js-shopping-cart
-        // here we get cart items from api and put in in table in cart
-
-
-        $.ajax({
-            url: "/api/shoppingcarts",
-            type: "GET",
-            dataType: 'json',
-            success: function(notifications) {
-                var delivery = 3.99, price = 0, totalPrice = 0;
-                console.log("called " + notifications.length);
-                if (notifications.length === 0)
-                    return $(".js-notifications-price").text('$0');
-                $(".js-notifications-count").text(notifications.length);
-
-                $('.seed_items').empty();
-                $('.seed_price').empty();
-                for (let i = 0; i < notifications.length; i++) {
-                    //console.log(notifications.items);
-                    //names//price// delete and edit
-                    var data1 =
-                        `<tr>
-                        <td class ="title">
-                            <span class ="name"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
-                            <span class ="caption text-muted">${notifications[i].item.name2}</span>
-
-                        <td>
-
-                        <td class ="price" price =${notifications[i].item.staticPrice}>  ${notifications[i].item.staticPrice}LE <td>
-
-                        <td  class ="actions">
-
-                         <a href="#" class ="action-icon js-cancel-item" data-item-id=${notifications[i].id}> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
-                        <td>
-                        <tr>
-                    `;
-
-                    price += notifications[i].item.staticPrice*notifications[i].quantity;
-                    totalPrice = price + delivery;
-                    $('.seed_items').append(data1);
-
-                }
-
-                //<a href="#" class ="action-icon js-edit-item"> <i data-item-id=${notifications[i].id} class ="ti ti-pencil"></i></a>
-
-                // price and total
-                var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
-                Order total: </div>  <div class="col-5 ordertotal" ordertotal=${price}><strong>  ${price}LE </strong></div>  </div>
-            <div class="row"> <div class="col-7 text-right text-muted">
-                    Delivery: </div> <div class="col-5"><strong> ${delivery}LE </strong></div>  </div>
-
-            <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
-                        Total: </div> <div class="col-5 total" total=${totalPrice}><strong> ${totalPrice}LE </strong></div> </div>`;
-
-                // price beside cart
-                $(".js-notifications-price").val(totalPrice.toFixed(2));
-                $(".js-notifications-price").text(totalPrice.toFixed(2)+" LE");
-                $('.seed_price').append(data2);
-            },
-            error: function(xhr, status, error) {
-                //
-            }
-        });
-    }
-    
 
 </script>
 </body>

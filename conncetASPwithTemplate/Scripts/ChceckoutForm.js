@@ -1,12 +1,17 @@
 ﻿$(".js-ordernow").on('click',
             function (e) {
-
+                
+                
+                $(".js-ordernow span").text("Confirmed");
+                $('.js-ordernow').prop('disabled', true);
                 console.log("create order");
-
-                console.log($(".ordertotal").val());
-                console.log($('.ordertotal').attr('ordertotal'));
+                console.log("selected is " + $('#deliverytime option:selected').index());
+                var deliverytimeIndex = $('#deliverytime option:selected').index();
+                
+                //console.log($('.ordertotal').attr('ordertotal'));
                 var order = {
                     Price: Number($('.ordertotal').attr('ordertotal')),
+                    DeliveryTime:deliverytimeIndex
                 };
 
                 $.ajax({

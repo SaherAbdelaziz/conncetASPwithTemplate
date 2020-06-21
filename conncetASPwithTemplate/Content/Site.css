@@ -60,3 +60,13 @@ ul li {
     0% {opacity:0;}
     100% {opacity:.5;}
 }*/
+
+
+
+tr {
+    padding: 2px;
+}
+
+td.title {
+    padding: 1rem 0.5rem;
+}
