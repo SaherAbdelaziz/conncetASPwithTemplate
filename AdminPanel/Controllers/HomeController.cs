@@ -46,17 +46,24 @@ namespace AdminPanel.Controllers
                 .Include(o=>o.HdAreas)
                 .Include(o=>o.Services)
                 .ToList();
+
             var cartItems = _context.CartItems
                 .Include(c=>c.Item)
                 .ToList();
 
-            OrdersShow ordersShowViewModel = new OrdersShow()
+            var selectedModifiers = _context.SelectedModifiers
+                .Include(m =>m.ItemModifier)
+                .ToList();
+
+
+            var ordersViewModelViewModel = new OrdersViewModel()
             {
                 CartItems = cartItems,
-                Orders = orders
+                Orders = orders,
+                selectedModifiers = selectedModifiers,
             };
 
-            return View(ordersShowViewModel);
+            return View(ordersViewModelViewModel);
         }
 
         public ActionResult Items()

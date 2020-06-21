@@ -107,6 +107,7 @@ namespace conncetASPwithTemplate.Models
         public DbSet<WebPreset> WebPresets { get; set; }
         public DbSet<WebMenuItem> WebMenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<SelectedModifiers> SelectedModifiers { get; set; }
 
         public virtual DbSet<HD_Areas> HdAreas { get; set; }
         public virtual DbSet<HD_Areas_Services> HdAreasServices { get; set; }

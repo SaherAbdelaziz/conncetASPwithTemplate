@@ -6,9 +6,10 @@ using AdminPanel.Models;
 
 namespace AdminPanel.ViewModels
 {
-    public class OrdersShow
+    public class OrdersViewModel
     {
         public List<Order> Orders { get; set; }
         public List<CartItem> CartItems { get; set; }
+        public List<SelectedModifiers> selectedModifiers { get; set; }
     }
 }

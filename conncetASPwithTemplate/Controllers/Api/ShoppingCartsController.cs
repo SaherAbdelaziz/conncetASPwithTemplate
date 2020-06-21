@@ -49,7 +49,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             var shoppingCartId = User.Identity.GetUserId();
             var cartItem = _context.CartItems.SingleOrDefault(
                 c => c.CartId == shoppingCartId && c.ItemId == cartItemDto.ItemId);
-            if (cartItemDto.ItemsId[0] != -1)
+            if (cartItemDto.ItemsId[0] == -1)
             {
                 //var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
                 if (cartItem == null)
@@ -73,7 +73,6 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             else
             {
-
                 if (cartItem == null)
                 {
                     // Create a new cart item if no cart item exists.                 
@@ -83,10 +82,17 @@ namespace conncetASPwithTemplate.Controllers.Api
                         CartId = shoppingCartId,
                         Quantity = 1,
                         DateCreated = DateTime.Now,
+                        HasModifiers = true,
                         //OrderId = 1
                     };
 
+                    var selectedModifiers =
+                        new SelectedModifiers(cartItemDto.ItemId, 
+                            shoppingCartId, cartItemDto.ItemsId[0]);
+                    
+
                     _context.CartItems.Add(cartItem);
+                    _context.SelectedModifiers.Add(selectedModifiers);
                 }
                 else
                     cartItem.Quantity++;
@@ -101,6 +107,24 @@ namespace conncetASPwithTemplate.Controllers.Api
         // PUT: api/ShoppingCarts/5
         public void Put(int id, [FromBody]string value)
         {
+
+        }
+
+        public void Put()
+        {
+            var cartItmes = _context.CartItems.ToList();
+            var order = _context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
+            var userId = User.Identity.GetUserId();
+            foreach (var cartItme in cartItmes)
+            {
+                if(cartItme.CartId == userId && !cartItme.Removed)
+                {
+                    cartItme.OrderId = order.Id;
+                    cartItme.Removed = true;
+                }
+            }
+
+            _context.SaveChanges();
         }
 
         // DELETE: api/ShoppingCarts/5

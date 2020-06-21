@@ -1,4 +1,6 @@
-﻿@model AdminPanel.ViewModels.OrdersShow
+﻿@using System.Diagnostics
+@using AdminPanel.Models
+@model AdminPanel.ViewModels.OrdersViewModel
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_adminPanel.cshtml";
@@ -38,7 +40,6 @@
             <span class="btn btn-danger"></span>
         </div>
     </div><!-- /.sidebar-shortcuts -->
-
     <!--shared content beside list-->
     <!--shared content beside list-->
 
@@ -269,7 +270,7 @@
 
                     <b class="arrow"></b>
                 </li>
-                
+
                 <li class="">
                     <a href="@Url.Action("Items", "Home")">
                         <i class="menu-icon fa fa-caret-right"></i>
@@ -457,158 +458,150 @@
                     </small>
                 </h1>
             </div><!-- /.page-header -->
-        <!-- main table my orders-->
-        <!-- main table my orders-->
+            <!-- main table my orders-->
+            <!-- main table my orders-->
             <div class="row">
                 <div class="col-xs-12">
-                <!-- PAGE CONTENT BEGINS -->
-
+                    <!-- PAGE CONTENT BEGINS -->
                     <!-- main table my orders-->
                     <!-- main table my orders-->
                     <div class="row">
                         <div class="col-xs-12">
                             <table id="simple-table" class="table  table-bordered table-hover">
                                 <thead>
-                                <tr>
-                                    <th class="center">
-                                        <label class="pos-rel">
-                                            <input type="checkbox" class="ace" />
-                                            <span class="lbl"></span>
-                                        </label>
-                                    </th>
-                                    <th class="detail-col"> Details</th>
-                                    <th> Name </th>
-                                    <th> Phone </th>
-                                    <th> Price </th>
-                                    <th > Delivery Price </th>
+                                    <tr>
+                                        <th class="center">
+                                            <label class="pos-rel">
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </th>
+                                        <th class="detail-col"> Details</th>
+                                        <th> Name </th>
+                                        <th> Phone </th>
+                                        <th> Price </th>
+                                        <th> Delivery Price </th>
 
-                                    <th> Total </th>
-                                    <th> Outlet </th>
-                                    <th> Area </th>
-                                    <th > Delivery Time</th>
+                                        <th> Total </th>
+                                        <th> Outlet </th>
+                                        <th> Area </th>
+                                        <th> Delivery Time</th>
 
-                                    <th >Status</th>
+                                        <th>Status</th>
 
-                                    <th></th>
-                                </tr>
+                                        <th></th>
+                                    </tr>
                                 </thead>
 
                                 <tbody>
                                     @for (var i = 0; i < Model.Orders.Count; i++)
                                     {
-                                    <tr>
-                                        <td class="center">
-                                            <label class="pos-rel">
-                                                <input type="checkbox" class="ace" />
-                                                <span class="lbl"></span>
-                                            </label>
-                                        </td>
+                                        <tr>
+                                            <td class="center">
+                                                <label class="pos-rel">
+                                                    <input type="checkbox" class="ace" />
+                                                    <span class="lbl"></span>
+                                                </label>
+                                            </td>
 
-                                        <td class="center">
-                                            <div class="action-buttons">
-                                                <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-                                                    <i class="ace-icon fa fa-angle-double-down"></i>
-                                                    <span class="sr-only">Details</span>
-                                                </a>
-                                            </div>
-                                        </td>
+                                            <td class="center">
+                                                <div class="action-buttons">
+                                                    <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
+                                                        <i class="ace-icon fa fa-angle-double-down"></i>
+                                                        <span class="sr-only">Details</span>
+                                                    </a>
+                                                </div>
+                                            </td>
 
-                                        <td> @Model.Orders[i].CustomerName </td>
-                                        <td> @Model.Orders[i].CustomerPhone </td>
-                                        <td> @Model.Orders[i].Price </td>
-                                        <td class="hidden-480"> @Model.Orders[i].Delivery </td>
-                                        <td> @Model.Orders[i].TotalPrice </td>
-                                        <td> @Model.Orders[i].OutLet.Name </td>
-                                        <td> @Model.Orders[i].HdAreas.Name </td>    
-                                        
-                                        @if (Model.Orders[i].DeliveryTimeIndex == 0)
-                                        {
-                                            <td> as fast as possible </td>
-                                        }
+                                            <td> @Model.Orders[i].CustomerName </td>
+                                            <td> @Model.Orders[i].CustomerPhone </td>
+                                            <td> @Model.Orders[i].Price </td>
+                                            <td class="hidden-480"> @Model.Orders[i].Delivery </td>
+                                            <td> @Model.Orders[i].TotalPrice </td>
+                                            <td> @Model.Orders[i].OutLet.Name </td>
+                                            <td> @Model.Orders[i].HdAreas.Name </td>
 
-                                        else if (Model.Orders[i].DeliveryTimeIndex == 1)
-                                        {
-                                            <td> in one hour </td>
-                                        }
-                                        else
-                                        {
-                                            <td> in two hour </td>
+                                            @if (Model.Orders[i].DeliveryTimeIndex == 0)
+                                            {
+                                                <td> as fast as possible </td>
+                                            }
 
-                                        }
-                                       
+                                            else if (Model.Orders[i].DeliveryTimeIndex == 1)
+                                            {
+                                                <td> in one hour </td>
+                                            }
+                                            else
+                                            {
+                                                <td> in two hour </td>
 
-                                        <td class="hidden-480">
-                                            <span class="label label-sm label-success"> New </span>
-                                        </td>
+                                            }
 
-                                        <td>
-                                            <div class="hidden-sm hidden-xs btn-group">
-                                                <button class="btn btn-xs btn-success">
-                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                </button>
 
-                                                <button class="btn btn-xs btn-info">
-                                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                                </button>
+                                            <td class="hidden-480">
+                                                <span class="label label-sm label-success"> New </span>
+                                            </td>
 
-                                                <button class="btn btn-xs btn-danger">
-                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                </button>
-
-                                                <button class="btn btn-xs btn-warning">
-                                                    <i class="ace-icon fa fa-flag bigger-120"></i>
-                                                </button>
-                                            </div>
-
-                                            <div class="hidden-md hidden-lg">
-                                                <div class="inline pos-rel">
-                                                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                                                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                            <td>
+                                                <div class="hidden-sm hidden-xs btn-group">
+                                                    <button class="btn btn-xs btn-success">
+                                                        <i class="ace-icon fa fa-check bigger-120"></i>
                                                     </button>
 
-                                                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                                                        <li>
-                                                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                                                <span class="blue">
-                                                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </li>
+                                                    <button class="btn btn-xs btn-info">
+                                                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                                                    </button>
 
-                                                        <li>
-                                                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                                                <span class="green">
-                                                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </li>
+                                                    <button class="btn btn-xs btn-danger">
+                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                    </button>
 
-                                                        <li>
-                                                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                                                <span class="red">
-                                                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                                                </span>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
+                                                    <button class="btn btn-xs btn-warning">
+                                                        <i class="ace-icon fa fa-flag bigger-120"></i>
+                                                    </button>
                                                 </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+
+                                                <div class="hidden-md hidden-lg">
+                                                    <div class="inline pos-rel">
+                                                        <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
+                                                            <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
+                                                        </button>
+
+                                                        <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
+                                                            <li>
+                                                                <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
+                                                                    <span class="blue">
+                                                                        <i class="ace-icon fa fa-search-plus bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
+                                                                    <span class="green">
+                                                                        <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+
+                                                            <li>
+                                                                <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
+                                                                    <span class="red">
+                                                                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
                                     <!-- Details info will be for items-->
 
                                         <tr class="detail-row">
 
                                             <td colspan="8">
                                                 <table class="table  table-bordered table-hover">
-                                                    <thead>
-                                                        <tr>
-                                                            <th> Name </th>
-                                                            <th> Arabic Name </th>
-                                                            <th> Quantity </th>
-                                                            <th> Price </th>
-                                                        </tr>
-                                                    </thead>
+                                                   
 
                                                     <tbody>
 
@@ -616,21 +609,19 @@
                                                         {
 
                                                             var cartItem = Model.CartItems[j];
-                                                            if (cartItem.CartId == Model.Orders[i].CartId)
+                                                            if (cartItem.CartId == Model.Orders[i].CartId && cartItem.OrderId == Model.Orders[i].Id && cartItem.Removed)
                                                             {
-
-
 
                                                                 <tr>
                                                                     <td class="center">
                                                                         @Model.CartItems[j].Item.Name
                                                                     </td>
-                                                                    
+
                                                                     <td class="center">
                                                                         @Model.CartItems[j].Item.Name2
                                                                     </td>
-                                                                    
-                                                                    
+
+
                                                                     <td class="center">
                                                                         @Model.CartItems[j].Quantity
                                                                     </td>
@@ -638,23 +629,51 @@
                                                                     <td class="center">
                                                                         @Model.CartItems[j].Item.StaticPrice
                                                                     </td>
+
+                                                                    @if (@Model.CartItems[j].HasModifiers)
+                                                                    {
+                                                                        var itemModifier = @Model.selectedModifiers
+                                                                            .Find(x => x.CartId == cartItem.CartId && 
+                                                                                       x.ItemId == Model.CartItems[j].Item.Id).ItemModifier;
+
+                                                                    <tr>
+                                                                        <td class="center">
+                                                                            *@itemModifier.Name
+                                                                        </td>
+
+                                                                        <td class="center">
+                                                                            @itemModifier.Name2
+                                                                        </td>
+
+
+                                                                        <td class="center">
+                                                                           1
+                                                                        </td>
+
+                                                                        <td class="center">
+                                                                            @itemModifier.StaticPrice
+                                                                        </td>
+
+                                                                    </tr>
+
+                                                                    
+                                                                    }
                                                                 </tr>
 
 
-                                                            }
-                                                        }
+                                                                                }
+                                                                            }
                                                     <tbody>
                                                 </table>
 
                                             </td>
                                         </tr>
-                                    }
+                                                                        }
 
                                 </tbody>
                             </table>
                         </div><!-- /.span -->
                     </div><!-- /.row -->
-
                     @*<div class="hr hr-18 dotted hr-double"></div>*@
 
 
@@ -664,12 +683,8 @@
         </div><!-- /.page-content -->
     </div>
 </div><!-- /.main-content -->
-
-
-
-
 <!-- inline scripts related to this page -->
-<script >
+<script>
     $(document).ready(function () {
 
         //setTimeout(function () {
@@ -679,7 +694,7 @@
         //        else $(this).tooltip({ container: 'body', title: $(this).text() });
         //    });
         //}, 500);
-        
+
         $(document).on('click', '#dynamic-table .dropdown-toggle', function (e) {
             e.stopImmediatePropagation();
             e.stopPropagation();

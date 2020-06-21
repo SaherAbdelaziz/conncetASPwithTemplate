@@ -254,6 +254,10 @@
     <Compile Include="Migrations\202006151638528_AddOrderTable.Designer.cs">
       <DependentUpon>202006151638528_AddOrderTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006211217522_AddSelectedModifiersTable.cs" />
+    <Compile Include="Migrations\202006211217522_AddSelectedModifiersTable.Designer.cs">
+      <DependentUpon>202006211217522_AddSelectedModifiersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cart.cs" />
@@ -1464,6 +1468,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006151638528_AddOrderTable.resx">
       <DependentUpon>202006151638528_AddOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006211217522_AddSelectedModifiersTable.resx">
+      <DependentUpon>202006211217522_AddSelectedModifiersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
