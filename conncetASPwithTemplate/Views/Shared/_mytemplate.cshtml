@@ -281,7 +281,7 @@
 
     <!-- Modal                                              / Product -->
     <!-- -->
-    <div class="modal fade " id="productModal" role="dialog">
+    <div class="modal fade show" id="productModal" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-lg dark bg-dark">
@@ -372,7 +372,7 @@
 
 
 
-<script>
+    <script>
 
     // all apis calls
     $(document).ready(function() {
@@ -435,7 +435,7 @@
                                 var price = Number(totalPrice) - Number(itemPrice) ;
                                 $('.ordertotal').attr('ordertotal', price);
                                 //console.log("total " + price);
-                               // console.log($('.ordertotal').attr('ordertotal'));
+                                // console.log($('.ordertotal').attr('ordertotal'));
                                 $(this).remove();
 
                                 //console.log($('.ordertotal').text(5));
@@ -458,10 +458,10 @@
 
         // when click on item we get its information like id and name
         $(".js-chosen-item").on('click',
+            function (e) {
 
-            function(e) {
                 //refreshIntervalId = setInterval(AJAXRequest, 1500)
-                
+
 
                 var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
 
@@ -473,14 +473,13 @@
                     window.location.href = url;
                     return;
                 }
-                
+
                 //alert("dsds");
                 var button = $(e.target);
                 if ($(e.target).get(0).tagName == "SPAN") { button = $(e.target).parent(); }
                 else { button = $(e.target); }
                 console.log(button);
-
-                //var myIdsModefiers = JSON.parse(button.attr("data-item-modefiers"));
+                
                 var myId = button.attr("data-item-id");
                 $("#productModal .js-add-cart").attr("data-item-id", myId);
                // console.log(button.attr("data-item-id"));
@@ -503,7 +502,7 @@
                              cartItemDto = {
                                  ItemId: myId,
                                  ItemsId: [-1] // there is no modiferis for this item
-                               
+
                              }
                             $.ajax({
                                     url: "/api/shoppingcarts",
@@ -521,12 +520,12 @@
                                     alert("Something failed! in adding item to cart");
                                 });
 
-                             
+
                         }
 
                         else{
-                            //$("#productModal").modal();
-                            // //$("#productModal").addClass('show');
+                               console.log("in");
+                             $('#productModal').modal('show');
                             //let dataSize = ` <h5 class="panel-details-title">
                             //    <label class="custom-control custom-radio">
                             //    <input name="radio_title_size" type="radio" class="custom-control-input">
@@ -542,8 +541,8 @@
                             //    </form>
                             //    </div>`;
                             //$('#panel-details').append(dataSize);
-                           
-                                for (let j = 1; j < data.length; j++) 
+
+                                for (let j = 1; j < data.length; j++)
                                 {
 
                                     // add modifiers to details of item
@@ -560,7 +559,7 @@
 
                                 //get the selected radio button
 
-                                $("input[name='radio_size']").click(function() 
+                                $("input[name='radio_size']").click(function()
                                 {
 
                                     index = $("input[name='radio_size']").index($("input[name='radio_size']:checked")) + 1;
@@ -603,7 +602,7 @@
                     contentType: 'application/json; charset=utf-8',
                     dataType: "Json"
                 })
-                .done(function() { 
+                .done(function() {
                     console.log("got in adding itms has modifiers ");
                     console.log(button.attr("data-item-id"));
                     AJAXRequest();
@@ -620,11 +619,11 @@
             // I personally prefer using console.log(), but if you want you can still go with the alert().
             console.log($(this).children('option:selected').index());
         });
-        
+
     });
 
 
-</script>
+    </script>
 </body>
 
 </html>

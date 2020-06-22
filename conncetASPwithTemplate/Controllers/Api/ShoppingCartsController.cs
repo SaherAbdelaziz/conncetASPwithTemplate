@@ -48,7 +48,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         {
             var shoppingCartId = User.Identity.GetUserId();
             var cartItem = _context.CartItems.SingleOrDefault(
-                c => c.CartId == shoppingCartId && c.ItemId == cartItemDto.ItemId);
+                c => c.CartId == shoppingCartId && c.ItemId == cartItemDto.ItemId && !c.Removed);
             if (cartItemDto.ItemsId[0] == -1)
             {
                 //var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
