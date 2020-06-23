@@ -486,19 +486,19 @@
                // console.log(myId);
 
                 //first retruferd id is the selected item and other ids is modifiers
-                $.ajax({ url: "/api/ModifiersGroups/" + myId, method: "GET" })
-                    .done(function(data) {
+                //$.ajax({ url: "/api/ModifiersGroups/" + myId, method: "GET" })
+                //    .done(function(data) {
                         var index , cartItemDto;
-                        console.log("Got in modifiers");
+                //        console.log("Got in modifiers");
 
-                        $(".modal-product-details .js-item-name1").text(data[0].name);
-                        $(".modal-product-details .js-item-name2").text(data[0].name2);
-                        $(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
-                        $('#panelDetailsSize .panel-details-content').empty();
+                        //$(".modal-product-details .js-item-name1").text(data[0].name);
+                        //$(".modal-product-details .js-item-name2").text(data[0].name2);
+                        //$(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
+                        //$('#panelDetailsSize .panel-details-content').empty();
 
                         //first item is the chosen item
 
-                         if (data.length == 1) {
+                         //if (data.length == 1) {
                              cartItemDto = {
                                  ItemId: myId,
                                  ItemsId: [-1] // there is no modiferis for this item
@@ -521,57 +521,57 @@
                                 });
 
 
-                        }
+                        //}
 
-                        else{
-                               console.log("in");
-                             $('#productModal').modal('show');
-                            //let dataSize = ` <h5 class="panel-details-title">
-                            //    <label class="custom-control custom-radio">
-                            //    <input name="radio_title_size" type="radio" class="custom-control-input">
-                            //    <span class="custom-control-indicator"></span>
-                            //    </label>
-                            //    <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                            //    </h5>
-                            //    <div id="panelDetailsSize" class="collapse show">
-                            //    <form>
-                            //    <div class="panel-details-content">
+                        //else{
+                        //       console.log("in");
+                        //     $('#productModal').modal('show');
+                        //    //let dataSize = ` <h5 class="panel-details-title">
+                        //    //    <label class="custom-control custom-radio">
+                        //    //    <input name="radio_title_size" type="radio" class="custom-control-input">
+                        //    //    <span class="custom-control-indicator"></span>
+                        //    //    </label>
+                        //    //    <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        //    //    </h5>
+                        //    //    <div id="panelDetailsSize" class="collapse show">
+                        //    //    <form>
+                        //    //    <div class="panel-details-content">
 
-                            //    </div>
-                            //    </form>
-                            //    </div>`;
-                            //$('#panel-details').append(dataSize);
+                        //    //    </div>
+                        //    //    </form>
+                        //    //    </div>`;
+                        //    //$('#panel-details').append(dataSize);
 
-                                for (let j = 1; j < data.length; j++)
-                                {
+                        //        for (let j = 1; j < data.length; j++)
+                        //        {
 
-                                    // add modifiers to details of item
-                                    let data1 = `<div class="form-group">
-                                <label class ="custom-control custom-radio" >
-                                <input name="radio_size" type="radio" value=${data[j].name}>
-                                <span class ="custom-control-indicator"></span>
-                                <span class ="custom-control-description">${data[j].name}} -(${data[j].staticPrice}) </span>
-                                </label>
-                                </div>`;
+                        //            // add modifiers to details of item
+                        //            let data1 = `<div class="form-group">
+                        //        <label class ="custom-control custom-radio" >
+                        //        <input name="radio_size" type="radio" value=${data[j].name}>
+                        //        <span class ="custom-control-indicator"></span>
+                        //        <span class ="custom-control-description">${data[j].name}} -(${data[j].staticPrice}) </span>
+                        //        </label>
+                        //        </div>`;
 
-                                    $('#panelDetailsSize .panel-details-content').append(data1);
-                                }
+                        //            $('#panelDetailsSize .panel-details-content').append(data1);
+                        //        }
 
-                                //get the selected radio button
+                        //        //get the selected radio button
 
-                                $("input[name='radio_size']").click(function()
-                                {
+                        //        $("input[name='radio_size']").click(function()
+                        //        {
 
-                                    index = $("input[name='radio_size']").index($("input[name='radio_size']:checked")) + 1;
+                        //            index = $("input[name='radio_size']").index($("input[name='radio_size']:checked")) + 1;
 
-                                    $("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
-                                });
+                        //            $("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
+                        //        });
 
-                         }
-                    })
-                    .fail(function() {
-                        alert("Something failed! in modifiers");
-                    });
+            //             }
+            //        })
+            //        .fail(function() {
+            //            alert("Something failed! in modifiers");
+            //        });
             });
 
 

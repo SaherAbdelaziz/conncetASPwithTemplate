@@ -44,7 +44,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         // POST: api/ShoppingCarts
         [HttpPost]
         //[Route("api/ShoppingCarts/{id1}/{id2}")]
-        public CartItem PostModefiers(CartItemDto cartItemDto)
+        public CartItem Post(CartItemDto cartItemDto)
         {
             var shoppingCartId = User.Identity.GetUserId();
             var cartItem = _context.CartItems.SingleOrDefault(

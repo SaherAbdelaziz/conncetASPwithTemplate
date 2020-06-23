@@ -215,6 +215,8 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\EldahanItems.cs" />
+    <Compile Include="Models\EldahanPreset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
     <Compile Include="Models\IdentityModels.cs" />

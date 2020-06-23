@@ -22,17 +22,12 @@ namespace conncetASPwithTemplate.Models
         public bool Ordered { get; set; }
         public int ItemId { get; set; }
 
-        public Item Item { get; set; }
+        public EldahanItems Item { get; set; }
 
-        public ICollection<int> Items { get; private set; }
 
         public int OrderId { get; set; }
 
         //public int OrderId { get; set; }
         //public Order Order { get; set; }
-        public CartItem()
-        {
-            Items = new Collection<int>();
-        }
     }
 }

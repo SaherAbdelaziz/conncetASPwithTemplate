@@ -258,10 +258,16 @@
     <Compile Include="Migrations\202006211217522_AddSelectedModifiersTable.Designer.cs">
       <DependentUpon>202006211217522_AddSelectedModifiersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202006231414266_AddEldahanTables.cs" />
+    <Compile Include="Migrations\202006231414266_AddEldahanTables.Designer.cs">
+      <DependentUpon>202006231414266_AddEldahanTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\EldahanItems.cs" />
+    <Compile Include="Models\EldahanPreset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -1341,6 +1347,7 @@
     <Content Include="Content\mytemplate\assets\scss\_header\_navigation-desktop.scss" />
     <Content Include="Content\mytemplate\assets\scss\_setup.scss" />
     <Content Include="Content\mytemplate\assets\scss\_widgets.scss" />
+    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ChceckoutForm.js" />
     <Content Include="Scripts\GetCartItems.js" />
@@ -1471,6 +1478,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006211217522_AddSelectedModifiersTable.resx">
       <DependentUpon>202006211217522_AddSelectedModifiersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006231414266_AddEldahanTables.resx">
+      <DependentUpon>202006231414266_AddEldahanTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

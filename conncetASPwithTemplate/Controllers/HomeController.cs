@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using conncetASPwithTemplate.Models;
 using conncetASPwithTemplate.ViewModels;
+using System.Data.Entity;
 
 namespace conncetASPwithTemplate.Controllers
 {
@@ -48,7 +49,7 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult IndexBurgers()
         {
-            var items = _context.Items.ToList();
+            var items = _context.EldahanItems.ToList();
             return View(items);
         }
 
@@ -64,11 +65,10 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult Navigation()
         {
-            var items = _context.Items.ToList();
-            var subCategory = _context.SubCategories.ToList();
-            var presets = _context.WebPresets.ToList();
+            var items = _context.EldahanItems.ToList();
+            var presets = _context.EldahanPresets.ToList();
             var menuItems = _context.WebMenuItems.ToList();
-            var itemsToShowCount = 10;
+            var itemsToShowCount = 5;
             ItemsCategories itemsCategories =new ItemsCategories(items , presets, menuItems , itemsToShowCount);
             //itemsCategories.Items= items.ToList();
 
@@ -77,7 +77,7 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult ShowItems()
         {
-            var items = _context.Items.ToList();
+            var items = _context.EldahanItems.ToList();
 
             return View(items);
         }

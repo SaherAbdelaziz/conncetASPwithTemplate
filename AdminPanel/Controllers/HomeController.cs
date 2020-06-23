@@ -68,7 +68,8 @@ namespace AdminPanel.Controllers
 
         public ActionResult Items()
         {
-            var items = _context.Items.ToList();
+            var items = _context.EldahanItems
+                .Include(i=>i.EldahanPreset).ToList();
 
             return View(items);
         }
