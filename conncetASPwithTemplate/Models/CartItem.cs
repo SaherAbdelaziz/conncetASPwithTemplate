@@ -22,7 +22,7 @@ namespace conncetASPwithTemplate.Models
         public bool Ordered { get; set; }
         public int ItemId { get; set; }
 
-        public EldahanItems Item { get; set; }
+        public EldahanItems2 Item { get; set; }
 
 
         public int OrderId { get; set; }

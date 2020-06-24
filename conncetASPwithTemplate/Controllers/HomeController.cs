@@ -49,7 +49,7 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult IndexBurgers()
         {
-            var items = _context.EldahanItems.ToList();
+            var items = _context.Items.ToList();
             return View(items);
         }
 
@@ -65,7 +65,7 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult Navigation()
         {
-            var items = _context.EldahanItems.ToList();
+            var items = _context.EldahanItems2.ToList();
             var presets = _context.EldahanPresets.ToList();
             var menuItems = _context.WebMenuItems.ToList();
             var itemsToShowCount = 5;
@@ -77,7 +77,7 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult ShowItems()
         {
-            var items = _context.EldahanItems.ToList();
+            var items = _context.EldahanItems2.ToList();
 
             return View(items);
         }

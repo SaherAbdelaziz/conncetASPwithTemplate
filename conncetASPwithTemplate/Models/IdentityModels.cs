@@ -91,7 +91,7 @@ namespace conncetASPwithTemplate.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("DefaultConnection", throwIfV1Schema: false)
+            : base("Restaurant", throwIfV1Schema: false)
         {
         }
 
@@ -110,6 +110,7 @@ namespace conncetASPwithTemplate.Models
         public DbSet<WebMenuItem> WebMenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<SelectedModifiers> SelectedModifiers { get; set; }
+        public DbSet<EldahanItems2> EldahanItems2 { get; set; }
 
         public virtual DbSet<HD_Areas> HdAreas { get; set; }
         public virtual DbSet<HD_Areas_Services> HdAreasServices { get; set; }

@@ -8,7 +8,7 @@ using System.Web.Http;
 using conncetASPwithTemplate.Dtos;
 using conncetASPwithTemplate.Models;
 using Microsoft.AspNet.Identity;
-
+using Microsoft.AspNet.Identity.Owin;
 namespace conncetASPwithTemplate.Controllers.Api
 {
     [Authorize]
@@ -47,6 +47,11 @@ namespace conncetASPwithTemplate.Controllers.Api
         public CartItem Post(CartItemDto cartItemDto)
         {
             var shoppingCartId = User.Identity.GetUserId();
+            //var userId = string userId = SignInManager
+            //    .AuthenticationManager
+            //    .AuthenticationResponseGrant.Identity.GetUserId();
+            //var user = SignInManager.UserManager.Users.FirstOrDefault(x => x.Id.Equals(userId));
+            //var shoppingCartId = userId;
             var cartItem = _context.CartItems.SingleOrDefault(
                 c => c.CartId == shoppingCartId && c.ItemId == cartItemDto.ItemId && !c.Removed);
             if (cartItemDto.ItemsId[0] == -1)

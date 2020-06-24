@@ -164,7 +164,7 @@ namespace conncetASPwithTemplate.Controllers
             {
                 model.Areas = _context.HdAreas.ToList();
                 model.Outlets = new List<OutLet>();
-                var user = new ApplicationUser { UserName = model.Name, Email = model.Email,
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
                     Name = model.Name , Phone = model.Phone , Adress = model.Adress ,
                     Adress2 = model.Adress2 , AreaId = model.Area , OutletId = model.Outlet// , Area = model.Areas[model.Area]
                 };
