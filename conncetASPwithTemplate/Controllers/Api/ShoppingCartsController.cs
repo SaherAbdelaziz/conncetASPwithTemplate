@@ -136,14 +136,14 @@ namespace conncetASPwithTemplate.Controllers.Api
         public IHttpActionResult Delete(int id)
         {
             var userId = User.Identity.GetUserId();
-            var cartItem = _context.CartItems
+            var cartItem = _context.MyCartItems
                 .Single(c => c.Id == id && c.CartId == userId);
 
             if (cartItem.Removed)
                 return Ok();
 
             cartItem.Removed = true;
-            _context.CartItems.Remove(cartItem);
+            _context.MyCartItems.Remove(cartItem);
 
             _context.SaveChanges();
 

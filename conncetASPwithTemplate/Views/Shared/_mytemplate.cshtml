@@ -134,7 +134,7 @@
             </div>
 
             <div class="module module-logo">
-                <a href="index.html">
+                <a href="@Url.Action("Index", "Home")">
                     <img src="../../Content/mytemplate/assets/img/logo-horizontal-dark.svg" alt="">
                 </a>
             </div>
@@ -379,8 +379,6 @@
 
     // all apis calls
     $(document).ready(function() {
-        var refreshIntervalId;
-        //console.log(@User.Identity.GetUserName());
         //ViewBag.Delivery
         AJAXRequest();
         //var toggle = 1;
