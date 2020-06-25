@@ -225,6 +225,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modifier.cs" />
     <Compile Include="Models\ModifiersGroup.cs" />
+    <Compile Include="Models\MyCartItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OutLet.cs" />
     <Compile Include="Models\SelectedModifiers.cs" />

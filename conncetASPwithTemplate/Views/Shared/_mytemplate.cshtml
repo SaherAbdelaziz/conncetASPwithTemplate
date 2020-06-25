@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <!-- Title -->
-    <title>Soup - Restaurant with Online Ordering System Template</title>
+    <title>El Dahan</title>
 
     <!-- Favicons -->
-    <link rel="shortcut icon" href="../../Content/mytemplate/assets/img/favicon.png">
+    <link rel="shortcut icon" href="../../Content/mytemplate/assets/img/logo-dark.svg">
     <link rel="apple-touch-icon" href="../../Content/mytemplate/assets/img/favicon_60x60.png">
     <link rel="apple-touch-icon" sizes="76x76" href="../../Content/mytemplate/assets/img/favicon_76x76.png">
     <link rel="apple-touch-icon" sizes="120x120" href="../../Content/mytemplate/assets/img/favicon_120x120.png">
@@ -56,15 +56,15 @@
                         <!-- Navigation -->
                         <nav class="module module-navigation left mr-4">
                             <ul id="nav-main" class="nav nav-main">
-                                <li class="has-dropdown">
-                                    <a href="#">Home</a>
-                                    <div class="dropdown-container">
-                                        <ul>
-                                            <li><a href="@Url.Action("Index", "Home")">Home Basic</a></li>
-                                            <li><a href="@Url.Action("IndexBurgers", "Home")">Home Burgers</a></li>
-                                        </ul>
-                                    </div>
-                                </li>
+                                @*<li class="has-dropdown">
+                                     <a href="#">Home</a>
+                                     <div class="dropdown-container">
+                                         <ul>*@
+                                <li><a href="@Url.Action("Index", "Home")">Home</a></li>
+                                @*<li><a href="@Url.Action("IndexBurgers", "Home")">Home Burgers</a></li>
+                                             </ul>
+                                         </div>
+                                </li>*@
                                 @if (!User.IsInRole("Manger"))
                                 {
                                     <li><a href="@Url.Action("Navigation", "Home")">MENU</a></li>
@@ -72,7 +72,7 @@
                                     <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
                                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
                                 }
-                               
+
 
                                 @if (!User.Identity.IsAuthenticated)
                                 {
@@ -84,7 +84,7 @@
                                     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right " }))
                                     {
                                         @Html.AntiForgeryToken()
-                                        <li >
+                                        <li>
                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
                                             <ul class="dropdown-menu">
                                                 <li><a href="@Url.Action("Index" , "Manage")">Manage Account</a></li>
@@ -94,17 +94,17 @@
                                         </li>
                                     }
                                 }
-                                
+
                             </ul>
                         </nav>
-                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
+                    @*@if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
                     {
                         <div class="module left">
                             <a href="menu-list-navigation.html" class="btn btn-outline-secondary"><span>Order</span></a>
                         </div>
                         <div class="module left">
                         </div>
-                    }
+                    }*@
                         </div>
                     @if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
                     {
@@ -125,7 +125,8 @@
 
         </header>
         <!-- Header / End -->
-        <!-- Header -->
+    <!-- Header -->
+    
         <header id="header-mobile" class="light">
 
             <div class="module module-nav-toggle">
@@ -137,13 +138,15 @@
                     <img src="../../Content/mytemplate/assets/img/logo-horizontal-dark.svg" alt="">
                 </a>
             </div>
-
+        @if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
+        {
             <a href="#" class="module module-cart" data-toggle="panel-cart">
-                <i class="ti ti-shopping-cart"></i>
-                <span class="notification">2</span>
+                <i class="ti ti-shopping-cart "></i>
+                <span class="notification hide badge js-notifications-count ">0</span>
             </a>
-
+        }
         </header>
+    
         <!-- Header / End -->
         <!-- Content -->
         <div id="content">

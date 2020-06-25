@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 
 namespace conncetASPwithTemplate.Models
 {
-    public class CartItem
+    public class MyCartItem
     {
         public int Id { get; set; }
 
@@ -20,14 +19,11 @@ namespace conncetASPwithTemplate.Models
         public string Details { get; set; }
         public bool HasModifiers { get; set; }
         public bool Ordered { get; set; }
-        public int ItemId { get; set; }
-
-        public EldahanItems Item { get; set; }
-
-
         public int OrderId { get; set; }
 
-        //public int OrderId { get; set; }
-        //public Order Order { get; set; }
+        public int EldahanItemId { get; set; }
+
+        public EldahanItems EldahanItem { get; set; }
+
     }
 }

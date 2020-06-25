@@ -47,8 +47,8 @@ namespace AdminPanel.Controllers
                 .Include(o=>o.Services)
                 .ToList();
 
-            var cartItems = _context.CartItems
-                .Include(c=>c.Item)
+            var cartItems = _context.MyCartItems
+                .Include(c=>c.EldahanItem)
                 .ToList();
 
             var selectedModifiers = _context.SelectedModifiers
@@ -58,7 +58,7 @@ namespace AdminPanel.Controllers
 
             var ordersViewModelViewModel = new OrdersViewModel()
             {
-                CartItems = cartItems,
+                MyCartItems = cartItems,
                 Orders = orders,
                 selectedModifiers = selectedModifiers,
             };

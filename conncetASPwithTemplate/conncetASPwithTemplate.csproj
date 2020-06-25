@@ -266,9 +266,9 @@
     <Compile Include="Migrations\202006241456319_test.Designer.cs">
       <DependentUpon>202006241456319_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006241743079_seedItems.cs" />
-    <Compile Include="Migrations\202006241743079_seedItems.Designer.cs">
-      <DependentUpon>202006241743079_seedItems.cs</DependentUpon>
+    <Compile Include="Migrations\202006251104160_updateCartTable.cs" />
+    <Compile Include="Migrations\202006251104160_updateCartTable.Designer.cs">
+      <DependentUpon>202006251104160_updateCartTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -285,6 +285,7 @@
     <Compile Include="Models\Modifier.cs" />
     <Compile Include="Models\ModifiersGroup.cs" />
     <Compile Include="Models\Modifys.cs" />
+    <Compile Include="Models\MyCartItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OutLet.cs" />
     <Compile Include="Models\SelectedModifiers.cs" />
@@ -377,8 +378,10 @@
     <Content Include="Content\mytemplate\assets\img\photos\slider-burger_dark.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\slider-dessert.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\slider-dessert_dark.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\slider-grill.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\slider-pasta.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\slider-pasta_dark.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\slider-sides.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\special-burger.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\special-dish.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\special-pizza.jpg" />
@@ -1356,6 +1359,7 @@
     <Content Include="Content\mytemplate\assets\scss\_setup.scss" />
     <Content Include="Content\mytemplate\assets\scss\_widgets.scss" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ChceckoutForm.js" />
     <Content Include="Scripts\GetCartItems.js" />
@@ -1493,8 +1497,8 @@
     <EmbeddedResource Include="Migrations\202006241456319_test.resx">
       <DependentUpon>202006241456319_test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006241743079_seedItems.resx">
-      <DependentUpon>202006241743079_seedItems.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006251104160_updateCartTable.resx">
+      <DependentUpon>202006251104160_updateCartTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -23,14 +23,14 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // GET: api/ShoppingCarts
-        public IEnumerable<CartItem> Get()
+        public IEnumerable<MyCartItem> Get()
         {
             var userId = User.Identity.GetUserId();
 
 
-            var items = _context.CartItems
+            var items = _context.MyCartItems
                 .Where(c => c.CartId == userId && !c.Removed)
-                .Include(c => c.Item).ToList();
+                .Include(c => c.EldahanItem).ToList();
 
             return items;
         }
@@ -44,7 +44,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         // POST: api/ShoppingCarts
         [HttpPost]
         //[Route("api/ShoppingCarts/{id1}/{id2}")]
-        public CartItem Post(CartItemDto cartItemDto)
+        public MyCartItem Post(CartItemDto cartItemDto)
         {
             var shoppingCartId = User.Identity.GetUserId();
             //var userId = string userId = SignInManager
@@ -52,24 +52,24 @@ namespace conncetASPwithTemplate.Controllers.Api
             //    .AuthenticationResponseGrant.Identity.GetUserId();
             //var user = SignInManager.UserManager.Users.FirstOrDefault(x => x.Id.Equals(userId));
             //var shoppingCartId = userId;
-            var cartItem = _context.CartItems.SingleOrDefault(
-                c => c.CartId == shoppingCartId && c.ItemId == cartItemDto.ItemId && !c.Removed);
+            var cartItem = _context.MyCartItems.SingleOrDefault(
+                c => c.CartId == shoppingCartId && c.EldahanItemId == cartItemDto.ItemId && !c.Removed);
             if (cartItemDto.ItemsId[0] == -1)
             {
                 //var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
                 if (cartItem == null)
                 {
                     // Create a new cart item if no cart item exists.                 
-                    cartItem = new CartItem
+                    cartItem = new MyCartItem()
                     {
-                        ItemId = cartItemDto.ItemId,
+                        EldahanItemId = cartItemDto.ItemId,
                         CartId = shoppingCartId,
                         Quantity = 1,
                         DateCreated = DateTime.Now,
                         Details = cartItemDto.Details,
                     };
 
-                    _context.CartItems.Add(cartItem);
+                    _context.MyCartItems.Add(cartItem);
                 }
                 else
                     cartItem.Quantity++;
@@ -81,9 +81,9 @@ namespace conncetASPwithTemplate.Controllers.Api
                 if (cartItem == null)
                 {
                     // Create a new cart item if no cart item exists.                 
-                    cartItem = new CartItem
+                    cartItem = new MyCartItem()
                     {
-                        ItemId = cartItemDto.ItemId,
+                        EldahanItemId = cartItemDto.ItemId,
                         CartId = shoppingCartId,
                         Quantity = 1,
                         DateCreated = DateTime.Now,
@@ -96,7 +96,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                             shoppingCartId, cartItemDto.ItemsId[0]);
                     
 
-                    _context.CartItems.Add(cartItem);
+                    _context.MyCartItems.Add(cartItem);
                     _context.SelectedModifiers.Add(selectedModifiers);
                 }
                 else
@@ -117,7 +117,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         public void Put()
         {
-            var cartItmes = _context.CartItems.ToList();
+            var cartItmes = _context.MyCartItems.ToList();
             var order = _context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
             var userId = User.Identity.GetUserId();
             foreach (var cartItme in cartItmes)

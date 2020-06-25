@@ -105,6 +105,7 @@ namespace conncetASPwithTemplate.Models
         public DbSet<Item> Items { get; set; }
         public DbSet<EldahanItems> EldahanItems { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<MyCartItem> MyCartItems { get; set; }
         public DbSet<WebPreset> WebPresets { get; set; }
         public DbSet<EldahanPreset> EldahanPresets { get; set; }
         public DbSet<WebMenuItem> WebMenuItems { get; set; }

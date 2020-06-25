@@ -15,6 +15,7 @@ namespace conncetASPwithTemplate.Migrations
                         CartId = c.String(),
                         Quantity = c.Int(nullable: false),
                         DateCreated = c.DateTime(nullable: false),
+                        Removed = c.Boolean(nullable: false),
                         ItemId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

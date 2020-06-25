@@ -82,10 +82,10 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             string tmp = "";
             var Idd = User.Identity.GetUserId();
-            var cartItems = _context.CartItems.Where(c => c.CartId == Idd).Include(c=> c.Item).ToList();
+            var cartItems = _context.MyCartItems.Where(c => c.CartId == Idd).Include(c=> c.EldahanItem).ToList();
             foreach (var cart in cartItems)
             {
-                tmp += cart.Item.Name + " ";
+                tmp += cart.EldahanItem.Name + " ";
             }
 
             string currentUserId = User.Identity.GetUserId();

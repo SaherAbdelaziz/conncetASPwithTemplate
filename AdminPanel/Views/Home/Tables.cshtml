@@ -218,36 +218,36 @@
 
                                                     <tbody>
 
-                                                        @for (int j = 0; j < @Model.CartItems.Count; j++)
+                                                        @for (int j = 0; j < @Model.MyCartItems.Count; j++)
                                                         {
 
-                                                            var cartItem = Model.CartItems[j];
+                                                            var cartItem = Model.MyCartItems[j];
                                                             if (cartItem.CartId == Model.Orders[i].CartId && cartItem.OrderId == Model.Orders[i].Id && cartItem.Removed)
                                                             {
 
                                                                 <tr>
                                                                     <td class="center">
-                                                                        @Model.CartItems[j].Item.Name
+                                                                        @Model.MyCartItems[j].EldahanItem.Name
                                                                     </td>
 
                                                                     <td class="center">
-                                                                        @Model.CartItems[j].Item.Name2
+                                                                        @Model.MyCartItems[j].EldahanItem.Name2
                                                                     </td>
 
 
                                                                     <td class="center">
-                                                                        @Model.CartItems[j].Quantity
+                                                                        @Model.MyCartItems[j].Quantity
                                                                     </td>
 
                                                                     <td class="center">
-                                                                        @Model.CartItems[j].Item.StaticPrice
+                                                                        @Model.MyCartItems[j].EldahanItem.StaticPrice
                                                                     </td>
 
-                                                                    @if (@Model.CartItems[j].HasModifiers)
+                                                                    @if (@Model.MyCartItems[j].HasModifiers)
                                                                     {
                                                                         var itemModifier = @Model.selectedModifiers
                                                                             .Find(x => x.CartId == cartItem.CartId &&
-                                                                                       x.ItemId == Model.CartItems[j].Item.Id).ItemModifier;
+                                                                                       x.ItemId == Model.MyCartItems[j].EldahanItem.Id).ItemModifier;
 
                                                                     <tr>
                                                                         <td class="center">

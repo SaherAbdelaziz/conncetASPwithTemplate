@@ -25,18 +25,18 @@ function AJAXRequest() {
                 var data1 =
                     `<tr>
                         <td class ="title">
-                            <span class ="name col-md-30"><a href="#productModal" data-toggle="modal">${notifications[i].item.name}</a></span>
-                            <span class ="caption text-muted">${notifications[i].item.name2}</span>
+                            <span class ="name col-md-30"><a href="#productModal" data-toggle="modal">${notifications[i].eldahanItem.name}</a></span>
+                            <span class ="caption text-muted">${notifications[i].eldahanItem.name2}</span>
 
                         <td class ="quantity" quantity =${notifications[i].quantity}>  ${notifications[i].quantity} 
-                        <td class ="price" price =${notifications[i].item.staticPrice}>  ${notifications[i].item.staticPrice}LE 
+                        <td class ="price" price =${notifications[i].eldahanItem.staticPrice}>  ${notifications[i].eldahanItem.staticPrice}LE 
 
                         <td  class ="actions">
                          <a href="#" class ="action-icon js-cancel-item" data-item-id=${notifications[i].id}> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
                        
                     `;
 
-                price += notifications[i].item.staticPrice * notifications[i].quantity;
+                price += notifications[i].eldahanItem.staticPrice * notifications[i].quantity;
                 totalPrice = price + delivery;
                 $('.seed_items').append(data1);
 
