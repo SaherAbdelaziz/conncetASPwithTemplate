@@ -308,6 +308,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="ViewModels\ItemsCategories.cs" />
+    <Compile Include="ViewModels\ProfileViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\mytemplate\assets\css\prettify.css" />
@@ -1052,6 +1053,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\AddItemButton.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\mytemplate\assets\.DS_Store" />

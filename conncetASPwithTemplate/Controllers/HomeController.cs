@@ -112,9 +112,17 @@ namespace conncetASPwithTemplate.Controllers
         {
             var userId = User.Identity.GetUserId();
             var myUser=_context.Users
-                .Where(u=>u.Id==userId);
+                .FirstOrDefault(u => u.Id == userId);
 
-            return View(myUser);
+            var profileViewModel = new ProfileViewModel()
+            {
+                Name = myUser.Name,
+                Email = myUser.Email,
+                Phone = myUser.Phone,
+                Adress = myUser.Adress,
+                Adress2 = myUser.Adress2,
+            };
+            return View(profileViewModel);
         }
 
         [HttpPost]

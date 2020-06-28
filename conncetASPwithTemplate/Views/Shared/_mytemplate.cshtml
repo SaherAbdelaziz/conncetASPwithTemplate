@@ -32,7 +32,7 @@
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="../../Content/mytemplate/assets/css/themes/theme-beige.min.css" />
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-
+   
     @Styles.Render("~/Content/css")
 </head>
 <body>
@@ -308,9 +308,7 @@
 
                         <div class="panel-details">
                             <label class="block tmppadding">Special Instructions</label>
-                            <input type="text" class="  p-2 js-item-message " />
-
-
+                            <textarea class=" w-100 h-100  js-item-message "> </textarea>
                             <label class="block tmppadding"> Quantity </label>
                             <div>
                                 <input type="text" disabled class=" p-2 js-item-quantity" value="1" />
@@ -525,6 +523,8 @@
                         $(".modal-product-details .js-item-name1").text(data.name);
                         $(".modal-product-details .js-item-name2").text(data.name2);
                         $(".modal-product-details .js-item-staticPrice").text(data.staticPrice);
+                        $(".modal-product-details .js-item-quantity").val(1);
+                        $(".modal-product-details .js-item-message").val('');
                         $('#panelDetailsSize .panel-details-content').empty();
 
                         //first item is the chosen item

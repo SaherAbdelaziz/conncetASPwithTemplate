@@ -43,5 +43,13 @@
                     });
 
 
+
+                //bootbox.dialog("Thank You! Your Order Will Be Ready Within 45 Minutes ", [{
+                //    "label": "Success!",
+                //    "class": "btn-success",
+                //    "callback": function () {
+                       
+                //    }
+                //}]);
                
             });

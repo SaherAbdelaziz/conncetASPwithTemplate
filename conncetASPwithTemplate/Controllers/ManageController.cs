@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using conncetASPwithTemplate.Models;
+using conncetASPwithTemplate.ViewModels;
 
 namespace conncetASPwithTemplate.Controllers
 {
@@ -15,15 +16,20 @@ namespace conncetASPwithTemplate.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
+
+        
 
         public ManageController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = new ApplicationDbContext();
         }
 
         public ApplicationSignInManager SignInManager
@@ -48,6 +54,31 @@ namespace conncetASPwithTemplate.Controllers
             {
                 _userManager = value;
             }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UpdateUser(ProfileViewModel model)
+        {
+            //get current user and update
+            var user =  UserManager.FindById(User.Identity.GetUserId());
+            user.Name = model.Name;
+            user.Phone = model.Phone;
+            user.Adress = model.Adress;
+            user.Adress2 = model.Adress2;
+            user.Email = model.Email;
+
+            
+
+            var updateResult = await UserManager.UpdateAsync(user);
+            if (updateResult.Succeeded)
+            {
+                return RedirectToAction("Checkout", "Home", model);
+                //await _context.SaveChangesAsync();
+            }
+
+            return RedirectToAction("Checkout", "Home");
+            //failed - do something else and return
         }
 
         //

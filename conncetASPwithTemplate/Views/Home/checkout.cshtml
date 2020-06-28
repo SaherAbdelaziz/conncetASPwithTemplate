@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model conncetASPwithTemplate.ViewModels.ProfileViewModel
 
 @{
     ViewBag.Title = "title";
@@ -29,91 +29,180 @@
             <div class="row">
                 <div class="col-xl-4 push-xl-8 col-lg-5 push-lg-7">
                     <div class="shadow bg-white stick-to-content mb-4">
-                        <div class="bg-dark dark p-4"><h5 class="mb-0">You order</h5></div>
-                        <table class="table-cart seed_items">
-                          
-                           
-                        </table>
+                        <div class="bg-dark dark p-4"><h5 class="mb-0">Your order</h5></div>
+                        <table class="table-cart seed_items"></table>
                         <div class="cart-summary seed_price">
-                            
+
                         </div>
                     </div>
                 </div>
                 <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
                     <div class="bg-white p-4 p-md-5 mb-4">
-                        <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Basic informations</h4>
-                        <div class="row mb-5">
-                            <div class="form-group col-sm-6">
-                                <label>Name:</label>
-                                <input type="text" class="form-control">
+                        <h4 class="border-bottom pb-4"><i class="ti ti-user mr-3 text-primary"></i>Is your data correct ? <i class="js-edit fa fa-pencil-square-o" aria-hidden="true"></i></h4>
+
+
+                        @using (Html.BeginForm("UpdateUser", "Manage", FormMethod.Post, new { @class = "row mb-5", role = "form" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary("", new { @class = " text-danger col-sm-10" })
+
+                            <div class="form-group col-sm-5">
+                                @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+                                <div class="disabled">
+                                    @Html.TextBoxFor(m => m.Name, new { @class = "form-control editInput " })
+                                </div>
                             </div>
-                            <div class="form-group col-sm-6">
-                                <label>Surename:</label>
-                                <input type="text" class="form-control">
+
+                            <div class="form-group col-sm-5">
+                                @Html.LabelFor(m => m.Phone, new { @class = "col-md-2 control-label" })
+                                <div>
+                                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control editInput" })
+                                </div>
                             </div>
-                            <div class="form-group col-sm-6">
-                                <label>Street and number:</label>
-                                <input type="text" class="form-control">
+
+                            <div class="form-group col-sm-5">
+                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                <div>
+                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control editInput " })
+                                </div>
                             </div>
-                            <div class="form-group col-sm-6">
-                                <label>City:</label>
-                                <input type="text" class="form-control">
+
+                            <div class="form-group col-sm-5">
+                                @Html.LabelFor(m => m.Adress, new { @class = "col-md-2 control-label" })
+                                <div>
+                                    @Html.TextBoxFor(m => m.Adress, new { @class = "form-control editInput" })
+                                </div>
                             </div>
-                            <div class="form-group col-sm-6">
-                                <label>Phone number:</label>
-                                <input type="text" class="form-control">
+
+                            <div class="form-group col-sm-5">
+                                @Html.LabelFor(m => m.Adress2, new { @class = "col-md-2 control-label" })
+                                <div>
+                                    @Html.TextBoxFor(m => m.Adress2, new { @class = "form-control editInput" })
+                                </div>
                             </div>
-                            <div class="form-group col-sm-6">
-                                <label>E-mail address:</label>
-                                <input type="email" class="form-control">
+
+                            <div class="form-group col-sm-10">
+                                <div class="text-center">
+                                    <input type="submit" class="js-btn-save btn btn-primary btn-lg hide" value="Save" />
+                                </div>
+                            </div>
+                        }
+
+                        <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Delivery</h4>
+                        <div class="row mb-3 ">
+                            <div class="col-md-4 col-sm-6 form-group">
+                                <label class="custom-control custom-radio w-100">
+                                    <input checked type="radio" name="Delivery_type" class="custom-control-input" value="now">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description w-100"> Now  </span>
+                                </label>
+
+                                <label class="custom-control custom-radio w-100">
+                                    <input type="radio" name="Delivery_type" class="custom-control-input" value="later">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description w-100"> Later </span>
+                                </label>
+
                             </div>
                         </div>
 
-                        <h4 class="border-bottom pb-4"><i class="ti ti-package mr-3 text-primary"></i>Delivery</h4>
-                        <div class="row mb-5">
+                        <div class="row mb-2 ">
                             <div class="form-group col-sm-6">
-                                <label>Delivery time:</label>
-                                <div class="select-container">
-                                    <select id="deliverytime" class="form-control ">
-                                        <option>As fast as possible</option>
-                                        <option>In one hour</option>
-                                        <option>In two hours</option>
+                                <div class="select-container d-none deliverytime">
+                                    <select class="form-control ">
+                                        <option>Today</option>
+                                        <option>Tomorrow</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-2 ">
+                            <div class="form-group col-sm-6">
+                                <div class="select-container d-none deliverytime">
+                                    <select class="form-control ">
+                                        <option> 16:00</option>
+                                        <option> 17:00</option>
+                                        <option> 18:00</option>
+                                        <option> 19:00</option>
+                                        <option> 20:00</option>
                                     </select>
                                 </div>
                             </div>
                         </div>
 
-                        @*<h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Payment</h4>
-                        <div class="row text-lg">
+
+                        <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Payment</h4>
+                        <div class="row mb-5 ">
                             <div class="col-md-4 col-sm-6 form-group">
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="payment_type" class="custom-control-input">
+                                <label class="custom-control custom-radio w-100">
+                                    <input checked type="radio" name="payment_type" class="custom-control-input">
                                     <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">PayPal</span>
-                                </label>
-                            </div>
-                            <div class="col-md-4 col-sm-6 form-group">
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="payment_type" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Credit Card</span>
-                                </label>
-                            </div>
-                            <div class="col-md-4 col-sm-6 form-group">
-                                <label class="custom-control custom-radio">
-                                    <input type="radio" name="payment_type" class="custom-control-input">
-                                    <span class="custom-control-indicator"></span>
-                                    <span class="custom-control-description">Cash</span>
+                                    <span class="custom-control-description w-100">Cash on delivery  </span>
                                 </label>
                             </div>
                         </div>
-                    </div>*@
+
+                    </div>
+
+
+
                     <div class="text-center">
                         <button class="btn btn-primary btn-lg js-ordernow"><span>Order now!</span></button>
                     </div>
                 </div>
+
             </div>
         </div>
 
     </section>
 </div>
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function() {
+            var editmode = true;
+            $('.editInput').attr('readonly', true);
+            $('.js-btn-save').addClass('d-none');
+
+            $('.js-edit').on('click',
+                function() {
+
+                    console.log("dsd");
+
+                    if (editmode) {
+
+                        $('.editInput').attr('readonly', false);
+                        $('.js-btn-save').removeClass('d-none');
+                        editmode = false;
+                    } else {
+                        $('.editInput').attr('readonly', true);
+                        $('.js-btn-save').addClass('d-none');
+                        editmode = true;
+                    }
+
+                });
+
+
+            $("input[type='radio']").click(function() {
+                var radioValue = $("input[name='Delivery_type']:checked").val();
+                console.log(radioValue);
+                if (radioValue == 'later') {
+                    $('.deliverytime').removeClass('d-none');
+                    //$('.deliverytime').child('div').removeClass('d-none');
+                }
+
+                else {
+                    $('.deliverytime').addClass('d-none');
+                }
+            });
+        });
+
+    </script>
+
+
+}
+
+
