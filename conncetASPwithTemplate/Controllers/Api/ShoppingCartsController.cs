@@ -64,7 +64,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                     {
                         EldahanItemId = cartItemDto.ItemId,
                         CartId = shoppingCartId,
-                        Quantity = 1,
+                        Quantity = cartItemDto.Quantity,
                         DateCreated = DateTime.Now,
                         Details = cartItemDto.Details,
                     };

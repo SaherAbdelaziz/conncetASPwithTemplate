@@ -70,3 +70,18 @@ tr {
 td.title {
     padding: 1rem 0.5rem;
 }
+
+label.tmppadding {
+    padding: 10px 0;
+    margin: 10px 0;
+    width: 50%;
+}
+
+.modal-body {
+    padding: 1.5rem 1rem;
+    
+}
+
+.panel-details.btn-sm {
+    padding: 5px 10px;
+}

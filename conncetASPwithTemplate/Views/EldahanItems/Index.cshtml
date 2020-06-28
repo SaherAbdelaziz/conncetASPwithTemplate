@@ -1,0 +1,267 @@
+﻿@model IEnumerable<conncetASPwithTemplate.Models.EldahanItems>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.EldahanPreset.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BarCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CrossCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Taxable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Assimbly)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsModifier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StandAlone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintOnChick)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintOnReport)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FollowItem)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Image_Item)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BackColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fontColor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Cost)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.OpenPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StaticPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description1)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description2)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description3)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description4)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModPrice_0)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemFont)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UseItemTimer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ItemTimerValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreateDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoServiceCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Market_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Item_Track)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrintItemOnCheck)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsParent)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rest_ID_Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Open_Food)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Mod_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pre_Paid_Card)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.EldahanPreset.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BarCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CrossCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Taxable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Assimbly)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsModifier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StandAlone)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintOnChick)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintOnReport)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FollowItem)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Image_Item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BackColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fontColor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Cost)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.OpenPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StaticPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description1)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description2)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description3)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description4)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModPrice_0)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemFont)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UseItemTimer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ItemTimerValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreateDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifiedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoServiceCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Market_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item_Track)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PrintItemOnCheck)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsParent)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Rest_ID_Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Open_Food)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Mod_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pre_Paid_Card)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

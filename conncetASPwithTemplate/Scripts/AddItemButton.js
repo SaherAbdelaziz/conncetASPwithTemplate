@@ -43,7 +43,7 @@
                          //if (data.length == 1) {
                              cartItemDto = {
                                  ItemId: myId,
-                                 ItemsId: [-1] // there is no modiferis for this item
+                                 ItemsId[0]: -1 // there is no modiferis for this item
 
                              }
                             $.ajax({

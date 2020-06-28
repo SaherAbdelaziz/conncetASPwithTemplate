@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using conncetASPwithTemplate.Models;
 using conncetASPwithTemplate.ViewModels;
 using System.Data.Entity;
+using Microsoft.AspNet.Identity;
 
 namespace conncetASPwithTemplate.Controllers
 {
@@ -109,7 +110,11 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult Checkout()
         {
-            return View();
+            var userId = User.Identity.GetUserId();
+            var myUser=_context.Users
+                .Where(u=>u.Id==userId);
+
+            return View(myUser);
         }
 
         [HttpPost]

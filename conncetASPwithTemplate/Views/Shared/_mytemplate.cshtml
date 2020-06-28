@@ -31,9 +31,10 @@
 
     <!-- CSS Theme -->
     <link id="theme" rel="stylesheet" href="../../Content/mytemplate/assets/css/themes/theme-beige.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 
     @Styles.Render("~/Content/css")
-    </head>
+</head>
 <body>
 
     <!-- Body Wrapper -->
@@ -302,42 +303,68 @@
                         <!-- price -->
                         <div class="col-3 text-lg text-right js-item-staticPrice"><!-- price --></div>
                     </div>
-                </div>
-                <div class="modal-body panel-details-container">
-                    <!-- Panel Details / Size -->
-                    <!--whe will show it from js -->
+                
+                    <div class="modal-body align-items-center">
 
-                    <div class="panel-details">
-                        <h5 class="panel-details-title">
-                            <label class="custom-control custom-radio">
-                                <input name="radio_title_size" type="radio" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                            </label>
-                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                        </h5>
-                        <div id="panelDetailsSize" class="collapse show">
-                            <form>
-                                <div class="panel-details-content">
+                        <div class="panel-details">
+                            <label class="block tmppadding">Special Instructions</label>
+                            <input type="text" class="  p-2 js-item-message " />
 
-                                </div>
-                            </form>
-                        </div>`
-                    </div>
-                    <!-- Panel Details / Other -->
-                    <div class="panel-details">
-                        <h5 class="panel-details-title">
-                            <label class="custom-control custom-radio">
-                                <input name="radio_title_other" type="radio" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                            </label>
-                            <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
-                        </h5>
-                        <div id="panelDetailsOther" class="collapse">
-                            <textarea id="#messagedetails" cols="30" rows="4" class="form-control js-item-message" placeholder="Put this any other informations..."></textarea>
+
+                            <label class="block tmppadding"> Quantity </label>
+                            <div>
+                                <input type="text" disabled class=" p-2 js-item-quantity" value="1" />
+                                <button class="js-qtyincrease btn btn-sm btn-success" >
+                                    <i class="js-qtyincrease fa fa-plus"></i>
+                                </button>
+                            
+                                <button class="js-qtydecrease btn btn-sm btn-danger">
+                                    <i class="js-qtydecrease fa fa-minus"></i>
+                                </button>
+                            </div>
+                        
                         </div>
+                        @*<a class="btn btn-large btn-primary logout" href="#">
+                        <i class="fa fa-sign-out" aria-hidden="true">Logout</i>
+                    </a>*@
+                    
+
+                        <!-- Panel Details / Size -->
+                        <!--whe will show it from js -->
+                        @*<div class="panel-details">
+            <h5 class="panel-details-title">
+                <label class="custom-control custom-radio">
+                    <input name="radio_title_size" type="radio" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                </label>
+                <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+            </h5>
+            <div id="panelDetailsSize" class="collapse show">
+                <form>
+                    <div class="panel-details-content">
+
                     </div>
+                </form>
+            </div>`
+        </div>*@
+                        <!-- Panel Details / Other -->
+                        @*<div class="panel-details">
+            <h5 class="panel-details-title">
+                <label class="custom-control custom-radio">
+                    <input name="radio_title_other" type="radio" class="custom-control-input">
+                    <span class="custom-control-indicator"></span>
+                </label>
+                <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
+            </h5>
+            <div id="panelDetailsOther" class="collapse">
+                <textarea id="#messagedetails" cols="30" rows="4" class="form-control js-item-message" placeholder="Put this any other informations..."></textarea>
+            </div>
+        </div>*@
+                    </div>
+                    
+                    
                 </div>
-            <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-add-cart" data-item-id="1" data-modiefier-id="1" data-dismiss="modal"><span>Add to Cart</span></button>
+                    <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-add-cart" data-item-id="1" data-modiefier-id="1" data-dismiss="modal"><span>Add to Cart</span></button>
 
             </div>
         </div>
@@ -401,9 +428,7 @@
         //}
 
 
-
         //var chickId = setInterval(clickedIt, 1500);
-
 
 
         //delete specifected item from cart
@@ -433,7 +458,7 @@
                                 //console.log("itemPrice " + itemPrice);
                                 //console.log("totalPrice " + totalPrice);
 
-                                var price = Number(totalPrice) - Number(itemPrice) ;
+                                var price = Number(totalPrice) - Number(itemPrice);
                                 $('.ordertotal').attr('ordertotal', price);
                                 //console.log("total " + price);
                                 // console.log($('.ordertotal').attr('ordertotal'));
@@ -442,8 +467,8 @@
                                 //console.log($('.ordertotal').text(5));
                                 //console.log($(this));
                                 var total = price + 3.99;
-                                $('.ordertotal strong').text(price+"LE");
-                                $('.total strong').text(total+"LE");
+                                $('.ordertotal strong').text(price + "LE");
+                                $('.total strong').text(total + "LE");
                             });
                         })
                         .fail(function() {
@@ -459,7 +484,7 @@
 
         // when click on item we get its information like id and name
         $(".js-chosen-item").on('click',
-            function (e) {
+            function(e) {
 
                 //refreshIntervalId = setInterval(AJAXRequest, 1500)
 
@@ -477,52 +502,57 @@
 
                 //alert("dsds");
                 var button = $(e.target);
-                if ($(e.target).get(0).tagName == "SPAN") { button = $(e.target).parent(); }
-                else { button = $(e.target); }
+                if ($(e.target).get(0).tagName == "SPAN") {
+                    button = $(e.target).parent();
+                } else {
+                    button = $(e.target);
+                }
                 console.log(button);
-                
+
                 var myId = button.attr("data-item-id");
+
                 $("#productModal .js-add-cart").attr("data-item-id", myId);
-               // console.log(button.attr("data-item-id"));
-               // console.log(myId);
+                console.log($("#productModal .js-add-cart").data("data-item-id"));
+                console.log("myId" + myId);
 
                 //first retruferd id is the selected item and other ids is modifiers
-                //$.ajax({ url: "/api/ModifiersGroups/" + myId, method: "GET" })
-                //    .done(function(data) {
-                        var index , cartItemDto;
-                //        console.log("Got in modifiers");
+                $.ajax({ url: "/api/EldahanItems/" + myId, method: "GET" })
+                    .done(function(data) {
+                        var index, cartItemDto;
+                        console.log("Got in modifiers");
+                        console.log(data);
 
-                        //$(".modal-product-details .js-item-name1").text(data[0].name);
-                        //$(".modal-product-details .js-item-name2").text(data[0].name2);
-                        //$(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
-                        //$('#panelDetailsSize .panel-details-content').empty();
+                        $(".modal-product-details .js-item-name1").text(data.name);
+                        $(".modal-product-details .js-item-name2").text(data.name2);
+                        $(".modal-product-details .js-item-staticPrice").text(data.staticPrice);
+                        $('#panelDetailsSize .panel-details-content').empty();
 
                         //first item is the chosen item
 
-                         //if (data.length == 1) {
-                             cartItemDto = {
-                                 ItemId: myId,
-                                 ItemsId: [-1] // there is no modiferis for this item
+                        ////if (data.length == 1) {
+                        //    cartItemDto = {
+                        //        ItemId: myId,
+                        //        ItemsId: [-1] // there is no modiferis for this item
 
-                             }
-                            $.ajax({
-                                    url: "/api/shoppingcarts",
-                                    method: "POST",
-                                    data: JSON.stringify(cartItemDto),
-                                    contentType: 'application/json; charset=utf-8',
-                                    dataType: "Json"
-                                })
-                                .done(function() {
-                                    console.log("got in adding itms ");
-                                    console.log(button.attr("data-item-id"));
-                                    AJAXRequest();
-                                })
-                                .fail(function() {
-                                    alert("Something failed! in adding item to cart");
-                                });
+                        ////    }
+                        //   //$.ajax({
+                        //        url: "/api/shoppingcarts",
+                        //        method: "POST",
+                        //        data: JSON.stringify(cartItemDto),
+                        //        contentType: 'application/json; charset=utf-8',
+                        //        dataType: "Json"
+                        //    })
+                        //    .done(function() {
+                        //        console.log("got in adding itms ");
+                        //        console.log(button.attr("data-item-id"));
+                        //        AJAXRequest();
+                        //    })
+                        //    .fail(function() {
+                        //        alert("Something failed! in adding item to cart");
+                        //    });
 
 
-                        //}
+                        // }
 
                         //else{
                         //       console.log("in");
@@ -568,31 +598,36 @@
                         //            $("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
                         //        });
 
-            //             }
-            //        })
-            //        .fail(function() {
-            //            alert("Something failed! in modifiers");
-            //        });
+                        //             }
+                    })
+                    .fail(function() {
+                        alert("Something failed! in modifiers");
+                    });
             });
-
 
 
         $(".js-add-cart").click(function(e) {
             var button = $(e.target);
-            if ($(e.target).get(0).tagName == "SPAN") { button = $(e.target).parent(); }
-            else { button = $(e.target); }
+            if ($(e.target).get(0).tagName == "SPAN") {
+                button = $(e.target).parent();
+            } else {
+                button = $(e.target);
+            }
 
             // console.log($('#messagedetails').text());
             // console.log($('#messagedetails'));
 
-            var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
+            //var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
             var id = $("#productModal .js-add-cart").attr("data-item-id");
-            var detailsMessage = $("#productModal .js-item-message").text();
+            var detailsMessage = $("#productModal .js-item-message").val();
+
+            var quantity = $("#productModal .js-item-quantity").val();
 
             var cartItemDto = {
                 ItemId: id,
-                ItemsId: [idModified],
-                Details:detailsMessage
+                ItemsId: [-1],
+                Details: detailsMessage,
+                Quantity: quantity
                 // phone: $("#id-phone").val()
             }
 
@@ -604,7 +639,7 @@
                     dataType: "Json"
                 })
                 .done(function() {
-                    console.log("got in adding itms has modifiers ");
+                    console.log("got in adding items has modifiers ");
                     console.log(button.attr("data-item-id"));
                     AJAXRequest();
                 })
@@ -612,14 +647,30 @@
                     alert("Something failed! in adding item to cart");
                 });
 
-           // $("#productModal").removeClass('show');
+            // $("#productModal").removeClass('show');
         });
-        $("#deliverytime").change(function () {
+        $("#deliverytime").change(function() {
             console.log("selected is " + $('#deliverytime option:selected').index());
 
             // I personally prefer using console.log(), but if you want you can still go with the alert().
             console.log($(this).children('option:selected').index());
         });
+
+
+        $(".js-qtyincrease").on('click',
+            function (e) {
+                var val = parseInt($(".js-item-quantity").val());
+                console.log(val);
+                $(".js-item-quantity").val(val+1);
+
+            });
+    
+        $(".js-qtydecrease").on('click',
+        function(e) { 
+            var val = parseInt($(".js-item-quantity").val());
+            if(val != 1)
+                 $(".js-item-quantity").val(val-1);
+    });
 
     });
 

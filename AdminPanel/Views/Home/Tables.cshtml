@@ -242,6 +242,13 @@
                                                                     <td class="center">
                                                                         @Model.MyCartItems[j].EldahanItem.StaticPrice
                                                                     </td>
+                                                                    
+                                                                    @if(!String.IsNullOrWhiteSpace(Model.MyCartItems[j].Details))
+                                                                    {
+                                                                        <td class="center">
+                                                                            @Model.MyCartItems[j].Details
+                                                                        </td>
+                                                                    }
 
                                                                     @if (@Model.MyCartItems[j].HasModifiers)
                                                                     {
