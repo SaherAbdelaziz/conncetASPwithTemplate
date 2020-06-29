@@ -1,7 +1,12 @@
 ﻿$(".js-ordernow").on('click',
             function (e) {
                 
-                
+                console.log($('.ordertotal').attr('ordertotal'));
+                if ($('.ordertotal').attr('ordertotal') == null) {
+                    alert("Please Choice Items ");
+                    return;
+                }
+
                 $(".js-ordernow span").text("Confirmed");
                 $('.js-ordernow').prop('disabled', true);
                 console.log("create order");
@@ -31,6 +36,8 @@
                             })
                             .done(function () {
                                 console.log(" all cartItems Updated");
+
+                                AJAXRequest();
 
                             })
                             .fail(function () {
