@@ -91,7 +91,7 @@ namespace conncetASPwithTemplate.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("Restaurant", throwIfV1Schema: false)
+            : base("ABTECHRestaurant", throwIfV1Schema: false)
         {
         }
 

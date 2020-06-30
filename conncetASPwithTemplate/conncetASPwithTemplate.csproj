@@ -223,10 +223,6 @@
     <Compile Include="Migrations\202005211749079_modifyDataType.Designer.cs">
       <DependentUpon>202005211749079_modifyDataType.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006011119502_AddRemovedProperty.cs" />
-    <Compile Include="Migrations\202006011119502_AddRemovedProperty.Designer.cs">
-      <DependentUpon>202006011119502_AddRemovedProperty.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\202006021206068_AddModifersTables.cs" />
     <Compile Include="Migrations\202006021206068_AddModifersTables.Designer.cs">
       <DependentUpon>202006021206068_AddModifersTables.cs</DependentUpon>
@@ -1375,8 +1371,8 @@
     <Content Include="Content\mytemplate\assets\scss\_header\_navigation-desktop.scss" />
     <Content Include="Content\mytemplate\assets\scss\_setup.scss" />
     <Content Include="Content\mytemplate\assets\scss\_widgets.scss" />
-    <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
-    <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
+    <None Include="Properties\PublishProfiles\ABTech.pubxml" />
+    <None Include="Properties\PublishProfiles\mySite.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ChceckoutForm.js" />
     <Content Include="Scripts\CartItemsOperations.js" />
@@ -1477,9 +1473,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202005211749079_modifyDataType.resx">
       <DependentUpon>202005211749079_modifyDataType.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006011119502_AddRemovedProperty.resx">
-      <DependentUpon>202006011119502_AddRemovedProperty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202006021206068_AddModifersTables.resx">
       <DependentUpon>202006021206068_AddModifersTables.cs</DependentUpon>
