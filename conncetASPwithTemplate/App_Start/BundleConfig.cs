@@ -23,7 +23,7 @@ namespace conncetASPwithTemplate
                       "~/Scripts/bootstrap.js",
                       "~/Scripts/bootbox.js",
                       "~/Scripts/ChceckoutForm.js",
-                      "~/Scripts/GetCartItems.js"));
+                      "~/Scripts/CartItemsOperations.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       //"~/Content/bootstrap.css",

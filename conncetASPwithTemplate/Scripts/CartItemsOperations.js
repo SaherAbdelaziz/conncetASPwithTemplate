@@ -63,4 +63,42 @@ function AJAXRequest() {
         }
     });
 }
-    
+
+
+$(document).on("click", ".js-cancel-item", function (e) {
+    console.log("got on delete");
+    //if ($('.js-cancel-item').length > 0) {
+    console.log(e.target);
+    //$(".js-cancel-item").click(function(e) {
+
+    var link = $(e.target);
+    $.ajax({
+            url: "/api/shoppingcarts/" + link.attr("data-item-id"),
+            method: "DELETE"
+        })
+        .done(function () {
+            link.parents("tr").fadeOut(function () {
+                var itemPrice = link.parents("tr").find('.price').attr('price');
+                var totalPrice = $('.ordertotal').attr('ordertotal');
+                //console.log("itemPrice " + itemPrice);
+                //console.log("totalPrice " + totalPrice);
+
+                var price = Number(totalPrice) - Number(itemPrice);
+                $('.ordertotal').attr('ordertotal', price);
+                //console.log("total " + price);
+                // console.log($('.ordertotal').attr('ordertotal'));
+                $(this).remove();
+
+                //console.log($('.ordertotal').text(5));
+                //console.log($(this));
+                var total = price + 3.99;
+                $('.ordertotal strong').text(price + "LE");
+                $('.total strong').text(total + "LE");
+
+                AJAXRequest();
+            });
+        })
+        .fail(function () {
+            alert("Something failed! in deleting items");
+        });
+});

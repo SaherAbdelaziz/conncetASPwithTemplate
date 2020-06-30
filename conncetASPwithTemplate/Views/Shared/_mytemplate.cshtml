@@ -230,7 +230,8 @@
                 </div>
 
                 <!-- Back To Top -->
-                <a href="#" id="back-to-top"><i class="ti ti-angle-up"></i></a>
+                
+                <button id="back-to-topBtn"> <a href="#" class="fixed " id="back-to-top"><i class="ti ti-angle-up"></i></a>  </button>
 
             </footer>
             <!-- Footer / End -->
@@ -298,7 +299,7 @@
                         <div class="col-9">
                             <!-- first and second name-->
                             <h6 class="mb-0 js-item-name1" js-item-name1=""><!-- first name--></h6>
-                            <span class="text- js-item-name2" js-item-name2=""><!-- second name--></span>
+                            <span class="text js-item-name2" js-item-name2=""><!-- second name--></span>
                         </div>
                         <!-- price -->
                         <div class="col-3 text-lg text-right js-item-staticPrice"><!-- price --></div>
@@ -308,16 +309,16 @@
 
                         <div class="panel-details">
                             <label class="block tmppadding">Special Instructions</label>
-                            <textarea class=" w-100 h-100  js-item-message "> </textarea>
+                            <textarea class="w-100 h-100  js-item-message"> </textarea>
                             <label class="block tmppadding"> Quantity </label>
                             <div>
                                 <input type="text" disabled class=" p-2 js-item-quantity" value="1" />
                                 <button class="js-qtyincrease btn btn-sm btn-success" >
-                                    <i class=" fa fa-plus"></i>
+                                    <i class="fa fa-plus"></i>
                                 </button>
                             
                                 <button class="js-qtydecrease btn btn-sm btn-danger">
-                                    <i class=" fa fa-minus"></i>
+                                    <i class="fa fa-minus"></i>
                                 </button>
                             </div>
                         
@@ -405,79 +406,39 @@
     // all apis calls
     $(document).ready(function() {
         //ViewBag.Delivery
-        AJAXRequest();
-        //var toggle = 1;
-        //function clickedIt() {
-        //    if($("#panel-cart").hasClass('show')){
-        //        clearInterval(refreshIntervalId);
-        //        console.log("work");
-        //        toggle = 0;
-        //    }
-        //    else {
-        //        if(toggle == 0)
-        //        {
-        //            refreshIntervalId = setInterval(AJAXRequest, 1500);
-        //            toggle = 1;
-        //        }
-        //        console.log("off");
-        //        console.log(refreshIntervalId);
 
-        //    }
+
+        AJAXRequest();
+
+
+
+        //Get the button:
+        mybutton = document.getElementById("back-to-topBtn");
+
+        // When the user scrolls down 20px from the top of the document, show the button
+        window.onscroll = function() {scrollFunction()};
+
+        function scrollFunction() {
+            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                mybutton.style.display = "block";
+            } else {
+                mybutton.style.display = "none";
+            }
+        }
+
+        // When the user clicks on the button, scroll to the top of the document
+        function topFunction() {
+            document.body.scrollTop = 0; // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        }
+
         //}
 
 
         //var chickId = setInterval(clickedIt, 1500);
 
 
-        //delete specifected item from cart
-        $(".js-shopping-cart").click(function(e) {
-            //clearInterval(refreshIntervalId);
-
-            $('.js-cancel-item').bind('click',
-                function(e) {
-
-                    //if ($('.js-cancel-item').length > 0) {
-                    console.log("dsds");
-                    console.log(e.target);
-                    //$(".js-cancel-item").click(function(e) {
-
-                    var link = $(e.target);
-                    //console.log(link.attr("data-item-id").get(0).tagName);
-                    //console.log(link.attr("data-item-id"));
-                    //delete specifected item from cart
-                    $.ajax({
-                            url: "/api/shoppingcarts/" + link.attr("data-item-id"),
-                            method: "DELETE"
-                        })
-                        .done(function() {
-                            link.parents("tr").fadeOut(function() {
-                                var itemPrice = link.parents("tr").find('.price').attr('price');
-                                var totalPrice = $('.ordertotal').attr('ordertotal');
-                                //console.log("itemPrice " + itemPrice);
-                                //console.log("totalPrice " + totalPrice);
-
-                                var price = Number(totalPrice) - Number(itemPrice);
-                                $('.ordertotal').attr('ordertotal', price);
-                                //console.log("total " + price);
-                                // console.log($('.ordertotal').attr('ordertotal'));
-                                $(this).remove();
-
-                                //console.log($('.ordertotal').text(5));
-                                //console.log($(this));
-                                var total = price + 3.99;
-                                $('.ordertotal strong').text(price + "LE");
-                                $('.total strong').text(total + "LE");
-                            });
-                        })
-                        .fail(function() {
-                            alert("Something failed! in deleting items");
-                        });
-                    //});
-                });
-            //else {
-            // console.log("cccc");
-            // }
-        });
+       
 
 
         // when click on item we get its information like id and name
