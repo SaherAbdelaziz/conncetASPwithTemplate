@@ -454,8 +454,10 @@
                     console.log(userAuthorized);
                     console.log("false " + userAuthorized);
 
-                    var url = '@Url.Action("Login", "Account" )';
+                    var url = '@Url.Action("Login", "Account" , new { returnUrl = "/Home/Navigation" })';
                     window.location.href = url;
+
+
                     return;
                 }
 

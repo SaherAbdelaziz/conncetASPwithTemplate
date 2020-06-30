@@ -20,7 +20,7 @@ namespace AdminPanel.Models
         public bool HasModifiers { get; set; }
         public bool Ordered { get; set; }
         public int OrderId { get; set; }
-
+        public double Delivery { get; set; }
         public int EldahanItemId { get; set; }
 
         public EldahanItems EldahanItem { get; set; }

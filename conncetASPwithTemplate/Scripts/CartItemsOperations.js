@@ -11,12 +11,15 @@ function AJAXRequest() {
         type: "GET",
         dataType: 'json',
         success: function (notifications) {
-            var delivery = 3.99, price = 0, totalPrice = 0;
+            console.log("called " + notifications);
+            console.log("called " + notifications[0]);
+            
             console.log("called " + notifications.length);
+           
             if (notifications.length === 0)
                 return $(".js-notifications-price").text('$0');
             $(".js-notifications-count").text(notifications.length);
-
+            var delivery = notifications[0].delivery, price = 0, totalPrice = 0;
             $('.seed_items').empty();
             $('.seed_price').empty();
             for (let i = 0; i < notifications.length; i++) {
@@ -48,7 +51,7 @@ function AJAXRequest() {
             var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
                 Order total: </div>  <div class="col-5 ordertotal" ordertotal=${price}><strong>  ${price}LE </strong></div>  </div>
             <div class="row"> <div class="col-7 text-right text-muted">
-                    Delivery: </div> <div class="col-5"><strong> ${delivery}LE </strong></div>  </div>
+                    Delivery: </div> <div class="col-5 delivery" delivery=${delivery}><strong> ${delivery}LE </strong></div>  </div>
 
             <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
                         Total: </div> <div class="col-5 total" total=${totalPrice}><strong> ${totalPrice}LE </strong></div> </div>`;

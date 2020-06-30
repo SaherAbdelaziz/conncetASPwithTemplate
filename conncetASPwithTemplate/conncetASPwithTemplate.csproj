@@ -279,9 +279,9 @@
     <Compile Include="Migrations\202006241456319_test.Designer.cs">
       <DependentUpon>202006241456319_test.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202006251104160_updateCartTable.cs" />
-    <Compile Include="Migrations\202006251104160_updateCartTable.Designer.cs">
-      <DependentUpon>202006251104160_updateCartTable.cs</DependentUpon>
+    <Compile Include="Migrations\202006301221129_AddmyCartItemTable.cs" />
+    <Compile Include="Migrations\202006301221129_AddmyCartItemTable.Designer.cs">
+      <DependentUpon>202006301221129_AddmyCartItemTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1520,8 +1520,8 @@
     <EmbeddedResource Include="Migrations\202006241456319_test.resx">
       <DependentUpon>202006241456319_test.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202006251104160_updateCartTable.resx">
-      <DependentUpon>202006251104160_updateCartTable.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202006301221129_AddmyCartItemTable.resx">
+      <DependentUpon>202006301221129_AddmyCartItemTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

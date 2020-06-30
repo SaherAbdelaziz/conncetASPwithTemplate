@@ -52,6 +52,13 @@ namespace conncetASPwithTemplate.Controllers.Api
             //    .AuthenticationResponseGrant.Identity.GetUserId();
             //var user = SignInManager.UserManager.Users.FirstOrDefault(x => x.Id.Equals(userId));
             //var shoppingCartId = userId;
+            var OutLetId = User.Identity.GetUserOutletId();
+            var HdAreasId = User.Identity.GetUserAreaId();
+            double? delivery = _context.HdAreasServices
+                .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId == OutLetId).Services;
+
+
+
             var cartItem = _context.MyCartItems.SingleOrDefault(
                 c => c.CartId == shoppingCartId && c.EldahanItemId == cartItemDto.ItemId && !c.Removed);
             if (cartItemDto.ItemsId[0] == -1)
@@ -67,6 +74,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                         Quantity = cartItemDto.Quantity,
                         DateCreated = DateTime.Now,
                         Details = cartItemDto.Details,
+                        Delivery = (double) delivery
                     };
 
                     _context.MyCartItems.Add(cartItem);
@@ -87,6 +95,8 @@ namespace conncetASPwithTemplate.Controllers.Api
                         CartId = shoppingCartId,
                         Quantity = 1,
                         DateCreated = DateTime.Now,
+                        Details = cartItemDto.Details,
+                        Delivery = (double)delivery,
                         HasModifiers = true,
                         //OrderId = 1
                     };

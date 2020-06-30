@@ -3,7 +3,7 @@ namespace conncetASPwithTemplate.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class updateCartTable : DbMigration
+    public partial class AddmyCartItemTable : DbMigration
     {
         public override void Up()
         {
@@ -20,6 +20,7 @@ namespace conncetASPwithTemplate.Migrations
                         HasModifiers = c.Boolean(nullable: false),
                         Ordered = c.Boolean(nullable: false),
                         OrderId = c.Int(nullable: false),
+                        Delivery = c.Double(nullable: false),
                         EldahanItemId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

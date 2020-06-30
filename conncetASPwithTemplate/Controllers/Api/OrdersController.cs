@@ -96,14 +96,6 @@ namespace conncetASPwithTemplate.Controllers.Api
             var hdAreasId = currentUser.AreaId;
 
 
-            //var CustomerName = User.Identity.GetUserFirstName();
-            //var OutLetId = User.Identity.GetUserOutletId();
-            //var HdAreasId = User.Identity.GetUserAreaId();
-            var delivery = _context.HdAreasServices
-                .SingleOrDefault(h => h.AreaId == hdAreasId && h.OutLetId==outLetId).Services;
-
-
-
             Order myOrder = new Order()
             {
                 CartId = User.Identity.GetUserId(),
@@ -115,9 +107,9 @@ namespace conncetASPwithTemplate.Controllers.Api
                 Details = tmp,
                 DateCreated = DateTime.Now,
                 DeliveryTimeIndex = order.DeliveryTimeIndex,
-                Delivery = (double) delivery,
+                Delivery = order.Delivery,
                 Price = order.Price,
-                TotalPrice = order.Price + (double)delivery,
+                TotalPrice = order.Price + order.Delivery,
 
             };
 

@@ -16,6 +16,7 @@
                 //console.log($('.ordertotal').attr('ordertotal'));
                 var order = {
                     Price: Number($('.ordertotal').attr('ordertotal')),
+                    Delivery: Number($('.delivery').attr('delivery')),
                     DeliveryTimeIndex: deliverytimeIndex
                 };
 

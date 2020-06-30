@@ -7,13 +7,13 @@ namespace conncetASPwithTemplate.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class updateCartTable : IMigrationMetadata
+    public sealed partial class AddmyCartItemTable : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(updateCartTable));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddmyCartItemTable));
         
         string IMigrationMetadata.Id
         {
-            get { return "202006251104160_updateCartTable"; }
+            get { return "202006301221129_AddmyCartItemTable"; }
         }
         
         string IMigrationMetadata.Source
