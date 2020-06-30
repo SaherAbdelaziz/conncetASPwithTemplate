@@ -32,7 +32,7 @@ function AJAXRequest() {
                         <td class ="price" price =${notifications[i].eldahanItem.staticPrice}>  ${notifications[i].eldahanItem.staticPrice}LE 
 
                         <td  class ="actions">
-                         <a href="#" class ="action-icon js-cancel-item" data-item-id=${notifications[i].id}> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></a>
+                         <button class ="btn btn-sm  text-danger btn-primary-outline action-icon js-cancel-item" data-item-id=${notifications[i].id}> <i data-item-id=${notifications[i].id}  class ="ti ti-close "></i></button>
                        
                     `;
 
@@ -79,15 +79,18 @@ $(document).on("click", ".js-cancel-item", function (e) {
         .done(function () {
             link.parents("tr").fadeOut(function () {
                 var itemPrice = link.parents("tr").find('.price').attr('price');
+                var itemQuantity = link.parents("tr").find('.quantity').attr('quantity');
                 var totalPrice = $('.ordertotal').attr('ordertotal');
-                //console.log("itemPrice " + itemPrice);
+                console.log("itemPrice " + itemPrice);
                 //console.log("totalPrice " + totalPrice);
 
-                var price = Number(totalPrice) - Number(itemPrice);
+                var price = Number(totalPrice) - (Number(itemPrice) * Number(itemQuantity));
+                console.log("Q + Price " + price);
+
                 $('.ordertotal').attr('ordertotal', price);
                 //console.log("total " + price);
                 // console.log($('.ordertotal').attr('ordertotal'));
-                $(this).remove();
+                //$(this).remove();
 
                 //console.log($('.ordertotal').text(5));
                 //console.log($(this));
