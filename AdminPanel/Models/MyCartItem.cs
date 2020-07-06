@@ -9,8 +9,6 @@ namespace AdminPanel.Models
     {
         public int Id { get; set; }
 
-        public string CartId { get; set; }
-
         public int Quantity { get; set; }
 
         public DateTime DateCreated { get; set; }
@@ -21,8 +19,11 @@ namespace AdminPanel.Models
         public bool Ordered { get; set; }
         public int OrderId { get; set; }
         public double Delivery { get; set; }
-        public int EldahanItemId { get; set; }
 
+        public int EldahanItemId { get; set; }
         public EldahanItems EldahanItem { get; set; }
+
+        public int ShoppingCartId { get; set; }
+        public Cart ShoppingCart { get; set; }
     }
 }

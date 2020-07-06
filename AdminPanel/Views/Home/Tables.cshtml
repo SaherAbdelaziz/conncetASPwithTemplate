@@ -222,7 +222,7 @@
                                                         {
 
                                                             var cartItem = Model.MyCartItems[j];
-                                                            if (cartItem.CartId == Model.Orders[i].CartId && cartItem.OrderId == Model.Orders[i].Id && cartItem.Removed)
+                                                            if (cartItem.ShoppingCartId == Model.Orders[i].CartId && cartItem.OrderId == Model.Orders[i].Id && cartItem.Removed)
                                                             {
 
                                                                 <tr>
@@ -250,34 +250,34 @@
                                                                         </td>
                                                                     }
 
-                                                                    @if (@Model.MyCartItems[j].HasModifiers)
-                                                                    {
-                                                                        var itemModifier = @Model.selectedModifiers
-                                                                            .Find(x => x.CartId == cartItem.CartId &&
-                                                                                       x.ItemId == Model.MyCartItems[j].EldahanItem.Id).ItemModifier;
+                                                                    @*@if (@Model.MyCartItems[j].HasModifiers)
+        {
+            var itemModifier = @Model.selectedModifiers
+                .Find(x => x.CartId == cartItem.ShoppingCartId &&
+                           x.ItemId == Model.MyCartItems[j].EldahanItem.Id).ItemModifier;
 
-                                                                    <tr>
-                                                                        <td class="center">
-                                                                            *@itemModifier.Name
-                                                                        </td>
+        <tr>
+            <td class="center">
+                itemModifier.Name
+            </td>
 
-                                                                        <td class="center">
-                                                                            @itemModifier.Name2
-                                                                        </td>
-
-
-                                                                        <td class="center">
-                                                                            1
-                                                                        </td>
-
-                                                                        <td class="center">
-                                                                            @itemModifier.StaticPrice
-                                                                        </td>
-
-                                                                    </tr>
+            <td class="center">
+                itemModifier.Name2
+            </td>
 
 
-                                                                }
+            <td class="center">
+                1
+            </td>
+
+            <td class="center">
+                itemModifier.StaticPrice
+            </td>
+
+        </tr>
+
+
+    }*@
                                                     </tr>
 
 

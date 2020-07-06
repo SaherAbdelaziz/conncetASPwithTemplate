@@ -37,7 +37,6 @@
                             })
                             .done(function () {
                                 console.log(" all cartItems Updated");
-
                                 AJAXRequest();
 
                             })

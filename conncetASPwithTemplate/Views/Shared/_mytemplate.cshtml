@@ -313,11 +313,11 @@
                             <label class="block tmppadding"> Quantity </label>
                             <div>
                                 <input type="text" disabled class=" p-2 js-item-quantity" value="1" />
-                                <button class="js-qtyincrease btn btn-sm btn-success" >
+                                <button class="js-qtyincrease btn btn-sm btn-secondary" >
                                     <i class="fa fa-plus"></i>
                                 </button>
                             
-                                <button class="js-qtydecrease btn btn-sm btn-danger">
+                                <button class="js-qtydecrease btn btn-sm btn-secondary">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
@@ -410,8 +410,6 @@
 
         AJAXRequest();
 
-
-
         //Get the button:
         mybutton = document.getElementById("back-to-topBtn");
 
@@ -432,14 +430,9 @@
             document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
         }
 
-        //}
 
 
         //var chickId = setInterval(clickedIt, 1500);
-
-
-       
-
 
         // when click on item we get its information like id and name
         $(".js-chosen-item").on('click',

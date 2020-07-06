@@ -38,7 +38,7 @@ namespace AdminPanel.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("Restaurant", throwIfV1Schema: false)
+            : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
 
@@ -53,6 +53,7 @@ namespace AdminPanel.Models
         public DbSet<Item> Items { get; set; }
         public DbSet<EldahanItems> EldahanItems { get; set; }
         public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Cart> Carts { get; set; }
         public DbSet<MyCartItem> MyCartItems  { get; set; }
         public DbSet<WebPreset> WebPresets { get; set; }
         public DbSet<EldahanPreset> EldahanPresets { get; set; }

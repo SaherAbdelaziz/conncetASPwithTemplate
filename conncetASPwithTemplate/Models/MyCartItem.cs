@@ -8,9 +8,7 @@ namespace conncetASPwithTemplate.Models
     public class MyCartItem
     {
         public int Id { get; set; }
-
-        public string CartId { get; set; }
-
+        
         public int Quantity { get; set; }
 
         public DateTime DateCreated { get; set; }
@@ -23,8 +21,14 @@ namespace conncetASPwithTemplate.Models
         public double Delivery { get; set; }
 
         public int EldahanItemId { get; set; }
-
         public EldahanItems EldahanItem { get; set; }
 
+        public int ShoppingCartId { get; set; }
+        public Cart ShoppingCart { get; set; }
+
+
     }
+
+
+     
 }

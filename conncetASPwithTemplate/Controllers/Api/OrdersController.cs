@@ -16,11 +16,20 @@ namespace conncetASPwithTemplate.Controllers.Api
     public class OrdersController : ApiController
     {
         private ApplicationDbContext _context = new ApplicationDbContext();
+        public string UserId;
+        public Cart Cart { get; set; }
 
+        public OrdersController()
+        {
+            UserId = User.Identity.GetUserId();
+            Cart = _context.Carts
+                .SingleOrDefault(c => c.ApplicationUserId == UserId);
+        }
         // GET: api/Orders
         public IQueryable<Order> GetOrders()
         {
             return _context.Orders;
+           
         }
 
         // GET: api/Orders/5
@@ -82,11 +91,11 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             string tmp = "";
             var Idd = User.Identity.GetUserId();
-            var cartItems = _context.MyCartItems.Where(c => c.CartId == Idd).Include(c=> c.EldahanItem).ToList();
-            foreach (var cart in cartItems)
-            {
-                tmp += cart.EldahanItem.Name + " ";
-            }
+            //var cartItems = _context.MyCartItems.Where(c => c.ShoppingCartId == Idd).Include(c=> c.EldahanItem).ToList();
+            //foreach (var cart in cartItems)
+            //{
+            //    tmp += cart.EldahanItem.Name + " ";
+            //}
 
             string currentUserId = User.Identity.GetUserId();
             ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
@@ -98,7 +107,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             Order myOrder = new Order()
             {
-                CartId = User.Identity.GetUserId(),
+                CartId = Cart.Id,
                 CustomerName = CustomerName,
                 CustomerPhone = CustomerPhone,
                 OutLetId = outLetId,

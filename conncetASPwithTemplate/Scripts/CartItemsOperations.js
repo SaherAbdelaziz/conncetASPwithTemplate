@@ -16,8 +16,13 @@ function AJAXRequest() {
             
             console.log("called " + notifications.length);
            
-            if (notifications.length === 0)
-                return $(".js-notifications-price").text('$0');
+            if (notifications.length === 0) {
+                $('.seed_items').empty();
+                $('.seed_price').empty();
+                $(".js-notifications-price").text('$0');
+                $(".js-notifications-count").text(0);
+                return;
+            }
             $(".js-notifications-count").text(notifications.length);
             var delivery = notifications[0].delivery, price = 0, totalPrice = 0;
             $('.seed_items').empty();

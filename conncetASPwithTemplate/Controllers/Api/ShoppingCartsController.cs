@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Results;
 using conncetASPwithTemplate.Dtos;
 using conncetASPwithTemplate.Models;
 using Microsoft.AspNet.Identity;
@@ -14,25 +15,36 @@ namespace conncetASPwithTemplate.Controllers.Api
     [Authorize]
     public class ShoppingCartsController : ApiController
     {
-
+        public string UserId;
         private ApplicationDbContext _context;
+        public Cart Cart { get; set; }
 
         public ShoppingCartsController()
         {
-            _context = new ApplicationDbContext();
+           _context = new ApplicationDbContext();
+           UserId = User.Identity.GetUserId();
+           Cart =  _context.Carts
+                .SingleOrDefault(c => c.ApplicationUserId == UserId);
+           if (Cart == null)
+           {
+               Cart = new Cart()
+               {
+                   ApplicationUserId = UserId
+               };
+               _context.Carts.Add(Cart);
+                _context.SaveChanges();
+           }
         }
 
         // GET: api/ShoppingCarts
         public IEnumerable<MyCartItem> Get()
         {
-            var userId = User.Identity.GetUserId();
+          var items = _context.MyCartItems
+            .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed)
+            .Include(c => c.EldahanItem).ToList();
 
 
-            var items = _context.MyCartItems
-                .Where(c => c.CartId == userId && !c.Removed)
-                .Include(c => c.EldahanItem).ToList();
-
-            return items;
+          return items;
         }
 
         // GET: api/ShoppingCarts/5
@@ -43,78 +55,72 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         // POST: api/ShoppingCarts
         [HttpPost]
-        //[Route("api/ShoppingCarts/{id1}/{id2}")]
         public MyCartItem Post(CartItemDto cartItemDto)
         {
-            var shoppingCartId = User.Identity.GetUserId();
-            //var userId = string userId = SignInManager
-            //    .AuthenticationManager
-            //    .AuthenticationResponseGrant.Identity.GetUserId();
-            //var user = SignInManager.UserManager.Users.FirstOrDefault(x => x.Id.Equals(userId));
-            //var shoppingCartId = userId;
+
             var OutLetId = User.Identity.GetUserOutletId();
             var HdAreasId = User.Identity.GetUserAreaId();
             double? delivery = _context.HdAreasServices
                 .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId == OutLetId).Services;
 
 
+            
+                var cartItem = _context.MyCartItems.SingleOrDefault(
+                c => c.ShoppingCartId == Cart.Id && c.EldahanItemId == cartItemDto.ItemId && !c.Removed);
 
-            var cartItem = _context.MyCartItems.SingleOrDefault(
-                c => c.CartId == shoppingCartId && c.EldahanItemId == cartItemDto.ItemId && !c.Removed);
-            if (cartItemDto.ItemsId[0] == -1)
-            {
-                //var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
-                if (cartItem == null)
+                if (cartItemDto.ItemsId[0] == -1)
                 {
-                    // Create a new cart item if no cart item exists.                 
-                    cartItem = new MyCartItem()
+                    //var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
+                    if (cartItem == null)
                     {
-                        EldahanItemId = cartItemDto.ItemId,
-                        CartId = shoppingCartId,
-                        Quantity = cartItemDto.Quantity,
-                        DateCreated = DateTime.Now,
-                        Details = cartItemDto.Details,
-                        Delivery = (double) delivery
-                    };
+                        // Create a new cart item if no cart item exists.                 
+                        cartItem = new MyCartItem()
+                        {
+                            EldahanItemId = cartItemDto.ItemId,
+                            ShoppingCartId = Cart.Id,
+                            Quantity = cartItemDto.Quantity,
+                            DateCreated = DateTime.Now,
+                            Details = cartItemDto.Details,
+                            Delivery = (double)delivery
+                        };
 
-                    _context.MyCartItems.Add(cartItem);
+                        _context.MyCartItems.Add(cartItem);
+                    }
+                    else
+                        cartItem.Quantity++;
+
                 }
+
                 else
-                    cartItem.Quantity++;
-
-            }
-
-            else
-            {
-                if (cartItem == null)
                 {
-                    // Create a new cart item if no cart item exists.                 
-                    cartItem = new MyCartItem()
+                    if (cartItem == null)
                     {
-                        EldahanItemId = cartItemDto.ItemId,
-                        CartId = shoppingCartId,
-                        Quantity = 1,
-                        DateCreated = DateTime.Now,
-                        Details = cartItemDto.Details,
-                        Delivery = (double)delivery,
-                        HasModifiers = true,
-                        //OrderId = 1
-                    };
+                        // Create a new cart item if no cart item exists.                 
+                        cartItem = new MyCartItem()
+                        {
+                            EldahanItemId = cartItemDto.ItemId,
+                            ShoppingCartId = Cart.Id,
+                            Quantity = 1,
+                            DateCreated = DateTime.Now,
+                            Details = cartItemDto.Details,
+                            Delivery = (double)delivery,
+                            HasModifiers = true,
+                            //OrderId = 1
+                        };
 
-                    var selectedModifiers =
-                        new SelectedModifiers(cartItemDto.ItemId, 
-                            shoppingCartId, cartItemDto.ItemsId[0]);
-                    
+                        var selectedModifiers =
+                            new SelectedModifiers(cartItemDto.ItemId,
+                                Cart.ApplicationUserId, cartItemDto.ItemsId[0]);
 
-                    _context.MyCartItems.Add(cartItem);
-                    _context.SelectedModifiers.Add(selectedModifiers);
+
+                        _context.MyCartItems.Add(cartItem);
+                        _context.SelectedModifiers.Add(selectedModifiers);
+                    }
+                    else
+                        cartItem.Quantity++;
                 }
-                else
-                    cartItem.Quantity++;
-            }
 
-
-            _context.SaveChanges();
+                _context.SaveChanges();
 
             return cartItem;
         }
@@ -125,14 +131,16 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         }
 
+        // here we get all cart items and set its order id to orderId
         public void Put()
         {
+
             var cartItmes = _context.MyCartItems.ToList();
             var order = _context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
-            var userId = User.Identity.GetUserId();
+
             foreach (var cartItme in cartItmes)
             {
-                if(cartItme.CartId == userId && !cartItme.Removed)
+                if(cartItme.ShoppingCartId == Cart.Id && !cartItme.Removed)
                 {
                     cartItme.OrderId = order.Id;
                     cartItme.Removed = true;
@@ -145,9 +153,8 @@ namespace conncetASPwithTemplate.Controllers.Api
         // DELETE: api/ShoppingCarts/5
         public IHttpActionResult Delete(int id)
         {
-            var userId = User.Identity.GetUserId();
             var cartItem = _context.MyCartItems
-                .Single(c => c.Id == id && c.CartId == userId);
+                .Single(c => c.Id == id && c.ShoppingCartId == Cart.Id);
 
             if (cartItem.Removed)
                 return Ok();

@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +7,8 @@ using conncetASPwithTemplate.Models;
 using conncetASPwithTemplate.ViewModels;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace conncetASPwithTemplate.Controllers
 {
@@ -14,23 +16,40 @@ namespace conncetASPwithTemplate.Controllers
     public class HomeController : Controller
     {
         private ApplicationDbContext _context;
+        public string UserId;
 
+        public Cart Cart { get; set; }
 
         public HomeController()
         {
             _context = new ApplicationDbContext();
+            bool logged = (System.Web.HttpContext.Current.User != null) &&
+                         System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+            if (logged)
+            {
+                ApplicationUser user = System.Web.HttpContext.Current.GetOwinContext().GetUserManager<ApplicationUserManager>().FindById(System.Web.HttpContext.Current.User.Identity.GetUserId());
+                UserId = user.Id;
+                Cart = _context.Carts
+                    .SingleOrDefault(c => c.ApplicationUserId == UserId);
+                if (Cart == null)
+                {
+                    Cart = new Cart()
+                    {
+                        ApplicationUserId = UserId,
+
+                    };
+                    _context.Carts.Add(Cart);
+                    _context.SaveChanges();
+                }
+            }
+
+          
+            
         }
 
         public ActionResult Index()
         {
-
-            //var OutLetId = User.Identity.GetUserOutletId();
-            //var HdAreasId = User.Identity.GetUserAreaId();
-            //var delivery = _context.HdAreasServices
-            //    .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId == OutLetId).Services;
-
-
-            //ViewBag.Delivery = delivery;
             return View();
         }
 
