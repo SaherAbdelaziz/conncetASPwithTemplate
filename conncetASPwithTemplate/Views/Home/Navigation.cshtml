@@ -89,20 +89,32 @@
 
                                         <div class="menu-item menu-list-item">
                                             <div class="row align-items-center">
-                                                <div class="col-sm-6 mb-2 mb-sm-0">
+                                                <div class="col-sm-6">
                                                     <h6 class="mb-0">@Model.Items[j].Name</h6>
                                                     <span class="text-muted text-sm">@Model.Items[j].Name2</span>
+                                                    @if (Model.Items[j].Cost != 0)
+                                                    {
+                                                        if (Model.Items[j].Cost != 0)
+                                                        {
+                                                                <span class="text-sm text-warning"> this item is not available right now</span>
+                                                            
+                                                        }
+                                                    }
                                                 </div>
+                                               
+                                             
                                                 <div class="col-sm-6 text-sm-right">
-                                                    <span class="text-md mr-4"><span class="text-muted"></span> @Model.Items[j].StaticPrice LE</span>
-                                                    <button 
-                                                        class="btn btn-outline-secondary btn-sm js-chosen-item "
-                                                        data-item-id="@Model.Items[j].Id" 
-                                                        data-item-modefiers="@myJSON"
-                                                    data-target="#productModal" data-toggle="modal">
-                                                        <span>Add to cart</span>
-                                                    </button>
-                                                    
+                                                    <span class="text-md mr-1"><span class="text-muted"></span> @Model.Items[j].StaticPrice LE</span>
+                                                    @if (Model.Items[j].Cost == 0)
+                                                    {
+                                                        <button
+                                                            class="btn btn-outline-secondary btn-sm js-chosen-item "
+                                                            data-item-id="@Model.Items[j].Id"
+                                                            data-item-modefiers="@myJSON"
+                                                            data-target="#productModal" data-toggle="modal">
+                                                            <span>Add to cart</span>
+                                                        </button>
+                                                    }
                                                     @*<button  class="btn btn-outline-secondary btn-sm js-chosen-item "
                                                              data-item-id="@Model.Items[j].Id" 
                                                              data-item-modefiers="@myJSON">@*

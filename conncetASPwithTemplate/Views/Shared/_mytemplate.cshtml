@@ -403,232 +403,242 @@
 
     <script>
 
-    // all apis calls
-    $(document).ready(function() {
-        //ViewBag.Delivery
+        // all apis calls
+        $(document).ready(function() {
+            //ViewBag.Delivery
 
 
-        AJAXRequest();
+            AJAXRequest();
 
-        //Get the button:
-        mybutton = document.getElementById("back-to-topBtn");
+            //Get the button:
+            mybutton = document.getElementById("back-to-topBtn");
 
-        // When the user scrolls down 20px from the top of the document, show the button
-        window.onscroll = function() {scrollFunction()};
+            // When the user scrolls down 20px from the top of the document, show the button
+            window.onscroll = function() {scrollFunction()};
 
-        function scrollFunction() {
-            if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
-            }
-        }
-
-        // When the user clicks on the button, scroll to the top of the document
-        function topFunction() {
-            document.body.scrollTop = 0; // For Safari
-            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
-        }
-
-
-
-        //var chickId = setInterval(clickedIt, 1500);
-
-        // when click on item we get its information like id and name
-        $(".js-chosen-item").on('click',
-            function(e) {
-
-                //refreshIntervalId = setInterval(AJAXRequest, 1500)
-
-
-                var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
-
-                if (!userAuthorized) {
-                    console.log(userAuthorized);
-                    console.log("false " + userAuthorized);
-
-                    var url = '@Url.Action("Login", "Account" , new { returnUrl = "/Home/Navigation" })';
-                    window.location.href = url;
-
-
-                    return;
+            function scrollFunction() {
+                if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                    mybutton.style.display = "block";
+                } else {
+                    mybutton.style.display = "none";
                 }
+            }
 
-                //alert("dsds");
+            // When the user clicks on the button, scroll to the top of the document
+            function topFunction() {
+                document.body.scrollTop = 0; // For Safari
+                document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+            }
+
+
+
+            //var chickId = setInterval(clickedIt, 1500);
+
+            // when click on item we get its information like id and name
+            $(".js-chosen-item").on('click',
+                function(e) {
+
+                    //refreshIntervalId = setInterval(AJAXRequest, 1500)
+
+
+                    var userAuthorized = @User.Identity.IsAuthenticated.ToString().ToLower();
+
+                    if (!userAuthorized) {
+                        console.log(userAuthorized);
+                        console.log("false " + userAuthorized);
+
+                        var url = '@Url.Action("Login", "Account" , new { returnUrl = "/Home/Navigation" })';
+                        window.location.href = url;
+
+
+                        return;
+                    }
+
+                    //alert("dsds");
+                    var button = $(e.target);
+                    if ($(e.target).get(0).tagName == "SPAN") {
+                        button = $(e.target).parent();
+                    } else {
+                        button = $(e.target);
+                    }
+                    console.log(button);
+
+                    var myId = button.attr("data-item-id");
+
+                    $("#productModal .js-add-cart").attr("data-item-id", myId);
+                    console.log($("#productModal .js-add-cart").data("data-item-id"));
+                    console.log("myId" + myId);
+
+                    //first retruferd id is the selected item and other ids is modifiers
+                    $.ajax({ url: "/api/EldahanItems/" + myId, method: "GET" })
+                        .done(function(data) {
+                            var index, cartItemDto;
+                            console.log("Got in modifiers");
+                            console.log(data);
+
+                            $(".modal-product-details .js-item-name1").text(data.name);
+                            $(".modal-product-details .js-item-name2").text(data.name2);
+                            $(".modal-product-details .js-item-staticPrice").text(data.staticPrice);
+                            $(".modal-product-details .js-item-quantity").val(1);
+                            $(".modal-product-details .js-item-message").val('');
+                            $('#panelDetailsSize .panel-details-content').empty();
+
+                            //first item is the chosen item
+
+                            ////if (data.length == 1) {
+                            //    cartItemDto = {
+                            //        ItemId: myId,
+                            //        ItemsId: [-1] // there is no modiferis for this item
+
+                            ////    }
+                            //   //$.ajax({
+                            //        url: "/api/shoppingcarts",
+                            //        method: "POST",
+                            //        data: JSON.stringify(cartItemDto),
+                            //        contentType: 'application/json; charset=utf-8',
+                            //        dataType: "Json"
+                            //    })
+                            //    .done(function() {
+                            //        console.log("got in adding itms ");
+                            //        console.log(button.attr("data-item-id"));
+                            //        AJAXRequest();
+                            //    })
+                            //    .fail(function() {
+                            //        alert("Something failed! in adding item to cart");
+                            //    });
+
+
+                            // }
+
+                            //else{
+                            //       console.log("in");
+                            //     $('#productModal').modal('show');
+                            //    //let dataSize = ` <h5 class="panel-details-title">
+                            //    //    <label class="custom-control custom-radio">
+                            //    //    <input name="radio_title_size" type="radio" class="custom-control-input">
+                            //    //    <span class="custom-control-indicator"></span>
+                            //    //    </label>
+                            //    //    <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                            //    //    </h5>
+                            //    //    <div id="panelDetailsSize" class="collapse show">
+                            //    //    <form>
+                            //    //    <div class="panel-details-content">
+
+                            //    //    </div>
+                            //    //    </form>
+                            //    //    </div>`;
+                            //    //$('#panel-details').append(dataSize);
+
+                            //        for (let j = 1; j < data.length; j++)
+                            //        {
+
+                            //            // add modifiers to details of item
+                            //            let data1 = `<div class="form-group">
+                            //        <label class ="custom-control custom-radio" >
+                            //        <input name="radio_size" type="radio" value=${data[j].name}>
+                            //        <span class ="custom-control-indicator"></span>
+                            //        <span class ="custom-control-description">${data[j].name}} -(${data[j].staticPrice}) </span>
+                            //        </label>
+                            //        </div>`;
+
+                            //            $('#panelDetailsSize .panel-details-content').append(data1);
+                            //        }
+
+                            //        //get the selected radio button
+
+                            //        $("input[name='radio_size']").click(function()
+                            //        {
+
+                            //            index = $("input[name='radio_size']").index($("input[name='radio_size']:checked")) + 1;
+
+                            //            $("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
+                            //        });
+
+                            //             }
+                        })
+                        .fail(function() {
+                            alert("Something failed! in modifiers");
+                        });
+                });
+
+
+            $(".js-add-cart").click(function(e) {
                 var button = $(e.target);
                 if ($(e.target).get(0).tagName == "SPAN") {
                     button = $(e.target).parent();
                 } else {
                     button = $(e.target);
                 }
-                console.log(button);
 
-                var myId = button.attr("data-item-id");
+                // console.log($('#messagedetails').text());
+                // console.log($('#messagedetails'));
 
-                $("#productModal .js-add-cart").attr("data-item-id", myId);
-                console.log($("#productModal .js-add-cart").data("data-item-id"));
-                console.log("myId" + myId);
+                //var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
+                var id = $("#productModal .js-add-cart").attr("data-item-id");
+                var detailsMessage = $("#productModal .js-item-message").val();
 
-                //first retruferd id is the selected item and other ids is modifiers
-                $.ajax({ url: "/api/EldahanItems/" + myId, method: "GET" })
-                    .done(function(data) {
-                        var index, cartItemDto;
-                        console.log("Got in modifiers");
-                        console.log(data);
+                var quantity = $("#productModal .js-item-quantity").val();
 
-                        $(".modal-product-details .js-item-name1").text(data.name);
-                        $(".modal-product-details .js-item-name2").text(data.name2);
-                        $(".modal-product-details .js-item-staticPrice").text(data.staticPrice);
-                        $(".modal-product-details .js-item-quantity").val(1);
-                        $(".modal-product-details .js-item-message").val('');
-                        $('#panelDetailsSize .panel-details-content').empty();
+                var cartItemDto = {
+                    ItemId: id,
+                    ItemsId: [-1],
+                    Details: detailsMessage,
+                    Quantity: quantity
+                    // phone: $("#id-phone").val()
+                }
 
-                        //first item is the chosen item
-
-                        ////if (data.length == 1) {
-                        //    cartItemDto = {
-                        //        ItemId: myId,
-                        //        ItemsId: [-1] // there is no modiferis for this item
-
-                        ////    }
-                        //   //$.ajax({
-                        //        url: "/api/shoppingcarts",
-                        //        method: "POST",
-                        //        data: JSON.stringify(cartItemDto),
-                        //        contentType: 'application/json; charset=utf-8',
-                        //        dataType: "Json"
-                        //    })
-                        //    .done(function() {
-                        //        console.log("got in adding itms ");
-                        //        console.log(button.attr("data-item-id"));
-                        //        AJAXRequest();
-                        //    })
-                        //    .fail(function() {
-                        //        alert("Something failed! in adding item to cart");
-                        //    });
-
-
-                        // }
-
-                        //else{
-                        //       console.log("in");
-                        //     $('#productModal').modal('show');
-                        //    //let dataSize = ` <h5 class="panel-details-title">
-                        //    //    <label class="custom-control custom-radio">
-                        //    //    <input name="radio_title_size" type="radio" class="custom-control-input">
-                        //    //    <span class="custom-control-indicator"></span>
-                        //    //    </label>
-                        //    //    <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                        //    //    </h5>
-                        //    //    <div id="panelDetailsSize" class="collapse show">
-                        //    //    <form>
-                        //    //    <div class="panel-details-content">
-
-                        //    //    </div>
-                        //    //    </form>
-                        //    //    </div>`;
-                        //    //$('#panel-details').append(dataSize);
-
-                        //        for (let j = 1; j < data.length; j++)
-                        //        {
-
-                        //            // add modifiers to details of item
-                        //            let data1 = `<div class="form-group">
-                        //        <label class ="custom-control custom-radio" >
-                        //        <input name="radio_size" type="radio" value=${data[j].name}>
-                        //        <span class ="custom-control-indicator"></span>
-                        //        <span class ="custom-control-description">${data[j].name}} -(${data[j].staticPrice}) </span>
-                        //        </label>
-                        //        </div>`;
-
-                        //            $('#panelDetailsSize .panel-details-content').append(data1);
-                        //        }
-
-                        //        //get the selected radio button
-
-                        //        $("input[name='radio_size']").click(function()
-                        //        {
-
-                        //            index = $("input[name='radio_size']").index($("input[name='radio_size']:checked")) + 1;
-
-                        //            $("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
-                        //        });
-
-                        //             }
-                    })
-                    .fail(function() {
-                        alert("Something failed! in modifiers");
-                    });
-            });
-
-
-        $(".js-add-cart").click(function(e) {
-            var button = $(e.target);
-            if ($(e.target).get(0).tagName == "SPAN") {
-                button = $(e.target).parent();
-            } else {
-                button = $(e.target);
-            }
-
-            // console.log($('#messagedetails').text());
-            // console.log($('#messagedetails'));
-
-            //var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
-            var id = $("#productModal .js-add-cart").attr("data-item-id");
-            var detailsMessage = $("#productModal .js-item-message").val();
-
-            var quantity = $("#productModal .js-item-quantity").val();
-
-            var cartItemDto = {
-                ItemId: id,
-                ItemsId: [-1],
-                Details: detailsMessage,
-                Quantity: quantity
-                // phone: $("#id-phone").val()
-            }
-
-            $.ajax({
+                $.ajax({
                     url: "/api/shoppingcarts",
                     method: "POST",
                     data: JSON.stringify(cartItemDto),
                     contentType: 'application/json; charset=utf-8',
                     dataType: "Json"
                 })
-                .done(function() {
-                    console.log("got in adding items has modifiers ");
-                    console.log(button.attr("data-item-id"));
-                    AJAXRequest();
-                })
-                .fail(function() {
-                    alert("Something failed! in adding item to cart");
+                    .done(function() {
+                        console.log("got in adding items has modifiers ");
+                        console.log(button.attr("data-item-id"));
+                        AJAXRequest();
+                    })
+                    .fail(function() {
+                        alert("Something failed! in adding item to cart");
+                    });
+
+                // $("#productModal").removeClass('show');
+            });
+            $("#deliverytime").change(function() {
+                console.log("selected is " + $('#deliverytime option:selected').index());
+
+                // I personally prefer using console.log(), but if you want you can still go with the alert().
+                console.log($(this).children('option:selected').index());
+            });
+
+
+            $(".js-qtyincrease").on('click',
+                function (e) {
+                    var val = parseInt($(".js-item-quantity").val());
+                    console.log(val);
+                    $(".js-item-quantity").val(val+1);
+
                 });
 
-            // $("#productModal").removeClass('show');
-        });
-        $("#deliverytime").change(function() {
-            console.log("selected is " + $('#deliverytime option:selected').index());
-
-            // I personally prefer using console.log(), but if you want you can still go with the alert().
-            console.log($(this).children('option:selected').index());
-        });
-
-
-        $(".js-qtyincrease").on('click',
-            function (e) {
+            $(".js-qtydecrease").on('click',
+            function(e) {
                 var val = parseInt($(".js-item-quantity").val());
-                console.log(val);
-                $(".js-item-quantity").val(val+1);
+                if(val != 1)
+                    $(".js-item-quantity").val(val-1);
+
+
+
 
             });
-    
-        $(".js-qtydecrease").on('click',
-        function(e) { 
-            var val = parseInt($(".js-item-quantity").val());
-            if(val != 1)
-                 $(".js-item-quantity").val(val-1);
-    });
-
-    });
+            
+            var popUpList= '<input type="radio">A<br> <input type="radio">B<br> <input type="radio">C',
+                dialogHtml = $.parseHTML(popUpList);
+            $(".showPopUpButton").on('click',
+                function(e) {
+                    $( "#dialog" ).html(dialogHtml).dialog();
+                });
+        });
 
 
     </script>
