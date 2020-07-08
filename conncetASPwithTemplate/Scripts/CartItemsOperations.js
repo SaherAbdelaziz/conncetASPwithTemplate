@@ -19,7 +19,7 @@ function AJAXRequest() {
             if (notifications.length === 0) {
                 $('.seed_items').empty();
                 $('.seed_price').empty();
-                $(".js-notifications-price").text('$0');
+                $(".js-notifications-price").text('0 LE');
                 $(".js-notifications-count").text(0);
                 return;
             }

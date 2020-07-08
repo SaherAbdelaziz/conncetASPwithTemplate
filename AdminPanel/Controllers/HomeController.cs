@@ -9,6 +9,7 @@ using AdminPanel.ViewModels;
 
 namespace AdminPanel.Controllers
 {
+    [Authorize(Roles = "Manger")]
     public class HomeController : Controller
     {
         private ApplicationDbContext _context;
@@ -21,7 +22,29 @@ namespace AdminPanel.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            var orders = _context.Orders
+                .Include(o => o.OutLet)
+                .Include(o => o.HdAreas)
+                .Include(o => o.Services)
+                .ToList();
+
+            var cartItems = _context.MyCartItems
+                .Include(c => c.EldahanItem)
+                .ToList();
+
+            var selectedModifiers = _context.SelectedModifiers
+                .Include(m => m.ItemModifier)
+                .ToList();
+
+
+            var ordersViewModelViewModel = new OrdersViewModel()
+            {
+                MyCartItems = cartItems,
+                Orders = orders,
+                selectedModifiers = selectedModifiers,
+            };
+
+            return View("Tables" , ordersViewModelViewModel);
         }
 
         public ActionResult About()

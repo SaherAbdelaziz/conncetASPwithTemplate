@@ -11,42 +11,56 @@
     <ul class="nav nav-list">
 
         <li class="">
-            <a href="#" class="dropdown-toggle">
-                <i class="menu-icon fa fa-list"></i>
-                <span class="menu-text"> Tables </span>
+            <li class="">
+                <a href="@Url.Action("Tables", "Home")">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Orders
+                </a>
 
-                <b class="arrow fa fa-angle-down"></b>
-            </a>
+                <b class="arrow"></b>
+            </li>
 
-            <b class="arrow"></b>
+            <li class="">
+                <a href="@Url.Action("Items", "Home")">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Items
+                </a>
 
-            <ul class="submenu">
+                <b class="arrow"></b>
+            </li>
+                
+            @if (!User.Identity.IsAuthenticated)
+            {
                 <li class="">
-                    <a href="@Url.Action("Tables", "Home")">
+                    <a href="@Url.Action("Login", "Account")">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Orders
+                        Login
                     </a>
 
                     <b class="arrow"></b>
                 </li>
+            }
+            
+            @if (User.Identity.IsAuthenticated)
+            {
+                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm"}))
+                {
+                    @Html.AntiForgeryToken()
+                    <li>
+                        <a href="javascript:document.getElementById('logoutForm').submit()">
+                            <i class="menu-icon fa fa-caret-right col-md-2"></i>
+                            Log off
+                        </a>
+                        <b class="arrow"></b>   
+                    </li>
 
-                <li class="">
-                    <a href="@Url.Action("Items", "Home")">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Items
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-
-            </ul>
+                }
+            }
         </li>
-
+   
+       
     </ul><!-- /.nav-list -->
 
-    <div class="sidebar-toggle sidebar-collapse" id="sidebar-collapse">
-        <i id="sidebar-toggle-icon" class="ace-icon fa fa-angle-double-left ace-save-state" data-icon1="ace-icon fa fa-angle-double-left" data-icon2="ace-icon fa fa-angle-double-right"></i>
-    </div>
 </div>
 
 
