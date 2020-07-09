@@ -9,8 +9,10 @@ namespace AdminPanel
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/app").Include(
-                        "~/Scripts/app/services/orderServices.js" ,
-                        "~/Scripts/app/controllers/orderController.js"));
+                        "~/Scripts/app/services/orderService.js" ,
+                        "~/Scripts/app/services/itemService.js" ,
+                        "~/Scripts/app/controllers/orderController.js",
+                        "~/Scripts/app/controllers/itemController.js"));
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 

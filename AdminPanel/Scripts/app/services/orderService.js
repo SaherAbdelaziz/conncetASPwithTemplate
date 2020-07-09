@@ -1,4 +1,4 @@
-﻿var OrderServices = function() {
+﻿var OrderService = function() {
 
 
     var callOrderGetApi = function (success, error) {

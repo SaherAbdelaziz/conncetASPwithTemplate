@@ -1,8 +1,8 @@
-﻿var OrderController = function (orderServices) {
+﻿var OrderController = function (orderService) {
 
     var getOrders = function (success, error) {
         console.log("start calling order api");
-        orderServices.callOrderGetApi(success, error);
+        orderService.callOrderGetApi(success, error);
     }
     
     var success = function (orders) {
@@ -24,4 +24,4 @@
     return {
         init: init
     }
-}(OrderServices)
+}(OrderService)

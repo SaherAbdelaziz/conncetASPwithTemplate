@@ -207,6 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\EldahanItemsController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -535,8 +536,10 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\app\controllers\itemController.js" />
     <Content Include="Scripts\app\controllers\orderController.js" />
-    <Content Include="Scripts\app\services\orderServices.js" />
+    <Content Include="Scripts\app\services\itemService.js" />
+    <Content Include="Scripts\app\services\orderService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
