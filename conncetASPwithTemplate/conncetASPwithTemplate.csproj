@@ -1380,6 +1380,7 @@
     <Content Include="Content\mytemplate\assets\scss\_header\_navigation-desktop.scss" />
     <Content Include="Content\mytemplate\assets\scss\_setup.scss" />
     <Content Include="Content\mytemplate\assets\scss\_widgets.scss" />
+    <Content Include="Content\mytemplate\sound\piece-of-cake.m4r" />
     <None Include="Properties\PublishProfiles\ABTech.pubxml" />
     <None Include="Properties\PublishProfiles\mySite.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

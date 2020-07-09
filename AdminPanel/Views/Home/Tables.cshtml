@@ -312,16 +312,47 @@
 
 
 <!-- PAGE CONTENT ENDS -->
-</div><!-- /.page-content -->
-<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autoplay="false" ></audio>
+</div><!-- /.page-content ../../Content/mytemplate/assets/ -->
+@*<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autoplay="false" ></audio>*@
+<audio id="audio" >
+    <source src="@Url.Content("../../Content/AdminPanel/assets/sound/piece-of-cake.mp3")"  />
+</audio>
 <a class="sound"> Play</a>
 </div>
 
         </div><!-- /.main-content -->
         <!-- inline scripts related to this page -->
         <script>
-            $(document).ready(function () {
+            $(document).ready(function() {
+                //$.ajax({
+                //        Url: "/api/Orders/",
+                //        type: "GET",
+                //        dataType: "json"
+                //    })
+                //    .done(function() {
+                //      alert("ok");
 
+                //    })
+                //    .fail(function () {
+                //        alert("fail");
+
+
+                //    });
+                OrderController.init();
+                //$.ajax({
+                //    url: "/api/Orders",
+                //    type: "GET",
+                //    dataType: 'json',
+                //    success: function (notifications) {
+                //        alert("ok");
+                //    },
+                //    error: function (xhr, status, error) {
+                //        alert("fail");
+                //        //
+                //    }
+                //});
+            
+            
                 //$("#simple-table").DataTable();
 
                 //And for the first simple table, which doesn't have TableTools or dataTables

@@ -367,6 +367,8 @@
     <Content Include="Content\AdminPanel\assets\js\spinbox.min.js" />
     <Content Include="Content\AdminPanel\assets\js\tree.min.js" />
     <Content Include="Content\AdminPanel\assets\js\wizard.min.js" />
+    <Content Include="Content\AdminPanel\assets\sound\file_example_MP3_700KB.mp3" />
+    <Content Include="Content\AdminPanel\assets\sound\piece-of-cake.mp3" />
     <Content Include="Content\AdminPanel\assets\swf\flashExport.swf" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
@@ -533,6 +535,8 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
+    <Content Include="Scripts\app\controllers\orderController.js" />
+    <Content Include="Scripts\app\services\orderServices.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -549,6 +553,7 @@
     <Content Include="Content\DataTables\css\semanticui.scss" />
     <Content Include="Content\DataTables\css\mixins.scss" />
     <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\AdminPanel\assets\sound\piece-of-cake.m4r" />
     <None Include="Properties\PublishProfiles\AdminPanel.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
