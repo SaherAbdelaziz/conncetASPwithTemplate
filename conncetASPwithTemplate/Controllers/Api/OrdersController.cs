@@ -101,6 +101,12 @@ namespace conncetASPwithTemplate.Controllers.Api
             ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
             var CustomerName = currentUser.Name;
             var CustomerPhone = currentUser.Phone;
+            var customerStreet = currentUser.Street;
+            //var CustomerPhone = currentUser.Phone;
+            //var CustomerName = currentUser.Name;
+            //var CustomerPhone = currentUser.Phone;
+            //var CustomerName = currentUser.Name;
+            //var CustomerPhone = currentUser.Phone;
             var outLetId = currentUser.OutletId;
             var hdAreasId = currentUser.AreaId;
 
@@ -110,6 +116,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 CartId = Cart.Id,
                 CustomerName = CustomerName,
                 CustomerPhone = CustomerPhone,
+                CustomerStreet = customerStreet,
                 OutLetId = outLetId,
                 HdAreasId = hdAreasId,
                 

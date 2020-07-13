@@ -107,12 +107,12 @@
     <th> Name </th>
     <th> Phone </th>
     <th> Price </th>
-    <th> Delivery Price </th>
+    <th> Delivery  </th>
 
     <th> Total </th>
     <th> Outlet </th>
     <th> Area </th>
-    <th> Delivery Time</th>
+    <th> Time</th>
 
     <th>Status</th>
 
@@ -120,7 +120,7 @@
 </tr>
 </thead>
 
-<tbody>
+<tbody id="tableBodyOrders" ordersCount="@Model.Orders.Count">
 @for (var i = 0; i < Model.Orders.Count; i++)
 {
     <tr>
@@ -314,19 +314,29 @@
 <!-- PAGE CONTENT ENDS -->
 </div><!-- /.page-content ../../Content/mytemplate/assets/ -->
 @*<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autoplay="false" ></audio>*@
-<audio id="audio" >
+<audio id="audio" muted="muted" >
     <source src="@Url.Content("../../Content/AdminPanel/assets/sound/piece-of-cake.mp3")"  />
 </audio>
-<a class="sound"> Play</a>
 </div>
 
         </div><!-- /.main-content -->
         <!-- inline scripts related to this page -->
         <script>
             $(document).ready(function() {
+                setInterval(getOrdersCount, 4000);
+
+                function getOrdersCount() {
+                    //console.log($('#tableBodyOrders').attr('ordersCount'));
+                    var ordersCount = $('#tableBodyOrders').attr('ordersCount');
+                    OrderController.init(ordersCount);
+                    //console.log(OrderController.count);
+                }
                
-                OrderController.init();
-               
+                $('.btn-model').on('click', function (e) {
+                    //$("#newOrder").modal();
+                    document.location.reload(true);
+
+                });
             
             
                 //$("#simple-table").DataTable();
@@ -364,13 +374,6 @@
                     $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
                 });
 
-                
-                $('.sound').on('click', function (e) {
-                 
-                        var sound = document.getElementById("audio");
-                        sound.play();
-                    });
-                
 
             })
         </script>

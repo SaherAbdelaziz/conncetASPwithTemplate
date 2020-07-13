@@ -10,6 +10,13 @@ namespace AdminPanel.Models
         public int Id { get; set; }
         public string CustomerName { get; set; }
         public string CustomerPhone { get; set; }
+        public string CustomerAddress1 { get; set; }
+        public string CustomerAddress2 { get; set; }
+        public string CustomerStreet { get; set; }
+        public string CustomerBuilding { get; set; }
+        public string CustomerFloor { get; set; }
+        public string CustomerApartment { get; set; }
+        public string CustomerSpecialMark { get; set; }
         public DateTime? DateCreated { get; set; }
         public double Price { get; set; }
         public double Delivery { get; set; }

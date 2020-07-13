@@ -90,12 +90,12 @@
                             <table id="simple-table-Items" class="table  table-bordered table-hover">
                                 <thead>
                                     <tr>
-                                        @*<th class="center">
+                                        <th class="center">
                                             <label class="pos-rel">
                                                 <input type="checkbox" class="ace" />
                                                 <span class="lbl"></span>
                                             </label>
-                                        </th>*@
+                                        </th>
                                         <th> Preset </th>
                                         <th> Name </th>
                                         <th> Arabic Name </th>
@@ -107,68 +107,76 @@
                                 </thead>
 
                                 <tbody>
-                                    @for (var i = 0; i < Model.Count; i++)
-                                    {
-                                        <tr>
-                                            @*<td class="center">
-                                                <label class="pos-rel">
-                                                    <input type="checkbox" class="ace" />
-                                                    <span class="lbl"></span>
-                                                </label>
-                                            </td>*@
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="center">
+                                            <label class="pos-rel">
+                                                <input type="checkbox" class="ace" />
+                                                <span class="lbl"></span>
+                                            </label>
+                                        </td>
 
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                        <td class="center">
+                                            @item.EldahanPreset.Name
+                                        </td>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                        <td>
+                                            @item.Name
+                                        </td>
+                                        <td> @item.Name2 </td>
+                                        <td > @item.StaticPrice </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
 
-                                            <td>
-                                                <div class="btn-group">
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
+                                            </div>
+                                        </td>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                        <td>
+                                            <div class="btn-group">
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
 
-                                                    <button class="btn btn-xs btn-success">
-                                                        <i class="ace-icon fa fa-check bigger-120"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
+
+                                                <button class="btn btn-xs btn-success">
+                                                    <i class="ace-icon fa fa-check bigger-120"></i>
+                                                </button>
+                                            </div>
+                                        </td>
 
 
-                                        </tr>
-                                      
-                                    }
+                                    </tr>
+                                }
 
                                 </tbody>
                             </table>

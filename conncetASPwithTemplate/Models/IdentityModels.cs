@@ -24,6 +24,11 @@ namespace conncetASPwithTemplate.Models
         public HD_Areas Area { get; set; }
         public OutLet Outlet { get; set; }
 
+        public string Street { get; set; }
+        public string Building { get; set; }
+        public string Floor { get; set; }
+        public string Apartment { get; set; }
+        public string SpecialMark { get; set; }
         [Required]
         public int AreaId { get; set; }
         [Required]

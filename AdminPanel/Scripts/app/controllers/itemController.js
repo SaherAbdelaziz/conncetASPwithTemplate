@@ -27,21 +27,21 @@
         console.log("showData retrieved items");
         console.log(ItemController.items);
         $("#simple-table-Items").DataTable({
-            data: ItemController.items,
+            //data: ItemController.items,
             //ajax: ItemController.items,
             //ajax: {
             //    url: "/api/Orders",
             //    //dataSrc: 'results'
             //},
-            columns: [
-                { data: 'eldahanPresetId' },
-                { data: 'name' },
-                { data: 'name2' },
-                { data: 'staticPrice' },
-               // { data: 'staticPrice' },
-                //{ data: 'staticPrice' }
+            //columns: [
+            //    { data: 'eldahanPresetId' },
+            //    { data: 'name' },
+            //    { data: 'name2' },
+            //    { data: 'staticPrice' },
+            //   // { data: 'staticPrice' },
+            //    //{ data: 'staticPrice' }
  
-            ]
+            //]
        
         });
     }

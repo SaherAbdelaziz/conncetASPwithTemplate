@@ -38,6 +38,7 @@
                             .done(function () {
                                 console.log(" all cartItems Updated");
                                 AJAXRequest();
+                                document.location.reload(true);
 
                             })
                             .fail(function () {

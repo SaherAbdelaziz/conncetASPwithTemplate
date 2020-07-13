@@ -75,13 +75,28 @@ namespace conncetASPwithTemplate.Models
 
 
         [Required]
-        [Display(Name = "Adress")]
-        public string Adress { get; set; }
+        [Display(Name = "Address")]
+        public string Address { get; set; }
 
 
         [Required]
-        [Display(Name = "Adress2")]
-        public string Adress2 { get; set; }
+        [Display(Name = "Address2")]
+        public string Address2 { get; set; }
+
+        [Display(Name = "Street")]
+        public string Street { get; set; }
+
+        [Display(Name = "Building")]
+        public string Building { get; set; }
+
+        [Display(Name = "Floor")]
+        public string Floor { get; set; }
+
+        [Display(Name = "Apartment")]
+        public string Apartment { get; set; }
+
+        [Display(Name = "SpecialMark")]
+        public string SpecialMark { get; set; }
 
         [Required]
         public int Area { get; set; }

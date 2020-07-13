@@ -88,18 +88,38 @@
                                 </div>
                             </div>
                         }
-
+                        
                         <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Delivery</h4>
+                        <div class="row mb-3 ">
+                            <div class="col-md-10 col-sm-6 form-group">
+                                <label class="custom-control custom-radio w-100">
+                                    <input checked type="radio" name="DeliveryType" class="custom-control-input" value="Home">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description w-100"> Home Delivery  </span>
+                                </label>
+
+                                <label class="custom-control custom-radio w-100">
+                                    <input type="radio" name="DeliveryType" class="custom-control-input" value="Pick">
+                                    <span class="custom-control-indicator"></span>
+                                    <span class="custom-control-description w-100"> Pick Up  <span class="text-success col-sm-20"> Your order will be ready in 45 minutes </span></span>
+                                    
+                                </label>
+
+                            </div>
+                        </div>
+
+
+                        <h4 class="border-bottom pb-4"><i class="ti ti-wallet mr-3 text-primary"></i>Delivery Time</h4>
                         <div class="row mb-3 ">
                             <div class="col-md-4 col-sm-6 form-group">
                                 <label class="custom-control custom-radio w-100">
-                                    <input checked type="radio" name="Delivery_type" class="custom-control-input" value="now">
+                                    <input checked type="radio" name="DeliveryTime" class="custom-control-input" value="now">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description w-100"> Now  </span>
                                 </label>
 
                                 <label class="custom-control custom-radio w-100">
-                                    <input type="radio" name="Delivery_type" class="custom-control-input" value="later">
+                                    <input type="radio" name="DeliveryTime" class="custom-control-input" value="later">
                                     <span class="custom-control-indicator"></span>
                                     <span class="custom-control-description w-100"> Later </span>
                                 </label>
@@ -148,7 +168,9 @@
 
 
                     <div class="text-center">
-                        <button class="btn btn-primary btn-lg js-ordernow"><span>Order now!</span></button>
+                       
+                        <button class="btn btn-primary btn-lg js-order" data-target='#thanks' data-toggle="modal"><span>Order now!</span></button>
+                        
                     </div>
                 </div>
 
@@ -162,7 +184,13 @@
 
     <script>
 
-        $(document).ready(function() {
+        $(document).ready(function () {
+            console.log("sds" + $(".js-notifications-price").text());
+            if ($(".js-notifications-price").text() === "0 LE")
+            {
+                $('.js-ordernow').prop('disabled', true);
+                $('.js-order').prop('disabled', true);
+            }
             var editmode = true;
             $('.editInput').attr('readonly', true);
             $('.js-btn-save').addClass('d-none');
@@ -187,14 +215,12 @@
 
 
             $("input[type='radio']").click(function() {
-                var radioValue = $("input[name='Delivery_type']:checked").val();
+                var radioValue = $("input[name='DeliveryTime']:checked").val();
                 console.log(radioValue);
                 if (radioValue == 'later') {
                     $('.deliverytime').removeClass('d-none');
                     //$('.deliverytime').child('div').removeClass('d-none');
-                }
-
-                else {
+                } else {
                     $('.deliverytime').addClass('d-none');
                 }
             });

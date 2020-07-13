@@ -258,8 +258,11 @@ namespace conncetASPwithTemplate.Controllers
                 model.Areas = _context.HdAreas.ToList();
                 model.Outlets = new List<OutLet>();
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email,
-                    Name = model.Name , Phone = model.Phone , Adress = model.Adress ,
-                    Adress2 = model.Adress2 , AreaId = model.Area , OutletId = model.Outlet// , Area = model.Areas[model.Area]
+                    Name = model.Name , Phone = model.Phone , Adress = model.Address ,
+                    Adress2 = model.Address2 , AreaId = model.Area , OutletId = model.Outlet,
+                    Apartment = model.Apartment, Building = model.Building, Street = model.Street,
+                    SpecialMark = model.SpecialMark
+                    // , Area = model.Areas[model.Area]
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

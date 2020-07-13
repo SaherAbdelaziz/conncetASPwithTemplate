@@ -66,13 +66,13 @@
                                              </ul>
                                          </div>
                                 </li>*@
-                                @if (!User.IsInRole("Manger"))
-                                {
+                                @*@if (!User.IsInRole("Manger"))
+                                {*@
                                     <li><a href="@Url.Action("Navigation", "Home")">MENU</a></li>
 
                                     <li><a href="@Url.Action("Offers", "Home")">Offers</a></li>
                                     <li><a href="@Url.Action("Contact", "Home")">Contact</a></li>
-                                }
+                                @*}*@
 
 
                                 @if (!User.Identity.IsAuthenticated)
@@ -107,7 +107,7 @@
                         </div>
                     }*@
                         </div>
-                    @if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
+                    @if (User.Identity.IsAuthenticated )
                     {
                     <div class="col-md-2">
 
@@ -139,7 +139,7 @@
                     <img src="../../Content/mytemplate/assets/img/logo-horizontal-dark.svg" alt="">
                 </a>
             </div>
-        @if (User.Identity.IsAuthenticated && !User.IsInRole("Manger"))
+        @if (User.Identity.IsAuthenticated )
         {
             <a href="#" class="module module-cart" data-toggle="panel-cart">
                 <i class="ti ti-shopping-cart "></i>
@@ -283,10 +283,24 @@
         <div id="body-overlay"></div>
 
     </div>
-
+<!-- Modal for thanks message-->
+<div class="modal fade" id="thanks" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          
+            <div class="modal-body">
+                <span>your order will be ready in 45 minutes</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary " data-dismiss="modal"><span>Cancel</span></button>   
+                <button type="button" class="btn btn-primary js-ordernow" data-dismiss="modal"><span>Confirm </span></button>
+            </div>
+        </div>
+    </div>
+</div>
     <!-- Modal                                              / Product -->
     <!-- -->
-    <div class="modal fade show" id="productModal" role="dialog">
+    <div class="modal fade" id="productModal" role="dialog">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-lg dark bg-dark">

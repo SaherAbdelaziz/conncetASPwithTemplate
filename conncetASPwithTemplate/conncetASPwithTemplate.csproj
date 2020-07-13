@@ -287,6 +287,14 @@
     <Compile Include="Migrations\202007061107499_updateOrderTable.Designer.cs">
       <DependentUpon>202007061107499_updateOrderTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007131201343_updateOrder.cs" />
+    <Compile Include="Migrations\202007131201343_updateOrder.Designer.cs">
+      <DependentUpon>202007131201343_updateOrder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202007131232491_updateUserInfo.cs" />
+    <Compile Include="Migrations\202007131232491_updateUserInfo.Designer.cs">
+      <DependentUpon>202007131232491_updateUserInfo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EldahanItems2.cs" />
@@ -1459,7 +1467,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\NewFolder1\" />
-    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1531,6 +1538,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007061107499_updateOrderTable.resx">
       <DependentUpon>202007061107499_updateOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007131201343_updateOrder.resx">
+      <DependentUpon>202007131201343_updateOrder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007131232491_updateUserInfo.resx">
+      <DependentUpon>202007131232491_updateUserInfo.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
