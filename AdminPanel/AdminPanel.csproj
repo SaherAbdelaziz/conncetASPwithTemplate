@@ -686,6 +686,10 @@
     <Content Include="Views\Home\test.cshtml" />
     <Content Include="Views\Home\Items.cshtml" />
     <Content Include="Views\Shared\_loginLayout.cshtml" />
+    <Content Include="Views\Home\AcceptedOrders.cshtml" />
+    <Content Include="Views\Home\NewOrders.cshtml" />
+    <Content Include="Views\Home\RejectedOrders.cshtml" />
+    <Content Include="Views\Home\AllOrders.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

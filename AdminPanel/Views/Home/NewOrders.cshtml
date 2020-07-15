@@ -1,0 +1,98 @@
+﻿
+<div class="page-content">
+
+
+    <!-- main table my orders-->
+    <table id="simple-table" class="table  table-bordered table-hover">
+        <colgroup>
+            <col class="col-md-2">
+            <col class="col-md-1">
+            <col class="col-md-5">
+            <col class="col-md-2">
+            <col class="col-md-1">
+            <col class="col-md-1">
+            <col class="col-md-3">
+            <col class="col-md-1">
+            <col class="col-md-1">
+            <col class="col-md-1">
+        </colgroup>
+        <thead>
+            <tr>
+                <th> Name </th>
+                <th> Phone </th>
+                <th> Order </th>
+                <th> Total </th>
+                <th> Outlet </th>
+                <th> Area </th>
+                <th> Address </th>
+                <th> Time</th>
+                <th>Status</th>
+                <th> Action</th>
+            </tr>
+        </thead>
+
+        <tbody id="tableBodyOrders" ordersCount="@Model.Orders.Count">
+            @for (var i = 0; i < Model.Orders.Count; i++)
+            {
+                <tr>
+                    <td> @Model.Orders[i].CustomerName </td>
+                    <td> @Model.Orders[i].CustomerPhone </td>
+                    <td> @Model.Orders[i].Details </td>
+                    <td>
+                        Price : @Model.Orders[i].Price <br>
+                        Delivery : @Model.Orders[i].Delivery <br>
+                        TotalPrice :@Model.Orders[i].TotalPrice
+                    </td>
+                    <td> @Model.Orders[i].OutLet.Name </td>
+                    <td> @Model.Orders[i].HdAreas.Name </td>
+                    <td> @Model.Orders[i].CustomerStreet </td>
+
+                    @if (Model.Orders[i].DeliveryTimeIndex == 0)
+                    {
+                        <td> as fast as possible </td>
+                    }
+                    
+
+                    else if (Model.Orders[i].DeliveryTimeIndex == 1)
+                    {
+                        <td> in one hour </td>
+                    }
+
+                    else
+                    {
+                        <td> in two hour </td>
+
+                    }
+
+
+                    <td class="hidden-480">
+                        <span class="label label-sm label-success"> New </span>
+                    </td>
+
+                    <td>
+                        <div class="hidden-sm hidden-xs btn-group">
+                            <button class="btn btn-xs btn-success js-btn-AcceptOrder" data-order-id="@Model.Orders[i].Id">
+                                <i class="ace-icon fa fa-check bigger-120 "data-order-id="@Model.Orders[i].Id" ></i>
+                            </button>
+
+                            <button class="btn btn-xs btn-danger js-btn-RejectOrder" data-order-id="@Model.Orders[i].Id">
+                                <i class="ace-icon fa fa-remove bigger-120 "data-order-id="@Model.Orders[i].Id"></i>
+                            </button>
+
+                            <button class="btn btn-xs btn-info">
+                                <i class="ace-icon fa fa-pencil bigger-120"></i>
+                            </button>
+
+                            <button class="btn btn-xs btn-danger">
+                                <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+
+    <!-- PAGE CONTENT ENDS -->
+</div>

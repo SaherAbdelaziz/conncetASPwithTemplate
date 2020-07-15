@@ -12,368 +12,157 @@
         try { ace.settings.loadState('sidebar') } catch (e) { }
     </script>
 
-<!-- /.sidebar-shortcuts -->
+    <!-- /.sidebar-shortcuts -->
     <!--shared content beside list-->
     <!--shared content beside list-->
 
     <ul class="nav nav-list">
 
         <li class="">
-            <li class="">
-                    <a href="@Url.Action("Tables", "Home")">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Orders
-                    </a>
+        <li class="">
+            <a href="@Url.Action("Tables", "Home")">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Orders
+            </a>
 
-                    <b class="arrow"></b>
-                </li>
-
-                <li class="">
-                    <a href="@Url.Action("Items", "Home")">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Items
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-                
-            @if (!User.Identity.IsAuthenticated)
-            {
-                <li class="">
-                    <a href="@Url.Action("Login", "Account")">
-                        <i class="menu-icon fa fa-caret-right"></i>
-                        Login
-                    </a>
-
-                    <b class="arrow"></b>
-                </li>
-            }
-            
-            @if (User.Identity.IsAuthenticated)
-            {
-                using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new {id = "logoutForm"}))
-                {
-                    @Html.AntiForgeryToken()
-                    <li>
-                        <a href="javascript:document.getElementById('logoutForm').submit()">
-                            <i class="menu-icon fa fa-caret-right col-md-2"></i>
-                            Log off
-                        </a>
-                        <b class="arrow"></b>   
-                    </li>
-
-                }
-            }
+            <b class="arrow"></b>
         </li>
-   
-       
+
+        <li class="">
+            <a href="@Url.Action("Items", "Home")">
+                <i class="menu-icon fa fa-caret-right"></i>
+                Items
+            </a>
+
+            <b class="arrow"></b>
+        </li>
+
+        @if (!User.Identity.IsAuthenticated)
+            {
+            <li class="">
+                <a href="@Url.Action("Login", "Account")">
+                    <i class="menu-icon fa fa-caret-right"></i>
+                    Login
+                </a>
+
+                <b class="arrow"></b>
+            </li>
+        }
+
+        @if (User.Identity.IsAuthenticated)
+        {
+            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+            {
+                @Html.AntiForgeryToken()
+                <li>
+                    <a href="javascript:document.getElementById('logoutForm').submit()">
+                        <i class="menu-icon fa fa-caret-right col-md-2"></i>
+                        Log off
+                    </a>
+                    <b class="arrow"></b>
+                </li>
+
+            }
+        }
+        </li>
+
+
     </ul><!-- /.nav-list -->
 
-   
+
 </div>
 
 
 <div class="main-content">
-<div class="main-content-inner">
-      
+    <div class="main-content-inner">
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#Orders">Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#Accepted">Accepted Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#Rejected">Rejected Orders</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#All">All Orders</a>
+            </li>
+        </ul>
 
-<div class="page-content">
-
-<div class="page-header">
-    <h1>
-        Tables
-        <small>
-            <i class="ace-icon fa fa-angle-double-right"></i>
-            Orders
-        </small>
-    </h1>
-</div>
-<!-- /.page-header -->
-<!-- main table my orders-->
-<!-- main table my orders-->
-<!-- PAGE CONTENT BEGINS -->
-<!-- main table my orders-->
-<!-- main table my orders-->
-<table id="simple-table" class="table  table-bordered table-hover">
-<thead>
-<tr>
-    <th class="center">
-        <label class="pos-rel">
-            <input type="checkbox" class="ace" />
-            <span class="lbl"></span>
-        </label>
-    </th>
-    <th class="detail-col"> Details</th>
-    <th> Name </th>
-    <th> Phone </th>
-    <th> Price </th>
-    <th> Delivery  </th>
-
-    <th> Total </th>
-    <th> Outlet </th>
-    <th> Area </th>
-    <th> Time</th>
-
-    <th>Status</th>
-
-    <th></th>
-</tr>
-</thead>
-
-<tbody id="tableBodyOrders" ordersCount="@Model.Orders.Count">
-@for (var i = 0; i < Model.Orders.Count; i++)
-{
-    <tr>
-        <td class="center">
-            <label class="pos-rel">
-                <input type="checkbox" class="ace" />
-                <span class="lbl"></span>
-            </label>
-        </td>
-
-        <td class="center">
-            <div class="action-buttons">
-                <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-                    <i class="ace-icon fa fa-angle-double-down"></i>
-                    <span class="sr-only">Details</span>
-                </a>
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div id="Orders" class="tab-pane active">
+                <br>
+                <h3>Orders</h3>
+                @Html.Partial("NewOrders")
             </div>
-        </td>
+            <div id="Accepted"  class="tab-pane fade">
+                <br>
+                <h3>Accepted Orders</h3>
+                @Html.Partial("AcceptedOrders")
 
-        <td> @Model.Orders[i].CustomerName </td>
-        <td> @Model.Orders[i].CustomerPhone </td>
-        <td> @Model.Orders[i].Price </td>
-        <td class="hidden-480"> @Model.Orders[i].Delivery </td>
-        <td> @Model.Orders[i].TotalPrice </td>
-        <td> @Model.Orders[i].OutLet.Name </td>
-        <td> @Model.Orders[i].HdAreas.Name </td>
-
-        @if (Model.Orders[i].DeliveryTimeIndex == 0)
-        {
-            <td> as fast as possible </td>
-        }
-
-        else if (Model.Orders[i].DeliveryTimeIndex == 1)
-        {
-            <td> in one hour </td>
-        }
-        else
-        {
-            <td> in two hour </td>
-
-        }
-
-
-        <td class="hidden-480">
-            <span class="label label-sm label-success"> New </span>
-        </td>
-
-        <td>
-            <div class="hidden-sm hidden-xs btn-group">
-                <button class="btn btn-xs btn-success">
-                    <i class="ace-icon fa fa-check bigger-120"></i>
-                </button>
-
-                <button class="btn btn-xs btn-info">
-                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                </button>
-
-                <button class="btn btn-xs btn-danger">
-                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                </button>
-
-                <button class="btn btn-xs btn-warning">
-                    <i class="ace-icon fa fa-flag bigger-120"></i>
-                </button>
             </div>
-
-            <div class="hidden-md hidden-lg">
-                <div class="inline pos-rel">
-                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                    </button>
-
-                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                        <li>
-                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                <span class="blue">
-                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                <span class="green">
-                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                <span class="red">
-                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
+            <div id="Rejected" class="tab-pane fade">
+                <br>
+                <h3>Rejected Orders</h3>
+                @Html.Partial("RejectedOrders")
             </div>
-        </td>
-    </tr>
-    <!-- Details info will be for items-->
-
-    <tr class="detail-row">
-
-        <td colspan="8">
-            <table class="table  table-bordered table-hover">
-
-
-                <tbody>
-
-                @for (int j = 0; j < @Model.MyCartItems.Count; j++)
-                {
-
-                    var cartItem = Model.MyCartItems[j];
-                    if (cartItem.ShoppingCartId == Model.Orders[i].CartId && cartItem.OrderId == Model.Orders[i].Id && cartItem.Removed)
-                    {
-
-                        <tr>
-                            <td class="center">
-                                @Model.MyCartItems[j].EldahanItem.Name
-                            </td>
-
-                            <td class="center">
-                                @Model.MyCartItems[j].EldahanItem.Name2
-                            </td>
-
-
-                            <td class="center">
-                                @Model.MyCartItems[j].Quantity
-                            </td>
-
-                            <td class="center">
-                                @Model.MyCartItems[j].EldahanItem.StaticPrice
-                            </td>
-                                                                    
-                            @if(!String.IsNullOrWhiteSpace(Model.MyCartItems[j].Details))
-                            {
-                                <tr>
-                                    <td class="center">
-                                        *@Model.MyCartItems[j].Details
-                                    </td>
-                                </tr>
-                            }
-
-                            @*@if (@Model.MyCartItems[j].HasModifiers)
-        {
-            var itemModifier = @Model.selectedModifiers
-                .Find(x => x.CartId == cartItem.ShoppingCartId &&
-                           x.ItemId == Model.MyCartItems[j].EldahanItem.Id).ItemModifier;
-
-        <tr>
-            <td class="center">
-                itemModifier.Name
-            </td>
-
-            <td class="center">
-                itemModifier.Name2
-            </td>
-
-
-            <td class="center">
-                1
-            </td>
-
-            <td class="center">
-                itemModifier.StaticPrice
-            </td>
-
-        </tr>
-
-
-    }*@
-                        </tr>
-
-
-                    }
-                }
-                <tbody>
-            </table>
-
-        </td>
-    </tr>
-}
-
-</tbody>
-</table>
-@*<div class="hr hr-18 dotted hr-double"></div>*@
-
-
-<!-- PAGE CONTENT ENDS -->
-</div><!-- /.page-content ../../Content/mytemplate/assets/ -->
-@*<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autoplay="false" ></audio>*@
-<audio id="audio" muted="muted" >
-    <source src="@Url.Content("../../Content/AdminPanel/assets/sound/piece-of-cake.mp3")"  />
-</audio>
-</div>
-
-        </div><!-- /.main-content -->
-        <!-- inline scripts related to this page -->
-        <script>
-            $(document).ready(function() {
-                setInterval(getOrdersCount, 4000);
-
-                function getOrdersCount() {
-                    //console.log($('#tableBodyOrders').attr('ordersCount'));
-                    var ordersCount = $('#tableBodyOrders').attr('ordersCount');
-                    OrderController.init(ordersCount);
-                    //console.log(OrderController.count);
-                }
-               
-                $('.btn-model').on('click', function (e) {
-                    //$("#newOrder").modal();
-                    document.location.reload(true);
-
-                });
             
-            
-                //$("#simple-table").DataTable();
-
-                //And for the first simple table, which doesn't have TableTools or dataTables
-                //select/deselect all rows according to table header checkbox
-                var active_class = 'active';
-                $('#simple-table > thead > tr > th input[type=checkbox]').eq(0).on('click', function () {
-                    var th_checked = this.checked;//checkbox inside "TH" table header
-
-                    $(this).closest('table').find('tbody > tr').each(function () {
-                        var row = this;
-                        if (th_checked) $(row).addClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', true);
-                        else $(row).removeClass(active_class).find('input[type=checkbox]').eq(0).prop('checked', false);
-                    });
-                });
-
-                //select/deselect a row when the checkbox is checked/unchecked
-                $('#simple-table').on('click', 'td input[type=checkbox]', function () {
-                    var $row = $(this).closest('tr');
-                    if ($row.is('.detail-row ')) return;
-                    if (this.checked) $row.addClass(active_class);
-                    else $row.removeClass(active_class);
-                });
+            <div id="All" class="tab-pane fade">
+                <br>
+                <h3>All Orders</h3>
+                @Html.Partial("AllOrders")
+            </div>
+        </div>
 
 
-                
+        @*<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autoplay="false" ></audio>*@
+        <audio id="audio" muted="muted">
+            <source src="@Url.Content("../../Content/AdminPanel/assets/sound/piece-of-cake.mp3")" />
+        </audio>
+
+    </div>
+
+</div><!-- /.main-content -->
+<!-- inline scripts related to this page -->
+<script>
+    $(document).ready(function () {
+        setInterval(getOrdersCount, 4000);
+
+        function getOrdersCount() {
+            //console.log($('#tableBodyOrders').attr('ordersCount'));
+            var ordersCount = $('#tableBodyOrders').attr('ordersCount');
+            OrderController.init(ordersCount);
+            //console.log(OrderController.count);
+        }
+
+        $('.btn-model').on('click', function (e) {
+            //$("#newOrder").modal();
+            document.location.reload(true);
+
+        });
+
+        $('.js-btn-AcceptOrder').on('click', function (e) {
+            var icon = $(e.target);
+            //console.log(icon);
+            var id = icon.attr("data-order-id");
+            OrderController.acceptNewOrder(id , e);
+
+        });
 
 
-
-                /***************/
-                $('.show-details-btn').on('click', function (e) {
-                    e.preventDefault();
-                    $(this).closest('tr').next().toggleClass('open');
-                    $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
-                });
+        //$("#simple-table").DataTable();
 
 
-            })
-        </script>
+        /***************/
+        $('.show-details-btn').on('click', function (e) {
+            e.preventDefault();
+            $(this).closest('tr').next().toggleClass('open');
+            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
+        });
+
+
+    })
+</script>

@@ -71,6 +71,33 @@ namespace AdminPanel.Controllers.API
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        [ResponseType(typeof(void))]
+        public void PutOrder(Order modelOrder)
+        {
+            var order = _context.Orders
+                .SingleOrDefault(o => o.Id == modelOrder.Id);
+
+            if (order == null)
+            {
+                return;
+            }
+
+            if (modelOrder.OrderState == 1)// accepted
+            {
+                order.OrderState = modelOrder.OrderState; 
+            }
+
+            else if (modelOrder.OrderState == 2)// rejected
+            {
+                order.OrderState = modelOrder.OrderState; 
+            }
+
+            order.OrderState = modelOrder.OrderState; // 1 for accepted 2 for rejected 
+
+            _context.SaveChanges();
+
+        }
+
         // POST: api/Orders
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)

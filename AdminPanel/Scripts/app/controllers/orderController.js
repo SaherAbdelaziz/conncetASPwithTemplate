@@ -14,6 +14,16 @@
         OrderController.count = OrderController.orders.length;
     };
 
+    var successAccept = function (e) {
+        console.log(" order accepted");
+        var td = $(e.target);
+        td.parents("tr").fadeOut(function () {
+            console.log("out");
+
+        }) ;
+
+    };
+
     var error = function () {
         alert("Something failed! in getting orders");
     };
@@ -30,6 +40,12 @@
         }
     }
 
+    var acceptNewOrder = function(id , e) {
+        console.log("accept new order" + id);
+        orderService.callAcceptOrder(successAccept, error, id , e);
+
+    }
+
     var init = function (ordersCount) {
         
         console.log("start order controller");
@@ -41,7 +57,8 @@
     return {
         init: init,
         count: count,
-        changedNumberOfOrders: changedNumberOfOrders
+        changedNumberOfOrders: changedNumberOfOrders,
+        acceptNewOrder: acceptNewOrder
 
     }
 }(OrderService)

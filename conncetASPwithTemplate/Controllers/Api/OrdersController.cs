@@ -89,38 +89,49 @@ namespace conncetASPwithTemplate.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            string tmp = "";
-            var Idd = User.Identity.GetUserId();
-            //var cartItems = _context.MyCartItems.Where(c => c.ShoppingCartId == Idd).Include(c=> c.EldahanItem).ToList();
-            //foreach (var cart in cartItems)
-            //{
-            //    tmp += cart.EldahanItem.Name + " ";
-            //}
+            string tmpOrder = "";
+            var cartItems = _context.MyCartItems
+                .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed)
+                .Include(c => c.EldahanItem).ToList();
+
+            foreach (var cart in cartItems)
+            {
+                //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";
+                tmpOrder += $"{cart.Quantity}x {cart.EldahanItem.Name2} Price {cart.EldahanItem.StaticPrice} LE @\n";
+            }
 
             string currentUserId = User.Identity.GetUserId();
             ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
-            var CustomerName = currentUser.Name;
-            var CustomerPhone = currentUser.Phone;
-            var customerStreet = currentUser.Street;
-            //var CustomerPhone = currentUser.Phone;
-            //var CustomerName = currentUser.Name;
-            //var CustomerPhone = currentUser.Phone;
-            //var CustomerName = currentUser.Name;
-            //var CustomerPhone = currentUser.Phone;
+            var Name = currentUser.Name;
+            var Phone = currentUser.Phone;
+            var Street = currentUser.Street;
+            var Adress = currentUser.Adress;
+            var Adress2 = currentUser.Adress2;
+            var Apartment = currentUser.Apartment;
+            var Building = currentUser.Building;
+            var Floor = currentUser.Floor;
+            var SpecialMark = currentUser.SpecialMark;
             var outLetId = currentUser.OutletId;
             var hdAreasId = currentUser.AreaId;
-
+            string tmpAddress =  "Area : " + Adress + " \n  Address : " + Adress2 
+                + " \n Building : " + Building + " \n Floor : " + Floor;
 
             Order myOrder = new Order()
             {
                 CartId = Cart.Id,
-                CustomerName = CustomerName,
-                CustomerPhone = CustomerPhone,
-                CustomerStreet = customerStreet,
+                CustomerName = Name,
+                CustomerPhone = Phone,
+                CustomerStreet = tmpAddress, // temporary
+                CustomerAddress1 = Adress,
+                CustomerAddress2= Adress2,
+                CustomerApartment = Apartment,
+                CustomerBuilding = Building,
+                CustomerFloor = Floor,
+                CustomerSpecialMark = SpecialMark,
                 OutLetId = outLetId,
                 HdAreasId = hdAreasId,
                 
-                Details = tmp,
+                Details = tmpOrder,
                 DateCreated = DateTime.Now,
                 DeliveryTimeIndex = order.DeliveryTimeIndex,
                 Delivery = order.Delivery,
