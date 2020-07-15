@@ -103,6 +103,6 @@ namespace conncetASPwithTemplate.Models
 
         public bool? Pre_Paid_Card { get; set; }
 
-        public EldahanPreset EldahanPreset { get; set; }
+        public Web_Preset EldahanPreset { get; set; }
     }
 }

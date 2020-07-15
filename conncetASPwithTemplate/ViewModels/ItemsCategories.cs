@@ -10,12 +10,12 @@ namespace conncetASPwithTemplate.ViewModels
     {
         public List<EldahanItems> Items { get; set; }
        // public Modifys Modifys { get; set; }
-        public List<EldahanPreset> Presets { get; set; }
-        public List<WebMenuItem> MenuItems { get; set; }
+        public List<Web_Preset> Presets { get; set; }
+        public List<Web_Menu_Item> MenuItems { get; set; }
         public int ItemsToShowCount { get; set; }
 
 
-        public ItemsCategories(List<EldahanItems> items, List<EldahanPreset> webPresets, List<WebMenuItem> webMenuItems , int itemsToShowCount )
+        public ItemsCategories(List<EldahanItems> items, List<Web_Preset> webPresets, List<Web_Menu_Item> webMenuItems , int itemsToShowCount )
         {
             Items = items.ToList();
             // SubCategories = subCategories.ToList();

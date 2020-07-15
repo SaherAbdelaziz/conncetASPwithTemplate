@@ -295,12 +295,16 @@
     <Compile Include="Migrations\202007131232491_updateUserInfo.Designer.cs">
       <DependentUpon>202007131232491_updateUserInfo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007150941340_updateTables.cs" />
+    <Compile Include="Migrations\202007150941340_updateTables.Designer.cs">
+      <DependentUpon>202007150941340_updateTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EldahanItems2.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\EldahanItems.cs" />
-    <Compile Include="Models\EldahanPreset.cs" />
+    <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -315,7 +319,7 @@
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OutLet.cs" />
     <Compile Include="Models\SelectedModifiers.cs" />
-    <Compile Include="Models\WebMenuItem.cs" />
+    <Compile Include="Models\Web_Menu_Item.cs" />
     <Compile Include="Models\WebPreset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -1544,6 +1548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007131232491_updateUserInfo.resx">
       <DependentUpon>202007131232491_updateUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007150941340_updateTables.resx">
+      <DependentUpon>202007150941340_updateTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

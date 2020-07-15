@@ -4,9 +4,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace conncetASPwithTemplate.Models
+namespace AdminPanel.Models
 {
-    public class WebMenuItem
+    public class Web_Menu_Item
     {
         [Required]
         [Key]

@@ -31,6 +31,9 @@ namespace AdminPanel.Models
         public Cart Cart { get; set; }
         public int DeliveryTimeIndex { get; set; }
         public string Details { get; set; }
+
+        public int OrderState { get; set; }
+        public int OrderPrepare { get; set; }
         //public List<int> CartItemsId { get; set; }
         //public List<CartItem> CartItems { get; set; }
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AdminPanel.Models
 {
-    public class EldahanPreset
+    public class Web_Preset
     {
         [Key]
         public int Id { get; set; }

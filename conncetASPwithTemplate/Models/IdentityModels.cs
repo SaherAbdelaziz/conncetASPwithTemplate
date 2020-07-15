@@ -113,8 +113,8 @@ namespace conncetASPwithTemplate.Models
         public DbSet<Cart> Carts { get; set; }
         public DbSet<MyCartItem> MyCartItems { get; set; }
         public DbSet<WebPreset> WebPresets { get; set; }
-        public DbSet<EldahanPreset> EldahanPresets { get; set; }
-        public DbSet<WebMenuItem> WebMenuItems { get; set; }
+        public DbSet<Web_Preset> EldahanPresets { get; set; }
+        public DbSet<Web_Menu_Item> WebMenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<SelectedModifiers> SelectedModifiers { get; set; }
         public DbSet<EldahanItems2> EldahanItems2 { get; set; }

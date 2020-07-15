@@ -26,7 +26,7 @@ namespace AdminPanel.Models
 
         public bool? Assimbly { get; set; }
 
-        public EldahanPreset EldahanPreset { get; set; }
+        public Web_Preset EldahanPreset { get; set; }
         public int EldahanPresetId { get; set; }
 
         public bool? IsModifier { get; set; }
@@ -100,5 +100,8 @@ namespace AdminPanel.Models
         public double? Mod_Price { get; set; }
 
         public bool? Pre_Paid_Card { get; set; }
+
+        public bool WebOrder { get; set; }
+
     }
 }

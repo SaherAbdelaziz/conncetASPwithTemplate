@@ -7,7 +7,7 @@ using System.Web;
 
 namespace conncetASPwithTemplate.Models
 {
-    public class EldahanPreset
+    public class Web_Preset
     {
         [Key]
         public int Id { get; set; }
