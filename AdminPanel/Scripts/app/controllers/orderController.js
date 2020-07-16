@@ -23,6 +23,21 @@
         }) ;
 
     };
+    var successReject = function (e) {
+        console.log(" order rejected");
+        var td = $(e.target);
+        td.parents("tr").fadeOut(function () {
+            console.log("out");
+
+        }) ;
+
+    };
+
+    var successEdited = function (e) {
+        console.log(" order edited");
+
+
+    };
 
     var error = function () {
         alert("Something failed! in getting orders");
@@ -35,30 +50,77 @@
             var sound = document.getElementById("audio");
             sound.muted = false;
             sound.play();
-            $("#newOrder").modal();
+            $("#newOrderModel").modal();
             //document.location.reload(true);
         }
     }
+
+    var showData = function () {
+        console.log("showData retrieved orders");
+        //console.log(ItemController.items);
+        $("#NewOrder").DataTable({
+            //data: ItemController.items,
+            //ajax: ItemController.items,
+            //ajax: {
+            //    url: "/api/Orders",
+            //    //dataSrc: 'results'
+            //},
+            //columns: [
+            //    { data: 'eldahanPresetId' },
+            //    { data: 'name' },
+            //    { data: 'name2' },
+            //    { data: 'staticPrice' },
+            //   // { data: 'staticPrice' },
+            //    //{ data: 'staticPrice' }
+
+            //]
+
+        });
+
+        $("#AcceptedOrders").DataTable({
+        });
+
+        $("#RejectedOrders").DataTable({
+        });
+
+        $("#AllOrders").DataTable({
+        });
+    }
+
 
     var acceptNewOrder = function(id , e) {
         console.log("accept new order" + id);
         orderService.callAcceptOrder(successAccept, error, id , e);
 
     }
+    var rejectNewOrder = function (id, e) {
+            console.log("reject new order" + id);
+            orderService.callRejectOrder(successReject, error, id, e);
+    
+    }
+    var editOrder = function (id, e) {
+            console.log("edit order" + id);
+            orderService.callEditOrder(successEdited, error, id, e);
+    
+        }
 
     var init = function (ordersCount) {
         
         console.log("start order controller");
         console.log(ordersCount);
         getOrders(success, error);
-        changedNumberOfOrders(ordersCount);
+        //changedNumberOfOrders(ordersCount);
+        //showData();
     };
 
     return {
         init: init,
         count: count,
         changedNumberOfOrders: changedNumberOfOrders,
-        acceptNewOrder: acceptNewOrder
+        acceptNewOrder: acceptNewOrder,
+        rejectNewOrder: rejectNewOrder,
+        editOrder:editOrder,
+        showData: showData
 
     }
 }(OrderService)

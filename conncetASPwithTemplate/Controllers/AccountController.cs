@@ -261,7 +261,7 @@ namespace conncetASPwithTemplate.Controllers
                     Name = model.Name , Phone = model.Phone , Adress = model.Address ,
                     Adress2 = model.Address2 , AreaId = model.Area , OutletId = model.Outlet,
                     Apartment = model.Apartment, Building = model.Building, Street = model.Street,
-                    SpecialMark = model.SpecialMark
+                    Floor=model.Floor , SpecialMark = model.SpecialMark
                     // , Area = model.Areas[model.Area]
                 };
                 var result = await UserManager.CreateAsync(user, model.Password);

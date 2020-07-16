@@ -1,12 +1,12 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;
+    padding-bottom: 20px;*/
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 15px;
-    padding-right: 15px;
+    /*padding-left: 15px;
+    padding-right: 15px;*/
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -23,3 +23,13 @@ textarea {
     max-width: 280px;
 }
 
+/*.nav-tabs>li>a.Accepted , .nav-tabs>li>a.Accepted:hover {
+    background-color: green;
+}
+.nav-tabs>li>a.Rejected , .nav-tabs>li>a.Rejected:hover{
+    background-color: red;
+}
+
+.nav-tabs>li>a.info , .nav-tabs>li>a.info:hover{
+    background-color: blue;
+}*/

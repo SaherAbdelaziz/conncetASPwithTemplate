@@ -1,0 +1,193 @@
+﻿@model AdminPanel.Models.Order
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_adminPanel.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cart.ApplicationUserId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cart.ApplicationUserId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HdAreas.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.HdAreas.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OutLet.Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OutLet.Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerPhone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerPhone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerAddress1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerAddress1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerAddress2)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerAddress2)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerStreet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerStreet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerBuilding)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerBuilding)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerFloor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerFloor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerApartment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerApartment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CustomerSpecialMark)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CustomerSpecialMark)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DateCreated)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Delivery)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Delivery)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TotalPrice)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ServicesId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ServicesId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DeliveryTimeIndex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeliveryTimeIndex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Details)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Details)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderState)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderState)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OrderPrepare)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OrderPrepare)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

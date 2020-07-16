@@ -7,121 +7,196 @@
     Layout = "~/Views/Shared/_adminPanel.cshtml";
 }
 
-<div id="sidebar" class="sidebar                  responsive                    ace-save-state">
-    <script type="text/javascript">
-        try { ace.settings.loadState('sidebar') } catch (e) { }
-    </script>
-
-    <!-- /.sidebar-shortcuts -->
-    <!--shared content beside list-->
-    <!--shared content beside list-->
-
-    <ul class="nav nav-list">
-
-        <li class="">
-        <li class="">
-            <a href="@Url.Action("Tables", "Home")">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Orders
-            </a>
-
-            <b class="arrow"></b>
-        </li>
-
-        <li class="">
-            <a href="@Url.Action("Items", "Home")">
-                <i class="menu-icon fa fa-caret-right"></i>
-                Items
-            </a>
-
-            <b class="arrow"></b>
-        </li>
-
-        @if (!User.Identity.IsAuthenticated)
-            {
-            <li class="">
-                <a href="@Url.Action("Login", "Account")">
-                    <i class="menu-icon fa fa-caret-right"></i>
-                    Login
-                </a>
-
-                <b class="arrow"></b>
-            </li>
-        }
-
-        @if (User.Identity.IsAuthenticated)
-        {
-            using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
-            {
-                @Html.AntiForgeryToken()
-                <li>
-                    <a href="javascript:document.getElementById('logoutForm').submit()">
-                        <i class="menu-icon fa fa-caret-right col-md-2"></i>
-                        Log off
-                    </a>
-                    <b class="arrow"></b>
-                </li>
-
-            }
-        }
-        </li>
-
-
-    </ul><!-- /.nav-list -->
-
-
-</div>
 
 
 <div class="main-content">
-    <div class="main-content-inner">
+    <div class="main-content-inner container">
         <!-- Nav tabs -->
-        <ul class="nav nav-tabs">
+        <ul class="nav nav-tabs ">
             <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#Orders">Orders</a>
+                <a class="nav-link active info" data-toggle="tab" href="#Orders">Orders</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#Accepted">Accepted Orders</a>
+            <li class="nav-item ">
+                <a class="nav-item Accepted" data-toggle="tab" href="#Accepted">Accepted Orders</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#Rejected">Rejected Orders</a>
+            <li class="nav-item ">
+                <a class="nav-link Rejected" data-toggle="tab" href="#Rejected">Rejected Orders</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" data-toggle="tab" href="#All">All Orders</a>
+            <li class="nav-item ">
+                <a class="nav-link info" data-toggle="tab" href="#All">All Orders</a>
             </li>
         </ul>
 
         <!-- Tab panes -->
         <div class="tab-content">
             <div id="Orders" class="tab-pane active">
-                <br>
-                <h3>Orders</h3>
-                @Html.Partial("NewOrders")
+                <div class="page-content">
+
+                    <!-- main table my orders-->
+                    <table id="NewOrder" class="table  table-bordered table-hover">
+                    <colgroup>
+                        <col class="col-sm-1">
+                        <col class="col-md-1">
+                        <col class="col-md-2">
+                        <col class="col-md-2">
+                        <col class="col-md-1">
+                        <col class="col-md-1">
+                        <col class="col-md-2">
+                        <col class="col-md-1">
+                        <col class="col-md-1">
+                        <col class="col-md-1">
+                    </colgroup>
+                    <thead>
+                    <tr>
+                        <th> Name </th>
+                        <th> Phone </th>
+                        <th> Order </th>
+                        <th> Total </th>
+                        <th> Outlet </th>
+                        <th> Area </th>
+                        <th> Address </th>
+                        <th> Time</th>
+                        <th>Status</th>
+                        <th> Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="NewOrderBody" ordersCount="@Model.Orders.Count">
+                    @Html.Partial("NewOrders")
+                    
+                    </tbody>
+                    </table>
+
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+                    
             </div>
             <div id="Accepted"  class="tab-pane fade">
-                <br>
-                <h3>Accepted Orders</h3>
-                @Html.Partial("AcceptedOrders")
+                <div class="page-content">
+
+                    <!-- main table my orders-->
+                    <table id="AcceptedOrders" class="table  table-bordered table-hover">
+                        <colgroup>
+                            <col class="col-sm-1">
+                            <col class="col-md-1">
+                            <col class="col-md-2">
+                            <col class="col-md-2">
+                            <col class="col-md-1">
+                            <col class="col-md-1">
+                            <col class="col-md-2">
+                            <col class="col-md-1">
+                            <col class="col-md-1">
+                            <col class="col-md-1">
+                        </colgroup>
+                        <thead>
+                        <tr>
+                            <th> Name </th>
+                            <th> Phone </th>
+                            <th> Order </th>
+                            <th> Total </th>
+                            <th> Outlet </th>
+                            <th> Area </th>
+                            <th> Address </th>
+                            <th> Time</th>
+                            <th>Status</th>
+                            <th> Action</th>
+                        </tr>
+                        </thead>
+                        <tbody id="AcceptedOrdersOrders" ordersCount="@Model.Orders.Count">
+                        @Html.Partial("AcceptedOrders")
+                    
+                        </tbody>
+                    </table>
+
+                    <!-- PAGE CONTENT ENDS -->
+                </div>
+
 
             </div>
+
             <div id="Rejected" class="tab-pane fade">
-                <br>
-                <h3>Rejected Orders</h3>
-                @Html.Partial("RejectedOrders")
+                    <div class="page-content">
+
+                        <!-- main table my orders-->
+                        <table id="RejectedOrders" class="table  table-bordered table-hover">
+                            <colgroup>
+                                <col class="col-sm-1">
+                                <col class="col-md-1">
+                                <col class="col-md-2">
+                                <col class="col-md-2">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                                <col class="col-md-2">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th> Name </th>
+                                <th> Phone </th>
+                                <th> Order </th>
+                                <th> Total </th>
+                                <th> Outlet </th>
+                                <th> Area </th>
+                                <th> Address </th>
+                                <th> Time</th>
+                                <th>Status</th>
+                                <th> Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="RejectedOrdersBody" ordersCount="@Model.Orders.Count">
+                            @Html.Partial("RejectedOrders")
+                    
+                            </tbody>
+                        </table>
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div>
+
             </div>
             
             <div id="All" class="tab-pane fade">
-                <br>
-                <h3>All Orders</h3>
-                @Html.Partial("AllOrders")
+                    <div class="page-content">
+
+                        <!-- main table my orders-->
+                        <table id="AllOrders" class="table  table-bordered table-hover">
+                            <colgroup>
+                                <col class="col-sm-1">
+                                <col class="col-md-1">
+                                <col class="col-md-2">
+                                <col class="col-md-2">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                                <col class="col-md-2">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                                <col class="col-md-1">
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th> Name </th>
+                                <th> Phone </th>
+                                <th> Order </th>
+                                <th> Total </th>
+                                <th> Outlet </th>
+                                <th> Area </th>
+                                <th> Address </th>
+                                <th> Time</th>
+                                <th>Status</th>
+                                <th> Action</th>
+                            </tr>
+                            </thead>
+                            <tbody id="AllOrdersBody" ordersCount="@Model.Orders.Count">
+                            @Html.Partial("AllOrders")
+                    
+                            </tbody>
+                        </table>
+
+                        <!-- PAGE CONTENT ENDS -->
+                    </div>
+
             </div>
         </div>
-
-
-        @*<audio id="audio" src="http://www.soundjay.com/button/beep-07.wav" autoplay="false" ></audio>*@
-        <audio id="audio" muted="muted">
-            <source src="@Url.Content("../../Content/AdminPanel/assets/sound/piece-of-cake.mp3")" />
-        </audio>
 
     </div>
 
@@ -130,11 +205,12 @@
 <script>
     $(document).ready(function () {
         setInterval(getOrdersCount, 4000);
-
+        OrderController.showData();
         function getOrdersCount() {
             //console.log($('#tableBodyOrders').attr('ordersCount'));
-            var ordersCount = $('#tableBodyOrders').attr('ordersCount');
+            var ordersCount = $('#NewOrderBody').attr('ordersCount');
             OrderController.init(ordersCount);
+            OrderController.changedNumberOfOrders(ordersCount);
             //console.log(OrderController.count);
         }
 
@@ -152,16 +228,22 @@
 
         });
 
+        $('.js-btn-RejectOrder').on('click', function (e) {
+            var icon = $(e.target);
+            //console.log(icon);
+            var id = icon.attr("data-order-id");
+            OrderController.rejectNewOrder(id, e);
 
-        //$("#simple-table").DataTable();
-
-
-        /***************/
-        $('.show-details-btn').on('click', function (e) {
-            e.preventDefault();
-            $(this).closest('tr').next().toggleClass('open');
-            $(this).find(ace.vars['.icon']).toggleClass('fa-angle-double-down').toggleClass('fa-angle-double-up');
         });
+
+        $('.js-btn-EditOrder').on('click', function (e) {
+                   var icon = $(e.target);
+                   //console.log(icon);
+                   var id = icon.attr("data-order-id");
+                   OrderController.editOrder(id, e);
+
+               });
+
 
 
     })

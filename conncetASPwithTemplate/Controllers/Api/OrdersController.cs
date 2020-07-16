@@ -97,13 +97,15 @@ namespace conncetASPwithTemplate.Controllers.Api
             foreach (var cart in cartItems)
             {
                 //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";
-                tmpOrder += $"{cart.Quantity}x {cart.EldahanItem.Name2} Price {cart.EldahanItem.StaticPrice} LE @\n";
+                tmpOrder += $"{cart.Quantity}x {cart.EldahanItem.Name2} Price {cart.EldahanItem.StaticPrice} LE @";
             }
 
             string currentUserId = User.Identity.GetUserId();
             ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
             var Name = currentUser.Name;
             var Phone = currentUser.Phone;
+
+
             var Street = currentUser.Street;
             var Adress = currentUser.Adress;
             var Adress2 = currentUser.Adress2;

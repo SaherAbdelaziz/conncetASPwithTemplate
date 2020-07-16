@@ -1,40 +1,7 @@
 ﻿
-<div class="page-content">
-
-
-    <!-- main table my orders-->
-    <table id="simple-table" class="table  table-bordered table-hover">
-        <thead>
-            <tr>
-                <th class="detail-col"> Details</th>
-                <th> Name </th>
-                <th> Phone </th>
-                <th> Order </th>
-                <th> Total </th>
-                <th> Outlet </th>
-                <th> Area </th>
-                <th> Address </th>
-                <th> Time</th>
-
-                <th>Status</th>
-
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody id="tableBodyOrders" ordersCount="@Model.Orders.Count">
             @for (var i = 0; i < Model.Orders.Count; i++)
             {
                 <tr>
-                    <td class="center">
-                        <div class="action-buttons">
-                            <a href="#" class="green bigger-140 show-details-btn" title="Show Details">
-                                <i class="ace-icon fa fa-angle-double-down"></i>
-                                <span class="sr-only">Details</span>
-                            </a>
-                        </div>
-                    </td>
-
                     <td> @Model.Orders[i].CustomerName </td>
                     <td> @Model.Orders[i].CustomerPhone </td>
                     <td> @Model.Orders[i].Details </td>
@@ -121,62 +88,4 @@
                         </div>
                     </td>
                 </tr>
-    <!-- Details info will be for items-->
-
-                <tr class="detail-row">
-
-                    <td colspan="8">
-                        <table class="table  table-bordered table-hover">
-
-
-                            <tbody>
-
-                                @for (int j = 0; j < @Model.MyCartItems.Count; j++)
-                {
-
-                    var cartItem = Model.MyCartItems[j];
-                    if (cartItem.ShoppingCartId == Model.Orders[i].CartId && cartItem.OrderId == Model.Orders[i].Id && cartItem.Removed)
-                    {
-
-                                        <tr>
-                                            <td class="center">
-                                                @Model.MyCartItems[j].EldahanItem.Name
-                                            </td>
-
-                                            <td class="center">
-                                                @Model.MyCartItems[j].EldahanItem.Name2
-                                            </td>
-
-
-                                            <td class="center">
-                                                @Model.MyCartItems[j].Quantity
-                                            </td>
-
-                                            <td class="center">
-                                                @Model.MyCartItems[j].EldahanItem.StaticPrice
-                                            </td>
-
-                                            @if (!String.IsNullOrWhiteSpace(Model.MyCartItems[j].Details))
-                                            {
-                                            <tr>
-                                                <td class="center">
-                                                    *@Model.MyCartItems[j].Details
-                                                </td>
-                                            </tr>
-                                            }
-
-                            </tr>
-                                    }
-                                }
-                            <tbody>
-                        </table>
-
-                        </td>
-                        </tr>
             }
-
-            </tbody>
-            </table>
-
-            <!-- PAGE CONTENT ENDS -->
-        </div>
