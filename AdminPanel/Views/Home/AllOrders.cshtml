@@ -29,10 +29,27 @@
 
                     }
 
-
+                    @if (Model.Orders[i].OrderState == 0)
+                    {
                     <td class="hidden-480">
                         <span class="label label-sm label-success"> New </span>
                     </td>
+                    }
+                    
+                    else if (Model.Orders[i].OrderState == 1)
+                    {
+                        <td class="hidden-480">
+                            <span class="label label-sm label-warning"> Pending </span>
+                        </td>
+
+                    }
+                    
+                    else if (Model.Orders[i].OrderState == 2)
+                    {
+                        <td class="hidden-480">
+                            <span class="label label-sm label-danger"> Rejected </span>
+                        </td>
+                    }
 
                     <td>
                         <div class="hidden-sm hidden-xs btn-group">

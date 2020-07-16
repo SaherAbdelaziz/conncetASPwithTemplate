@@ -19,7 +19,7 @@
         var td = $(e.target);
         td.parents("tr").fadeOut(function () {
             console.log("out");
-
+            document.location.reload(true);
         }) ;
 
     };
@@ -28,14 +28,14 @@
         var td = $(e.target);
         td.parents("tr").fadeOut(function () {
             console.log("out");
-
+            document.location.reload(true);
         }) ;
 
     };
 
     var successEdited = function (e) {
         console.log(" order edited");
-
+        document.location.reload(true);
 
     };
 

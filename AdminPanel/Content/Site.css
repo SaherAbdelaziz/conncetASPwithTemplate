@@ -23,13 +23,14 @@ textarea {
     max-width: 280px;
 }
 
-/*.nav-tabs>li>a.Accepted , .nav-tabs>li>a.Accepted:hover {
-    background-color: green;
+.nav-tabs>li>a.Accepted  {
+    background-color: #7FFF00;
+    color: black    
 }
-.nav-tabs>li>a.Rejected , .nav-tabs>li>a.Rejected:hover{
-    background-color: red;
+.nav-tabs>li>a.Rejected {
+    background-color: #DC143C;
 }
 
-.nav-tabs>li>a.info , .nav-tabs>li>a.info:hover{
-    background-color: blue;
-}*/
+.nav-tabs>li>a.info {
+    background-color: #2F4F4F;
+}
