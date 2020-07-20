@@ -27,14 +27,25 @@ namespace AdminPanel.Controllers.API
         [ResponseType(typeof(Order))]
         public IHttpActionResult GetOrder(int id)
         {
-            Order order = _context.Orders.Find(id);
-            if (order == null)
+            if (id == -1)
             {
-                return NotFound();
+                id = _context.Orders.Max(o => o.Id);
+                Order order = _context.Orders.SingleOrDefault(o => o.Id == id);
+                return Ok(order);
+
+            }
+            else
+            {
+                Order order = _context.Orders.Find(id);
+                if (order == null)
+                {
+                    return NotFound();
+                }
+                return Ok(order);
             }
 
-            return Ok(order);
         }
+        
 
         // PUT: api/Orders/5
         [ResponseType(typeof(void))]

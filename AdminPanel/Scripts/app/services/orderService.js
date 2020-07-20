@@ -13,6 +13,33 @@
 
     }
 
+    var callOrderedItemsGetApi = function (success, error) {
+        console.log("start calling getting OrderedItems api");
+        $.ajax({
+            url: "/api/OrderedItems",
+            type: "GET",
+            dataType: "json",
+            success: success,
+            error: error
+        });
+
+    }
+
+    var callOrderGetSingleApi = function (successSingle, errorSingle) {
+        console.log("start calling getting single order api");
+        var id = -1;
+
+        $.ajax({
+            url: `/api/Orders/${id}`,
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            datatype: "json",
+            success: successSingle,
+            error: errorSingle
+        });
+
+    }
+
     var callAcceptOrder = function (successAccept, error, id , e) {
         console.log("start calling Accepting order api");
         var order = {
@@ -59,9 +86,11 @@
 
     return {
         callOrderGetApi: callOrderGetApi,
+        callOrderedItemsGetApi:callOrderedItemsGetApi,
         callAcceptOrder: callAcceptOrder,
         callRejectOrder: callRejectOrder,
-        callEditOrder: callEditOrder
+        callEditOrder: callEditOrder,
+        callOrderGetSingleApi:callOrderGetSingleApi
 
     }
 

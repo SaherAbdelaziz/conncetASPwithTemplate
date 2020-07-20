@@ -4,6 +4,12 @@
         console.log("start calling order api");
         orderService.callOrderGetApi(success, error);
     }
+
+
+    var getOrderedItems = function (success, error) {
+        console.log("start calling order api");
+        orderService.callOrderedItemsGetApi(success, error);
+    }
     
     var success = function (orders) {
         //console.log("retrieved orders");
@@ -39,18 +45,37 @@
 
     };
 
+    var successSingle = function (order) {
+        console.log(" order single retrieved ");
+        console.log(order);
+        var sound = document.getElementById("audio");
+        sound.muted = false;
+            
+        sound.play();
+           
+        var text = `you have new order from ${order.customerName} with price ${order.totalPrice}`;
+        $('#newOrderModel .modal-body').text( text);
+        $("#newOrderModel").modal();
+        
+
+    };
+
     var error = function () {
         alert("Something failed! in getting orders");
     };
 
+    var errorSingle = function () {
+        alert("Something failed! in getting single order");
+    };
+
+
     var changedNumberOfOrders =function(ordersCount) 
     {
-        console.log("detect new order called");
+        console.log("detect if new order called");
         if (OrderController.count != 0 && OrderController.count != ordersCount) {
-            var sound = document.getElementById("audio");
-            sound.muted = false;
-            sound.play();
-            $("#newOrderModel").modal();
+            console.log("1 " + OrderController.count + " 2  " + ordersCount);
+            orderService.callOrderGetSingleApi(successSingle);
+           
             //document.location.reload(true);
         }
     }
@@ -87,7 +112,11 @@
         });
     }
 
+    //var getLastOrder = function (id, e) {
+    //    console.log("Last order" + id);
+    //    orderService.callAcceptOrder(successAccept, error, id, e);
 
+    //}
     var acceptNewOrder = function(id , e) {
         console.log("accept new order" + id);
         orderService.callAcceptOrder(successAccept, error, id , e);
@@ -108,7 +137,8 @@
         
         console.log("start order controller");
         console.log(ordersCount);
-        getOrders(success, error);
+        //getOrders(success, error);
+        getOrderedItems(success, error);
         //changedNumberOfOrders(ordersCount);
         //showData();
     };
