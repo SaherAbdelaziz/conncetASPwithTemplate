@@ -299,11 +299,16 @@
     <Compile Include="Migrations\202007150941340_updateTables.Designer.cs">
       <DependentUpon>202007150941340_updateTables.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007201029461_AddOrderedItemTable.cs" />
+    <Compile Include="Migrations\202007201029461_AddOrderedItemTable.Designer.cs">
+      <DependentUpon>202007201029461_AddOrderedItemTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\EldahanItems2.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\EldahanItems.cs" />
+    <Compile Include="Models\OrderedItem.cs" />
     <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
@@ -1551,6 +1556,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007150941340_updateTables.resx">
       <DependentUpon>202007150941340_updateTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007201029461_AddOrderedItemTable.resx">
+      <DependentUpon>202007201029461_AddOrderedItemTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

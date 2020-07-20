@@ -219,6 +219,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\EldahanItems.cs" />
+    <Compile Include="Models\OrderedItem.cs" />
     <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />

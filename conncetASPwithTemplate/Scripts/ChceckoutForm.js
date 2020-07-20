@@ -29,21 +29,23 @@
                 })
                     .done(function () {
                         console.log("added new order ");
-                        $.ajax({
-                                url: "/api/ShoppingCarts",
-                                method: "put",
-                                contentType: 'application/json; charset=utf-8',
-                                dataType: "Json"
-                            })
-                            .done(function () {
-                                console.log(" all cartItems Updated");
-                                AJAXRequest();
-                                document.location.reload(true);
+                        AJAXRequest();
+                        document.location.reload(true);
+                        //$.ajax({
+                        //        url: "/api/ShoppingCarts",
+                        //        method: "put",
+                        //        contentType: 'application/json; charset=utf-8',
+                        //        dataType: "Json"
+                        //    })
+                        //    .done(function () {
+                        //        console.log(" all cartItems Updated");
+                        //        //AJAXRequest();
+                        //        //document.location.reload(true);
 
-                            })
-                            .fail(function () {
-                                alert("Something failed! in Updating cartItems");
-                            });
+                        //    })
+                        //    .fail(function () {
+                        //        alert("Something failed! in Updating cartItems");
+                        //    });
 
                     })
                     .fail(function () {

@@ -116,6 +116,7 @@ namespace conncetASPwithTemplate.Models
         public DbSet<Web_Preset> EldahanPresets { get; set; }
         public DbSet<Web_Menu_Item> WebMenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderedItem> OrderedItems { get; set; }
         public DbSet<SelectedModifiers> SelectedModifiers { get; set; }
         public DbSet<EldahanItems2> EldahanItems2 { get; set; }
 

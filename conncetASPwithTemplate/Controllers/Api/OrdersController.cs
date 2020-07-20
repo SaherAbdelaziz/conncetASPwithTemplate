@@ -80,6 +80,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        //here we post new order
         // POST: api/Orders
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)
@@ -98,10 +99,16 @@ namespace conncetASPwithTemplate.Controllers.Api
             {
                 //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";
                 tmpOrder += $"{cart.Quantity}x {cart.EldahanItem.Name2} Price {cart.EldahanItem.StaticPrice} LE @";
+                var orderItem =new OrderedItem(cart);
+                _context.OrderedItems.Add(orderItem);
+                cart.Removed = true;
+                
             }
 
             string currentUserId = User.Identity.GetUserId();
-            ApplicationUser currentUser = _context.Users.FirstOrDefault(x => x.Id == currentUserId);
+            ApplicationUser currentUser = _context.Users
+                .FirstOrDefault(x => x.Id == currentUserId);
+
             var Name = currentUser.Name;
             var Phone = currentUser.Phone;
 

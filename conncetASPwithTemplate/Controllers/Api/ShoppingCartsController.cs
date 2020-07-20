@@ -40,7 +40,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         public IEnumerable<MyCartItem> Get()
         {
           var items = _context.MyCartItems
-            .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed)
+            .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed && !c.Ordered)
             .Include(c => c.EldahanItem).ToList();
 
 
@@ -66,7 +66,8 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             
                 var cartItem = _context.MyCartItems.SingleOrDefault(
-                c => c.ShoppingCartId == Cart.Id && c.EldahanItemId == cartItemDto.ItemId && !c.Removed);
+                c => c.ShoppingCartId == Cart.Id && c.EldahanItemId 
+                    == cartItemDto.ItemId && !c.Removed);
 
                 if (cartItemDto.ItemsId[0] == -1)
                 {
@@ -132,23 +133,24 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // here we get all cart items and set its order id to orderId
-        public void Put()
-        {
+        //public void Put()
+        //{
 
-            var cartItmes = _context.MyCartItems.ToList();
-            var order = _context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
+        //    var cartItmes = _context.MyCartItems.ToList();
+        //    var order = _context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
 
-            foreach (var cartItme in cartItmes)
-            {
-                if(cartItme.ShoppingCartId == Cart.Id && !cartItme.Removed)
-                {
-                    cartItme.OrderId = order.Id;
-                    cartItme.Removed = true;
-                }
-            }
+        //    foreach (var cartItme in cartItmes)
+        //    {
+        //        if(cartItme.ShoppingCartId == Cart.Id && !cartItme.Removed)
+        //        {
+        //            cartItme.OrderId = order.Id;
+        //            cartItme.Ordered = true;
+        //            cartItme.Removed = true;
+        //        }
+        //    }
 
-            _context.SaveChanges();
-        }
+        //    _context.SaveChanges();
+        //}
 
         // DELETE: api/ShoppingCarts/5
         public IHttpActionResult Delete(int id)
