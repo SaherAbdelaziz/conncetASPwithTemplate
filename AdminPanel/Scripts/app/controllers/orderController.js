@@ -131,6 +131,12 @@
             console.log("edit order" + id);
             orderService.callEditOrder(successEdited, error, id, e);
     
+    }
+
+    var editItemsOrder = function (id, e) {
+            console.log("edit orderItem" + id);
+            orderService.callEditOrderItem(successEdited, error, id, e);
+    
         }
 
     var init = function (ordersCount) {
@@ -149,7 +155,8 @@
         changedNumberOfOrders: changedNumberOfOrders,
         acceptNewOrder: acceptNewOrder,
         rejectNewOrder: rejectNewOrder,
-        editOrder:editOrder,
+        editOrder: editOrder,
+        editItemsOrder:editItemsOrder,
         showData: showData
 
     }

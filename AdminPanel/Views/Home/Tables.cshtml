@@ -245,6 +245,14 @@
                    var id = icon.attr("data-order-id");
                    OrderController.editOrder(id, e);
 
+        });
+
+        $('.js-btn-EditItemsOrder').on('click', function (e) {
+                   var icon = $(e.target);
+                   //console.log(icon);
+                   var id = icon.attr("data-order-id");
+                   OrderController.editItemsOrder(id, e);
+
                });
 
 

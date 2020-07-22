@@ -23,14 +23,15 @@ namespace AdminPanel.Controllers.API
         }
 
         // GET: api/OrderedItems/5
-        [ResponseType(typeof(OrderedItem))]
+        [ResponseType(typeof(List< OrderedItem >))]
         public IHttpActionResult GetOrderedItem(int id)
         {
-            OrderedItem orderedItem = _context.OrderedItems.Find(id);
-            if (orderedItem == null)
-            {
-                return NotFound();
-            }
+            var orderedItem = _context.OrderedItems
+                .Where(od=>od.OrderId==id)
+                .Include(od => od.Order)
+                .Include(od => od
+                    .Item)
+                .ToList();
 
             return Ok(orderedItem);
         }

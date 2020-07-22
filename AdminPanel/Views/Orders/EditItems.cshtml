@@ -1,0 +1,29 @@
+﻿@model AdminPanel.Models.ItemOrderModelCheckList
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_adminPanel.cshtml";
+}
+
+@using (Html.BeginForm("EditItems", "Orders" , new { myId = Model.OrderId}))
+{
+    @Model.OrderId
+    foreach (var item in Model.AvailableItem)
+    {
+        <div class="checkbox">
+            <label>
+                <input type="checkbox"
+                       name="SelectedItems"
+                       value="@item.Value"
+                       @if(@item.Selected)
+                       {
+                           <text> checked </text> 
+                       } 
+                /> @item.Text
+            </label>
+        </div>
+    }
+    <div class="form-group text-center">
+        <input type="submit" class="btn btn-primary" value="Submit" />
+    </div>
+}

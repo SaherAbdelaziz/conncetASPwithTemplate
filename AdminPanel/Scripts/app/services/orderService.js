@@ -82,14 +82,21 @@
             window.open(actionUrl);
 
     }
-    
 
+    var callEditOrderItem = function (successEdited, error, id, e) {
+        console.log("start calling Edit order api");
+
+        var actionUrl = `/Orders/EditItems/${id}`;
+            window.open(actionUrl);
+
+    }
     return {
         callOrderGetApi: callOrderGetApi,
         callOrderedItemsGetApi:callOrderedItemsGetApi,
         callAcceptOrder: callAcceptOrder,
         callRejectOrder: callRejectOrder,
         callEditOrder: callEditOrder,
+        callEditOrderItem: callEditOrderItem,
         callOrderGetSingleApi:callOrderGetSingleApi
 
     }

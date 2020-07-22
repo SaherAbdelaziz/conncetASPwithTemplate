@@ -106,6 +106,76 @@ namespace AdminPanel.Controllers
             return View(order);
         }
 
+        // POST: Orders/EditItems/5
+        public ActionResult EditItems(int id)
+        {
+            var model = new ItemOrderModelCheckList(id, GetItems(id));
+            
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult EditItems(ItemOrderModelCheckList model , int myId)
+        {
+
+            if (ModelState.IsValid)
+            {
+                var selectedItemsIds = string.Join(",", model.SelectedItems);
+                //List<double?> prices=new List<double?>();
+                double? prices = 0;
+                List<string> Names=new List<string>();
+
+                foreach (var i in model.SelectedItems)
+                {
+                    var id = int.Parse(i);
+                    var item = db.EldahanItems
+                        .SingleOrDefault(e => e.Id == id);
+
+                    Names.Add(item.Name);
+                    prices+=item.StaticPrice;
+                }
+                //update order based on new selected items
+                var order = db.Orders.SingleOrDefault(o => o.Id == myId);
+                var n = string.Join(" <br> ", Names);
+                //var p = string.Join("/n", Names);
+
+                order.Details = n;
+                order.Price = (double) prices;
+                order.TotalPrice = (double) prices + order.Delivery;
+                db.SaveChanges();
+
+                //model.OrderId
+                //var items = db.EldahanItems
+                //    .Where(e => model.SelectedItems.ToList().Contains(e));
+
+                // Save data to database, and redirect to Success page.
+
+                return RedirectToAction("Index" , "Home");
+            }
+            model.AvailableItem = GetItems(81);
+            return View(model);
+        }
+
+
+        private IList<SelectListItem> GetItems(int id)
+        {
+            var item = db.OrderedItems
+                .Where(od => od.OrderId == id)
+                .Include(od => od.Item)
+                .ToList();
+
+            List<SelectListItem> model = new List<SelectListItem>();
+            foreach (var i in item)
+            {
+                var x = new SelectListItem
+                    { Text = i.Item.Name, Value = i.Item.Id.ToString(), Selected = true};
+                model.Insert(0 , x);
+            }
+
+            return model;
+        }
+
+        
         // GET: Orders/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -132,6 +202,9 @@ namespace AdminPanel.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -140,5 +213,8 @@ namespace AdminPanel.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
     }
 }

@@ -220,6 +220,7 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\EldahanItems.cs" />
+    <Compile Include="Models\ItemOrderModelCheckList.cs" />
     <Compile Include="Models\OrderedItem.cs" />
     <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
@@ -698,6 +699,7 @@
     <Content Include="Views\Orders\Details.cshtml" />
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Orders\EditItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

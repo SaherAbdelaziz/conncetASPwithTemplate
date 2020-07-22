@@ -91,6 +91,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             }
 
             string tmpOrder = "";
+            string tmporderItem = "";
             var cartItems = _context.MyCartItems
                 .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed)
                 .Include(c => c.EldahanItem).ToList();
@@ -101,6 +102,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 tmpOrder += $"{cart.Quantity}x {cart.EldahanItem.Name2} Price {cart.EldahanItem.StaticPrice} LE @";
                 var orderItem =new OrderedItem(cart);
                 _context.OrderedItems.Add(orderItem);
+                tmporderItem+=
                 cart.Removed = true;
                 
             }
