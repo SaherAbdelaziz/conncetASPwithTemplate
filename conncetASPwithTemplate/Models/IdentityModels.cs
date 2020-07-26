@@ -127,6 +127,9 @@ namespace conncetASPwithTemplate.Models
         public virtual DbSet<ModifiersGroup> ModifiersGroups { get; set; }
         public virtual DbSet<OutLet> OutLets { get; set; }
 
+        //public virtual DbSet<Check> Checks { get; set; }
+        //public virtual DbSet<ChecksItem> ChecksItems { get; set; }
+        //public virtual DbSet<ChecksTaxAdjTip> ChecksTaxAdjTips { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

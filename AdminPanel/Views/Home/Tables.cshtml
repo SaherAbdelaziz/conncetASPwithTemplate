@@ -1,7 +1,7 @@
 ﻿@using System.Diagnostics
 @using AdminPanel.Models
 @using Microsoft.AspNet.Identity
-@model List<OrderedItem>
+@model AdminPanel.ViewModels.OrdersViewModel
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_adminPanel.cshtml";
@@ -60,7 +60,7 @@
                         <th> Action</th>
                     </tr>
                     </thead>
-                    <tbody id="NewOrderBody" ordersCount="@Model.Count">
+                    <tbody id="NewOrderBody" ordersCount="@Model.Orders.Count">
                     @Html.Partial("NewOrders")
                     
                     </tbody>
@@ -101,7 +101,7 @@
                             <th> Action</th>
                         </tr>
                         </thead>
-                        <tbody id="AcceptedOrdersOrders" ordersCount="@Model.Count()">
+                        <tbody id="AcceptedOrdersOrders" ordersCount="@Model.Orders.Count()">
                         @Html.Partial("AcceptedOrders")
                     
                         </tbody>
@@ -144,7 +144,7 @@
                                 <th> Action</th>
                             </tr>
                             </thead>
-                            <tbody id="RejectedOrdersBody" ordersCount="@Model.Count()">
+                            <tbody id="RejectedOrdersBody" ordersCount="@Model.Orders.Count()">
                             @Html.Partial("RejectedOrders")
                     
                             </tbody>
@@ -189,7 +189,7 @@
                                 <th> Action</th>
                             </tr>
                             </thead>
-                            <tbody id="AllOrdersBody" ordersCount="@Model.Count()">
+                            <tbody id="AllOrdersBody" ordersCount="@Model.Orders.Count()">
                             @Html.Partial("AllOrders")
                     
                             </tbody>

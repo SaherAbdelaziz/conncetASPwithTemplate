@@ -26,40 +26,40 @@ namespace AdminPanel.Controllers
 
         public ActionResult Index()
         {
-            //var orders = _context.Orders
-            //    .Include(o => o.OutLet)
-            //    .Include(o => o.HdAreas)
-            //    .Include(o => o.Services)
-            //    .ToList();
+            var orders = _context.Orders
+                .Include(o => o.OutLet)
+                .Include(o => o.HdAreas)
+                .Include(o => o.Services)
+                .ToList();
 
-            //var cartItems = _context.MyCartItems
-            //    .Include(c => c.EldahanItem)
-            //    .ToList();
+            var cartItems = _context.MyCartItems
+                .Include(c => c.EldahanItem)
+                .ToList();
 
-            //var selectedModifiers = _context.SelectedModifiers
-            //    .Include(m => m.ItemModifier)
-            //    .ToList();
-
-
-            //var ordersViewModelViewModel = new OrdersViewModel()
-            //{
-            //    MyCartItems = cartItems,
-            //    Orders = orders,
-            //    selectedModifiers = selectedModifiers,
-            //};
-
-            //return View("Tables" , ordersViewModelViewModel);
-
-            var orderedItems = _context.OrderedItems
-                .Include(e => e.Order)
-                .Include(e => e.Order.OutLet)
-                .Include(e => e.Order.HdAreas)
-                .Include(e => e.Item)
+            var selectedModifiers = _context.SelectedModifiers
+                .Include(m => m.ItemModifier)
                 .ToList();
 
 
+            var ordersViewModelViewModel = new OrdersViewModel()
+            {
+                MyCartItems = cartItems,
+                Orders = orders,
+                selectedModifiers = selectedModifiers,
+            };
 
-            return View("Tables" , orderedItems);
+            return View("Tables", ordersViewModelViewModel);
+
+            //var orderedItems = _context.OrderedItems
+            //    .Include(e => e.Order)
+            //    .Include(e => e.Order.OutLet)
+            //    .Include(e => e.Order.HdAreas)
+            //    .Include(e => e.Item)
+            //    .ToList();
+
+
+
+            //return View("Tables" , orderedItems);
 
         }
 
@@ -80,39 +80,39 @@ namespace AdminPanel.Controllers
         {
 
 
-            //var orders = _context.Orders
-            //    .Include(o=>o.OutLet)
-            //    .Include(o=>o.HdAreas)
-            //    .Include(o=>o.Services)
-            //    .ToList();
-
-            //var cartItems = _context.MyCartItems
-            //    .Include(c=>c.EldahanItem)
-            //    .ToList();
-
-            //var selectedModifiers = _context.SelectedModifiers
-            //    .Include(m =>m.ItemModifier)
-            //    .ToList();
-
-
-            //var ordersViewModelViewModel = new OrdersViewModel()
-            //{
-            //    MyCartItems = cartItems,
-            //    Orders = orders,
-            //    selectedModifiers = selectedModifiers,
-            //};
-
-            //return View(ordersViewModelViewModel);
-
-
-            var orderedItems = _context.OrderedItems
-                .Include(e => e.Order)
-                .Include(e => e.Order.OutLet)
-                .Include(e => e.Order.HdAreas)
-                .Include(e => e.Item)
+            var orders = _context.Orders
+                .Include(o => o.OutLet)
+                .Include(o => o.HdAreas)
+                .Include(o => o.Services)
                 .ToList();
 
-            return View(orderedItems);
+            var cartItems = _context.MyCartItems
+                .Include(c => c.EldahanItem)
+                .ToList();
+
+            var selectedModifiers = _context.SelectedModifiers
+                .Include(m => m.ItemModifier)
+                .ToList();
+
+
+            var ordersViewModelViewModel = new OrdersViewModel()
+            {
+                MyCartItems = cartItems,
+                Orders = orders,
+                selectedModifiers = selectedModifiers,
+            };
+
+            return View(ordersViewModelViewModel);
+
+
+            //var orderedItems = _context.OrderedItems
+            //    .Include(e => e.Order)
+            //    .Include(e => e.Order.OutLet)
+            //    .Include(e => e.Order.HdAreas)
+            //    .Include(e => e.Item)
+            //    .ToList();
+
+            //return View(orderedItems);
 
 
         }

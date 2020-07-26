@@ -73,8 +73,8 @@
     {
         console.log("detect if new order called");
         if (OrderController.count != 0 && OrderController.count != ordersCount) {
-            console.log("1 " + OrderController.count + " 2  " + ordersCount);
-            orderService.callOrderGetSingleApi(successSingle);
+            console.log("from controller " + OrderController.count + " displayed  " + ordersCount);
+            orderService.callOrderGetApi(success());
            
             //document.location.reload(true);
         }
@@ -143,8 +143,8 @@
         
         console.log("start order controller");
         console.log(ordersCount);
-        //getOrders(success, error);
-        getOrderedItems(success, error);
+        getOrders(success, error);
+        //getOrderedItems(success, error);
         //changedNumberOfOrders(ordersCount);
         //showData();
     };

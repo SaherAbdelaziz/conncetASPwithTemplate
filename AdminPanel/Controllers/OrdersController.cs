@@ -124,19 +124,22 @@ namespace AdminPanel.Controllers
                 //List<double?> prices=new List<double?>();
                 double? prices = 0;
                 List<string> Names=new List<string>();
+                List<int> q=new List<int>();
 
                 foreach (var i in model.SelectedItems)
                 {
+                    
                     var id = int.Parse(i);
                     var item = db.EldahanItems
                         .SingleOrDefault(e => e.Id == id);
 
-                    Names.Add(item.Name);
+                    Names.Add(item.Name2);
+                    //q.Add(i);
                     prices+=item.StaticPrice;
                 }
                 //update order based on new selected items
                 var order = db.Orders.SingleOrDefault(o => o.Id == myId);
-                var n = string.Join(" <br> ", Names);
+                var n = string.Join(" @ ", Names);
                 //var p = string.Join("/n", Names);
 
                 order.Details = n;
@@ -152,7 +155,7 @@ namespace AdminPanel.Controllers
 
                 return RedirectToAction("Index" , "Home");
             }
-            model.AvailableItem = GetItems(81);
+            model.AvailableItem = GetItems(myId);
             return View(model);
         }
 
@@ -168,10 +171,10 @@ namespace AdminPanel.Controllers
             foreach (var i in item)
             {
                 var x = new SelectListItem
-                    { Text = i.Item.Name, Value = i.Item.Id.ToString(), Selected = true};
+                    { Text = i.Item.Name2, Value = i.Item.Id.ToString(), Selected = true};
                 model.Insert(0 , x);
             }
-
+            // i.Quantity+"x"+
             return model;
         }
 

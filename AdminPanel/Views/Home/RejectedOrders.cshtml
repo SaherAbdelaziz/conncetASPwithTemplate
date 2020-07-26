@@ -1,61 +1,55 @@
-﻿
-            @for (var i = 0; i < Model.Count; i++)
+﻿@for (var i = 0; i < Model.Orders.Count; i++)
             {
-                if (Model[i].Order.OrderState == 2)
+                if (Model.Orders[i].OrderState == 2)
                 {
 
-                    <tr>
-                        <td> @Model[i].Order.CustomerName </td>
-                        <td> @Model[i].Order.CustomerPhone </td>
-                      
-                        <td>
-                            @Model[i].Order.Details
-                            <button class="btn btn-primary btn-sm">test</button>
-                        </td>
-                        <td>
-                            Price :     @Model[i].Order.Price <br>
-                            Delivery :  @Model[i].Order.Delivery <br>
-                            TotalPrice :@Model[i].Order.TotalPrice
-                        </td>
-                        <td> @Model[i].Order.OutLet.Name </td>
-                        <td> @Model[i].Order.HdAreas.Name </td>
-                        <td> @Model[i].Order.CustomerStreet </td>
+        <tr>
+            <td> @Model.Orders[i].CustomerName </td>
+            <td> @Model.Orders[i].CustomerPhone </td>
+            <td> @Model.Orders[i].Details </td>
+            <td>
+                Price : @Model.Orders[i].Price <br>
+                Delivery : @Model.Orders[i].Delivery <br>
+                TotalPrice :@Model.Orders[i].TotalPrice
+            </td>
+            <td> @Model.Orders[i].OutLet.Name </td>
+            <td> @Model.Orders[i].HdAreas.Name </td>
+            <td> @Model.Orders[i].CustomerStreet </td>
 
-                        @if (Model[i].Order.DeliveryTimeIndex == 0)
-                        {
-                            <td> as fast as possible </td>
-                        }
-
-
-                        else if (Model[i].Order.DeliveryTimeIndex == 1)
-                        {
-                            <td> in one hour </td>
-                        }
-
-                        else
-                        {
-                            <td> in two hour </td>
-
-                        }
-
-
-
-                        <td class="hidden-480">
-                            <span class="label label-sm label-danger"> Rejected </span>
-                        </td>
-
-                        <td>
-                            <div class="hidden-sm hidden-xs btn-group">
-                              
-                                <button class="btn btn-xs btn-info">
-                                    <i class="ace-icon fa fa-pencil bigger-120"></i>
-                                </button>
-
-                                <button class="btn btn-xs btn-danger">
-                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                }
+            @if (Model.Orders[i].DeliveryTimeIndex == 0)
+            {
+                <td> as fast as possible </td>
             }
+
+
+            else if (Model.Orders[i].DeliveryTimeIndex == 1)
+            {
+                <td> in one hour </td>
+            }
+
+            else
+            {
+                <td> in two hour </td>
+
+            }
+
+
+            <td class="hidden-480">
+                <span class="label label-sm label-danger"> Rejected </span>
+            </td>
+
+            <td>
+                <div class="hidden-sm hidden-xs btn-group">
+
+                    <button class="btn btn-xs btn-info">
+                        <i class="ace-icon fa fa-pencil bigger-120"></i>
+                    </button>
+
+                    <button class="btn btn-xs btn-danger">
+                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                    </button>
+                </div>
+            </td>
+        </tr>
+    }
+}
