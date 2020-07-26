@@ -303,8 +303,16 @@
     <Compile Include="Migrations\202007201029461_AddOrderedItemTable.Designer.cs">
       <DependentUpon>202007201029461_AddOrderedItemTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007261401357_AddCheckTables.cs" />
+    <Compile Include="Migrations\202007261401357_AddCheckTables.Designer.cs">
+      <DependentUpon>202007261401357_AddCheckTables.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Check.cs" />
+    <Compile Include="Models\ChecksItem.cs" />
+    <Compile Include="Models\ChecksItemsSettlesSummary.cs" />
+    <Compile Include="Models\ChecksTaxAdjTip.cs" />
     <Compile Include="Models\EldahanItems2.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\EldahanItems.cs" />
@@ -1559,6 +1567,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007201029461_AddOrderedItemTable.resx">
       <DependentUpon>202007201029461_AddOrderedItemTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007261401357_AddCheckTables.resx">
+      <DependentUpon>202007261401357_AddCheckTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

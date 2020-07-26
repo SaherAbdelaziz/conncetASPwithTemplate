@@ -96,17 +96,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed)
                 .Include(c => c.EldahanItem).ToList();
 
-            foreach (var cart in cartItems)
-            {
-                //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";
-                tmpOrder += $"{cart.Quantity}x {cart.EldahanItem.Name2} Price {cart.EldahanItem.StaticPrice} LE @";
-                var orderItem =new OrderedItem(cart);
-                _context.OrderedItems.Add(orderItem);
-                tmporderItem+=
-                cart.Removed = true;
-                
-            }
-
+            
             string currentUserId = User.Identity.GetUserId();
             ApplicationUser currentUser = _context.Users
                 .FirstOrDefault(x => x.Id == currentUserId);
@@ -126,6 +116,57 @@ namespace conncetASPwithTemplate.Controllers.Api
             var hdAreasId = currentUser.AreaId;
             string tmpAddress =  "Area : " + Adress + " \n  Address : " + Adress2 
                 + " \n Building : " + Building + " \n Floor : " + Floor;
+
+            var modelCheck = _context.Checks.OrderByDescending(c => c.ID).FirstOrDefault();
+            long checkId; 
+            if (modelCheck !=null)
+            {
+                var modelCheckIdArea = 1 * 100000000000;
+                var modelCheckIdOutlet = outLetId * 100000000;
+                var modelCheckIdOutletStation = 88000000;
+                var modelCheckId = modelCheck.ID % 1000000;
+                checkId = modelCheckIdArea + modelCheckIdOutlet + modelCheckId + modelCheckIdOutletStation + 1;
+                Check check = new Check(checkId, (int)(modelCheckId + 1),
+                    (modelCheckId + 1).ToString(),
+                    "web", "Ordered", outLetId);
+                _context.Checks.Add(check);
+            }
+            else
+            {
+                var modelCheckIdArea = 1 * 100000000000;
+                var modelCheckIdOutlet = outLetId * 100000000;
+                var modelCheckIdOutletStation = 88000000;
+                checkId = modelCheckIdArea + modelCheckIdOutlet + modelCheckIdOutletStation + 1;
+                Check check = new Check(checkId, 1,
+                    (1).ToString(),
+                    "web", "Ordered", outLetId);
+                _context.Checks.Add(check);
+            }
+            
+            var count = 1;
+            foreach (var cart in cartItems)
+            {
+                //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";
+                tmpOrder += $"{cart.Quantity}x {cart.EldahanItem.Name2} Price {cart.EldahanItem.StaticPrice} LE @";
+
+                // new orderItem
+                var orderItem = new OrderedItem(cart);
+                _context.OrderedItems.Add(orderItem);
+
+
+                //new checkItem
+                var pprice = cart.EldahanItem.StaticPrice;
+                var ttotal = pprice * cart.Quantity;
+
+                var checkItem = new ChecksItem(checkId ,cart.EldahanItemId, cart.Quantity,
+                    pprice, ttotal, 0 , 0 ,
+                    0 , ttotal, count);
+
+                _context.ChecksItems.Add(checkItem);
+                tmporderItem +=
+                    cart.Removed = true;
+                count++;
+            }
 
             Order myOrder = new Order()
             {
@@ -150,6 +191,8 @@ namespace conncetASPwithTemplate.Controllers.Api
                 TotalPrice = order.Price + order.Delivery,
 
             };
+
+           
 
             _context.Orders.Add(myOrder);
             _context.SaveChanges();
