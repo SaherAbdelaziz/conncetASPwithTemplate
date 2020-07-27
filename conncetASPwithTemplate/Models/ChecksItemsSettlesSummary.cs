@@ -62,5 +62,31 @@ namespace conncetASPwithTemplate.Models
 
         [StringLength(100)]
         public string Disc_Reason_Comment { get; set; }
+
+        public ChecksItemsSettlesSummary()
+        {
+            
+        }
+
+        public ChecksItemsSettlesSummary(long checkId, double? subTotal, double? taxes, bool? voidTaxes, double? adjustments, bool? voidAdjustments, double? discount, double? changeValue, double? rMinCharge, bool? voidRMinCharge, double? netTotal, double? tip, double? totalAmount, double? totalPaid, double? riminingAmount, double? minCharge, bool voided)
+        {
+            Check_ID = checkId;
+            SubTotal = subTotal;
+            Taxes = taxes;
+            VoidTaxes = voidTaxes;
+            Adjustments = adjustments;
+            VoidAdjustments = voidAdjustments;
+            Discount = discount;
+            ChangeValue = changeValue;
+            R_MinCharge = rMinCharge;
+            VoidR_MinCharge = voidRMinCharge;
+            NetTotal = netTotal;
+            Tip = tip;
+            TotalAmount = totalAmount;
+            TotalPaid = totalPaid;
+            RiminingAmount = riminingAmount;
+            MinCharge = minCharge;
+            Voided = voided;
+        }
     }
 }

@@ -74,7 +74,7 @@
         console.log("detect if new order called");
         if (OrderController.count != 0 && OrderController.count != ordersCount) {
             console.log("from controller " + OrderController.count + " displayed  " + ordersCount);
-            orderService.callOrderGetApi(success());
+            orderService.callOrderGetSingleApi(successSingle, error);
            
             //document.location.reload(true);
         }

@@ -1,13 +1,13 @@
 ﻿var OrderService = function() {
 
 
-    var callOrderGetApi = function (success, error) {
+    var callOrderGetApi = function (successSingle, error) {
         console.log("start calling getting order api");
         $.ajax({
             url: "/api/Orders",
             type: "GET",
             dataType: "json",
-            success: success,
+            success: successSingle,
             error: error
         });
 

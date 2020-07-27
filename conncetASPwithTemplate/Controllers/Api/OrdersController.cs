@@ -130,6 +130,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                     (modelCheckId + 1).ToString(),
                     "web", "Ordered", outLetId);
                 _context.Checks.Add(check);
+
             }
             else
             {
@@ -142,8 +143,25 @@ namespace conncetASPwithTemplate.Controllers.Api
                     "web", "Ordered", outLetId);
                 _context.Checks.Add(check);
             }
-            
+
+            // code for generate checkstaxadjtip
+            var valueTax = order.Delivery;
+            var checksTaxAdjTip = new ChecksTaxAdjTip(checkId, 0, valueTax, "Adjustment", false);
+            valueTax = .14 * order.Price;
+            var checksTaxAdjTip2 = new ChecksTaxAdjTip(checkId, 14, valueTax, "Tax", false);
+            _context.ChecksTaxAdjTips.Add(checksTaxAdjTip);
+            _context.ChecksTaxAdjTips.Add(checksTaxAdjTip2);
+
+            //code for generate checksItemsSettlesSummary
+            var netTotal = order.Price + order.Delivery + valueTax;
+            var checksItemsSettlesSummary = new ChecksItemsSettlesSummary(checkId , order.Price , valueTax ,
+                false , order.Delivery , false , 
+                0 , 0 , 0 ,false ,
+                netTotal , 0 ,netTotal , 0 , netTotal , 0 , false);
+
+            _context.ChecksItemsSettlesSummaries.Add(checksItemsSettlesSummary);
             var count = 1;
+
             foreach (var cart in cartItems)
             {
                 //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";

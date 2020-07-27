@@ -26,5 +26,22 @@ namespace conncetASPwithTemplate.Models
         public string theCase { get; set; }
 
         public bool? Voided { get; set; }
+
+        public ChecksTaxAdjTip()
+        {
+            
+        }
+
+        public ChecksTaxAdjTip(long? checkId , double? percAdjTax, double? valueAdjTax, string theCase, bool? voided)
+        {
+            Check_ID = checkId;
+            AdjTax_ID = 1;
+            Perc_AdjTax = percAdjTax;
+            Value_AdjTax = valueAdjTax;
+            this.theCase = theCase;
+            Voided = voided;
+        }
+        
     }
+
 }
