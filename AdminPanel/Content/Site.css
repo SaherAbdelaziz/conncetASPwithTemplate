@@ -23,14 +23,14 @@ textarea {
     max-width: 280px;
 }
 
-.nav-tabs>li>a.Accepted  {
-    background-color: #7FFF00;
+/*.nav-tabs>li>a.Accepted  {
+    background-color: #88e92c;
     color: black    
 }
 .nav-tabs>li>a.Rejected {
-    background-color: #DC143C;
+    background-color: #ff0036;
 }
 
 .nav-tabs>li>a.info {
     background-color: #2F4F4F;
-}
+}*/

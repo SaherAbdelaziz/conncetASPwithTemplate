@@ -105,5 +105,9 @@ namespace conncetASPwithTemplate.Models
         public bool? Pre_Paid_Card { get; set; }
 
         public bool WebOrder { get; set; }
+
+
+        public bool Listed { get; set; }
+        public int Available { get; set; }
     }
 }

@@ -88,7 +88,7 @@ namespace conncetASPwithTemplate.Controllers
             var items = _context.EldahanItems.ToList();
             var presets = _context.EldahanPresets.ToList();
             var menuItems = _context.WebMenuItems.ToList();
-            var itemsToShowCount = 5;
+            var itemsToShowCount = 10;
             ItemsCategories itemsCategories =new ItemsCategories(items , presets, menuItems , itemsToShowCount);
             //itemsCategories.Items= items.ToList();
 

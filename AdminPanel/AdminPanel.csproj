@@ -210,6 +210,7 @@
     <Compile Include="Controllers\API\EldahanItemsController.cs" />
     <Compile Include="Controllers\API\OrderedItemsController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
+    <Compile Include="Controllers\EldahanItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
@@ -240,6 +241,7 @@
     <Compile Include="Models\WebPreset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -700,6 +702,11 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\EditItems.cshtml" />
+    <Content Include="Views\EldahanItems\Create.cshtml" />
+    <Content Include="Views\EldahanItems\Delete.cshtml" />
+    <Content Include="Views\EldahanItems\Details.cshtml" />
+    <Content Include="Views\EldahanItems\Edit.cshtml" />
+    <Content Include="Views\EldahanItems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
