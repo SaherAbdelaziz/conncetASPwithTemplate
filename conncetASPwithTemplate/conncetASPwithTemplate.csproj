@@ -311,6 +311,10 @@
     <Compile Include="Migrations\202007281025551_AddListedAndAvailabletyToItem.Designer.cs">
       <DependentUpon>202007281025551_AddListedAndAvailabletyToItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202007281518014_AddDetailsUserMessage.cs" />
+    <Compile Include="Migrations\202007281518014_AddDetailsUserMessage.Designer.cs">
+      <DependentUpon>202007281518014_AddDetailsUserMessage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Check.cs" />
@@ -362,6 +366,7 @@
     <Content Include="Content\mytemplate\assets\css\themes\theme-teal.min.css" />
     <Content Include="Content\mytemplate\assets\css\themify-icons.css" />
     <Content Include="Content\mytemplate\assets\fonts\themify.svg" />
+    <Content Include="Content\mytemplate\assets\img\apple-touch-icon.png" />
     <Content Include="Content\mytemplate\assets\img\avatars\avatar01.jpg" />
     <Content Include="Content\mytemplate\assets\img\avatars\avatar02.jpg" />
     <Content Include="Content\mytemplate\assets\img\avatars\avatar03.jpg" />
@@ -1577,6 +1582,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007281025551_AddListedAndAvailabletyToItem.resx">
       <DependentUpon>202007281025551_AddListedAndAvailabletyToItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202007281518014_AddDetailsUserMessage.resx">
+      <DependentUpon>202007281518014_AddDetailsUserMessage.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

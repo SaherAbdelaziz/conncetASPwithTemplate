@@ -23,6 +23,7 @@ namespace conncetASPwithTemplate.Models
         public int Quantity { get; set; }
         public double Price { get; set; }
         public bool Ordered { get; set; }
+        public string Details { get; set; }
 
 
         public OrderedItem()
@@ -30,7 +31,7 @@ namespace conncetASPwithTemplate.Models
             
         }
 
-        public OrderedItem(int itemId, int orderId, EldahanItems item, Order order, int quantity, int price, bool ordered)
+        public OrderedItem(int itemId, int orderId, EldahanItems item, Order order, int quantity, int price, bool ordered , string details)
         {
             ItemId = itemId;
             OrderId = orderId;
@@ -39,6 +40,7 @@ namespace conncetASPwithTemplate.Models
             Quantity = quantity;
             Price = price;
             Ordered = ordered;
+            Details = details;
         }
 
         public OrderedItem(MyCartItem cartItem)
@@ -48,6 +50,7 @@ namespace conncetASPwithTemplate.Models
             Quantity = cartItem.Quantity;
             Price = (double) cartItem.EldahanItem.StaticPrice;
             Ordered = true;
+            Details = cartItem.Details;
         }
 
 

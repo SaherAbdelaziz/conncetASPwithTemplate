@@ -23,5 +23,6 @@ namespace AdminPanel.Models
         public int Quantity { get; set; }
         public double Price { get; set; }
         public bool Ordered { get; set; }
+        public string Details { get; set; }
     }
 }
