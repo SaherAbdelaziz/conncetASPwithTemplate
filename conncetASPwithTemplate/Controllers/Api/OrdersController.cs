@@ -165,7 +165,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             foreach (var cart in cartItems)
             {
                 //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";
-                tmpOrder +=  $"طلب{cart.Quantity}* {cart.EldahanItem.Name2} السعر  {cart.EldahanItem.StaticPrice} جنيه";
+                tmpOrder +=  $"اوردر{cart.Quantity}* {cart.EldahanItem.Name2} السعر  {cart.EldahanItem.StaticPrice} جنيه";
                 if (cart.Details != "")
                 {
                     tmpOrder += $" تعليمات مخصصة {cart.Details} ###"; 

@@ -12,6 +12,7 @@
                 console.log("create order");
                 console.log("selected is " + $('#deliverytime option:selected').index());
                 var deliverytimeIndex = $('#deliverytime option:selected').index();
+                var deliveryType = $("input[name='DeliveryType']:checked").val();
                 console.log("var is " + deliverytimeIndex);
                 //console.log($('.ordertotal').attr('ordertotal'));
                 var order = {

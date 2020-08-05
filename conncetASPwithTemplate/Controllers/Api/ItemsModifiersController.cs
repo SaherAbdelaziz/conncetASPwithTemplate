@@ -46,7 +46,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 return BadRequest(ModelState);
             }
 
-            if (id != itemsModifier.ItemId)
+            if (id != itemsModifier.EldahanItemsId)
             {
                 return BadRequest();
             }
@@ -89,7 +89,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             }
             catch (DbUpdateException)
             {
-                if (ItemsModifierExists(itemsModifier.ItemId))
+                if (ItemsModifierExists(itemsModifier.EldahanItemsId))
                 {
                     return Conflict();
                 }
@@ -99,7 +99,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = itemsModifier.ItemId }, itemsModifier);
+            return CreatedAtRoute("DefaultApi", new { id = itemsModifier.EldahanItemsId }, itemsModifier);
         }
 
         // DELETE: api/ItemsModifiers/5
@@ -129,7 +129,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         private bool ItemsModifierExists(int id)
         {
-            return _context.ItemsModifiers.Count(e => e.ItemId == id) > 0;
+            return _context.ItemsModifiers.Count(e => e.EldahanItemsId == id) > 0;
         }
     }
 }

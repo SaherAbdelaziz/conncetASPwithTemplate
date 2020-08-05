@@ -315,6 +315,10 @@
     <Compile Include="Migrations\202007281518014_AddDetailsUserMessage.Designer.cs">
       <DependentUpon>202007281518014_AddDetailsUserMessage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008051002085_changeItemToEldahan.cs" />
+    <Compile Include="Migrations\202008051002085_changeItemToEldahan.Designer.cs">
+      <DependentUpon>202008051002085_changeItemToEldahan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Check.cs" />
@@ -1585,6 +1589,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202007281518014_AddDetailsUserMessage.resx">
       <DependentUpon>202007281518014_AddDetailsUserMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008051002085_changeItemToEldahan.resx">
+      <DependentUpon>202008051002085_changeItemToEldahan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

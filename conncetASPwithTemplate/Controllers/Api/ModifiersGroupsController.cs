@@ -35,7 +35,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             var modifierGroupId = 0;
             foreach (var itemsModifier in itemsModifiers)
             {
-                if (item != null && itemsModifier.ItemId == item.Id)
+                if (item != null && itemsModifier.EldahanItemsId == item.Id)
                 {
                     modifierGroupId = itemsModifier.ModifiersGroupId;
                     break;
@@ -49,7 +49,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             foreach (var modifier in modifiers)
             {
-                ids.Add(modifier.ItemId);
+                ids.Add(modifier.EldahanItemsId);
             }
 
             var items =_context.Items.Where(t => ids.Contains(t.Id)).ToList();

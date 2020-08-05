@@ -131,16 +131,6 @@
                             <div class="form-group col-sm-6">
                                 <div class="select-container d-none deliverytime">
                                     <select class="form-control ">
-                                        <option>Today</option>
-                                        <option>Tomorrow</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2 ">
-                            <div class="form-group col-sm-6">
-                                <div class="select-container d-none deliverytime">
-                                    <select class="form-control ">
                                         <option> 16:00</option>
                                         <option> 17:00</option>
                                         <option> 18:00</option>
@@ -223,6 +213,11 @@
                 } else {
                     $('.deliverytime').addClass('d-none');
                 }
+            });
+
+            $("input[type='radio']").click(function () {
+                var radioValue = $("input[name='DeliveryType']:checked").val();
+                console.log(radioValue);
             });
         });
 

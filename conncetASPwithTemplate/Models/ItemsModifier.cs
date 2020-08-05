@@ -7,13 +7,13 @@ namespace conncetASPwithTemplate.Models
     {
         [Key]
         [Column(Order = 0)]
-        public int ItemId { get; set; }
+        public int EldahanItemsId { get; set; }
 
         [Key]
         [Column(Order = 1)]
         public int ModifiersGroupId { get; set; }
 
-        public Item Item { get; set; }
+        public EldahanItems EldahanItems { get; set; }
         public ModifiersGroup ModifiersGroup { get; set; }
 
         public bool? Active { get; set; }
