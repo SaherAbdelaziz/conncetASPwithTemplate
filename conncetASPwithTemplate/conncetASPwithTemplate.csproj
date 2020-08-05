@@ -1421,6 +1421,7 @@
     <Content Include="Content\mytemplate\sound\piece-of-cake.m4r" />
     <None Include="Properties\PublishProfiles\ABTech.pubxml" />
     <None Include="Properties\PublishProfiles\mySite.pubxml" />
+    <Content Include="Scripts\HelloReact.jsx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\ChceckoutForm.js" />
     <Content Include="Scripts\CartItemsOperations.js" />
@@ -1496,7 +1497,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\NewFolder1\" />
+    <Folder Include="Scripts\app\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

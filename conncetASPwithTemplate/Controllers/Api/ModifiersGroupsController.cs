@@ -25,34 +25,33 @@ namespace conncetASPwithTemplate.Controllers.Api
         // GET: api/ModifiersGroups/5
         //[ResponseType(typeof(ModifiersGroup))]
         // first retruferd id is the selected item and other ids is modifiers
-        public List<Item> GetModifiersGroup(int id)
+        public List<EldahanItems> GetModifiersGroup(int id)
         {
-            List<int> ids = new List<int>();
-            ids.Add(id);
+            List<int> itemsIds = new List<int>();
+            List<int> modifierGroupIds = new List<int>();
+            itemsIds.Add(id);
 
-            var item = _context.Items.FirstOrDefault(i => i.Id == id);
+            var item = _context.EldahanItems.FirstOrDefault(i => i.Id == id);
             var itemsModifiers = _context.ItemsModifiers.ToList();
             var modifierGroupId = 0;
             foreach (var itemsModifier in itemsModifiers)
             {
                 if (item != null && itemsModifier.EldahanItemsId == item.Id)
                 {
-                    modifierGroupId = itemsModifier.ModifiersGroupId;
-                    break;
-                    
+                    modifierGroupIds.Add(itemsModifier.ModifiersGroupId);
                 }
             }
            
             var modifiers = _context.Modifiers
-                .Where(m => m.ModifiersGroupId == modifierGroupId)
-                .ToList();
+                .Where(t => modifierGroupIds.Contains(t.ModifiersGroupId)).ToList();
 
             foreach (var modifier in modifiers)
             {
-                ids.Add(modifier.EldahanItemsId);
+                itemsIds.Add(modifier.EldahanItemsId);
             }
 
-            var items =_context.Items.Where(t => ids.Contains(t.Id)).ToList();
+            var items =_context.EldahanItems
+                .Where(t => itemsIds.Contains(t.Id)).ToList();
 
             return items;
         }

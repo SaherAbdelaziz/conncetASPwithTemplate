@@ -319,7 +319,107 @@
                         <!-- price -->
                         <div class="col-3 text-lg text-right js-item-staticPrice"><!-- price --></div>
                     </div>
-                
+                    <!-- Panel Details / Size -->
+                    <!--whe will show it from js -->
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_size" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        </h5>
+                        <div id="panelDetailsSize" class="collapse show">
+                            <div class="panel-details-content">
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
+                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_size" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        </h5>
+                        <div id="panelDetailsSize" class="collapse show">
+                            <div class="panel-details-content">
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
+                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-details">
+                        <h5 class="panel-details-title">
+                            <label class="custom-control custom-radio">
+                                <input name="radio_title_size" type="radio" class="custom-control-input">
+                                <span class="custom-control-indicator"></span>
+                            </label>
+                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
+                        </h5>
+                        <div id="panelDetailsSize" class="collapse show">
+                            <div class="panel-details-content">
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
+                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
+                                    </label>
+                                </div>
+                                <div class="form-group">
+                                    <label class="custom-control custom-radio">
+                                        <input name="radio_size" type="radio" class="custom-control-input">
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="modal-body align-items-center">
 
                         <div class="panel-details">
@@ -328,52 +428,35 @@
                             <label class="block tmppadding"> Quantity </label>
                             <div>
                                 <input type="text" disabled class=" p-2 js-item-quantity" value="1" />
-                                <button class="js-qtyincrease btn btn-sm btn-secondary" >
+                                <button class="js-qtyincrease btn btn-sm btn-secondary">
                                     <i class="fa fa-plus"></i>
                                 </button>
-                            
+
                                 <button class="js-qtydecrease btn btn-sm btn-secondary">
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
-                        
+
                         </div>
                         @*<a class="btn btn-large btn-primary logout" href="#">
-                        <i class="fa fa-sign-out" aria-hidden="true">Logout</i>
-                    </a>*@
-                    
+                <i class="fa fa-sign-out" aria-hidden="true">Logout</i>
+            </a>*@
 
-                        <!-- Panel Details / Size -->
-                        <!--whe will show it from js -->
-                        @*<div class="panel-details">
-            <h5 class="panel-details-title">
-                <label class="custom-control custom-radio">
-                    <input name="radio_title_size" type="radio" class="custom-control-input">
-                    <span class="custom-control-indicator"></span>
-                </label>
-                <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-            </h5>
-            <div id="panelDetailsSize" class="collapse show">
-                <form>
-                    <div class="panel-details-content">
 
-                    </div>
-                </form>
-            </div>`
-        </div>*@
+
                         <!-- Panel Details / Other -->
                         @*<div class="panel-details">
-            <h5 class="panel-details-title">
-                <label class="custom-control custom-radio">
-                    <input name="radio_title_other" type="radio" class="custom-control-input">
-                    <span class="custom-control-indicator"></span>
-                </label>
-                <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
-            </h5>
-            <div id="panelDetailsOther" class="collapse">
-                <textarea id="#messagedetails" cols="30" rows="4" class="form-control js-item-message" placeholder="Put this any other informations..."></textarea>
-            </div>
-        </div>*@
+                <h5 class="panel-details-title">
+                    <label class="custom-control custom-radio">
+                        <input name="radio_title_other" type="radio" class="custom-control-input">
+                        <span class="custom-control-indicator"></span>
+                    </label>
+                    <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
+                </h5>
+                <div id="panelDetailsOther" class="collapse">
+                    <textarea id="#messagedetails" cols="30" rows="4" class="form-control js-item-message" placeholder="Put this any other informations..."></textarea>
+                </div>
+            </div>*@
                     </div>
                     
                     
@@ -409,11 +492,15 @@
     <script src="../../Content/mytemplate/assets/plugins/animsition/dist/js/animsition.min.js"></script>
 
     <!-- JS Core -->
-    <script src="../../Content/mytemplate/assets/js/core.js"></script>
-    @*@Scripts.Render("~/bundles/jquery")*@
+<script src="../../Content/mytemplate/assets/js/core.js"></script>
+
+
+<!-- React-->
+    <script src="@Url.Content("~/Scripts/HelloReact.jsx")"></script>
+
+@*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
-
 
 
     <script>
@@ -476,7 +563,7 @@
                     } else {
                         button = $(e.target);
                     }
-                    console.log(button);
+                   // console.log(button);
 
                     var myId = button.attr("data-item-id");
 
@@ -485,15 +572,15 @@
                     console.log("myId" + myId);
 
                     //first retruferd id is the selected item and other ids is modifiers
-                    $.ajax({ url: "/api/EldahanItems/" + myId, method: "GET" })
+                    $.ajax({ url: "/api/ModifiersGroups/" + myId, method: "GET" })
                         .done(function(data) {
                             var index, cartItemDto;
                             console.log("Got in modifiers");
                             console.log(data);
 
-                            $(".modal-product-details .js-item-name1").text(data.name);
-                            $(".modal-product-details .js-item-name2").text(data.name2);
-                            $(".modal-product-details .js-item-staticPrice").text(data.staticPrice);
+                            $(".modal-product-details .js-item-name1").text(data[0].name);
+                            $(".modal-product-details .js-item-name2").text(data[0].name2);
+                            $(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
                             $(".modal-product-details .js-item-quantity").val(1);
                             $(".modal-product-details .js-item-message").val('');
                             $('#panelDetailsSize .panel-details-content').empty();
