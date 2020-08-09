@@ -17,10 +17,10 @@ namespace conncetASPwithTemplate.Models
 
         }
 
-        public SelectedModifiers( int itemId, string cartId , int itemModifierId)
+        public SelectedModifiers( int itemId, int cartId , int itemModifierId)
         {
             EldahanItemsId = itemId;
-            CartId = cartId;
+            CartId = cartId.ToString();
             ItemModifierId = itemModifierId;
         }
     }

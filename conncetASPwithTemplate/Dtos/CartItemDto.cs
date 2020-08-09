@@ -8,7 +8,7 @@ namespace conncetASPwithTemplate.Dtos
     {
         //public int Id { get; set; }
 
-        public string CartId { get; set; }
+        public int CartId { get; set; }
 
         public int Quantity { get; set; }
 

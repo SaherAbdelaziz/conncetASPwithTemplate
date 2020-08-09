@@ -221,13 +221,15 @@
                                 <a href="#" class="icon icon-social icon-circle icon-sm icon-twitter"><i class="fa fa-twitter"></i></a>
                                 <a href="#" class="icon icon-social icon-circle icon-sm icon-youtube"><i class="fa fa-youtube"></i></a>
                                 <a href="#" class="icon icon-social icon-circle icon-sm icon-instagram"><i class="fa fa-instagram"></i></a>
-                        </ul>
-                            </div>
+                            </ul>
+                        </div>
                     </div>
                     <!-- Footer 2nd Row -->
                     <div class="footer-second-row">
-                        <span class="text-muted">Copyright Eldahan Grill 2020.</span>
+                        <span class="text-muted">Copyright Eldahan Grill 2020.</span><HelloWorld></HelloWorld>
+
                     </div>
+
                 </div>
 
                 <!-- Back To Top -->
@@ -321,105 +323,12 @@
                     </div>
                     <!-- Panel Details / Size -->
                     <!--whe will show it from js -->
-                    <div class="panel-details">
-                        <h5 class="panel-details-title">
-                            <label class="custom-control custom-radio">
-                                <input name="radio_title_size" type="radio" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                            </label>
-                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                        </h5>
-                        <div id="panelDetailsSize" class="collapse show">
-                            <div class="panel-details-content">
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
-                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                    <div id="js-panel-details-modi" class="panel-details">
+                        
+                        
+
                     </div>
-                    <div class="panel-details">
-                        <h5 class="panel-details-title">
-                            <label class="custom-control custom-radio">
-                                <input name="radio_title_size" type="radio" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                            </label>
-                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                        </h5>
-                        <div id="panelDetailsSize" class="collapse show">
-                            <div class="panel-details-content">
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
-                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="panel-details">
-                        <h5 class="panel-details-title">
-                            <label class="custom-control custom-radio">
-                                <input name="radio_title_size" type="radio" class="custom-control-input">
-                                <span class="custom-control-indicator"></span>
-                            </label>
-                            <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                        </h5>
-                        <div id="panelDetailsSize" class="collapse show">
-                            <div class="panel-details-content">
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input" checked>
-                                        <span class="custom-control-description">Small - 100g ($9.99)</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Medium - 200g ($14.99)</span>
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label class="custom-control custom-radio">
-                                        <input name="radio_size" type="radio" class="custom-control-input">
-                                        <span class="custom-control-indicator"></span>
-                                        <span class="custom-control-description">Large - 350g ($21.99)</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="modal-body align-items-center">
 
                         <div class="panel-details">
@@ -438,25 +347,6 @@
                             </div>
 
                         </div>
-                        @*<a class="btn btn-large btn-primary logout" href="#">
-                <i class="fa fa-sign-out" aria-hidden="true">Logout</i>
-            </a>*@
-
-
-
-                        <!-- Panel Details / Other -->
-                        @*<div class="panel-details">
-                <h5 class="panel-details-title">
-                    <label class="custom-control custom-radio">
-                        <input name="radio_title_other" type="radio" class="custom-control-input">
-                        <span class="custom-control-indicator"></span>
-                    </label>
-                    <a href="#panelDetailsOther" data-toggle="collapse">Other</a>
-                </h5>
-                <div id="panelDetailsOther" class="collapse">
-                    <textarea id="#messagedetails" cols="30" rows="4" class="form-control js-item-message" placeholder="Put this any other informations..."></textarea>
-                </div>
-            </div>*@
                     </div>
                     
                     
@@ -476,7 +366,6 @@
             </div>
         </div>
     </div>
-
     <!-- JS Plugins -->
     <script src="../../Content/mytemplate/assets/plugins/jquery/dist/jquery.min.js"></script>
     <script src="../../Content/mytemplate/assets/plugins/tether/dist/js/tether.min.js"></script>
@@ -496,7 +385,9 @@
 
 
 <!-- React-->
-    <script src="@Url.Content("~/Scripts/HelloReact.jsx")"></script>
+@*<script src="../../Scripts/HelloReact.jsx"></script>*@
+
+    @*<script src="@Url.Content("~/Scripts/HelloReact.jsx")"></script>*@
 
 @*@Scripts.Render("~/bundles/jquery")*@
     @Scripts.Render("~/bundles/bootstrap")
@@ -584,79 +475,105 @@
                             $(".modal-product-details .js-item-quantity").val(1);
                             $(".modal-product-details .js-item-message").val('');
                             $('#panelDetailsSize .panel-details-content').empty();
+                            $('#js-panel-details-modi').empty();
 
                             //first item is the chosen item
 
-                            ////if (data.length == 1) {
-                            //    cartItemDto = {
-                            //        ItemId: myId,
-                            //        ItemsId: [-1] // there is no modiferis for this item
+                            if (data.length == 1) {
+                                cartItemDto = {
+                                    ItemId: myId,
+                                    ItemsId: [-1] // there is no modifiers for this item
 
-                            ////    }
-                            //   //$.ajax({
-                            //        url: "/api/shoppingcarts",
-                            //        method: "POST",
-                            //        data: JSON.stringify(cartItemDto),
-                            //        contentType: 'application/json; charset=utf-8',
-                            //        dataType: "Json"
-                            //    })
-                            //    .done(function() {
-                            //        console.log("got in adding itms ");
-                            //        console.log(button.attr("data-item-id"));
-                            //        AJAXRequest();
-                            //    })
-                            //    .fail(function() {
-                            //        alert("Something failed! in adding item to cart");
-                            //    });
+                                }
+                            }
+
+                            else
+                            {
+                                   console.log("in has modi");
+                                 //$('#productModal').modal('show');
+
+                                for (var i = 0; i < 3; i++)
+                                {
+                                    let dataSize = ` <h5 class="panel-details-title">
+                                    <label class="custom-control custom-radio">
+                                    <input name="radio_title_size${i}" type="radio" class="custom-control-input">
+                                    <span class="custom-control-indicator"></span>
+                                    </label>
+                                    <a href="#panelDetailsSize${i}" data-toggle="collapse">Salad${i+1}</a>
+                                    </h5>
+                                    <div id="panelDetailsSize${i}" class="collapse">
+                                    <form>
+                                    <div class="panel-details-content">
+
+                                    </div>
+                                    </form>
+                                    </div>`;
+                                    $('#js-panel-details-modi').append(dataSize);
+
+                                    for (let j = 1; j < 5; j++)//data.length
+                                    {
+
+                                        // add modifiers to details of item
+                                        // <span class ="custom-control-indicator"></span>
+                                        let data1 = `<div class="form-group">
+                                    <label class ="custom-control custom-radio" >
+                                    <input name="radio_size${i}" type="radio" value=${data[j].name} checked>
+                                   
+                                    <span class ="custom-control-description">${data[j].name} </span>
+                                    </label>
+                                    </div>`;
+
+                                        $(`#panelDetailsSize${i} .panel-details-content`).append(data1);
+                                        }
+                                }
 
 
-                            // }
 
-                            //else{
-                            //       console.log("in");
-                            //     $('#productModal').modal('show');
-                            //    //let dataSize = ` <h5 class="panel-details-title">
-                            //    //    <label class="custom-control custom-radio">
-                            //    //    <input name="radio_title_size" type="radio" class="custom-control-input">
-                            //    //    <span class="custom-control-indicator"></span>
-                            //    //    </label>
-                            //    //    <a href="#panelDetailsSize" data-toggle="collapse">Size</a>
-                            //    //    </h5>
-                            //    //    <div id="panelDetailsSize" class="collapse show">
-                            //    //    <form>
-                            //    //    <div class="panel-details-content">
+                                    //get the selected radio button
+                                   //for (var i = 0; i < 3; i++)
+                                   //{
+                                   //    $(`input[name=radio_size${i}]`).click(function () {
 
-                            //    //    </div>
-                            //    //    </form>
-                            //    //    </div>`;
-                            //    //$('#panel-details').append(dataSize);
+                                   //        var index0 = $(`input[name=radio_size${i}]`).index($(`input[name=radio_size${i}]:checked`)) + 1;
+                                   //        console.log(data[index0].id);
 
-                            //        for (let j = 1; j < data.length; j++)
-                            //        {
+                                   //        //$("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
+                                   //    });
+                                   //}
+                                var index0 = 4, index1 = 4, index2 = 4, index3 = 4;
+                                $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
 
-                            //            // add modifiers to details of item
-                            //            let data1 = `<div class="form-group">
-                            //        <label class ="custom-control custom-radio" >
-                            //        <input name="radio_size" type="radio" value=${data[j].name}>
-                            //        <span class ="custom-control-indicator"></span>
-                            //        <span class ="custom-control-description">${data[j].name}} -(${data[j].staticPrice}) </span>
-                            //        </label>
-                            //        </div>`;
+                                   $("input[name='radio_size0']").click(function () {
 
-                            //            $('#panelDetailsSize .panel-details-content').append(data1);
-                            //        }
+                                        index0 = $("input[name='radio_size0']").index($("input[name='radio_size0']:checked")) + 1;
+                                       console.log(data[index0].id);
 
-                            //        //get the selected radio button
+                                       $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
+                                   });
+                                    
+                                   $("input[name='radio_size1']").click(function () {
 
-                            //        $("input[name='radio_size']").click(function()
-                            //        {
+                                        index1 = $("input[name='radio_size1']").index($("input[name='radio_size1']:checked")) + 1;
+                                       console.log(data[index1].id);
 
-                            //            index = $("input[name='radio_size']").index($("input[name='radio_size']:checked")) + 1;
+                                        $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
+                                   });
+                                   $("input[name='radio_size2']").click(function () {
 
-                            //            $("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
-                            //        });
+                                        index2 = $("input[name='radio_size2']").index($("input[name='radio_size2']:checked")) + 1;
+                                       console.log(data[index2].id);
 
-                            //             }
+                                        $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
+                                   });
+
+                                $("input[name='radio_size3']").click(function () {
+
+                                     index3 = $("input[name='radio_size3']").index($("input[name='radio_size3']:checked")) + 1;
+                                    console.log(data[index3].id);
+
+                                     $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
+                                });
+                                }
                         })
                         .fail(function() {
                             alert("Something failed! in modifiers");
@@ -675,15 +592,20 @@
                 // console.log($('#messagedetails').text());
                 // console.log($('#messagedetails'));
 
-                //var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
+                var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
+
+                console.log(idModified);
+                //var idModified = idModified.split(",");
+                //console.log(idModified);
+
                 var id = $("#productModal .js-add-cart").attr("data-item-id");
                 var detailsMessage = $("#productModal .js-item-message").val();
 
                 var quantity = $("#productModal .js-item-quantity").val();
 
                 var cartItemDto = {
-                    ItemId: id,
-                    ItemsId: [-1],
+                    ItemId: id, 
+                    ItemsId: idModified,
                     Details: detailsMessage,
                     Quantity: quantity
                     // phone: $("#id-phone").val()

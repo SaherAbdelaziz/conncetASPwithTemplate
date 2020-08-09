@@ -63,19 +63,10 @@ namespace conncetASPwithTemplate.Controllers.Api
             double? delivery = _context.HdAreasServices
                 .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId == OutLetId).Services;
 
-
-            
-                var cartItem = _context.MyCartItems.SingleOrDefault(
-                c => c.ShoppingCartId == Cart.Id && c.EldahanItemId 
-                    == cartItemDto.ItemId && !c.Removed);
-
                 if (cartItemDto.ItemsId[0] == -1)
                 {
-                    //var item = _context.Items.FirstOrDefault(i => i.Id == cartItemDto.ItemsId);
-                    if (cartItem == null)
-                    {
-                        // Create a new cart item if no cart item exists.                 
-                        cartItem = new MyCartItem()
+                        // Create a new cart item                
+                        var cartItem = new MyCartItem()
                         {
                             EldahanItemId = cartItemDto.ItemId,
                             ShoppingCartId = Cart.Id,
@@ -86,44 +77,41 @@ namespace conncetASPwithTemplate.Controllers.Api
                         };
 
                         _context.MyCartItems.Add(cartItem);
-                    }
-                    else
-                        cartItem.Quantity++;
+                        _context.SaveChanges();
 
+                        return cartItem;
                 }
 
                 else
                 {
-                    if (cartItem == null)
+                    // Create a new cart item                  
+                    var cartItem = new MyCartItem()
                     {
-                        // Create a new cart item if no cart item exists.                 
-                        cartItem = new MyCartItem()
-                        {
-                            EldahanItemId = cartItemDto.ItemId,
-                            ShoppingCartId = Cart.Id,
-                            Quantity = 1,
-                            DateCreated = DateTime.Now,
-                            Details = cartItemDto.Details,
-                            Delivery = (double)delivery,
-                            HasModifiers = true,
-                            //OrderId = 1
-                        };
+                        EldahanItemId = cartItemDto.ItemId,
+                        ShoppingCartId = Cart.Id,
+                        Quantity = 1,
+                        DateCreated = DateTime.Now,
+                        Details = cartItemDto.Details,
+                        Delivery = (double)delivery,
+                        HasModifiers = true,
+                        //OrderId = 1
+                    };
 
-                        var selectedModifiers =
-                            new SelectedModifiers(cartItemDto.ItemId,
-                                Cart.ApplicationUserId, cartItemDto.ItemsId[0]);
+                    var selectedModifiers =
+                        new SelectedModifiers(cartItemDto.ItemId,
+                            Cart.Id, cartItemDto.ItemsId[0]);
 
 
-                        _context.MyCartItems.Add(cartItem);
-                        _context.SelectedModifiers.Add(selectedModifiers);
-                    }
-                    else
-                        cartItem.Quantity++;
+                    _context.MyCartItems.Add(cartItem);
+                    _context.SelectedModifiers.Add(selectedModifiers);
+
+                    _context.SaveChanges();
+
+                    return cartItem;
+
                 }
 
-                _context.SaveChanges();
-
-            return cartItem;
+                
         }
        
         // PUT: api/ShoppingCarts/5
