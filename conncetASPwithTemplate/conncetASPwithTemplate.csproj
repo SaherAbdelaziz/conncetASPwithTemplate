@@ -208,6 +208,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\CartItemDto.cs" />
     <Compile Include="Dtos\ItemDto.cs" />
+    <Compile Include="Dtos\ItemsAndGroupCount.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -318,6 +319,10 @@
     <Compile Include="Migrations\202008051002085_changeItemToEldahan.cs" />
     <Compile Include="Migrations\202008051002085_changeItemToEldahan.Designer.cs">
       <DependentUpon>202008051002085_changeItemToEldahan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008091352058_changeUserIdToString.cs" />
+    <Compile Include="Migrations\202008091352058_changeUserIdToString.Designer.cs">
+      <DependentUpon>202008091352058_changeUserIdToString.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -1593,6 +1598,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008051002085_changeItemToEldahan.resx">
       <DependentUpon>202008051002085_changeItemToEldahan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008091352058_changeUserIdToString.resx">
+      <DependentUpon>202008091352058_changeUserIdToString.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

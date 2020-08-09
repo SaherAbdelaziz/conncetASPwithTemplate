@@ -9,6 +9,7 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using conncetASPwithTemplate.Models;
+using conncetASPwithTemplate.Dtos;
 
 namespace conncetASPwithTemplate.Controllers.Api
 {
@@ -25,7 +26,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         // GET: api/ModifiersGroups/5
         //[ResponseType(typeof(ModifiersGroup))]
         // first retruferd id is the selected item and other ids is modifiers
-        public List<EldahanItems> GetModifiersGroup(int id)
+        public ItemsAndGroupCount GetModifiersGroup(int id)
         {
             List<int> itemsIds = new List<int>();
             List<int> modifierGroupIds = new List<int>();
@@ -53,7 +54,8 @@ namespace conncetASPwithTemplate.Controllers.Api
             var items =_context.EldahanItems
                 .Where(t => itemsIds.Contains(t.Id)).ToList();
 
-            return items;
+            var itemsAndGroup = new ItemsAndGroupCount(items , modifierGroupIds.Count());
+            return itemsAndGroup;
         }
 
         // PUT: api/ModifiersGroups/5

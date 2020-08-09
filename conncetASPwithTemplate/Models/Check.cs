@@ -38,7 +38,7 @@ namespace conncetASPwithTemplate.Models
 
         public DateTime? ClosedIn { get; set; }
 
-        public long? Cust_ID { get; set; }
+        public string Cust_ID { get; set; }
 
         public int? Server_ID { get; set; }
 
@@ -130,6 +130,59 @@ namespace conncetASPwithTemplate.Models
 
             MyStatus = myStatus;
             OutLet_ID = outLetId;
+        }
+
+        public Check(long id, int checkSerail, string checkTitel, string checkType, int? covers, string myTable, string myStatus, bool? splited, long? refranceTo, DateTime? myDateTime, DateTime? openIn, DateTime? closedIn, string custId, int? serverId, int? casherId, int? adminId, int? outLetId, int? restIdActive, int? ws, DateTime? date, DateTime? modifiedDate, int? numFired, int? userId, bool? voided, DateTime? voidedTime, int? voidedReason, int? orderNo, bool? reOpen, int? tableId, int? numPrint, int? lvlSplit, int? changeAfterSplit, bool? combined, long? combinedTo, int? changeAfterCombine, bool? received, DateTime? receivedTime, int? pointId, int? mealId, int? voidedBy, long? cateringId, bool? pickUp, DateTime? pickUpTime, bool? officer, int? officerId, string voidReasonComment, bool? callCenter, bool? prePaidCard, string prePaidSerial)
+        {
+            ID = id;
+            CheckSerail = checkSerail;
+            CheckTitel = checkTitel;
+            CheckType = checkType;
+            Covers = covers;
+            MyTable = myTable;
+            MyStatus = myStatus;
+            Splited = splited;
+            RefranceTo = refranceTo;
+            this.myDateTime = myDateTime;
+            OpenIn = openIn;
+            ClosedIn = closedIn;
+            Cust_ID = custId;
+            Server_ID = serverId;
+            Casher_ID = casherId;
+            Admin_ID = adminId;
+            OutLet_ID = outLetId;
+            Rest_ID_Active = restIdActive;
+            WS = ws;
+            CreateDate = date;
+            ModifiedDate = modifiedDate;
+            Num_Fired = numFired;
+            User_ID = userId;
+            Voided = voided;
+            Voided_Time = voidedTime;
+            Voided_Reason = voidedReason;
+            Order_No = orderNo;
+            ReOpen = reOpen;
+            Table_ID = tableId;
+            Num_Print = numPrint;
+            Lvl_Split = lvlSplit;
+            ChangeAfterSplit = changeAfterSplit;
+            Combined = combined;
+            Combined_To = combinedTo;
+            ChangeAfterCombine = changeAfterCombine;
+            Received = received;
+            Received_Time = receivedTime;
+            Point_ID = pointId;
+            Meal_ID = mealId;
+            Voided_By = voidedBy;
+            Catering_ID = cateringId;
+            Pick_Up = pickUp;
+            Pick_Up_Time = pickUpTime;
+            Officer = officer;
+            Officer_ID = officerId;
+            Void_Reason_Comment = voidReasonComment;
+            Call_Center = callCenter;
+            PrePaid_Card = prePaidCard;
+            PrePaid_Serial = prePaidSerial;
         }
     }
 

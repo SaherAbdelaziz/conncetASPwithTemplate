@@ -58,60 +58,148 @@ namespace conncetASPwithTemplate.Controllers.Api
         public MyCartItem Post(CartItemDto cartItemDto)
         {
 
-            var OutLetId = User.Identity.GetUserOutletId();
-            var HdAreasId = User.Identity.GetUserAreaId();
+
+            var userId = User.Identity.GetUserId();
+            var outLetId = User.Identity.GetUserOutletId();
+            var hdAreasId = User.Identity.GetUserAreaId();
             double? delivery = _context.HdAreasServices
-                .SingleOrDefault(h => h.AreaId == HdAreasId && h.OutLetId == OutLetId).Services;
+                .SingleOrDefault(h => h.AreaId == hdAreasId && h.OutLetId == outLetId).Services;
 
-                if (cartItemDto.ItemsId[0] == -1)
+           
+
+            var check = _context.Checks
+                .SingleOrDefault(c => c.Cust_ID == userId && c.MyStatus=="Open");
+
+            if (check == null)
+            {
+                // create new check with custom id 
+                var modelCheck = _context.Checks.OrderByDescending(c => c.ID).FirstOrDefault();
+                long checkId;
+                var modelCheckIdArea = 1 * 100000000000;
+                var modelCheckIdOutlet = outLetId * 100000000;
+                var modelCheckIdOutletStation = 88000000;
+                var modelCheckId = 0;
+                if (modelCheck != null)
                 {
-                        // Create a new cart item                
-                        var cartItem = new MyCartItem()
-                        {
-                            EldahanItemId = cartItemDto.ItemId,
-                            ShoppingCartId = Cart.Id,
-                            Quantity = cartItemDto.Quantity,
-                            DateCreated = DateTime.Now,
-                            Details = cartItemDto.Details,
-                            Delivery = (double)delivery
-                        };
-
-                        _context.MyCartItems.Add(cartItem);
-                        _context.SaveChanges();
-
-                        return cartItem;
+                    modelCheckId = (int)(modelCheck.ID % 1000000);
+                    checkId = modelCheckIdArea + modelCheckIdOutlet + modelCheckId + modelCheckIdOutletStation + 1;
                 }
-
                 else
                 {
-                    // Create a new cart item                  
-                    var cartItem = new MyCartItem()
-                    {
-                        EldahanItemId = cartItemDto.ItemId,
-                        ShoppingCartId = Cart.Id,
-                        Quantity = 1,
-                        DateCreated = DateTime.Now,
-                        Details = cartItemDto.Details,
-                        Delivery = (double)delivery,
-                        HasModifiers = true,
-                        //OrderId = 1
-                    };
-
-                    var selectedModifiers =
-                        new SelectedModifiers(cartItemDto.ItemId,
-                            Cart.Id, cartItemDto.ItemsId[0]);
-
-
-                    _context.MyCartItems.Add(cartItem);
-                    _context.SelectedModifiers.Add(selectedModifiers);
-
-                    _context.SaveChanges();
-
-                    return cartItem;
+                    checkId = modelCheckIdArea + modelCheckIdOutlet + modelCheckIdOutletStation + 1;
 
                 }
+                check = new Check(
+                    checkId, (int)(modelCheckId + 1), (modelCheckId + 1).ToString(),
+                    "web", 0, "0", "Open", false, 0, DateTime.Now, DateTime.Now, null, userId, 0, 0,
+                    0, outLetId, 0, 88, DateTime.Now, null, 0, 0, false, null, 0, 0, false,
+                    0, 0, 0, 0, false, 0, 0, false, null, 0, 0, 0, 0, false, null, false, 0,
+                    "", false, false, ""
+                );
 
+
+
+                _context.Checks.Add(check);
+            }
+
+            else
+            {
                 
+            }
+
+
+            MyCartItem cartItem;
+            var ch = _context.ChecksItems
+                .Where(ce => ce.Check_ID == check.ID)
+                .OrderByDescending(ce => ce.Serial)
+                .FirstOrDefault();
+            var serial = 0;
+            if (ch != null)
+                serial = ch.Serial+1;
+
+
+            if (cartItemDto.ItemsId[0] == -1)
+            {
+                // Create a new cart item                
+                cartItem = new MyCartItem()
+                {
+                    EldahanItemId = cartItemDto.ItemId,
+                    ShoppingCartId = Cart.Id,
+                    Quantity = cartItemDto.Quantity,
+                    DateCreated = DateTime.Now,
+                    Details = cartItemDto.Details,
+                    Delivery = (double)delivery
+                };
+
+                var item = _context.EldahanItems
+                    .SingleOrDefault(e => e.Id == cartItemDto.ItemId);
+                var total = item.StaticPrice + cartItem.Delivery;
+
+                var checkItem = new ChecksItem(check.ID, cartItemDto.ItemId, cartItemDto.Quantity,
+                    item.StaticPrice, total, 0, 0,
+                    0, total, serial,"Opend", false);
+
+                _context.MyCartItems.Add(cartItem);
+                
+
+                _context.ChecksItems.Add(checkItem);
+
+            }
+
+            else
+            {
+                // Create a new cart item                  
+                cartItem = new MyCartItem()
+                {
+                    EldahanItemId = cartItemDto.ItemId,
+                    ShoppingCartId = Cart.Id,
+                    Quantity = 1,
+                    DateCreated = DateTime.Now,
+                    Details = cartItemDto.Details,
+                    Delivery = (double)delivery,
+                    HasModifiers = true,
+                    //OrderId = 1
+                };
+              
+
+                ChecksItem checkItem = null;
+                //add basic item
+                var item = _context.EldahanItems
+                    .SingleOrDefault(e => e.Id == cartItemDto.ItemId);
+                var total = item.StaticPrice + cartItem.Delivery;
+
+                checkItem = new ChecksItem(check.ID, cartItemDto.ItemId, cartItemDto.Quantity,
+                    item.StaticPrice, total, 0, 0,
+                    0, total, serial, "Opend", false);
+                _context.ChecksItems.Add(checkItem);
+                //add modified items
+                for (var index = 0; index < cartItemDto.ItemsId.Count; index++)
+                {
+                    serial++;
+                    var id = cartItemDto.ItemsId[index];
+                    if (id == -1)
+                        continue;
+                    
+                    //item = _context.EldahanItems
+                        //.SingleOrDefault(e => e.Id == id);
+                   // total = item.StaticPrice + cartItem.Delivery;
+
+
+                    checkItem = new ChecksItem(check.ID, id, cartItemDto.Quantity,
+                        0, 0, 0, 0,
+                        0, 0, serial , "Opend", true);
+                    _context.ChecksItems.Add(checkItem);
+                }
+
+
+                _context.MyCartItems.Add(cartItem);
+                
+
+
+            }
+
+            _context.SaveChanges();
+            return cartItem;
         }
        
         // PUT: api/ShoppingCarts/5

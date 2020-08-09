@@ -301,9 +301,25 @@
         </div>
     </div>
 </div>
-    <!-- Modal                                              / Product -->
+
+    <!-- Modal for more than one item -->
+    <div class="modal fade" id="moreethanoneitem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body">
+                    <span>message</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary " data-dismiss="modal"><span>Cancel</span></button>
+                    <button type="button" class="btn btn-primary js-morethanone" data-dismiss="modal"><span>Confirm </span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Modal                                              / Product -->
     <!-- -->
-    <div class="modal fade" id="productModal" role="dialog">
+    <div class="modal fade" id="productModal" role="dialog" tabindex="-2">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header modal-header-lg dark bg-dark">
@@ -337,11 +353,13 @@
                             <label class="block tmppadding"> Quantity </label>
                             <div>
                                 <input type="text" disabled class=" p-2 js-item-quantity" value="1" />
-                                <button class="js-qtyincrease btn btn-sm btn-secondary">
+                                <button class="js-qtyincrease btn btn-sm btn-secondary"
+                                        data-target="#moreethanoneitem" data-toggle="modal">
                                     <i class="fa fa-plus"></i>
                                 </button>
 
                                 <button class="js-qtydecrease btn btn-sm btn-secondary">
+                                        
                                     <i class="fa fa-minus"></i>
                                 </button>
                             </div>
@@ -465,13 +483,13 @@
                     //first retruferd id is the selected item and other ids is modifiers
                     $.ajax({ url: "/api/ModifiersGroups/" + myId, method: "GET" })
                         .done(function(data) {
-                            var index, cartItemDto;
+                            var cartItemDto;
                             console.log("Got in modifiers");
                             console.log(data);
 
-                            $(".modal-product-details .js-item-name1").text(data[0].name);
-                            $(".modal-product-details .js-item-name2").text(data[0].name2);
-                            $(".modal-product-details .js-item-staticPrice").text(data[0].staticPrice);
+                            $(".modal-product-details .js-item-name1").text(data.items[0].name);
+                            $(".modal-product-details .js-item-name2").text(data.items[0].name2);
+                            $(".modal-product-details .js-item-staticPrice").text(data.items[0].staticPrice);
                             $(".modal-product-details .js-item-quantity").val(1);
                             $(".modal-product-details .js-item-message").val('');
                             $('#panelDetailsSize .panel-details-content').empty();
@@ -479,7 +497,7 @@
 
                             //first item is the chosen item
 
-                            if (data.length == 1) {
+                            if (data.items.length == 1) {
                                 cartItemDto = {
                                     ItemId: myId,
                                     ItemsId: [-1] // there is no modifiers for this item
@@ -489,10 +507,9 @@
 
                             else
                             {
-                                   console.log("in has modi");
-                                 //$('#productModal').modal('show');
-
-                                for (var i = 0; i < 3; i++)
+                                console.log("in has modi");
+                                console.log(data.items.length);
+                                for (var i = 0; i < data.modifiersGroupCount; i++)
                                 {
                                     let dataSize = ` <h5 class="panel-details-title">
                                     <label class="custom-control custom-radio">
@@ -510,70 +527,70 @@
                                     </div>`;
                                     $('#js-panel-details-modi').append(dataSize);
 
-                                    for (let j = 1; j < 5; j++)//data.length
+                                    for (let j = 1; j < data.items.length; j++)//data.length
                                     {
 
                                         // add modifiers to details of item
                                         // <span class ="custom-control-indicator"></span>
                                         let data1 = `<div class="form-group">
                                     <label class ="custom-control custom-radio" >
-                                    <input name="radio_size${i}" type="radio" value=${data[j].name} checked>
+                                    <input name="radio_size${i}" type="radio" value=${data.items[j].name} checked>
                                    
-                                    <span class ="custom-control-description">${data[j].name} </span>
+                                    <span class ="custom-control-description">${data.items[j].name} </span>
                                     </label>
                                     </div>`;
 
                                         $(`#panelDetailsSize${i} .panel-details-content`).append(data1);
-                                        }
+                                    }
                                 }
 
 
 
-                                    //get the selected radio button
-                                   //for (var i = 0; i < 3; i++)
-                                   //{
-                                   //    $(`input[name=radio_size${i}]`).click(function () {
+                                //get the selected radio button
+                                //for (var i = 0; i < 3; i++)
+                                //{
+                                //    $(`input[name=radio_size${i}]`).click(function () {
 
-                                   //        var index0 = $(`input[name=radio_size${i}]`).index($(`input[name=radio_size${i}]:checked`)) + 1;
-                                   //        console.log(data[index0].id);
+                                //        var index0 = $(`input[name=radio_size${i}]`).index($(`input[name=radio_size${i}]:checked`)) + 1;
+                                //        console.log(data[index0].id);
 
-                                   //        //$("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
-                                   //    });
-                                   //}
-                                var index0 = 4, index1 = 4, index2 = 4, index3 = 4;
-                                $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
+                                //        //$("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
+                                //    });
+                                //}
+                                var index0 = 0, index1 = 0, index2 = 0, index3 = 0;
+                                $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [index0 !==0 ? data.items[index0].id: -1, index1 !==0 ? data.items[index1].id: -1, index2 !==0 ? data.items[index2].id: -1, index3 !==0 ? data.items[index3].id: -1]);
 
-                                   $("input[name='radio_size0']").click(function () {
+                                $("input[name='radio_size0']").click(function () {
 
-                                        index0 = $("input[name='radio_size0']").index($("input[name='radio_size0']:checked")) + 1;
-                                       console.log(data[index0].id);
+                                    index0 = $("input[name='radio_size0']").index($("input[name='radio_size0']:checked")) + 1;
+                                    console.log(data.items[index0].id);
 
-                                       $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
-                                   });
+                                    $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [index0 !==0 ? data.items[index0].id: -1, index1 !==0 ? data.items[index1].id: -1, index2 !==0 ? data.items[index2].id: -1, index3 !==0 ? data.items[index3].id: -1]);
+                                });
                                     
-                                   $("input[name='radio_size1']").click(function () {
+                                $("input[name='radio_size1']").click(function () {
 
-                                        index1 = $("input[name='radio_size1']").index($("input[name='radio_size1']:checked")) + 1;
-                                       console.log(data[index1].id);
+                                    index1 = $("input[name='radio_size1']").index($("input[name='radio_size1']:checked")) + 1;
+                                    console.log(data.items[index1].id);
 
-                                        $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
-                                   });
-                                   $("input[name='radio_size2']").click(function () {
+                                    $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [index0 !==0 ? data.items[index0].id: -1, index1 !==0 ? data.items[index1].id: -1, index2 !==0 ? data.items[index2].id: -1, index3 !==0 ? data.items[index3].id: -1]);
+                                });
+                                $("input[name='radio_size2']").click(function () {
 
-                                        index2 = $("input[name='radio_size2']").index($("input[name='radio_size2']:checked")) + 1;
-                                       console.log(data[index2].id);
+                                    index2 = $("input[name='radio_size2']").index($("input[name='radio_size2']:checked")) + 1;
+                                    console.log(data.items[index2].id);
 
-                                        $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
-                                   });
+                                    $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [index0 !==0 ? data.items[index0].id: -1, index1 !==0 ? data.items[index1].id: -1, index2 !==0 ? data.items[index2].id: -1, index3 !==0 ? data.items[index3].id: -1]);
+                                });
 
                                 $("input[name='radio_size3']").click(function () {
 
-                                     index3 = $("input[name='radio_size3']").index($("input[name='radio_size3']:checked")) + 1;
-                                    console.log(data[index3].id);
+                                    index3 = $("input[name='radio_size3']").index($("input[name='radio_size3']:checked")) + 1;
+                                    console.log(data.items[index3].id);
 
-                                     $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [data[index0].id, data[index1].id, , data[index2].id, data[index3].id]);
+                                    $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [index0 !==0 ? data.items[index0].id: -1, index1 !==0 ? data.items[index1].id: -1, index2 !==0 ? data.items[index2].id: -1, index3 !==0 ? data.items[index3].id: -1]);
                                 });
-                                }
+                            }
                         })
                         .fail(function() {
                             alert("Something failed! in modifiers");
@@ -595,8 +612,12 @@
                 var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
 
                 console.log(idModified);
+                console.log(typeof idModified);
+                var idModified = JSON.parse("[" + idModified + "]");
+
+
                 //var idModified = idModified.split(",");
-                //console.log(idModified);
+                console.log(idModified);
 
                 var id = $("#productModal .js-add-cart").attr("data-item-id");
                 var detailsMessage = $("#productModal .js-item-message").val();
