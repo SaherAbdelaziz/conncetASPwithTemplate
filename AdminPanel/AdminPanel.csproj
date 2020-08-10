@@ -207,6 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\ChecksItemsController.cs" />
     <Compile Include="Controllers\API\EldahanItemsController.cs" />
     <Compile Include="Controllers\API\OrderedItemsController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
@@ -220,6 +221,8 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Models\Check.cs" />
+    <Compile Include="Models\ChecksItem.cs" />
     <Compile Include="Models\EldahanItems.cs" />
     <Compile Include="Models\ItemOrderModelCheckList.cs" />
     <Compile Include="Models\OrderedItem.cs" />
@@ -243,6 +246,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
+    <Compile Include="ViewModels\OrderViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\AdminPanel\assets\css\ace-ie.min.css" />

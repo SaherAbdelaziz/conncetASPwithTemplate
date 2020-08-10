@@ -4,17 +4,17 @@
                 {
 
         <tr>
-            <td> @Model.Orders[i].CustomerName </td>
-            <td> @Model.Orders[i].CustomerPhone </td>
+            <td> @Model.Orders[i].ApplicationUser.Name </td>
+            <td> @Model.Orders[i].ApplicationUser.Phone </td>
             <td> @Model.Orders[i].Details </td>
             <td>
                 Price : @Model.Orders[i].Price <br>
                 Delivery : @Model.Orders[i].Delivery <br>
                 TotalPrice :@Model.Orders[i].TotalPrice
             </td>
-            <td> @Model.Orders[i].OutLet.Name </td>
-            <td> @Model.Orders[i].HdAreas.Name </td>
-            <td> @Model.Orders[i].CustomerStreet </td>
+            <td> @Model.Orders[i].ApplicationUser.Outlet.Name </td>
+            <td> @Model.Orders[i].ApplicationUser.Area.Name </td>
+            <td> تفاصيل العنوان</td>
 
             @if (Model.Orders[i].DeliveryTimeIndex == 0)
             {

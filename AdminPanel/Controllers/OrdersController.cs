@@ -17,7 +17,7 @@ namespace AdminPanel.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Cart).Include(o => o.HdAreas).Include(o => o.OutLet);
+            var orders = db.Orders.Include(o => o.Cart).Include(o => o.ApplicationUser);
             return View(orders.ToList());
         }
 
@@ -60,8 +60,8 @@ namespace AdminPanel.Controllers
             }
 
             ViewBag.CartId = new SelectList(db.Carts, "Id", "ApplicationUserId", order.CartId);
-            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.HdAreasId);
-            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.OutLetId);
+            //ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.HdAreasId);
+            //ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.OutLetId);
             return View(order);
         }
 
@@ -78,8 +78,9 @@ namespace AdminPanel.Controllers
                 return HttpNotFound();
             }
             ViewBag.CartId = new SelectList(db.Carts, "Id", "ApplicationUserId", order.CartId);
-            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.HdAreasId);
-            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.OutLetId);
+
+            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.ApplicationUser.AreaId);
+            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.ApplicationUser.OutletId);
             return View(order);
         }
 
@@ -101,8 +102,8 @@ namespace AdminPanel.Controllers
                 return RedirectToAction("Index" , "Home");
             }
             ViewBag.CartId = new SelectList(db.Carts, "Id", "ApplicationUserId", order.CartId);
-            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.HdAreasId);
-            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.OutLetId);
+            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.ApplicationUser.AreaId);
+            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.ApplicationUser.OutletId);
             return View(order);
         }
 

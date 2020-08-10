@@ -97,46 +97,31 @@ namespace conncetASPwithTemplate.Controllers.Api
                 .Include(c => c.EldahanItem).ToList();
 
             
-            string currentUserId = User.Identity.GetUserId();
-            ApplicationUser currentUser = _context.Users
-                .FirstOrDefault(x => x.Id == currentUserId);
-
-            var Name = currentUser.Name;
-            var Phone = currentUser.Phone;
-
-
-            var Street = currentUser.Street;
-            var Adress = currentUser.Adress;
-            var Adress2 = currentUser.Adress2;
-            var Apartment = currentUser.Apartment;
-            var Building = currentUser.Building;
-            var Floor = currentUser.Floor;
-            var SpecialMark = currentUser.SpecialMark;
-            var outLetId = currentUser.OutletId;
-            var hdAreasId = currentUser.AreaId;
-            string tmpAddress =  "Area : " + Adress + " \n  Address : " + Adress2 
-                + " \n Building : " + Building + " \n Floor : " + Floor;
-
-
-            // create new check with custom id 
             
+            //string tmpAddress =  "Area : " + Adress + " \n  Address : " + Adress2 
+                //+ " \n Building : " + Building + " \n Floor : " + Floor;
+
+
+            // Get check with customer id and state open
+            var check = _context.Checks
+                .SingleOrDefault(c => c.Cust_ID == UserId && c.MyStatus == "Open");
 
             // code for generate checkstaxadjtip
-            //var valueTax = order.Delivery;
-            //var checksTaxAdjTip = new ChecksTaxAdjTip(check.ID, 0, valueTax, "Adjustment", false);
-            //valueTax = .14 * order.Price;
-            //var checksTaxAdjTip2 = new ChecksTaxAdjTip(check.ID, 14, valueTax, "Tax", false);
-            //_context.ChecksTaxAdjTips.Add(checksTaxAdjTip);
-            //_context.ChecksTaxAdjTips.Add(checksTaxAdjTip2);
+            var valueTax = order.Delivery;
+            var checksTaxAdjTip = new ChecksTaxAdjTip(check.ID, 0, valueTax, "Adjustment", false);
+            valueTax = .14 * order.Price;
+            var checksTaxAdjTip2 = new ChecksTaxAdjTip(check.ID, 14, valueTax, "Tax", false);
+            _context.ChecksTaxAdjTips.Add(checksTaxAdjTip);
+            _context.ChecksTaxAdjTips.Add(checksTaxAdjTip2);
 
-            ////code for generate checksItemsSettlesSummary
-            //var netTotal = order.Price + order.Delivery + valueTax;
-            //var checksItemsSettlesSummary = new ChecksItemsSettlesSummary(check.ID, order.Price , valueTax ,
-            //    false , order.Delivery , false , 
-            //    0 , 0 , 0 ,false ,
-            //    netTotal , 0 ,netTotal , 0 , netTotal , 0 , false);
+            //code for generate checksItemsSettlesSummary
+            var netTotal = order.Price + order.Delivery + valueTax;
+            var checksItemsSettlesSummary = new ChecksItemsSettlesSummary(check.ID, order.Price, valueTax,
+                false, order.Delivery, false,
+                0, 0, 0, false,
+                netTotal, 0, netTotal, 0, netTotal, 0, false);
 
-            //_context.ChecksItemsSettlesSummaries.Add(checksItemsSettlesSummary);
+            _context.ChecksItemsSettlesSummaries.Add(checksItemsSettlesSummary);
             //var count = 1;
 
             foreach (var cart in cartItems)
@@ -152,41 +137,16 @@ namespace conncetASPwithTemplate.Controllers.Api
                 {
                     tmpOrder += $"  ###";
                 }
-
-                //// new orderItem
-                //var orderItem = new OrderedItem(cart);
-                //_context.OrderedItems.Add(orderItem);
-
-
-                ////new checkItem
-                //var pprice = cart.EldahanItem.StaticPrice;
-                //var ttotal = pprice * cart.Quantity;
-
-                //var checkItem = new ChecksItem(checkId ,cart.EldahanItemId, cart.Quantity,
-                //    pprice, ttotal, 0 , 0 ,
-                //    0 , ttotal, count);
-
-                //_context.ChecksItems.Add(checkItem);
-                //tmporderItem +=
-                    cart.Removed = true;
+                
+                cart.Removed = true;
                 //count++;
             }
 
             Order myOrder = new Order()
             {
                 CartId = Cart.Id,
-                CustomerName = Name,
-                CustomerPhone = Phone,
-                CustomerStreet = tmpAddress, // temporary
-                CustomerAddress1 = Adress,
-                CustomerAddress2= Adress2,
-                CustomerApartment = Apartment,
-                CustomerBuilding = Building,
-                CustomerFloor = Floor,
-                CustomerSpecialMark = SpecialMark,
-                OutLetId = outLetId,
-                HdAreasId = hdAreasId,
-                
+                ApplicationUserId = UserId,
+                CheckId = check.ID,
                 Details = tmpOrder,
                 DateCreated = DateTime.Now,
                 DeliveryTimeIndex = order.DeliveryTimeIndex,
@@ -196,15 +156,13 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             };
 
-           
 
             _context.Orders.Add(myOrder);
 
 
             
             _context.SaveChanges();
-            var check = _context.Checks
-                .SingleOrDefault(c => c.Cust_ID == UserId && c.MyStatus == "Open");
+            
             check.Order_No = myOrder.Id;
             check.MyStatus = "Preparing";
             _context.Entry(check).State = EntityState.Modified;

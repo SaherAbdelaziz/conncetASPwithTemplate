@@ -218,7 +218,7 @@
             //console.log(OrderController.count);
         }
 
-        $('.btn-model').on('click', function (e) {
+        $('.js-btn-model').on('click', function (e) {
             //$("#newOrder").modal();
             document.location.reload(true);
 
@@ -247,6 +247,13 @@
                    OrderController.editOrder(id, e);
 
         });
+        $('.js-btn-orderDetails').on('click', function (e) {
+                    var icon = $(e.target);
+                    //console.log(icon);
+                    var id = icon.attr("data-order-id");
+                    OrderController.orderDetails(id, e);
+
+                });
 
         $('.js-btn-EditItemsOrder').on('click', function (e) {
                    var icon = $(e.target);

@@ -10,6 +10,6 @@ namespace AdminPanel.ViewModels
     {
         public List<Order> Orders { get; set; }
         public List<MyCartItem> MyCartItems { get; set; }
-        public List<SelectedModifiers> selectedModifiers { get; set; }
+        public List<ChecksItem> ChecksItems { get; set; }
     }
 }

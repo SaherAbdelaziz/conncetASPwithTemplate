@@ -113,7 +113,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 .Where(ce => ce.Check_ID == check.ID)
                 .OrderByDescending(ce => ce.Serial)
                 .FirstOrDefault();
-            var serial = 0;
+            var serial = 1;
             if (ch != null)
                 serial = ch.Serial+1;
 
@@ -158,7 +158,6 @@ namespace conncetASPwithTemplate.Controllers.Api
                     Details = cartItemDto.Details,
                     Delivery = (double)delivery,
                     HasModifiers = true,
-                    //OrderId = 1
                 };
               
 

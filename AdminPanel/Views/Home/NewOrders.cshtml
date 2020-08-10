@@ -5,22 +5,24 @@
 
         <tr>
             <td> @Model.Orders[i].DateCreated </td>
-            <td> @Model.Orders[i].CustomerName </td>
-            <td> @Model.Orders[i].CustomerPhone </td>
+            <td> @Model.Orders[i].ApplicationUser.Name </td>
+            <td> @Model.Orders[i].ApplicationUser.Phone </td>
 
             
             <td>
-                @Model.Orders[i].Details
-                <button class="btn btn-info btn-sm js-btn-EditItemsOrder" data-order-id="@Model.Orders[i].Id">edit </button>
+               
+
+                <button class="btn btn-info btn-sm js-btn-orderDetails" 
+                        data-order-id="@Model.Orders[i].Id">Check Order Details </button>
             </td>
             <td>
                 Price : @Model.Orders[i].Price <br>
                 Delivery : @Model.Orders[i].Delivery <br>
                 TotalPrice :@Model.Orders[i].TotalPrice
             </td>
-            <td> @Model.Orders[i].OutLet.Name </td>
-            <td> @Model.Orders[i].HdAreas.Name </td>
-            <td> @Model.Orders[i].CustomerStreet </td>
+            <td> @Model.Orders[i].ApplicationUser.Outlet.Name </td>
+            <td> @Model.Orders[i].ApplicationUser.Area.Name </td>
+            <td> @Model.Orders[i].ApplicationUser.Adress</td>
 
             @if (Model.Orders[i].DeliveryTimeIndex == 0)
             {
@@ -57,6 +59,7 @@
                     <button class="btn btn-xs btn-info js-btn-EditOrder" data-order-id="@Model.Orders[i].Id">
                         <i class="ace-icon fa fa-pencil bigger-120" data-order-id="@Model.Orders[i].Id"></i>
                     </button>
+
 
                     <button class="btn btn-xs btn-danger">
                         <i class="ace-icon fa fa-trash-o bigger-120"></i>

@@ -1,18 +1,18 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.Spatial;
 
-namespace conncetASPwithTemplate.Models
+namespace AdminPanel.Models
 {
-
     public class ChecksItem
     {
         [Key]
         [Column(Order = 0)]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public long Check_ID { get; set; }
+
 
         public int? ItemId { get; set; }
 
@@ -126,13 +126,13 @@ namespace conncetASPwithTemplate.Models
 
         public ChecksItem()
         {
-            
+
 
         }
 
         public ChecksItem(long checkId, int? itemId, float? qty,
             double? unitPrice, double? totalPrice, double? dicountValue,
-            double? taxValue, double? adjValue, double? netPrice, int serial , string status , bool isModifier)
+            double? taxValue, double? adjValue, double? netPrice, int serial, string status, bool isModifier)
         {
             Check_ID = checkId;
             ItemId = itemId;

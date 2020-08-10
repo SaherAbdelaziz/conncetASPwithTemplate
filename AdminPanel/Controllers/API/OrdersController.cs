@@ -30,20 +30,23 @@ namespace AdminPanel.Controllers.API
             if (id == -1)
             {
                 id = _context.Orders.Max(o => o.Id);
-                Order order = _context.Orders.SingleOrDefault(o => o.Id == id);
-                return Ok(order);
 
             }
-            else
+            Order order = _context.Orders
+                 .Include(o => o.ApplicationUser)
+                 .Include(o => o.ApplicationUser.Outlet)
+                 .Include(o => o.ApplicationUser.Area)
+                 .SingleOrDefault(o => o.Id == id);
+
+            if (order == null)
             {
-                Order order = _context.Orders.Find(id);
-                if (order == null)
-                {
-                    return NotFound();
-                }
-                return Ok(order);
+                return NotFound();
             }
 
+               
+            
+
+            return Ok(order);
         }
         
 

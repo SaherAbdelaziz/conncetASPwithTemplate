@@ -27,25 +27,26 @@ namespace AdminPanel.Controllers
         public ActionResult Index()
         {
             var orders = _context.Orders
-                .Include(o => o.OutLet)
-                .Include(o => o.HdAreas)
-                .Include(o => o.Services)
+                .Include(o => o.ApplicationUser)
+                .Include(o => o.ApplicationUser.Outlet)
+                .Include(o => o.ApplicationUser.Area)
                 .ToList();
 
             var cartItems = _context.MyCartItems
                 .Include(c => c.EldahanItem)
                 .ToList();
 
-            var selectedModifiers = _context.SelectedModifiers
-                .Include(m => m.ItemModifier)
-                .ToList();
+            var checkItems = _context.ChecksItems.ToList();
 
+            //var checkItems = from ch in _context.ChecksItems
+            //    join item in _context.EldahanItems on ch.Item_ID equals item.Id
+            //    select new { ch.Item_ID, item.Name };
 
             var ordersViewModelViewModel = new OrdersViewModel()
             {
                 MyCartItems = cartItems,
                 Orders = orders,
-                selectedModifiers = selectedModifiers,
+                ChecksItems = checkItems,
             };
 
             return View("Tables", ordersViewModelViewModel);
@@ -81,25 +82,24 @@ namespace AdminPanel.Controllers
 
 
             var orders = _context.Orders
-                .Include(o => o.OutLet)
-                .Include(o => o.HdAreas)
-                .Include(o => o.Services)
+                .Include(o => o.ApplicationUser)
+                .Include(o => o.ApplicationUser.Outlet)
+                .Include(o => o.ApplicationUser.Area)
                 .ToList();
+
 
             var cartItems = _context.MyCartItems
                 .Include(c => c.EldahanItem)
                 .ToList();
 
-            var selectedModifiers = _context.SelectedModifiers
-                .Include(m => m.ItemModifier)
-                .ToList();
+            var checkItems = _context.ChecksItems.ToList();
 
 
             var ordersViewModelViewModel = new OrdersViewModel()
             {
                 MyCartItems = cartItems,
                 Orders = orders,
-                selectedModifiers = selectedModifiers,
+                ChecksItems = checkItems,
             };
 
             return View(ordersViewModelViewModel);

@@ -25,20 +25,36 @@
 
     }
 
-    var callOrderGetSingleApi = function (successSingle, errorSingle) {
+    var callOrderGetSingleApi = function (success, errorSingle, id) {
         console.log("start calling getting single order api");
-        var id = -1;
+        // if id =-1 gets  last inserted order else gets the order that matches the id
+       
 
         $.ajax({
             url: `/api/Orders/${id}`,
             type: "GET",
             contentType: 'application/json; charset=utf-8',
             datatype: "json",
-            success: successSingle,
+            success: success,
             error: errorSingle
         });
 
     }
+
+    var callOrderAndHisChecksItems = function (success, errorSingle, id) {
+        console.log("start calling order and his items");
+
+        $.ajax({
+            url: `/api/ChecksItems/${id}`,
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            datatype: "json",
+            success: success,
+            error: errorSingle
+        });
+
+    }
+
 
     var callAcceptOrder = function (successAccept, error, id , e) {
         console.log("start calling Accepting order api");
@@ -82,6 +98,12 @@
             window.open(actionUrl);
 
     }
+    var callOrderDetails = function (id, e) {
+            console.log("start Order Details");
+
+            
+
+        }
 
     var callEditOrderItem = function (successEdited, error, id, e) {
         console.log("start calling Edit order api");
@@ -96,8 +118,10 @@
         callAcceptOrder: callAcceptOrder,
         callRejectOrder: callRejectOrder,
         callEditOrder: callEditOrder,
+        callOrderDetails: callOrderDetails,
         callEditOrderItem: callEditOrderItem,
-        callOrderGetSingleApi:callOrderGetSingleApi
+        callOrderGetSingleApi:callOrderGetSingleApi,
+        callOrderAndHisChecksItems:callOrderAndHisChecksItems
 
     }
 
