@@ -41,7 +41,8 @@ namespace AdminPanel.Controllers.API
 
             var checkItems = _context.ChecksItems
                 .Include(ch=>ch.Item)
-                .Where(ch => ch.Check_ID == order.CheckId).ToList();
+                .Where(ch => ch.Check_ID == order.CheckId &&ch.Fired==true &&
+                             ch.Status!= "Aborted").ToList();
 
             var orderViewModel = new OrderViewModel(order , checkItems);
             return orderViewModel;

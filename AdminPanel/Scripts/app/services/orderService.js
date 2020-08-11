@@ -56,7 +56,7 @@
     }
 
 
-    var callAcceptOrder = function (successAccept, error, id , e) {
+    var callAcceptOrder = function (successAccept, error, id) {
         console.log("start calling Accepting order api");
         var order = {
             Id: id,
@@ -69,7 +69,7 @@
             data: JSON.stringify(order),
             contentType: 'application/json; charset=utf-8',
             datatype: "Json",
-            success: successAccept(e),
+            success: successAccept(id),
             error: error
         });
     }

@@ -336,6 +336,10 @@
     <Compile Include="Migrations\202008101439398_addItemToCheckItems.Designer.cs">
       <DependentUpon>202008101439398_addItemToCheckItems.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008111520420_AddPropertyToCartItem.cs" />
+    <Compile Include="Migrations\202008111520420_AddPropertyToCartItem.Designer.cs">
+      <DependentUpon>202008111520420_AddPropertyToCartItem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Check.cs" />
@@ -1622,6 +1626,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008101439398_addItemToCheckItems.resx">
       <DependentUpon>202008101439398_addItemToCheckItems.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008111520420_AddPropertyToCartItem.resx">
+      <DependentUpon>202008111520420_AddPropertyToCartItem.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

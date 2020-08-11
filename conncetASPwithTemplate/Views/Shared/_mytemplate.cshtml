@@ -500,9 +500,12 @@
                             if (data.items.length == 1) {
                                 cartItemDto = {
                                     ItemId: myId,
-                                    ItemsId: [-1] // there is no modifiers for this item
+                                    ItemsId: [-1 , -1 , -1 , -1] // there is no modifiers for this item
 
                                 }
+                                console.log("no modifiers");
+                                $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [-1 ,-1 ,-1 ,-1]);
+
                             }
 
                             else
@@ -669,6 +672,7 @@
             $(".js-qtydecrease").on('click',
             function(e) {
                 var val = parseInt($(".js-item-quantity").val());
+                console.log(val);
                 if(val != 1)
                     $(".js-item-quantity").val(val-1);
 

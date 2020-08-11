@@ -20,24 +20,44 @@
         OrderController.count = OrderController.orders.length;
     };
 
-    var successAccept = function (e) {
-        console.log(" order accepted");
-        var td = $(e.target);
-        td.parents("tr").fadeOut(function () {
-            console.log("out");
-            document.location.reload(true);
-        }) ;
+    //var successAccept = function (e) {
+    //    console.log(" order accepted");
+    //    var td = $(e.target);
+    //    td.parents("tr").fadeOut(function () {
+    //        console.log("out");
+    //        document.location.reload(true);
+    //    }) ;
+
+    //};
+
+    var successAccept = function (id) {
+        console.log(` ${id} order accepted`);
+        //document.location.reload(true);
+        $('#orderDetailsModel').on('hidden.bs.modal',
+            function() {
+                location.reload();
+            });
 
     };
     var successReject = function (e) {
-        console.log(" order rejected");
-        var td = $(e.target);
-        td.parents("tr").fadeOut(function () {
-            console.log("out");
-            document.location.reload(true);
-        }) ;
+        console.log(` ${id} order rejected`);
+        //document.location.reload(true);
+        $('#orderDetailsModel').on('hidden.bs.modal',
+            function () {
+                location.reload();
+            });
 
     };
+
+    //var successReject = function (e) {
+    //    console.log(" order rejected");
+    //    var td = $(e.target);
+    //    td.parents("tr").fadeOut(function () {
+    //        console.log("out");
+    //        document.location.reload(true);
+    //    });
+
+    //};
 
     var successEdited = function (e) {
         console.log(" order edited");
@@ -53,7 +73,7 @@
             
         sound.play();
            
-        var text = `you have new order from ${order.customerName} with price ${order.totalPrice}`;
+        var text = `you have new order from ${order.applicationUser.name} with price ${order.totalPrice}`;
         $('#newOrderModel .modal-body').text( text);
         $("#newOrderModel").modal();
         
@@ -67,12 +87,17 @@
             for (var i = 0; i < orderAndCheckItems.checksItems.length ; i++) {
 
                 if (orderAndCheckItems.checksItems[i].isModifier === false)
-                    items += `<div> ${orderAndCheckItems.checksItems[i].item.name}</div>`;
-                else
+                    items += `<div>${orderAndCheckItems.checksItems[i].qty}x ${orderAndCheckItems.checksItems[i].item.name}    Price   ${orderAndCheckItems.checksItems[i].unitPrice}</div>`;
+                else if (orderAndCheckItems.checksItems[i].status === "Preparing")
                     items += `<div>* ${orderAndCheckItems.checksItems[i].item.name}</div>`;
+                else 
+                    items += `<div> spiceal instructions ${orderAndCheckItems.checksItems[i].status}</div>`;
 
             }
             var text =
+
+
+
                 `<h3> Order Number ${orderAndCheckItems.order.id}</h2>
                 <div class ="mx-auto" style="width: 200px;">
                 <h4>Customer Details</h3>
@@ -96,8 +121,15 @@
 
 
                 </div>`;
-
+            var buttons =
+                `
+                <button type="button" class ="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class ="btn btn-danger js-btn-RejectOrder" data-dismiss="modal" data-order-id="${orderAndCheckItems.order.id}">Reject</button>
+                <button type="button" class ="btn btn-success js-btn-AcceptOrder" data-dismiss="modal" data-order-id="${orderAndCheckItems.order.id}">Accept </button>
+                
+                `
             $('#orderDetailsModel .modal-body').html(text);
+            $('#orderDetailsModel .modal-footer').html(buttons);
             $("#orderDetailsModel").modal();
             //orderService.callOrderDetails(id, e);
 
@@ -166,8 +198,8 @@
 
     }
     var rejectNewOrder = function (id, e) {
-            console.log("reject new order" + id);
-            orderService.callRejectOrder(successReject, error, id, e);
+        console.log("reject new order" + id);
+        orderService.callRejectOrder(successReject, error, id, e);
     
     }
     var editOrder = function (id, e) {

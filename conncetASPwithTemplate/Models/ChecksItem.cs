@@ -132,7 +132,8 @@ namespace conncetASPwithTemplate.Models
 
         public ChecksItem(long checkId, int? itemId, float? qty,
             double? unitPrice, double? totalPrice, double? dicountValue,
-            double? taxValue, double? adjValue, double? netPrice, int serial , string status , bool isModifier)
+            double? taxValue, double? adjValue, double? netPrice, int serial ,
+            bool fired ,  bool voided , string status , bool isModifier ,  int ref_Mod_Item)
         {
             Check_ID = checkId;
             ItemId = itemId;
@@ -144,8 +145,12 @@ namespace conncetASPwithTemplate.Models
             Adj_Value = adjValue;
             NetPrice = netPrice;
             Serial = serial;
+            
+            Fired = fired;
+            Voided = voided;
             Status = status;
             IsModifier = isModifier;
+            Ref_Mod_Item = ref_Mod_Item;
         }
     }
 }

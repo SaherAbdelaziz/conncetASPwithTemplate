@@ -10,12 +10,13 @@ namespace conncetASPwithTemplate.Models
         public int Id { get; set; }
         
         public int Quantity { get; set; }
-
+        public int Serial { get; set; }
         public DateTime DateCreated { get; set; }
 
         public bool Removed { get; set; }
         public string Details { get; set; }
         public bool HasModifiers { get; set; }
+        public int ModifiersCount { get; set; }
         public bool Ordered { get; set; }
         public int OrderId { get; set; }
         public double Delivery { get; set; }

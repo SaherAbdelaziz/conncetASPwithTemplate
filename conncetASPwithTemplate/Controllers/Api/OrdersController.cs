@@ -89,23 +89,18 @@ namespace conncetASPwithTemplate.Controllers.Api
             {
                 return BadRequest(ModelState);
             }
-
-            string tmpOrder = "";
-            string tmporderItem = "";
+            
             var cartItems = _context.MyCartItems
                 .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed)
                 .Include(c => c.EldahanItem).ToList();
 
-            
-            
-            //string tmpAddress =  "Area : " + Adress + " \n  Address : " + Adress2 
-                //+ " \n Building : " + Building + " \n Floor : " + Floor;
 
-
-            // Get check with customer id and state open
+            // Get check with customer id and state open and get its check items 
             var check = _context.Checks
                 .SingleOrDefault(c => c.Cust_ID == UserId && c.MyStatus == "Open");
 
+            var checkItems = _context.ChecksItems
+                .Where(chI => chI.Check_ID == check.ID).ToList();
             // code for generate checkstaxadjtip
             var valueTax = order.Delivery;
             var checksTaxAdjTip = new ChecksTaxAdjTip(check.ID, 0, valueTax, "Adjustment", false);
@@ -126,19 +121,9 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             foreach (var cart in cartItems)
             {
-                //tmpOrder += cart.Quantity + "x" + cart.EldahanItem.Name2 + " \t Price " + cart.EldahanItem.StaticPrice + " LE \n";
-                tmpOrder +=  $"اوردر{cart.Quantity}* {cart.EldahanItem.Name2} السعر  {cart.EldahanItem.StaticPrice} جنيه";
-                if (cart.Details != "")
-                {
-                    tmpOrder += $" تعليمات مخصصة {cart.Details} ###"; 
-
-                }
-                else
-                {
-                    tmpOrder += $"  ###";
-                }
                 
                 cart.Removed = true;
+                _context.MyCartItems.Remove(cart);
                 //count++;
             }
 
@@ -147,7 +132,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 CartId = Cart.Id,
                 ApplicationUserId = UserId,
                 CheckId = check.ID,
-                Details = tmpOrder,
+                //Details = tmpOrder,
                 DateCreated = DateTime.Now,
                 DeliveryTimeIndex = order.DeliveryTimeIndex,
                 Delivery = order.Delivery,
@@ -156,9 +141,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             };
 
-
             _context.Orders.Add(myOrder);
-
 
             
             _context.SaveChanges();
@@ -166,6 +149,13 @@ namespace conncetASPwithTemplate.Controllers.Api
             check.Order_No = myOrder.Id;
             check.MyStatus = "Preparing";
             _context.Entry(check).State = EntityState.Modified;
+            foreach (var checkItem in checkItems)
+            {
+                checkItem.Fired = true;
+                if (checkItem.Status == "Open")
+                    checkItem.Status = "Preparing";
+            }
+
             _context.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);
         }

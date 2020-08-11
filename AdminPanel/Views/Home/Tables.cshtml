@@ -224,21 +224,39 @@
 
         });
 
-        $('.js-btn-AcceptOrder').on('click', function (e) {
+        $('body').on('click', '.js-btn-AcceptOrder', function (e) {
             var icon = $(e.target);
-            //console.log(icon);
+            console.log("accept order");
+            console.log(icon);
             var id = icon.attr("data-order-id");
-            OrderController.acceptNewOrder(id , e);
-
+            OrderController.acceptNewOrder(id, e);
         });
 
-        $('.js-btn-RejectOrder').on('click', function (e) {
+        //$('.js-btn-AcceptOrder').on('click', function (e) {
+        //    var icon = $(e.target);
+        //    console.log("accept order");
+        //    console.log(icon);
+        //    var id = icon.attr("data-order-id");
+        //    OrderController.acceptNewOrder(id , e);
+
+        //});
+
+        $('body').on('click', '.js-btn-RejectOrder', function (e) {
             var icon = $(e.target);
-            //console.log(icon);
+            console.log("reject order");
+            console.log(icon);
             var id = icon.attr("data-order-id");
             OrderController.rejectNewOrder(id, e);
 
         });
+
+        //$('.js-btn-RejectOrder').on('click', function (e) {
+        //    var icon = $(e.target);
+        //    //console.log(icon);
+        //    var id = icon.attr("data-order-id");
+        //    OrderController.rejectNewOrder(id, e);
+
+        //});
 
         $('.js-btn-EditOrder').on('click', function (e) {
                    var icon = $(e.target);
