@@ -1,5 +1,5 @@
 ﻿var OrderController = function (orderService) {
-    var orders , count=0;
+    var orders , count=0 , userId;
     var getOrders = function (success, error) {
         console.log("start calling order api");
         orderService.callOrderGetApi(success, error);
@@ -101,16 +101,16 @@
                 `<h3> Order Number ${orderAndCheckItems.order.id}</h2>
                 <div class ="mx-auto" style="width: 200px;">
                 <h4>Customer Details</h3>
-                <div>Name ${orderAndCheckItems.order.applicationUser.name}</div>
-                <div>Area ${orderAndCheckItems.order.applicationUser.area.name}</div>
-                <div>Outlet ${orderAndCheckItems.order.applicationUser.outlet.name}</div>
+                <div>Name ${orderAndCheckItems.order.user.name}</div>
+                <div>Area ${orderAndCheckItems.order.user.area.name}</div>
+                <div>Outlet ${orderAndCheckItems.order.user.outlet.name}</div>
                 <div>
-                Addres ${orderAndCheckItems.order.applicationUser.adress}
-                ${orderAndCheckItems.order.applicationUser.adress2}
-                ${orderAndCheckItems.order.applicationUser.building}
-                ${orderAndCheckItems.order.applicationUser.floor}
-                ${orderAndCheckItems.order.applicationUser.apartment}
-                ${orderAndCheckItems.order.applicationUser.specialMark}
+                Addres ${orderAndCheckItems.order.user.adress}
+                ${orderAndCheckItems.order.user.adress2}
+                ${orderAndCheckItems.order.user.building}
+                ${orderAndCheckItems.order.user.floor}
+                ${orderAndCheckItems.order.user.apartment}
+                ${orderAndCheckItems.order.user.specialMark}
                 </div>
 
                 </div>
@@ -220,7 +220,7 @@
         }
 
     var init = function (ordersCount) {
-        
+        console.log("userId" , userId);
         console.log("start order controller");
         console.log(ordersCount);
         getOrders(success, error);
@@ -238,7 +238,8 @@
         editOrder: editOrder,
         orderDetails: orderDetails,
         editItemsOrder:editItemsOrder,
-        showData: showData
+        showData: showData,
+        userId: userId
 
     }
 }(OrderService)

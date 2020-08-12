@@ -130,7 +130,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             Order myOrder = new Order()
             {
                 CartId = Cart.Id,
-                ApplicationUserId = UserId,
+                UserId = UserId,
                 CheckId = check.ID,
                 //Details = tmpOrder,
                 DateCreated = DateTime.Now,

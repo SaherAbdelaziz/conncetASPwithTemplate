@@ -33,9 +33,9 @@ namespace AdminPanel.Controllers.API
 
             }
             Order order = _context.Orders
-                 .Include(o => o.ApplicationUser)
-                 .Include(o => o.ApplicationUser.Outlet)
-                 .Include(o => o.ApplicationUser.Area)
+                 .Include(o => o.User)
+                 .Include(o => o.User.Outlet)
+                 .Include(o => o.User.Area)
                  .SingleOrDefault(o => o.Id == id);
 
             if (order == null)
@@ -96,17 +96,20 @@ namespace AdminPanel.Controllers.API
                 return;
             }
 
-            if (modelOrder.OrderState == 1)// accepted
-            {
-                order.OrderState = modelOrder.OrderState; 
-            }
+            //if (modelOrder.OrderState == 1)// accepted
+            //{
+            //    order.OrderState = modelOrder.OrderState; 
+            //    order.OrderState = modelOrder.OrderState; 
+            //}
 
-            else if (modelOrder.OrderState == 2)// rejected
-            {
-                order.OrderState = modelOrder.OrderState; 
-            }
+            //else if (modelOrder.OrderState == 2)// rejected
+            //{
+            //    order.OrderState = modelOrder.OrderState; 
+            //    order.OrderState = modelOrder.OrderState; 
+            //}
 
             order.OrderState = modelOrder.OrderState; // 1 for accepted 2 for rejected 
+            order.AdminId = User.Identity.GetUserId(); // here admin accepted or rejected order
 
             _context.SaveChanges();
 

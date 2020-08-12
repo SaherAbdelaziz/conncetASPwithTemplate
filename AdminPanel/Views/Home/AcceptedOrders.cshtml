@@ -1,56 +1,59 @@
-﻿@for (var i = 0; i < Model.Orders.Count; i++)
-            {
-                if (Model.Orders[i].OrderState == 1)
-                {
+﻿@using Microsoft.AspNet.Identity
 
-        <tr>
-            <td> @Model.Orders[i].ApplicationUser.Name </td>
-            <td> @Model.Orders[i].ApplicationUser.Phone </td>
-            <td> @Model.Orders[i].Details </td>
-            <td>
-                Price : @Model.Orders[i].Price <br>
-                Delivery : @Model.Orders[i].Delivery <br>
-                TotalPrice :@Model.Orders[i].TotalPrice
-            </td>
-            <td> @Model.Orders[i].ApplicationUser.Outlet.Name </td>
-            <td> @Model.Orders[i].ApplicationUser.Area.Name </td>
-            <td> تفاصيل العنوان</td>
+@for (var i = 0; i < Model.Orders.Count; i++)
+    {
+        if (Model.Orders[i].OrderState == 1 && 
+            Model.Orders[i].AdminId== User.Identity.GetUserId())
+                    {
 
-            @if (Model.Orders[i].DeliveryTimeIndex == 0)
-            {
-                <td> as fast as possible </td>
-            }
+                     <tr>
+                         <td> @Model.Orders[i].User.Name </td>
+                         <td> @Model.Orders[i].User.Phone </td>
+                         <td> @Model.Orders[i].Details </td>
+                         <td>
+                             Price : @Model.Orders[i].Price <br>
+                             Delivery : @Model.Orders[i].Delivery <br>
+                             TotalPrice :@Model.Orders[i].TotalPrice
+                         </td>
+                         <td> @Model.Orders[i].User.Outlet.Name </td>
+                         <td> @Model.Orders[i].User.Area.Name </td>
+                         <td> تفاصيل العنوان</td>
 
-
-            else if (Model.Orders[i].DeliveryTimeIndex == 1)
-            {
-                <td> in one hour </td>
-            }
-
-            else
-            {
-                <td> in two hour </td>
-
-            }
+                         @if (Model.Orders[i].DeliveryTimeIndex == 0)
+                         {
+                             <td> as fast as possible </td>
+                         }
 
 
-            <td class="hidden-480">
-                <span class="label label-sm label-warning"> Pending </span>
-            </td>
+                         else if (Model.Orders[i].DeliveryTimeIndex == 1)
+                         {
+                             <td> in one hour </td>
+                         }
 
-            <td>
-                <div class="hidden-sm hidden-xs btn-group">
+                        else
+                         {
+                             <td> in two hour </td>
+
+                         }
 
 
-                    <button class="btn btn-xs btn-info js-btn-EditOrder" data-order-id="@Model.Orders[i].Id">
-                        <i class="ace-icon fa fa-pencil bigger-120" data-order-id="@Model.Orders[i].Id"></i>
-                    </button>
+                         <td class="hidden-480">
+                             <span class="label label-sm label-warning"> Pending </span>
+                         </td>
 
-                    @*<button class="btn btn-xs btn-danger">
-                        <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                    </button>*@
-                </div>
-            </td>
-        </tr>
-    }
+                         <td>
+                             <div class="hidden-sm hidden-xs btn-group">
+
+
+                                 <button class="btn btn-xs btn-info js-btn-EditOrder" data-order-id="@Model.Orders[i].Id">
+                                     <i class="ace-icon fa fa-pencil bigger-120" data-order-id="@Model.Orders[i].Id"></i>
+                                 </button>
+
+                                 @*<button class="btn btn-xs btn-danger">
+                                         <i class="ace-icon fa fa-trash-o bigger-120"></i>
+                                     </button>*@
+                             </div>
+                         </td>
+                     </tr>
+               }
 }

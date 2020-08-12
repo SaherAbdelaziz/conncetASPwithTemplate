@@ -5,8 +5,8 @@
 
         <tr>
             <td> @Model.Orders[i].DateCreated </td>
-            <td> @Model.Orders[i].ApplicationUser.Name </td>
-            <td> @Model.Orders[i].ApplicationUser.Phone </td>
+            <td> @Model.Orders[i].User.Name </td>
+            <td> @Model.Orders[i].User.Phone </td>
 
             
             <td>
@@ -20,9 +20,9 @@
                 Delivery : @Model.Orders[i].Delivery <br>
                 TotalPrice :@Model.Orders[i].TotalPrice
             </td>
-            <td> @Model.Orders[i].ApplicationUser.Outlet.Name </td>
-            <td> @Model.Orders[i].ApplicationUser.Area.Name </td>
-            <td> @Model.Orders[i].ApplicationUser.Adress</td>
+            <td> @Model.Orders[i].User.Outlet.Name </td>
+            <td> @Model.Orders[i].User.Area.Name </td>
+            <td> @Model.Orders[i].User.Adress</td>
 
             @if (Model.Orders[i].DeliveryTimeIndex == 0)
             {

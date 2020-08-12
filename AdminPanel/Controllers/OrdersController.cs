@@ -17,7 +17,8 @@ namespace AdminPanel.Controllers
         // GET: Orders
         public ActionResult Index()
         {
-            var orders = db.Orders.Include(o => o.Cart).Include(o => o.ApplicationUser);
+            var orders = db.Orders
+                .Include(o => o.Cart).Include(o => o.User);
             return View(orders.ToList());
         }
 
@@ -79,8 +80,8 @@ namespace AdminPanel.Controllers
             }
             ViewBag.CartId = new SelectList(db.Carts, "Id", "ApplicationUserId", order.CartId);
 
-            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.ApplicationUser.AreaId);
-            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.ApplicationUser.OutletId);
+            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.User.AreaId);
+            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.User.OutletId);
             return View(order);
         }
 
@@ -102,8 +103,8 @@ namespace AdminPanel.Controllers
                 return RedirectToAction("Index" , "Home");
             }
             ViewBag.CartId = new SelectList(db.Carts, "Id", "ApplicationUserId", order.CartId);
-            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.ApplicationUser.AreaId);
-            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.ApplicationUser.OutletId);
+            ViewBag.HdAreasId = new SelectList(db.HdAreas, "Id", "Code", order.User.AreaId);
+            ViewBag.OutLetId = new SelectList(db.OutLets, "Id", "Code", order.User.OutletId);
             return View(order);
         }
 

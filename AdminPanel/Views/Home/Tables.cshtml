@@ -208,12 +208,16 @@
 <!-- inline scripts related to this page -->
 <script>
     $(document).ready(function () {
+        var loggedUser = '@User.Identity.GetUserId()';
+        OrderController.userId = loggedUser;
+        //console.log("user name ", loggedUser);
         setInterval(getOrdersCount, 4000);
         OrderController.showData();
         function getOrdersCount() {
             //console.log($('#tableBodyOrders').attr('ordersCount'));
             var ordersCount = $('#NewOrderBody').attr('ordersCount');
             OrderController.init(ordersCount);
+            
             OrderController.changedNumberOfOrders(ordersCount);
             //console.log(OrderController.count);
         }

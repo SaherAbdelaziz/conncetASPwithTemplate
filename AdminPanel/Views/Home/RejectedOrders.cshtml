@@ -4,16 +4,16 @@
                 {
 
         <tr>
-            <td> @Model.Orders[i].ApplicationUser.Name </td>
-            <td> @Model.Orders[i].ApplicationUser.Phone </td>
+            <td> @Model.Orders[i].User.Name </td>
+            <td> @Model.Orders[i].User.Phone </td>
             <td> @Model.Orders[i].Details </td>
             <td>
                 Price : @Model.Orders[i].Price <br>
                 Delivery : @Model.Orders[i].Delivery <br>
                 TotalPrice :@Model.Orders[i].TotalPrice
             </td>
-            <td> @Model.Orders[i].ApplicationUser.Outlet.Name </td>
-            <td> @Model.Orders[i].ApplicationUser.Area.Name </td>
+            <td> @Model.Orders[i].User.Outlet.Name </td>
+            <td> @Model.Orders[i].User.Area.Name </td>
             <td> تفاصيل العنوان</td>
 
             @if (Model.Orders[i].DeliveryTimeIndex == 0)

@@ -29,9 +29,9 @@ namespace AdminPanel.Controllers.API
         {
             //get chekItems based on order id
             var order = _context.Orders
-                .Include(o => o.ApplicationUser)
-                .Include(o => o.ApplicationUser.Outlet)
-                .Include(o => o.ApplicationUser.Area)
+                .Include(o => o.User)
+                .Include(o => o.User.Outlet)
+                .Include(o => o.User.Area)
                 .SingleOrDefault(o => o.Id == id);
 
             if (order == null)

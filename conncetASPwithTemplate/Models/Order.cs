@@ -9,8 +9,11 @@ namespace conncetASPwithTemplate.Models
     {
         public int Id { get; set; }
 
-        public string ApplicationUserId { get; set; }
-        public ApplicationUser ApplicationUser { get; set; }
+        public string UserId { get; set; }
+        public ApplicationUser User { get; set; }
+
+        public string AdminId { get; set; }
+        public ApplicationUser Admin { get; set; }
 
         public long CheckId { get; set; }
         public Check Check { get; set; }

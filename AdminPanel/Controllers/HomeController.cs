@@ -27,9 +27,9 @@ namespace AdminPanel.Controllers
         public ActionResult Index()
         {
             var orders = _context.Orders
-                .Include(o => o.ApplicationUser)
-                .Include(o => o.ApplicationUser.Outlet)
-                .Include(o => o.ApplicationUser.Area)
+                .Include(o => o.User)
+                .Include(o => o.User.Outlet)
+                .Include(o => o.User.Area)
                 .ToList();
 
             var cartItems = _context.MyCartItems
@@ -82,9 +82,9 @@ namespace AdminPanel.Controllers
 
 
             var orders = _context.Orders
-                .Include(o => o.ApplicationUser)
-                .Include(o => o.ApplicationUser.Outlet)
-                .Include(o => o.ApplicationUser.Area)
+                .Include(o => o.User)
+                .Include(o => o.User.Outlet)
+                .Include(o => o.User.Area)
                 .ToList();
 
 
