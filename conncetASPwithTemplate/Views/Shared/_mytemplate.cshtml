@@ -369,7 +369,7 @@
                     
                     
                 </div>
-                    <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-add-cart" data-item-id="1" data-modiefier-id="1" data-dismiss="modal"><span>Add to Cart</span></button>
+                    <button type="button" class="modal-btn btn btn-secondary btn-block btn-lg js-add-cart" data-item-id="1" data-modiefier-id="1" ><span>Add to Cart</span></button>
 
             </div>
         </div>
@@ -505,11 +505,13 @@
                                 }
                                 console.log("no modifiers");
                                 $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [-1 ,-1 ,-1 ,-1]);
+                                $("#productModal .js-add-cart").attr("data-is-modiefier", 0);
 
                             }
 
                             else
                             {
+                                $("#productModal .js-add-cart").attr("data-is-modiefier", data.modifiersGroupCount);
                                 console.log("in has modi");
                                 console.log(data.items.length);
                                 for (var i = 0; i < data.modifiersGroupCount; i++)
@@ -537,7 +539,7 @@
                                         // <span class ="custom-control-indicator"></span>
                                         let data1 = `<div class="form-group">
                                     <label class ="custom-control custom-radio" >
-                                    <input name="radio_size${i}" type="radio" value=${data.items[j].name} checked>
+                                    <input name="radio_size${i}" type="radio" value=${data.items[j].name}>
                                    
                                     <span class ="custom-control-description">${data.items[j].name} </span>
                                     </label>
@@ -602,6 +604,31 @@
 
 
             $(".js-add-cart").click(function(e) {
+
+                var idModifiers = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
+                var isModi = $("#productModal .js-add-cart").attr("data-is-modiefier");
+                //console.log("isModi" , isModi);
+                //console.log("idModifiers" , idModifiers);
+                
+
+                idModifiers = JSON.parse("[" + idModifiers + "]");
+                //console.log("idModList.Count" , idModList.length);
+
+                if(isModi!==0) 
+                {
+                    console.log("in condetion ");
+                    for (let i = 0; i < isModi; i++)
+                    {
+                        //console.log(idModifiers);
+                        if(idModifiers[i]===-1)
+                        {
+                            alert("Please choose all salads");
+                            return;
+                        }
+                    }
+
+                }
+                
                 var button = $(e.target);
                 if ($(e.target).get(0).tagName == "SPAN") {
                     button = $(e.target).parent();
@@ -609,27 +636,16 @@
                     button = $(e.target);
                 }
 
-                // console.log($('#messagedetails').text());
-                // console.log($('#messagedetails'));
-
-                var idModified = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
-
-                console.log(idModified);
-                console.log(typeof idModified);
-                var idModified = JSON.parse("[" + idModified + "]");
-
-
-                //var idModified = idModified.split(",");
-                console.log(idModified);
-
                 var id = $("#productModal .js-add-cart").attr("data-item-id");
                 var detailsMessage = $("#productModal .js-item-message").val();
 
                 var quantity = $("#productModal .js-item-quantity").val();
+                // now close the model
+                $('#productModal').modal('hide');
 
                 var cartItemDto = {
                     ItemId: id, 
-                    ItemsId: idModified,
+                    ItemsId: idModifiers,
                     Details: detailsMessage,
                     Quantity: quantity
                     // phone: $("#id-phone").val()

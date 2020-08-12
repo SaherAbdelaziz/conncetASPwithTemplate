@@ -39,7 +39,7 @@
             });
 
     };
-    var successReject = function (e) {
+    var successReject = function (id) {
         console.log(` ${id} order rejected`);
         //document.location.reload(true);
         $('#orderDetailsModel').on('hidden.bs.modal',

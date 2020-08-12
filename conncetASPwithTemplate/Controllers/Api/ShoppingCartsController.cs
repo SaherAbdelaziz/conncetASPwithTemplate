@@ -181,25 +181,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         }
 
-        // here we get all cart items and set its order id to orderId
-        //public void Put()
-        //{
-
-        //    var cartItmes = _context.MyCartItems.ToList();
-        //    var order = _context.Orders.OrderByDescending(o => o.Id).FirstOrDefault();
-
-        //    foreach (var cartItme in cartItmes)
-        //    {
-        //        if(cartItme.ShoppingCartId == Cart.Id && !cartItme.Removed)
-        //        {
-        //            cartItme.OrderId = order.Id;
-        //            cartItme.Ordered = true;
-        //            cartItme.Removed = true;
-        //        }
-        //    }
-
-        //    _context.SaveChanges();
-        //}
+      
 
         // DELETE: api/ShoppingCarts/5
         public IHttpActionResult Delete(int id)
@@ -216,7 +198,8 @@ namespace conncetASPwithTemplate.Controllers.Api
             var checkItems = _context.ChecksItems
                 .Where(chI => chI.Check_ID == check.ID
                                         && chI.Voided == false && chI.Fired == false
-                                        && (chI.Serial==cartItem.Serial || chI.Ref_Mod_Item==cartItem.Serial))
+                                        && (chI.Serial==cartItem.Serial ||
+                                            chI.Ref_Mod_Item==cartItem.Serial))
                 .ToList();
             
 
@@ -226,20 +209,24 @@ namespace conncetASPwithTemplate.Controllers.Api
                 //checkItem.Fired = true;
                 checkItem.Voided = true;
                 checkItem.Status = "Aborted";
+                _context.Entry(checkItem).State = EntityState.Modified;
+                _context.SaveChanges();
             }
 
-            checkItems = _context.ChecksItems
-                .Where(chI => chI.Check_ID == check.ID && chI.Voided == false )
-                .ToList();
-
-
-            if (checkItems.Count == 0)
-            {
-                check.MyStatus = "Aborted";
-                _context.Entry(check).State = EntityState.Modified;
-            }
-            cartItem.Removed = true;
+            ////should i close the check if there is no items in it
             
+            //checkItems = _context.ChecksItems
+            //    .Where(chI => chI.Check_ID == check.ID && chI.Voided == false )
+            //    .ToList();
+
+            
+            //if (checkItems.Count == 0)
+            //{
+            //    check.MyStatus = "Aborted";
+            //    _context.Entry(check).State = EntityState.Modified;
+            //}
+            cartItem.Removed = true;
+            _context.MyCartItems.Remove(cartItem);
 
             _context.SaveChanges();
 
