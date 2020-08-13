@@ -1,16 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using AdminPanel.Models;
 using System.Data.Entity;
 using AdminPanel.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading.Tasks;
 namespace AdminPanel.Controllers
 {
     [Authorize(Roles = "Manger")]
@@ -32,14 +24,14 @@ namespace AdminPanel.Controllers
                 .Include(o => o.User.Area)
                 .ToList();
 
-            var cartItems = _context.MyCartItems
-                .Include(c => c.EldahanItem)
+            var cartItems = _context.CartItems
+                .Include(c => c.Item)
                 .ToList();
 
             var checkItems = _context.ChecksItems.ToList();
 
             //var checkItems = from ch in _context.ChecksItems
-            //    join item in _context.EldahanItems on ch.Item_ID equals item.Id
+            //    join item in _context.Item on ch.Item_ID equals item.Id
             //    select new { ch.Item_ID, item.Name };
 
             var ordersViewModelViewModel = new OrdersViewModel()
@@ -88,8 +80,8 @@ namespace AdminPanel.Controllers
                 .ToList();
 
 
-            var cartItems = _context.MyCartItems
-                .Include(c => c.EldahanItem)
+            var cartItems = _context.CartItems
+                .Include(c => c.Item)
                 .ToList();
 
             var checkItems = _context.ChecksItems.ToList();
@@ -119,8 +111,8 @@ namespace AdminPanel.Controllers
 
         public ActionResult Items()
         {
-            var items = _context.EldahanItems
-                .Include(i=>i.EldahanPreset).ToList();
+            var items = _context.Items
+                .Include(i=>i.WebPreset).ToList();
 
             return View(items);
         }

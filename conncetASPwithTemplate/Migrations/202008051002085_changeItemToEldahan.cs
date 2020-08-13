@@ -20,8 +20,8 @@ namespace conncetASPwithTemplate.Migrations
             AddPrimaryKey("dbo.Modifiers", new[] { "ModifiersGroupId", "EldahanItemsId" });
             CreateIndex("dbo.ItemsModifiers", "EldahanItemsId");
             CreateIndex("dbo.Modifiers", "EldahanItemsId");
-            AddForeignKey("dbo.ItemsModifiers", "EldahanItemsId", "dbo.EldahanItems", "Id", cascadeDelete: true);
-            AddForeignKey("dbo.Modifiers", "EldahanItemsId", "dbo.EldahanItems", "Id", cascadeDelete: true);
+            AddForeignKey("dbo.ItemsModifiers", "EldahanItemsId", "dbo.Item", "Id", cascadeDelete: true);
+            AddForeignKey("dbo.Modifiers", "EldahanItemsId", "dbo.Item", "Id", cascadeDelete: true);
             DropColumn("dbo.ItemsModifiers", "ItemId");
             DropColumn("dbo.Modifiers", "ItemId");
             DropColumn("dbo.SelectedModifiers", "ItemId");
@@ -32,8 +32,8 @@ namespace conncetASPwithTemplate.Migrations
             AddColumn("dbo.SelectedModifiers", "ItemId", c => c.Int(nullable: false));
             AddColumn("dbo.Modifiers", "ItemId", c => c.Int(nullable: false));
             AddColumn("dbo.ItemsModifiers", "ItemId", c => c.Int(nullable: false));
-            DropForeignKey("dbo.Modifiers", "EldahanItemsId", "dbo.EldahanItems");
-            DropForeignKey("dbo.ItemsModifiers", "EldahanItemsId", "dbo.EldahanItems");
+            DropForeignKey("dbo.Modifiers", "EldahanItemsId", "dbo.Item");
+            DropForeignKey("dbo.ItemsModifiers", "EldahanItemsId", "dbo.Item");
             DropIndex("dbo.Modifiers", new[] { "EldahanItemsId" });
             DropIndex("dbo.ItemsModifiers", new[] { "EldahanItemsId" });
             DropPrimaryKey("dbo.Modifiers");

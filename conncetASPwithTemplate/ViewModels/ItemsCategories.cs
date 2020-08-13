@@ -8,14 +8,14 @@ namespace conncetASPwithTemplate.ViewModels
 {
     public class ItemsCategories
     {
-        public List<EldahanItems> Items { get; set; }
+        public List<Item> Items { get; set; }
        // public Modifys Modifys { get; set; }
         public List<Web_Preset> Presets { get; set; }
         public List<Web_Menu_Item> MenuItems { get; set; }
         public int ItemsToShowCount { get; set; }
 
 
-        public ItemsCategories(List<EldahanItems> items, List<Web_Preset> webPresets, List<Web_Menu_Item> webMenuItems , int itemsToShowCount )
+        public ItemsCategories(List<Item> items, List<Web_Preset> webPresets, List<Web_Menu_Item> webMenuItems , int itemsToShowCount )
         {
             Items = items.ToList();
             // SubCategories = subCategories.ToList();

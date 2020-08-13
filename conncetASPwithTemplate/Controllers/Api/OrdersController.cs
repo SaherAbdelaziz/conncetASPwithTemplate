@@ -90,9 +90,9 @@ namespace conncetASPwithTemplate.Controllers.Api
                 return BadRequest(ModelState);
             }
             
-            var cartItems = _context.MyCartItems
+            var cartItems = _context.CartItems
                 .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed)
-                .Include(c => c.EldahanItem).ToList();
+                .Include(c => c.Item).ToList();
 
 
             // Get check with customer id and state open and get its check items 
@@ -123,7 +123,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             {
                 
                 cart.Removed = true;
-                _context.MyCartItems.Remove(cart);
+                _context.CartItems.Remove(cart);
                 //count++;
             }
 

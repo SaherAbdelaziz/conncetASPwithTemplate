@@ -85,8 +85,8 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult Navigation()
         {
-            var items = _context.EldahanItems.ToList();
-            var presets = _context.EldahanPresets.ToList();
+            var items = _context.Items.ToList();
+            var presets = _context.WebPresets.ToList();
             var menuItems = _context.WebMenuItems.ToList();
             var itemsToShowCount = 10;
             ItemsCategories itemsCategories =new ItemsCategories(items , presets, menuItems , itemsToShowCount);
@@ -97,7 +97,7 @@ namespace conncetASPwithTemplate.Controllers
 
         public ActionResult ShowItems()
         {
-            var items = _context.EldahanItems.ToList();
+            var items = _context.Items.ToList();
 
             return View(items);
         }

@@ -1,4 +1,4 @@
-﻿@model List<AdminPanel.Models.EldahanItems>
+﻿@model List<AdminPanel.Models.Item>
 @{
     ViewBag.Title = "title";
     Layout = "~/Views/Shared/_adminPanel.cshtml";
@@ -21,7 +21,7 @@
             </div>
             
             @*<p>
-                @Html.ActionLink("Create New", "Create" , "EldahanItems")
+                @Html.ActionLink("Create New", "Create" , "Item")
             </p>*@
         </div>
         <!-- /.page-header -->
@@ -63,7 +63,7 @@
                                         </td>
 
                                         <td class="center">
-                                            @item.EldahanPreset.Name
+                                            @item.WebPreset.Name
                                         </td>
 
                                         <td>

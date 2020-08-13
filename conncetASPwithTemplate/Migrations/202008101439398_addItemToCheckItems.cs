@@ -9,14 +9,14 @@ namespace conncetASPwithTemplate.Migrations
         {
             AddColumn("dbo.ChecksItems", "ItemId", c => c.Int());
             CreateIndex("dbo.ChecksItems", "ItemId");
-            AddForeignKey("dbo.ChecksItems", "ItemId", "dbo.EldahanItems", "Id");
+            AddForeignKey("dbo.ChecksItems", "ItemId", "dbo.Item", "Id");
             DropColumn("dbo.ChecksItems", "Item_ID");
         }
         
         public override void Down()
         {
             AddColumn("dbo.ChecksItems", "Item_ID", c => c.Int());
-            DropForeignKey("dbo.ChecksItems", "ItemId", "dbo.EldahanItems");
+            DropForeignKey("dbo.ChecksItems", "ItemId", "dbo.Item");
             DropIndex("dbo.ChecksItems", new[] { "ItemId" });
             DropColumn("dbo.ChecksItems", "ItemId");
         }

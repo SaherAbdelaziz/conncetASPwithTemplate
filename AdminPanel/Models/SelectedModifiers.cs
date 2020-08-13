@@ -11,7 +11,7 @@ namespace AdminPanel.Models
         public string CartId { get; set; }
         public int EldahanItemsId { get; set; }
         public int ItemModifierId { get; set; }
-        public EldahanItems ItemModifier { get; set; }
+        public Item ItemModifier { get; set; }
         public SelectedModifiers()
         {
 

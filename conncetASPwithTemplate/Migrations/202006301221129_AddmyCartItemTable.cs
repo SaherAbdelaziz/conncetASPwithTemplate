@@ -24,14 +24,14 @@ namespace conncetASPwithTemplate.Migrations
                         EldahanItemId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
-                .ForeignKey("dbo.EldahanItems", t => t.EldahanItemId, cascadeDelete: true)
+                .ForeignKey("dbo.Item", t => t.EldahanItemId, cascadeDelete: true)
                 .Index(t => t.EldahanItemId);
             
         }
         
         public override void Down()
         {
-            DropForeignKey("dbo.MyCartItems", "EldahanItemId", "dbo.EldahanItems");
+            DropForeignKey("dbo.MyCartItems", "EldahanItemId", "dbo.Item");
             DropIndex("dbo.MyCartItems", new[] { "EldahanItemId" });
             DropTable("dbo.MyCartItems");
         }

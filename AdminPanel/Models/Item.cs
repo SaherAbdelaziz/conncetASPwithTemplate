@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using AdminPanel.ViewModels;
+
 namespace AdminPanel.Models
 {
     public class Item
@@ -28,7 +27,8 @@ namespace AdminPanel.Models
 
         public bool? Assimbly { get; set; }
 
-        public int? SubCategryId { get; set; }
+        public Web_Preset WebPreset { get; set; }
+        public int WebPresetId { get; set; }
 
         public bool? IsModifier { get; set; }
 
@@ -102,6 +102,109 @@ namespace AdminPanel.Models
 
         public bool? Pre_Paid_Card { get; set; }
 
-        public SubCategory SubCategory { get; set; }
+        public bool WebOrder { get; set; }
+        public bool Listed { get; set; }
+        public int Available { get; set; }
+
+        public Item()
+        {
+            
+        }
+
+        public Item(ItemViewModel model)
+        {
+            Code = model.Code;
+            Name = model.Name;
+            Name2 = model.Name2;
+            BarCode = model.BarCode;
+            CrossCode = model.CrossCode;
+            Taxable = model.Taxable;
+            Assimbly = model.Assimbly;
+            WebPreset = model.EldahanPreset;
+            WebPresetId = model.EldahanPresetId;
+            IsModifier = model.IsModifier;
+            StandAlone = model.StandAlone;
+            PrintOnChick = model.PrintOnChick;
+            PrintOnReport = model.PrintOnReport;
+            FollowItem = model.FollowItem;
+            Image_Item = model.Image_Item;
+            BackColor = model.BackColor;
+            this.fontColor = model.fontColor;
+            Cost = model.Cost;
+            OpenPrice = model.OpenPrice;
+            StaticPrice = model.StaticPrice;
+            Description1 = model.Description1;
+            Description2 = model.Description2;
+            Description3 = model.Description3;
+            Description4 = model.Description4;
+            ModPrice_0 = model.ModPrice_0;
+            ItemFont = model.ItemFont;
+            UseItemTimer = model.UseItemTimer;
+            ItemTimerValue = model.ItemTimerValue;
+            Active = model.Active;
+            CreateDate = model.CreateDate;
+            ModifiedDate = model.ModifiedDate;
+            User_ID = model.User_ID;
+            NoServiceCharge = model.NoServiceCharge;
+            Market_Price = model.Market_Price;
+            Item_Track = model.Item_Track;
+            PrintItemOnCheck = model.PrintItemOnCheck;
+            IsParent = model.IsParent;
+            Rest_ID_Active = model.Rest_ID_Active;
+            Open_Food = model.Open_Food;
+            Mod_Price = model.Mod_Price;
+            Pre_Paid_Card = model.Pre_Paid_Card;
+            WebOrder = model.WebOrder;
+            Listed = model.Listed;
+            Available = (int) model.Available;
+        }
+
+        public void Update(ItemViewModel model)
+        {
+            Code = model.Code;
+            Name = model.Name;
+            Name2 = model.Name2;
+            BarCode = model.BarCode;
+            CrossCode = model.CrossCode;
+            Taxable = model.Taxable;
+            Assimbly = model.Assimbly;
+            WebPreset = model.EldahanPreset;
+            WebPresetId = model.EldahanPresetId;
+            IsModifier = model.IsModifier;
+            StandAlone = model.StandAlone;
+            PrintOnChick = model.PrintOnChick;
+            PrintOnReport = model.PrintOnReport;
+            FollowItem = model.FollowItem;
+            Image_Item = model.Image_Item;
+            BackColor = model.BackColor;
+            this.fontColor = model.fontColor;
+            Cost = model.Cost;
+            OpenPrice = model.OpenPrice;
+            StaticPrice = model.StaticPrice;
+            Description1 = model.Description1;
+            Description2 = model.Description2;
+            Description3 = model.Description3;
+            Description4 = model.Description4;
+            ModPrice_0 = model.ModPrice_0;
+            ItemFont = model.ItemFont;
+            UseItemTimer = model.UseItemTimer;
+            ItemTimerValue = model.ItemTimerValue;
+            Active = model.Active;
+            CreateDate = model.CreateDate;
+            ModifiedDate = model.ModifiedDate;
+            User_ID = model.User_ID;
+            NoServiceCharge = model.NoServiceCharge;
+            Market_Price = model.Market_Price;
+            Item_Track = model.Item_Track;
+            PrintItemOnCheck = model.PrintItemOnCheck;
+            IsParent = model.IsParent;
+            Rest_ID_Active = model.Rest_ID_Active;
+            Open_Food = model.Open_Food;
+            Mod_Price = model.Mod_Price;
+            Pre_Paid_Card = model.Pre_Paid_Card;
+            WebOrder = model.WebOrder;
+            Listed = model.Listed;
+            Available = (int)model.Available;
+        }
     }
 }

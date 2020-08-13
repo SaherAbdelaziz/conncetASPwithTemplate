@@ -16,40 +16,40 @@ namespace conncetASPwithTemplate.Controllers.Api
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: api/EldahanItems
-        public IQueryable<EldahanItems> GetEldahanItems()
+        // GET: api/Item
+        public IQueryable<Item> GetEldahanItems()
         {
-            return db.EldahanItems;
+            return db.Items;
         }
 
-        // GET: api/EldahanItems/5
-        [ResponseType(typeof(EldahanItems))]
+        // GET: api/Item/5
+        [ResponseType(typeof(Item))]
         public IHttpActionResult GetEldahanItems(int id)
         {
-            EldahanItems eldahanItems = db.EldahanItems.Find(id);
-            if (eldahanItems == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return NotFound();
             }
 
-            return Ok(eldahanItems);
+            return Ok(item);
         }
 
-        // PUT: api/EldahanItems/5
+        // PUT: api/Item/5
         [ResponseType(typeof(void))]
-        public IHttpActionResult PutEldahanItems(int id, EldahanItems eldahanItems)
+        public IHttpActionResult PutEldahanItems(int id, Item item)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != eldahanItems.Id)
+            if (id != item.Id)
             {
                 return BadRequest();
             }
 
-            db.Entry(eldahanItems).State = EntityState.Modified;
+            db.Entry(item).State = EntityState.Modified;
 
             try
             {
@@ -70,35 +70,35 @@ namespace conncetASPwithTemplate.Controllers.Api
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST: api/EldahanItems
-        [ResponseType(typeof(EldahanItems))]
-        public IHttpActionResult PostEldahanItems(EldahanItems eldahanItems)
+        // POST: api/Item
+        [ResponseType(typeof(Item))]
+        public IHttpActionResult PostEldahanItems(Item item)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.EldahanItems.Add(eldahanItems);
+            db.Items.Add(item);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = eldahanItems.Id }, eldahanItems);
+            return CreatedAtRoute("DefaultApi", new { id = item.Id }, item);
         }
 
-        // DELETE: api/EldahanItems/5
-        [ResponseType(typeof(EldahanItems))]
+        // DELETE: api/Item/5
+        [ResponseType(typeof(Item))]
         public IHttpActionResult DeleteEldahanItems(int id)
         {
-            EldahanItems eldahanItems = db.EldahanItems.Find(id);
-            if (eldahanItems == null)
+            Item item = db.Items.Find(id);
+            if (item == null)
             {
                 return NotFound();
             }
 
-            db.EldahanItems.Remove(eldahanItems);
+            db.Items.Remove(item);
             db.SaveChanges();
 
-            return Ok(eldahanItems);
+            return Ok(item);
         }
 
         protected override void Dispose(bool disposing)
@@ -112,7 +112,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         private bool EldahanItemsExists(int id)
         {
-            return db.EldahanItems.Count(e => e.Id == id) > 0;
+            return db.Items.Count(e => e.Id == id) > 0;
         }
     }
 }

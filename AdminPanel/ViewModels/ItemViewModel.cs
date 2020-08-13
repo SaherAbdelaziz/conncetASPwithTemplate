@@ -117,7 +117,7 @@ namespace AdminPanel.ViewModels
             
         }
 
-        public ItemViewModel(EldahanItems model)
+        public ItemViewModel(Item model)
         {
             Code = model.Code;
             Name = model.Name;
@@ -126,8 +126,8 @@ namespace AdminPanel.ViewModels
             CrossCode = model.CrossCode;
             Taxable = model.Taxable;
             Assimbly = model.Assimbly;
-            EldahanPreset = model.EldahanPreset;
-            EldahanPresetId = model.EldahanPresetId;
+            EldahanPreset = model.WebPreset;
+            EldahanPresetId = model.WebPresetId;
             IsModifier = model.IsModifier;
             StandAlone = model.StandAlone;
             PrintOnChick = model.PrintOnChick;

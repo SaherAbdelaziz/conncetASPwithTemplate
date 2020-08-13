@@ -1,6 +1,9 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace conncetASPwithTemplate.Models
 {
@@ -26,7 +29,8 @@ namespace conncetASPwithTemplate.Models
 
         public bool? Assimbly { get; set; }
 
-        public int? SubCategryId { get; set; }
+        public Web_Preset WebPreset { get; set; }
+        public int WebPresetId { get; set; }
 
         public bool? IsModifier { get; set; }
 
@@ -100,7 +104,10 @@ namespace conncetASPwithTemplate.Models
 
         public bool? Pre_Paid_Card { get; set; }
 
-        public  SubCategory SubCategory { get; set; }
+        public bool WebOrder { get; set; }
+
+
+        public bool Listed { get; set; }
+        public int Available { get; set; }
     }
 }
-    

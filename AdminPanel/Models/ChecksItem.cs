@@ -16,7 +16,7 @@ namespace AdminPanel.Models
 
         public int? ItemId { get; set; }
 
-        public EldahanItems Item { get; set; }
+        public Item Item { get; set; }
 
         public float? QTY { get; set; }
 

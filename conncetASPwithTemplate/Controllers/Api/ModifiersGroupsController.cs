@@ -32,12 +32,12 @@ namespace conncetASPwithTemplate.Controllers.Api
             List<int> modifierGroupIds = new List<int>();
             itemsIds.Add(id);
 
-            var item = _context.EldahanItems.FirstOrDefault(i => i.Id == id);
+            var item = _context.Items.FirstOrDefault(i => i.Id == id);
             var itemsModifiers = _context.ItemsModifiers.ToList();
             var modifierGroupId = 0;
             foreach (var itemsModifier in itemsModifiers)
             {
-                if (item != null && itemsModifier.EldahanItemsId == item.Id)
+                if (item != null && itemsModifier.ItemId == item.Id)
                 {
                     modifierGroupIds.Add(itemsModifier.ModifiersGroupId);
                 }
@@ -48,10 +48,10 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             foreach (var modifier in modifiers)
             {
-                itemsIds.Add(modifier.EldahanItemsId);
+                itemsIds.Add(modifier.ItemId);
             }
 
-            var items =_context.EldahanItems
+            var items =_context.Items
                 .Where(t => itemsIds.Contains(t.Id)).ToList();
 
             var itemsAndGroup = new ItemsAndGroupCount(items , modifierGroupIds.Count());

@@ -8,7 +8,7 @@ namespace conncetASPwithTemplate.Migrations
         public override void Up()
         {
             CreateTable(
-                "dbo.EldahanItems",
+                "dbo.Item",
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
@@ -83,10 +83,10 @@ namespace conncetASPwithTemplate.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.EldahanItems", "EldahanPresetId", "dbo.EldahanPresets");
-            DropIndex("dbo.EldahanItems", new[] { "EldahanPresetId" });
+            DropForeignKey("dbo.Item", "EldahanPresetId", "dbo.EldahanPresets");
+            DropIndex("dbo.Item", new[] { "EldahanPresetId" });
             DropTable("dbo.EldahanPresets");
-            DropTable("dbo.EldahanItems");
+            DropTable("dbo.Item");
         }
     }
 }

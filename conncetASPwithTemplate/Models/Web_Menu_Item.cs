@@ -22,7 +22,7 @@ namespace conncetASPwithTemplate.Models
 
 
         public Item Item { get; set; }
-        public WebPreset Preset { get; set; }
+        public Web_Preset Preset { get; set; }
 
     }
 }

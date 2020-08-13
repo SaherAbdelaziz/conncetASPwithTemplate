@@ -9,7 +9,7 @@ namespace AdminPanel.ViewModels
     public class OrdersViewModel
     {
         public List<Order> Orders { get; set; }
-        public List<MyCartItem> MyCartItems { get; set; }
+        public List<CartItem> MyCartItems { get; set; }
         public List<ChecksItem> ChecksItems { get; set; }
     }
 }

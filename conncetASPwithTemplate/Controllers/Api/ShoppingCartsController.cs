@@ -37,11 +37,11 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // GET: api/ShoppingCarts
-        public IEnumerable<MyCartItem> Get()
+        public IEnumerable<CartItem> Get()
         {
-          var items = _context.MyCartItems
+          var items = _context.CartItems
             .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed && !c.Ordered)
-            .Include(c => c.EldahanItem).ToList();
+            .Include(c => c.Item).ToList();
 
 
           return items;
@@ -57,7 +57,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         // POST: api/ShoppingCarts
         [HttpPost]
-        public MyCartItem Post(CartItemDto cartItemDto)
+        public CartItem Post(CartItemDto cartItemDto)
         {
 
             var userId = User.Identity.GetUserId();
@@ -101,7 +101,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             }
             
 
-            MyCartItem cartItem;
+            CartItem cartItem;
             var ch = _context.ChecksItems
                 .Where(ce => ce.Check_ID == check.ID)
                 .OrderByDescending(ce => ce.Serial)
@@ -115,9 +115,9 @@ namespace conncetASPwithTemplate.Controllers.Api
             }
 
             // Create a new cart item                
-            cartItem = new MyCartItem()
+            cartItem = new CartItem()
             {
-                EldahanItemId = cartItemDto.ItemId,
+                ItemId = cartItemDto.ItemId,
                 ShoppingCartId = Cart.Id,
                 Quantity = cartItemDto.Quantity,
                 DateCreated = DateTime.Now,
@@ -127,7 +127,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 ModifiersCount=0
             };
 
-            var item = _context.EldahanItems
+            var item = _context.Items
                 .SingleOrDefault(e => e.Id == cartItemDto.ItemId);
             var total = item.StaticPrice + cartItem.Delivery;
 
@@ -169,7 +169,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 }
             }
 
-            _context.MyCartItems.Add(cartItem);
+            _context.CartItems.Add(cartItem);
             _context.ChecksItems.Add(checkItem);
             _context.SaveChanges();
             return cartItem;
@@ -186,7 +186,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         // DELETE: api/ShoppingCarts/5
         public IHttpActionResult Delete(int id)
         {
-            var cartItem = _context.MyCartItems
+            var cartItem = _context.CartItems
                 .Single(c => c.Id == id && c.ShoppingCartId == Cart.Id);
 
             if (cartItem.Removed)
@@ -226,7 +226,7 @@ namespace conncetASPwithTemplate.Controllers.Api
             //    _context.Entry(check).State = EntityState.Modified;
             //}
             cartItem.Removed = true;
-            _context.MyCartItems.Remove(cartItem);
+            _context.CartItems.Remove(cartItem);
 
             _context.SaveChanges();
 

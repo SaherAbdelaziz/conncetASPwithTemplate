@@ -12,11 +12,11 @@ namespace conncetASPwithTemplate.Models
 
         [Key]
         [Column(Order = 1)]
-        public int EldahanItemsId { get; set; }
+        public int ItemId { get; set; }
         
 
         public ModifiersGroup ModifiersGroup { get; set; }
-        public EldahanItems EldahanItems { get; set; }
+        public Item Item { get; set; }
 
         public int? IndexItem { get; set; }
 

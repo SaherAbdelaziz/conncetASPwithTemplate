@@ -20,7 +20,7 @@ namespace conncetASPwithTemplate.Controllers.Api
         // GET: api/Modifiers
         public IQueryable<Modifier> GetModifiers()
         {
-            return _context.Modifiers.Include(m=>m.ModifiersGroup).Include(m=>m.EldahanItems);
+            return _context.Modifiers.Include(m=>m.ModifiersGroup).Include(m=>m.Item);
         }
 
         // GET: api/Modifiers/5

@@ -109,76 +109,76 @@ namespace AdminPanel.Controllers
         }
 
         // POST: Orders/EditItems/5
-        public ActionResult EditItems(int id)
-        {
-            var model = new ItemOrderModelCheckList(id, GetItems(id));
+        //public ActionResult EditItems(int id)
+        //{
+        //    var model = new ItemOrderModelCheckList(id, GetItems(id));
             
-            return View(model);
-        }
+        //    return View(model);
+        //}
 
-        [HttpPost]
-        public ActionResult EditItems(ItemOrderModelCheckList model , int myId)
-        {
+        //[HttpPost]
+        //public ActionResult EditItems(ItemOrderModelCheckList model , int myId)
+        //{
 
-            if (ModelState.IsValid)
-            {
-                var selectedItemsIds = string.Join(",", model.SelectedItems);
-                //List<double?> prices=new List<double?>();
-                double? prices = 0;
-                List<string> Names=new List<string>();
-                List<int> q=new List<int>();
+        //    if (ModelState.IsValid)
+        //    {
+        //        var selectedItemsIds = string.Join(",", model.SelectedItems);
+        //        //List<double?> prices=new List<double?>();
+        //        double? prices = 0;
+        //        List<string> Names=new List<string>();
+        //        List<int> q=new List<int>();
 
-                foreach (var i in model.SelectedItems)
-                {
+        //        foreach (var i in model.SelectedItems)
+        //        {
                     
-                    var id = int.Parse(i);
-                    var item = db.EldahanItems
-                        .SingleOrDefault(e => e.Id == id);
+        //            var id = int.Parse(i);
+        //            var item = db.Items
+        //                .SingleOrDefault(e => e.Id == id);
 
-                    Names.Add(item.Name2);
-                    //q.Add(i);
-                    prices+=item.StaticPrice;
-                }
-                //update order based on new selected items
-                var order = db.Orders.SingleOrDefault(o => o.Id == myId);
-                var n = string.Join(" @ ", Names);
-                //var p = string.Join("/n", Names);
+        //            Names.Add(item.Name2);
+        //            //q.Add(i);
+        //            prices+=item.StaticPrice;
+        //        }
+        //        //update order based on new selected items
+        //        var order = db.Orders.SingleOrDefault(o => o.Id == myId);
+        //        var n = string.Join(" @ ", Names);
+        //        //var p = string.Join("/n", Names);
 
-                order.Details = n;
-                order.Price = (double) prices;
-                order.TotalPrice = (double) prices + order.Delivery;
-                db.SaveChanges();
+        //        order.Details = n;
+        //        order.Price = (double) prices;
+        //        order.TotalPrice = (double) prices + order.Delivery;
+        //        db.SaveChanges();
 
-                //model.OrderId
-                //var items = db.EldahanItems
-                //    .Where(e => model.SelectedItems.ToList().Contains(e));
+        //        //model.OrderId
+        //        //var items = db.Item
+        //        //    .Where(e => model.SelectedItems.ToList().Contains(e));
 
-                // Save data to database, and redirect to Success page.
+        //        // Save data to database, and redirect to Success page.
 
-                return RedirectToAction("Index" , "Home");
-            }
-            model.AvailableItem = GetItems(myId);
-            return View(model);
-        }
+        //        return RedirectToAction("Index" , "Home");
+        //    }
+        //    model.AvailableItem = GetItems(myId);
+        //    return View(model);
+        //}
 
 
-        private IList<SelectListItem> GetItems(int id)
-        {
-            var item = db.OrderedItems
-                .Where(od => od.OrderId == id)
-                .Include(od => od.Item)
-                .ToList();
+        //private IList<SelectListItem> GetItems(int id)
+        //{
+        //    var item = db.OrderedItems
+        //        .Where(od => od.OrderId == id)
+        //        .Include(od => od.Item)
+        //        .ToList();
 
-            List<SelectListItem> model = new List<SelectListItem>();
-            foreach (var i in item)
-            {
-                var x = new SelectListItem
-                    { Text = i.Item.Name2, Value = i.Item.Id.ToString(), Selected = true};
-                model.Insert(0 , x);
-            }
-            // i.Quantity+"x"+
-            return model;
-        }
+        //    List<SelectListItem> model = new List<SelectListItem>();
+        //    foreach (var i in item)
+        //    {
+        //        var x = new SelectListItem
+        //            { Text = i.Item.Name2, Value = i.Item.Id.ToString(), Selected = true};
+        //        model.Insert(0 , x);
+        //    }
+        //    // i.Quantity+"x"+
+        //    return model;
+        //}
 
         
         // GET: Orders/Delete/5

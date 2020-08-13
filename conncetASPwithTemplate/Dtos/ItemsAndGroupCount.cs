@@ -8,7 +8,7 @@ namespace conncetASPwithTemplate.Dtos
 {
     public class ItemsAndGroupCount
     {
-        public List<EldahanItems> Items { get; set; }
+        public List<Item> Items { get; set; }
         public int ModifiersGroupCount { get; set; }
 
         public ItemsAndGroupCount()
@@ -16,7 +16,7 @@ namespace conncetASPwithTemplate.Dtos
 
         }
 
-        public ItemsAndGroupCount(List<EldahanItems> items , int count)
+        public ItemsAndGroupCount(List<Item> items , int count)
         {
             Items = items.ToList(); 
             ModifiersGroupCount = count;

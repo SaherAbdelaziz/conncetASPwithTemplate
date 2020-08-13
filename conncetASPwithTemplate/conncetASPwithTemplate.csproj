@@ -195,16 +195,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\EldahanItemsController.cs" />
-    <Compile Include="Controllers\Api\ItemsController.cs" />
     <Compile Include="Controllers\Api\ItemsModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersGroupsController.cs" />
     <Compile Include="Controllers\Api\OrdersController.cs" />
     <Compile Include="Controllers\Api\ShoppingCartsController.cs" />
-    <Compile Include="Controllers\Api\test.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Dtos\CartItemDto.cs" />
     <Compile Include="Dtos\ItemDto.cs" />
@@ -344,6 +341,22 @@
     <Compile Include="Migrations\202008121338420_UpdateOrderProperty1.Designer.cs">
       <DependentUpon>202008121338420_UpdateOrderProperty1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008130936487_AddOthersDatabaseTables.cs" />
+    <Compile Include="Migrations\202008130936487_AddOthersDatabaseTables.Designer.cs">
+      <DependentUpon>202008130936487_AddOthersDatabaseTables.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008130944240_refactorDatabase.cs" />
+    <Compile Include="Migrations\202008130944240_refactorDatabase.Designer.cs">
+      <DependentUpon>202008130944240_refactorDatabase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008131019076_refactorDataBase2.cs" />
+    <Compile Include="Migrations\202008131019076_refactorDataBase2.Designer.cs">
+      <DependentUpon>202008131019076_refactorDataBase2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202008131025127_refactorDataBase3.cs" />
+    <Compile Include="Migrations\202008131025127_refactorDataBase3.Designer.cs">
+      <DependentUpon>202008131025127_refactorDataBase3.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Check.cs" />
@@ -351,26 +364,194 @@
     <Compile Include="Models\ChecksItemsSettlesSummary.cs" />
     <Compile Include="Models\ChecksTaxAdjTip.cs" />
     <Compile Include="Models\EldahanItems2.cs" />
-    <Compile Include="Models\CartItem.cs" />
-    <Compile Include="Models\EldahanItems.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\OrderedItem.cs" />
+    <Compile Include="Models\others unused tables\Adjustment.cs" />
+    <Compile Include="Models\others unused tables\Aging.cs" />
+    <Compile Include="Models\others unused tables\AR_Checks.cs" />
+    <Compile Include="Models\others unused tables\AR_Checks_Pay.cs" />
+    <Compile Include="Models\others unused tables\AR_Customers.cs" />
+    <Compile Include="Models\others unused tables\Assign_Drawer.cs" />
+    <Compile Include="Models\others unused tables\AvailableTable.cs" />
+    <Compile Include="Models\others unused tables\Cash_Drawer.cs" />
+    <Compile Include="Models\others unused tables\Category.cs" />
+    <Compile Include="Models\others unused tables\Catering.cs" />
+    <Compile Include="Models\others unused tables\Cat_Checks.cs" />
+    <Compile Include="Models\others unused tables\Cat_ChecksItems.cs" />
+    <Compile Include="Models\others unused tables\Cat_histChecks.cs" />
+    <Compile Include="Models\others unused tables\Cat_histChecksItems.cs" />
+    <Compile Include="Models\others unused tables\Change_Server.cs" />
+    <Compile Include="Models\others unused tables\ChecksCompleted.cs" />
+    <Compile Include="Models\others unused tables\ChecksItemsCompleted.cs" />
+    <Compile Include="Models\others unused tables\ChecksItemsSerial.cs" />
+    <Compile Include="Models\others unused tables\ChecksItemsSettle.cs" />
+    <Compile Include="Models\others unused tables\CL.cs" />
+    <Compile Include="Models\others unused tables\Complementary_Reasons.cs" />
+    <Compile Include="Models\others unused tables\Convert_Points.cs" />
+    <Compile Include="Models\others unused tables\Currency_Rate.cs" />
+    <Compile Include="Models\others unused tables\Customer.cs" />
+    <Compile Include="Models\others unused tables\Customers_Telephone.cs" />
+    <Compile Include="Models\others unused tables\Customer_Points.cs" />
+    <Compile Include="Models\others unused tables\Department.cs" />
+    <Compile Include="Models\others unused tables\Design_DiningRooms.cs" />
+    <Compile Include="Models\others unused tables\Design_DiningRooms_Tables.cs" />
+    <Compile Include="Models\others unused tables\DiningRoom.cs" />
+    <Compile Include="Models\others unused tables\Disable_Table.cs" />
+    <Compile Include="Models\others unused tables\Discount.cs" />
+    <Compile Include="Models\others unused tables\DiscountsCatrgory.cs" />
+    <Compile Include="Models\others unused tables\Discount_Reasons.cs" />
+    <Compile Include="Models\others unused tables\dtproperty.cs" />
+    <Compile Include="Models\others unused tables\End_Shift_User.cs" />
+    <Compile Include="Models\others unused tables\FC_Adjustment.cs" />
+    <Compile Include="Models\others unused tables\FC_Adjust_Items.cs" />
+    <Compile Include="Models\others unused tables\FC_Adjust_Reason.cs" />
+    <Compile Include="Models\others unused tables\FC_Bulk_Items.cs" />
+    <Compile Include="Models\others unused tables\FC_Bulk_Items_Child.cs" />
+    <Compile Include="Models\others unused tables\FC_Categories.cs" />
+    <Compile Include="Models\others unused tables\FC_Convert_Units.cs" />
+    <Compile Include="Models\others unused tables\FC_Inventory.cs" />
+    <Compile Include="Models\others unused tables\FC_Invn_Kitchen.cs" />
+    <Compile Include="Models\others unused tables\FC_Invn_kit_Sheet.cs" />
+    <Compile Include="Models\others unused tables\FC_Invn_kit_Sheet_Items.cs" />
+    <Compile Include="Models\others unused tables\FC_Invn_kit_Variance.cs" />
+    <Compile Include="Models\others unused tables\FC_Invn_kit_Variance_Items.cs" />
+    <Compile Include="Models\others unused tables\FC_Items.cs" />
+    <Compile Include="Models\others unused tables\FC_ItemsChild.cs" />
+    <Compile Include="Models\others unused tables\FC_Items_For_Invn_Kit.cs" />
+    <Compile Include="Models\others unused tables\FC_Item_Cost.cs" />
+    <Compile Include="Models\others unused tables\FC_Item_Invn_Qty.cs" />
+    <Compile Include="Models\others unused tables\FC_Kitchen_Outlets.cs" />
+    <Compile Include="Models\others unused tables\FC_Process_BI.cs" />
+    <Compile Include="Models\others unused tables\FC_Process_BI_Child.cs" />
+    <Compile Include="Models\others unused tables\FC_Produce_Rcp_Child.cs" />
+    <Compile Include="Models\others unused tables\FC_Produce_Recipe.cs" />
+    <Compile Include="Models\others unused tables\FC_ReceivdData.cs" />
+    <Compile Include="Models\others unused tables\FC_Recipes.cs" />
+    <Compile Include="Models\others unused tables\FC_Recipe_Items.cs" />
+    <Compile Include="Models\others unused tables\FC_Setup.cs" />
+    <Compile Include="Models\others unused tables\FC_SubCategories.cs" />
+    <Compile Include="Models\others unused tables\FC_Transfer.cs" />
+    <Compile Include="Models\others unused tables\FC_Transfer_Items.cs" />
+    <Compile Include="Models\others unused tables\FC_Units.cs" />
+    <Compile Include="Models\others unused tables\FC_Vendor.cs" />
+    <Compile Include="Models\others unused tables\FC_Voucher.cs" />
+    <Compile Include="Models\others unused tables\FC_Vou_Items.cs" />
+    <Compile Include="Models\others unused tables\HD_Company.cs" />
+    <Compile Include="Models\others unused tables\HD_Orders.cs" />
+    <Compile Include="Models\others unused tables\HD_Orders_Pilot.cs" />
+    <Compile Include="Models\others unused tables\histAR_Table.cs" />
+    <Compile Include="Models\others unused tables\histCheck.cs" />
+    <Compile Include="Models\others unused tables\histChecksCompleted.cs" />
+    <Compile Include="Models\others unused tables\histChecksItem.cs" />
+    <Compile Include="Models\others unused tables\histChecksItemsCompleted.cs" />
+    <Compile Include="Models\others unused tables\histChecksItemsSerial.cs" />
+    <Compile Include="Models\others unused tables\histChecksItemsSettle.cs" />
+    <Compile Include="Models\others unused tables\histChecksItemsSettlesSummary.cs" />
+    <Compile Include="Models\others unused tables\histChecksTaxAdjTip.cs" />
+    <Compile Include="Models\others unused tables\histHD_Orders.cs" />
+    <Compile Include="Models\others unused tables\histHD_Orders_Pilot.cs" />
+    <Compile Include="Models\others unused tables\InventoryDefination.cs" />
+    <Compile Include="Models\others unused tables\InventoryItem.cs" />
+    <Compile Include="Models\others unused tables\Inventory_Items_Track.cs" />
+    <Compile Include="Models\others unused tables\Inv_Adjustment.cs" />
+    <Compile Include="Models\others unused tables\Inv_Adjust_Items.cs" />
+    <Compile Include="Models\others unused tables\Inv_Adjust_Reason.cs" />
+    <Compile Include="Models\others unused tables\Inv_Categories.cs" />
+    <Compile Include="Models\others unused tables\ItemsAssimbly.cs" />
+    <Compile Include="Models\others unused tables\ItemsChild.cs" />
+    <Compile Include="Models\others unused tables\ItemsItInv.cs" />
+    <Compile Include="Models\others unused tables\ItemsMonitor.cs" />
+    <Compile Include="Models\others unused tables\ItemsPrice.cs" />
+    <Compile Include="Models\others unused tables\ItemsPrinter.cs" />
+    <Compile Include="Models\others unused tables\Items_Inventory.cs" />
+    <Compile Include="Models\others unused tables\Item_OutLets.cs" />
+    <Compile Include="Models\others unused tables\Location.cs" />
+    <Compile Include="Models\others unused tables\LogInSy.cs" />
+    <Compile Include="Models\others unused tables\Log_Pilots.cs" />
+    <Compile Include="Models\others unused tables\Main_OutLet.cs" />
+    <Compile Include="Models\others unused tables\MiniRecipe.cs" />
+    <Compile Include="Models\others unused tables\ModifiesItem.cs" />
+    <Compile Include="Models\others unused tables\Monitor.cs" />
+    <Compile Include="Models\others unused tables\Move_Items.cs" />
+    <Compile Include="Models\others unused tables\Officer.cs" />
+    <Compile Include="Models\others unused tables\OutletSetup.cs" />
+    <Compile Include="Models\others unused tables\OutletSetupMeal.cs" />
+    <Compile Include="Models\others unused tables\OutLet_Adjustment.cs" />
+    <Compile Include="Models\others unused tables\OutLet_Discount.cs" />
+    <Compile Include="Models\others unused tables\OutLet_Officer.cs" />
+    <Compile Include="Models\others unused tables\OutLet_Pilot.cs" />
+    <Compile Include="Models\others unused tables\OutLet_Promotion.cs" />
+    <Compile Include="Models\others unused tables\OutLet_Setup.cs" />
+    <Compile Include="Models\others unused tables\OutLet_Tax.cs" />
+    <Compile Include="Models\others unused tables\Out_Status_Reasons.cs" />
+    <Compile Include="Models\others unused tables\PaidOutReason.cs" />
+    <Compile Include="Models\others unused tables\PaidOut_Tranactions.cs" />
+    <Compile Include="Models\others unused tables\PaidOut_Void_Reasons.cs" />
+    <Compile Include="Models\others unused tables\PaymentMethode.cs" />
+    <Compile Include="Models\others unused tables\Payment_Void_Reasons.cs" />
+    <Compile Include="Models\others unused tables\Phone_Keys.cs" />
+    <Compile Include="Models\others unused tables\Pilot.cs" />
+    <Compile Include="Models\others unused tables\Point.cs" />
+    <Compile Include="Models\others unused tables\Point_Items.cs" />
+    <Compile Include="Models\others unused tables\PrePaid_Adjust_Serial.cs" />
+    <Compile Include="Models\others unused tables\PrePaid_Group_Items.cs" />
+    <Compile Include="Models\others unused tables\Preset.cs" />
+    <Compile Include="Models\others unused tables\Pre_Paid_Adjust.cs" />
+    <Compile Include="Models\others unused tables\Pre_Paid_Card.cs" />
+    <Compile Include="Models\others unused tables\Pre_Paid_Card_Group.cs" />
+    <Compile Include="Models\others unused tables\Pre_Paid_Groups.cs" />
+    <Compile Include="Models\others unused tables\Price_Levels.cs" />
+    <Compile Include="Models\others unused tables\Printer.cs" />
+    <Compile Include="Models\others unused tables\Print_Fast_Rpt.cs" />
+    <Compile Include="Models\others unused tables\Print_Invoice.cs" />
+    <Compile Include="Models\others unused tables\Promotion.cs" />
+    <Compile Include="Models\others unused tables\Promotion_Gift_Items.cs" />
+    <Compile Include="Models\others unused tables\Promotion_Items.cs" />
+    <Compile Include="Models\others unused tables\Recipe.cs" />
+    <Compile Include="Models\others unused tables\RecipeItem.cs" />
+    <Compile Include="Models\others unused tables\Restaurant.cs" />
+    <Compile Include="Models\others unused tables\Restaurant_Setup.cs" />
+    <Compile Include="Models\others unused tables\Setup_Call_Center.cs" />
+    <Compile Include="Models\others unused tables\Setup_EndDay.cs" />
+    <Compile Include="Models\others unused tables\Setup_Meals.cs" />
+    <Compile Include="Models\others unused tables\Setup_Outlet_Mail_Rpt.cs" />
+    <Compile Include="Models\others unused tables\Setup_Periods.cs" />
+    <Compile Include="Models\others unused tables\Setup_Quick_Customer.cs" />
+    <Compile Include="Models\others unused tables\Shelf.cs" />
+    <Compile Include="Models\others unused tables\StockedItemCategory.cs" />
+    <Compile Include="Models\others unused tables\StockedItemsSubCategory.cs" />
+    <Compile Include="Models\others unused tables\SystemDate.cs" />
+    <Compile Include="Models\others unused tables\TablesGuest.cs" />
+    <Compile Include="Models\others unused tables\Tax.cs" />
+    <Compile Include="Models\others unused tables\Temp_Button.cs" />
+    <Compile Include="Models\others unused tables\Tmp_Checks.cs" />
+    <Compile Include="Models\others unused tables\Tmp_ChecksItems.cs" />
+    <Compile Include="Models\others unused tables\Unit.cs" />
+    <Compile Include="Models\others unused tables\Update_Item_Price.cs" />
+    <Compile Include="Models\others unused tables\UserClass.cs" />
+    <Compile Include="Models\others unused tables\UserDefnation.cs" />
+    <Compile Include="Models\others unused tables\UsersPrivilege.cs" />
+    <Compile Include="Models\others unused tables\User_OutLets.cs" />
+    <Compile Include="Models\others unused tables\Vendor.cs" />
+    <Compile Include="Models\others unused tables\VendorItem.cs" />
+    <Compile Include="Models\others unused tables\VersionDB.cs" />
+    <Compile Include="Models\others unused tables\VoidReason.cs" />
+    <Compile Include="Models\others unused tables\Voucher.cs" />
+    <Compile Include="Models\others unused tables\VoucherItem.cs" />
     <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
     <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemsModifier.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Modifier.cs" />
     <Compile Include="Models\ModifiersGroup.cs" />
     <Compile Include="Models\Modifys.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\MyCartItem.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\Order.cs" />
     <Compile Include="Models\OutLet.cs" />
-    <Compile Include="Models\SelectedModifiers.cs" />
     <Compile Include="Models\Web_Menu_Item.cs" />
-    <Compile Include="Models\WebPreset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="Models\SubCategory.cs" />
@@ -1509,11 +1690,6 @@
     <Content Include="Views\Home\FaQ.cshtml" />
     <Content Include="Views\Home\checkout.cshtml" />
     <Content Include="Views\Shared\logintemplate.cshtml" />
-    <Content Include="Views\Items\Create.cshtml" />
-    <Content Include="Views\Items\Delete.cshtml" />
-    <Content Include="Views\Items\Details.cshtml" />
-    <Content Include="Views\Items\Edit.cshtml" />
-    <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\EldahanItems\Create.cshtml" />
     <Content Include="Views\EldahanItems\Delete.cshtml" />
     <Content Include="Views\EldahanItems\Details.cshtml" />
@@ -1636,6 +1812,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008121338420_UpdateOrderProperty1.resx">
       <DependentUpon>202008121338420_UpdateOrderProperty1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008130936487_AddOthersDatabaseTables.resx">
+      <DependentUpon>202008130936487_AddOthersDatabaseTables.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008130944240_refactorDatabase.resx">
+      <DependentUpon>202008130944240_refactorDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008131019076_refactorDataBase2.resx">
+      <DependentUpon>202008131019076_refactorDataBase2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008131025127_refactorDataBase3.resx">
+      <DependentUpon>202008131025127_refactorDataBase3.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

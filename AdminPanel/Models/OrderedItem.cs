@@ -17,7 +17,7 @@ namespace AdminPanel.Models
         [Column(Order = 1)]
         public int OrderId { get; set; }
 
-        public EldahanItems Item { get; set; }
+        public Item Item { get; set; }
         public Order Order { get; set; }
 
         public int Quantity { get; set; }

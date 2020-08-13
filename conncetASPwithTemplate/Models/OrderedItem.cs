@@ -17,7 +17,7 @@ namespace conncetASPwithTemplate.Models
         [Column(Order = 1)]
         public int OrderId { get; set; }
 
-        public EldahanItems Item { get; set; }
+        public Item Item { get; set; }
         public Order Order { get; set; }
 
         public int Quantity { get; set; }
@@ -31,7 +31,7 @@ namespace conncetASPwithTemplate.Models
             
         }
 
-        public OrderedItem(int itemId, int orderId, EldahanItems item, Order order, int quantity, int price, bool ordered , string details)
+        public OrderedItem(int itemId, int orderId, Item item, Order order, int quantity, int price, bool ordered , string details)
         {
             ItemId = itemId;
             OrderId = orderId;
@@ -43,12 +43,12 @@ namespace conncetASPwithTemplate.Models
             Details = details;
         }
 
-        public OrderedItem(MyCartItem cartItem)
+        public OrderedItem(CartItem cartItem)
         {
-            ItemId = cartItem.EldahanItemId;
+            ItemId = cartItem.ItemId;
             OrderId = cartItem.OrderId;
             Quantity = cartItem.Quantity;
-            Price = (double) cartItem.EldahanItem.StaticPrice;
+            Price = (double) cartItem.Item.StaticPrice;
             Ordered = true;
             Details = cartItem.Details;
         }

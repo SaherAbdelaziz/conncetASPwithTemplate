@@ -54,16 +54,11 @@ namespace AdminPanel.Models
         }
         public DbSet<SubCategory> SubCategories { get; set; }
         public DbSet<Item> Items { get; set; }
-        public DbSet<EldahanItems> EldahanItems { get; set; }
-        public DbSet<CartItem> CartItems { get; set; }
         public DbSet<Cart> Carts { get; set; }
-        public DbSet<MyCartItem> MyCartItems { get; set; }
-        public DbSet<WebPreset> WebPresets { get; set; }
-        public DbSet<Web_Preset> EldahanPresets { get; set; }
+        public DbSet<CartItem> CartItems { get; set; }
+        public DbSet<Web_Preset> WebPresets { get; set; }
         public DbSet<Web_Menu_Item> WebMenuItems { get; set; }
         public DbSet<Order> Orders { get; set; }
-        public DbSet<OrderedItem> OrderedItems { get; set; }
-        public DbSet<SelectedModifiers> SelectedModifiers { get; set; }
 
         public virtual DbSet<HD_Areas> HdAreas { get; set; }
         public virtual DbSet<HD_Areas_Services> HdAreasServices { get; set; }
@@ -71,7 +66,7 @@ namespace AdminPanel.Models
         public virtual DbSet<Modifier> Modifiers { get; set; }
         public virtual DbSet<ModifiersGroup> ModifiersGroups { get; set; }
         public virtual DbSet<OutLet> OutLets { get; set; }
-
+        public virtual DbSet<ChecksItem> ChecksItems { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
@@ -82,6 +77,6 @@ namespace AdminPanel.Models
             //    .WillCascadeOnDelete(false);
         }
 
-        public System.Data.Entity.DbSet<AdminPanel.Models.ChecksItem> ChecksItems { get; set; }
+       
     }
 }

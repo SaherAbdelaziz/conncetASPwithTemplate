@@ -7,14 +7,14 @@ namespace conncetASPwithTemplate.Migrations
     {
         public override void Up()
         {
-            AddColumn("dbo.EldahanItems", "Listed", c => c.Boolean(nullable: false , defaultValue: true));
-            AddColumn("dbo.EldahanItems", "Available", c => c.Int(nullable: false , defaultValue: 0));
+            AddColumn("dbo.Item", "Listed", c => c.Boolean(nullable: false , defaultValue: true));
+            AddColumn("dbo.Item", "Available", c => c.Int(nullable: false , defaultValue: 0));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.EldahanItems", "Available");
-            DropColumn("dbo.EldahanItems", "Listed");
+            DropColumn("dbo.Item", "Available");
+            DropColumn("dbo.Item", "Listed");
         }
     }
 }

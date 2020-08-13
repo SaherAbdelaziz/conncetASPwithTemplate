@@ -18,7 +18,7 @@ namespace conncetASPwithTemplate.Migrations
                         Ordered = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => new { t.ItemId, t.OrderId })
-                .ForeignKey("dbo.EldahanItems", t => t.ItemId, cascadeDelete: true)
+                .ForeignKey("dbo.Item", t => t.ItemId, cascadeDelete: true)
                 .ForeignKey("dbo.Orders", t => t.OrderId, cascadeDelete: true)
                 .Index(t => t.ItemId)
                 .Index(t => t.OrderId);
@@ -28,7 +28,7 @@ namespace conncetASPwithTemplate.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.OrderedItems", "OrderId", "dbo.Orders");
-            DropForeignKey("dbo.OrderedItems", "ItemId", "dbo.EldahanItems");
+            DropForeignKey("dbo.OrderedItems", "ItemId", "dbo.Item");
             DropIndex("dbo.OrderedItems", new[] { "OrderId" });
             DropIndex("dbo.OrderedItems", new[] { "ItemId" });
             DropTable("dbo.OrderedItems");

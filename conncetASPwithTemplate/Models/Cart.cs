@@ -13,15 +13,15 @@ namespace conncetASPwithTemplate.Models
         public string SessionId { get; set; }
         public double TotalPrice { get; set; }
         
-        private List<MyCartItem> _cartItems;
+        private List<CartItem> _cartItems;
 
 
         public Cart()
         {
-            _cartItems = new List<MyCartItem>();
+            _cartItems = new List<CartItem>();
         }
 
-        public Cart(List<MyCartItem> cartItem)
+        public Cart(List<CartItem> cartItem)
         {
 
             _cartItems = cartItem;
@@ -29,7 +29,7 @@ namespace conncetASPwithTemplate.Models
 
         public Cart(string applicationUserId)
         {
-            _cartItems = new List<MyCartItem>();
+            _cartItems = new List<CartItem>();
             ApplicationUserId = applicationUserId;
         }
 
@@ -40,11 +40,11 @@ namespace conncetASPwithTemplate.Models
 
             foreach (var myCartItem in _cartItems)
             {
-                TotalPrice = (double) (myCartItem.Quantity * myCartItem.EldahanItem.StaticPrice);
+                TotalPrice = (double) (myCartItem.Quantity * myCartItem.Item.StaticPrice);
             }
         }
 
-        public void AddCartItem(MyCartItem cartItem)
+        public void AddCartItem(CartItem cartItem)
         {
             _cartItems.Add(cartItem);
         }
