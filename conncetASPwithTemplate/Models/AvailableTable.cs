@@ -1,13 +1,10 @@
-namespace conncetASPwithTemplate.Models.others_unused_tables
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-    [Table("AvailableTable")]
-    public partial class AvailableTable
+namespace conncetASPwithTemplate.Models
+{
+    public class AvailableTable
     {
         public int ID { get; set; }
 
@@ -34,5 +31,12 @@ namespace conncetASPwithTemplate.Models.others_unused_tables
 
         [StringLength(50)]
         public string State { get; set; }
+
+        public AvailableTable(string userId, string name, string idRow)
+        {
+            ComputerIP = userId;
+            ComputerName = name;
+            IDRow = idRow;
+        }
     }
 }

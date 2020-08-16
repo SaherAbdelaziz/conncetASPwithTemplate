@@ -42,12 +42,25 @@
     var successReject = function (id) {
         console.log(` ${id} order rejected`);
         //document.location.reload(true);
+       
         $('#orderDetailsModel').on('hidden.bs.modal',
             function () {
                 location.reload();
             });
 
+        //$('#orderDetailsModel').on('show.bs.modal',
+        //    function () {
+        //        location.reload();
+        //    });
+       
+
     };
+     var successUnlock = function (id) {
+            console.log(` ${id} should unlocked`);
+            //document.location.reload(true);
+           
+
+        };
 
     //var successReject = function (e) {
     //    console.log(" order rejected");
@@ -73,32 +86,65 @@
             
         sound.play();
            
-        var text = `you have new order from ${order.applicationUser.name} with price ${order.totalPrice}`;
+        var text = `you have new order from ${order.user.name} with price ${order.totalPrice}`;
         $('#newOrderModel .modal-body').text( text);
         $("#newOrderModel").modal();
         
 
     };
+
+    var successIsOpened = function (row) {
+
+        alert(` order is opened right now from Admin  ${row.computerName}`);
+        console.log(row);
+
+    };
+    var errorNotOpened = function (data ,id) {
+        console.log(" not opened");
+        //call lock
+        console.log("call lock table for no use", id);
+        console.log("data ");
+        console.log(data );
+        orderService.callLockRow(id);
+        successSingleDetailsImplement(data);
+
+    };
+
     var successSingleDetails = function (orderAndCheckItems) {
-            console.log(" order single details retrieved ");
-            console.log(orderAndCheckItems);
-            var items = "";
-           
-            for (var i = 0; i < orderAndCheckItems.checksItems.length ; i++) {
+        //call lock table for no use
+        //but first we have to check that no one else is opening that row at this time
 
-                if (orderAndCheckItems.checksItems[i].isModifier === false)
-                    items += `<div>${orderAndCheckItems.checksItems[i].qty}x ${orderAndCheckItems.checksItems[i].item.name}    Price   ${orderAndCheckItems.checksItems[i].unitPrice}</div>`;
-                else if (orderAndCheckItems.checksItems[i].status === "Preparing")
-                    items += `<div>* ${orderAndCheckItems.checksItems[i].item.name}</div>`;
-                else 
-                    items += `<div> spiceal instructions ${orderAndCheckItems.checksItems[i].status}</div>`;
-
-            }
-            var text =
+        //check is not opened 
+        console.log("if check is not opened ", orderAndCheckItems.order.id);
+        if (orderAndCheckItems.order.orderState ===0)
+            orderService.callCheckRow(successIsOpened, errorNotOpened, orderAndCheckItems.order.id, orderAndCheckItems);
+        else
+            successSingleDetailsImplement(orderAndCheckItems);
 
 
+    };
 
-                `<h3> Order Number ${orderAndCheckItems.order.id}</h2>
+    var successSingleDetailsImplement = function (orderAndCheckItems) {
+
+        $('#orderDetailsModel .modal-body').html("");
+
+        $('#orderDetailsModel .modal-footer').html(""); 
+        console.log(" order single details retrieved ");
+        console.log(orderAndCheckItems);
+        var items = "";
+
+        for (var i = 0; i < orderAndCheckItems.checksItems.length ; i++) {
+
+            if (orderAndCheckItems.checksItems[i].isModifier === false)
+                items += `<div>${orderAndCheckItems.checksItems[i].qty}x ${orderAndCheckItems.checksItems[i].item.name}    Price   ${orderAndCheckItems.checksItems[i].unitPrice}</div>`;
+            else if (orderAndCheckItems.checksItems[i].status === "Preparing")
+                items += `<div>* ${orderAndCheckItems.checksItems[i].item.name}</div>`;
+            else
+                items += `<div> spiceal instructions ${orderAndCheckItems.checksItems[i].status}</div>`;
+
+        }
+        var text =
+            `<h3> Order Number ${orderAndCheckItems.order.id}</h2>
                 <div class ="mx-auto" style="width: 200px;">
                 <h4>Customer Details</h3>
                 <div>Name ${orderAndCheckItems.order.user.name}</div>
@@ -116,24 +162,27 @@
                 </div>
                 <h4>Order Details</h3>
                 <div class ="mx-auto" style="width: 800px;">
-               
+
                 ${items}
 
 
                 </div>`;
-            var buttons =
-                `
-                <button type="button" class ="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class ="btn btn-danger js-btn-RejectOrder" data-dismiss="modal" data-order-id="${orderAndCheckItems.order.id}">Reject</button>
-                <button type="button" class ="btn btn-success js-btn-AcceptOrder" data-dismiss="modal" data-order-id="${orderAndCheckItems.order.id}">Accept </button>
-                
-                `
-            $('#orderDetailsModel .modal-body').html(text);
-            $('#orderDetailsModel .modal-footer').html(buttons);
-            $("#orderDetailsModel").modal();
-            //orderService.callOrderDetails(id, e);
+        var buttons =
+            `
+                <button type="button" class ="btn btn-secondary js-btn-CloseModelOrderDetails" data-dismiss="modal" data-order-id="${
+                    orderAndCheckItems.order.id}">Close</button>
+                <button type="button" class ="btn btn-danger js-btn-RejectOrder" data-dismiss="modal" data-order-id="${
+                    orderAndCheckItems.order.id}">Reject</button>
+                <button type="button" class ="btn btn-success js-btn-AcceptOrder" data-dismiss="modal" data-order-id="${
+                    orderAndCheckItems.order.id}">Accept </button>
 
-        };
+                `;
+        $('#orderDetailsModel .modal-body').html(text);
+        if (orderAndCheckItems.order.orderState === 0)
+             $('#orderDetailsModel .modal-footer').html(buttons);
+        $("#orderDetailsModel").modal();
+        //orderService.callOrderDetails(id, e);
+    }
 
     var error = function () {
         alert("Something failed! in getting orders");
@@ -202,6 +251,14 @@
         orderService.callRejectOrder(successReject, error, id, e);
     
     }
+    var closeModelOrderDetails = function (id, e) {
+        console.log("close order details" + id);
+        //this should modify locks table and remove the admin id 
+        //from it to reopen the order for any one to check
+        orderService.callCloseModelOrderDetails(successUnlock, error, id);
+    
+    }
+
     var editOrder = function (id, e) {
             console.log("edit order" + id);
             orderService.callEditOrder(successEdited, error, id, e);
@@ -235,6 +292,7 @@
         changedNumberOfOrders: changedNumberOfOrders,
         acceptNewOrder: acceptNewOrder,
         rejectNewOrder: rejectNewOrder,
+        closeModelOrderDetails: closeModelOrderDetails,
         editOrder: editOrder,
         orderDetails: orderDetails,
         editItemsOrder:editItemsOrder,

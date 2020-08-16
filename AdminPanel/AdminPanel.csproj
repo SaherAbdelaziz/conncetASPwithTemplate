@@ -207,6 +207,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\API\AvailableTablesController.cs" />
     <Compile Include="Controllers\API\ChecksItemsController.cs" />
     <Compile Include="Controllers\API\ItemController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
@@ -218,6 +219,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvailableTable.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Check.cs" />
     <Compile Include="Models\ChecksItem.cs" />

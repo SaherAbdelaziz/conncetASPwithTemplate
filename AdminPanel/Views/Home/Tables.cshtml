@@ -90,6 +90,7 @@
                         </colgroup>
                         <thead>
                         <tr>
+                            <th> Date </th>
                             <th> Name </th>
                             <th> Phone </th>
                             <th> Order </th>
@@ -133,6 +134,7 @@
                             </colgroup>
                             <thead>
                             <tr>
+                                <th> Date </th>
                                 <th> Name </th>
                                 <th> Phone </th>
                                 <th> Order </th>
@@ -253,6 +255,23 @@
             OrderController.rejectNewOrder(id, e);
 
         });
+
+        //$('body').on('click', '.js-btn-CloseModelOrderDetails', function (e) {
+        //    var icon = $(e.target);
+        //    console.log("unlock order");
+        //    console.log(icon);
+        //    var id = icon.attr("data-order-id");
+        //    OrderController.closeModelOrderDetails(id, e);
+
+        //});
+
+        $('#orderDetailsModel').on('hidden.bs.modal', function () {
+
+            console.log("unlock order");
+            var id = $(".js-btn-CloseModelOrderDetails").attr("data-order-id");
+            if(id!=null)
+                OrderController.closeModelOrderDetails(id);
+            });
 
         //$('.js-btn-RejectOrder').on('click', function (e) {
         //    var icon = $(e.target);

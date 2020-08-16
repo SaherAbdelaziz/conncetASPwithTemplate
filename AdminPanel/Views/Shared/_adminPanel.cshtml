@@ -37,7 +37,7 @@
 
 </head>
 
-<body class="no-skin">
+<body class="no-skin" >
 
     <div class="navbar navbar-inverse navbar-fixed-top" >
         <div class="container">
@@ -159,7 +159,15 @@
 <script>
     $(document).ready(function () {
 
-        console.log("Here we start");
+        if (typeof (Storage) !== "undefined") {
+            console.log("Here we start");
+        } else {
+            console.log("Here we not start");
+        }
+        
+
+
+     
     });
 </script>
 

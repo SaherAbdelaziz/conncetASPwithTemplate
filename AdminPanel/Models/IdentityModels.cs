@@ -68,6 +68,9 @@ namespace AdminPanel.Models
         public virtual DbSet<OutLet> OutLets { get; set; }
         public virtual DbSet<ChecksItem> ChecksItems { get; set; }
 
+        // this for lock rows of orders when admin view them
+        public virtual DbSet<AvailableTable> AvailableTables { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

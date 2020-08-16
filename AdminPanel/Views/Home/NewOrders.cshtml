@@ -4,7 +4,7 @@
                 {
 
         <tr>
-            <td> @Model.Orders[i].DateCreated </td>
+            <td> @Model.Orders[i].DateCreated.ToString("dd/MM/yyyy hh:mm tt") </td>
             <td> @Model.Orders[i].User.Name </td>
             <td> @Model.Orders[i].User.Phone </td>
 
@@ -22,7 +22,19 @@
             </td>
             <td> @Model.Orders[i].User.Outlet.Name </td>
             <td> @Model.Orders[i].User.Area.Name </td>
-            <td> @Model.Orders[i].User.Adress</td>
+            <td>
+                <div>
+                    Address 
+                    @Model.Orders[i].User.Adress
+                    @Model.Orders[i].User.Adress2
+                    <div> Street @Model.Orders[i].User.Street </div>
+                    <div> Building @Model.Orders[i].User.Building </div>
+                    <div> Floor @Model.Orders[i].User.Floor </div>
+                    <div> Apartment @Model.Orders[i].User.Apartment </div>
+                    <div> SpecialMark @Model.Orders[i].User.SpecialMark </div>
+                </div>
+
+            </td>
 
             @if (Model.Orders[i].DeliveryTimeIndex == 0)
             {

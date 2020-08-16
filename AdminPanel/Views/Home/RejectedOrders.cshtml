@@ -1,12 +1,18 @@
-﻿@for (var i = 0; i < Model.Orders.Count; i++)
-            {
-                if (Model.Orders[i].OrderState == 2)
-                {
+﻿@using Microsoft.AspNet.Identity
+@for (var i = 0; i < Model.Orders.Count; i++)
+{
+    if (Model.Orders[i].OrderState == 2 &&
+        Model.Orders[i].AdminId == User.Identity.GetUserId())
+    {
 
         <tr>
+            <td> @Model.Orders[i].DateCreated.ToString("dd/MM/yyyy hh:mm tt") </td>
             <td> @Model.Orders[i].User.Name </td>
             <td> @Model.Orders[i].User.Phone </td>
-            <td> @Model.Orders[i].Details </td>
+            <td>
+                <button class="btn btn-info btn-sm js-btn-orderDetails"
+                        data-order-id="@Model.Orders[i].Id">Check Order Details </button>
+            </td>
             <td>
                 Price : @Model.Orders[i].Price <br>
                 Delivery : @Model.Orders[i].Delivery <br>
@@ -14,7 +20,20 @@
             </td>
             <td> @Model.Orders[i].User.Outlet.Name </td>
             <td> @Model.Orders[i].User.Area.Name </td>
-            <td> تفاصيل العنوان</td>
+            <td>
+                
+                <div>
+                    Address
+                    @Model.Orders[i].User.Adress
+                    @Model.Orders[i].User.Adress2
+                    <div> Street @Model.Orders[i].User.Street </div>
+                    <div> Building @Model.Orders[i].User.Building </div>
+                    <div> Floor @Model.Orders[i].User.Floor </div>
+                    <div> Apartment @Model.Orders[i].User.Apartment </div>
+                    <div> SpecialMark @Model.Orders[i].User.SpecialMark </div>
+                </div>
+
+            </td>
 
             @if (Model.Orders[i].DeliveryTimeIndex == 0)
             {

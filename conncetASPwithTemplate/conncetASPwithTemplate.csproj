@@ -357,8 +357,13 @@
     <Compile Include="Migrations\202008131025127_refactorDataBase3.Designer.cs">
       <DependentUpon>202008131025127_refactorDataBase3.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202008131458410_refactorDataBase4.cs" />
+    <Compile Include="Migrations\202008131458410_refactorDataBase4.Designer.cs">
+      <DependentUpon>202008131458410_refactorDataBase4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AvailableTable.cs" />
     <Compile Include="Models\Check.cs" />
     <Compile Include="Models\ChecksItem.cs" />
     <Compile Include="Models\ChecksItemsSettlesSummary.cs" />
@@ -372,7 +377,6 @@
     <Compile Include="Models\others unused tables\AR_Checks_Pay.cs" />
     <Compile Include="Models\others unused tables\AR_Customers.cs" />
     <Compile Include="Models\others unused tables\Assign_Drawer.cs" />
-    <Compile Include="Models\others unused tables\AvailableTable.cs" />
     <Compile Include="Models\others unused tables\Cash_Drawer.cs" />
     <Compile Include="Models\others unused tables\Category.cs" />
     <Compile Include="Models\others unused tables\Catering.cs" />
@@ -1824,6 +1828,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008131025127_refactorDataBase3.resx">
       <DependentUpon>202008131025127_refactorDataBase3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202008131458410_refactorDataBase4.resx">
+      <DependentUpon>202008131458410_refactorDataBase4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
