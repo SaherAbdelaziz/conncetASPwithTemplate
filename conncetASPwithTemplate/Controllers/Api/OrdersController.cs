@@ -135,6 +135,7 @@ namespace conncetASPwithTemplate.Controllers.Api
                 //Details = tmpOrder,
                 DateCreated = DateTime.Now,
                 DeliveryTimeIndex = order.DeliveryTimeIndex,
+                DeliveryTypeIndex = order.DeliveryTypeIndex,
                 Delivery = order.Delivery,
                 Price = order.Price,
                 TotalPrice = order.Price + order.Delivery,

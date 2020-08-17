@@ -11,7 +11,7 @@
             <td> @Model.Orders[i].User.Phone </td>
             <td>
                 <button class="btn btn-info btn-sm js-btn-orderDetails"
-                        data-order-id="@Model.Orders[i].Id">Check Order Details </button>
+                        data-order-id="@Model.Orders[i].Id">View Order Details </button>
             </td>
             <td>
                 Price : @Model.Orders[i].Price <br>
@@ -35,22 +35,31 @@
 
             </td>
 
-            @if (Model.Orders[i].DeliveryTimeIndex == 0)
-            {
-                <td> as fast as possible </td>
-            }
+            <td>
+                @if (Model.Orders[i].DeliveryTimeIndex == 0)
+                {
+                    <div>as fast as possible</div>
+                }
 
 
-            else if (Model.Orders[i].DeliveryTimeIndex == 1)
-            {
-                <td> in one hour </td>
-            }
+                else if (Model.Orders[i].DeliveryTimeIndex == 1)
+                {
+                    <div> in one hour </div>
+                }
 
-            else
-            {
-                <td> in two hour </td>
+                else if (Model.Orders[i].DeliveryTimeIndex == 2)
+                {
+                    <div> in two hour </div>
 
-            }
+                }
+
+                else if (Model.Orders[i].DeliveryTimeIndex == 3)
+                {
+                    <div>in three hour></div>
+                }
+                
+                <div>@Model.Orders[i].DeliveryTypeIndex</div>
+            </td>
 
 
             <td class="hidden-480">

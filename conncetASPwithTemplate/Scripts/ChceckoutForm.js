@@ -11,14 +11,27 @@
                 $('.js-ordernow').prop('disabled', true);
                 console.log("create order");
                 console.log("selected is " + $('#deliverytime option:selected').index());
-                var deliverytimeIndex = $('#deliverytime option:selected').index();
-                var deliveryType = $("input[name='DeliveryType']:checked").val();
-                console.log("var is " + deliverytimeIndex);
+                var deliveryTypeIndex = $("input[name='DeliveryType']:checked").val();
+
+                var deliveryTimeIndex = $(":radio[name='DeliveryTime']")
+                    .index($(":radio[name='DeliveryTime']:checked"));
+
+                if (deliveryTimeIndex === 1) {
+                    var deliverytimeIndex2 = $(".deliverytime option:selected").index()+1;
+                    deliveryTimeIndex = deliverytimeIndex2.toString();
+                }
+                
+
+                console.log("var is " + deliveryTimeIndex);
+                console.log("var is " + deliveryTypeIndex);
+
+
                 //console.log($('.ordertotal').attr('ordertotal'));
                 var order = {
                     Price: Number($('.ordertotal').attr('ordertotal')),
                     Delivery: Number($('.delivery').attr('delivery')),
-                    DeliveryTimeIndex: deliverytimeIndex
+                    DeliveryTimeIndex: deliveryTimeIndex,
+                    DeliveryTypeIndex: deliveryTypeIndex
                 };
 
                 $.ajax({
