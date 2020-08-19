@@ -73,8 +73,9 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             if (check == null)
             {
-                // create new check with custom id 
-                var modelCheck = _context.Checks.OrderByDescending(c => c.ID).FirstOrDefault();
+                var modelCheck = _context.Checks
+                    .OrderByDescending(c => c.ID)
+                    .FirstOrDefault(c => ((c.ID / 100000000) % 10) == outLetId);
                 long checkId;
                 var modelCheckIdArea = 1 * 100000000000;
                 var modelCheckIdOutlet = outLetId * 100000000;

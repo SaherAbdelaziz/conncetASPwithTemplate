@@ -116,6 +116,75 @@
             error: error
         });
     }
+    var callDataForMail = function (success, error, state, message, id) {
+        if (state) {
+            console.log("mail accept");
+        } else {
+            console.log("mail reject");
+        }
+        console.log("got order and user associated details ");
+        //we should first find the order details and the user details 
+        //should return order and items associated with it 
+        $.ajax({
+            url: `/api/ChecksItems/${id}`,
+            type: "GET",
+            contentType: 'application/json; charset=utf-8',
+            datatype: "json",
+            success: function(data) {
+                success(data , state, message);
+            },
+            error: error
+        });
+    }
+    var callSendMail = function (success, error, data, state, message) {
+
+        console.log("sending mail");
+
+        var emailFormModel = {
+            FromName: "ABTech",
+            FromEmail: data.order.user.email,
+            Message: message
+
+        }
+        
+        $.ajax({
+            url: `/api/EmailFormModel`,
+            type: "POST",
+            dataType: 'json',
+            data: JSON.stringify(emailFormModel),
+            contentType: "application/json; charset=utf-8",
+            success: success,
+            error: error
+        });
+
+    }
+
+    //var callRejectMail = function (successReject, error, id) {
+    //    console.log("mail rejected");
+
+    //}
+
+    //var callSendRejectMail = function (success, error, data , message) {
+    //    console.log("sending mail");
+    //    var emailFormModel = {
+    //        FromName: "ABTech",
+    //        FromEmail: data.order.user.email,
+    //        Message: message
+
+    //    }
+
+    //    $.ajax({
+    //        url: `/api/EmailFormModel`,
+    //        //url: @Url.Action("SendMail", "Home"),
+    //        type: "POST",
+    //        dataType: 'json',
+    //        data: JSON.stringify(emailFormModel),
+    //        contentType: "application/json; charset=utf-8",
+    //        success: success,
+    //        error: error
+    //    });
+
+    //}
     var callRejectOrder = function (successReject, error, id) {
         console.log("start calling Reject order api");
         var order = {
@@ -132,7 +201,8 @@
             success: successReject(id),
             error: error
         });
-    }
+    } 
+   
     //this should modify locks table and remove the admin 
     //id from it to reopen the order for any one to check the order again
 
@@ -177,9 +247,14 @@
     }
     return {
         callOrderGetApi: callOrderGetApi,
-        callOrderedItemsGetApi:callOrderedItemsGetApi,
+        callOrderedItemsGetApi: callOrderedItemsGetApi,
+
         callAcceptOrder: callAcceptOrder,
+        callDataForMail: callDataForMail,
+        callSendMail: callSendMail,
         callRejectOrder: callRejectOrder,
+        //callSendRejectMail: callSendRejectMail,
+
         callCloseModelOrderDetails: callCloseModelOrderDetails,
         callLockRow: callLockRow,
         callCheckRow: callCheckRow,

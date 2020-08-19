@@ -42,6 +42,7 @@ namespace conncetASPwithTemplate.Models
             // Add custom user claims here
             userIdentity.AddClaim(new Claim("Name", this.Name));
             userIdentity.AddClaim(new Claim("Phone", this.Phone ));
+            userIdentity.AddClaim(new Claim("Email", this.Email ));
             userIdentity.AddClaim(new Claim("OutletId", this.OutletId.ToString()));
             userIdentity.AddClaim(new Claim("AreaId", this.AreaId.ToString()));
 
@@ -70,6 +71,16 @@ namespace conncetASPwithTemplate.Models
                 ? claimIdent.FindFirst("Phone").Value
                 : string.Empty;
         }
+
+        public static string GetUserEmail(this IIdentity identity)
+        {
+            var claimIdent = identity as ClaimsIdentity;
+            return claimIdent != null
+                   && claimIdent.HasClaim(c => c.Type == "Email")
+                ? claimIdent.FindFirst("Email").Value
+                : string.Empty;
+        }
+
 
         public static int GetUserOutletId(this IIdentity identity)
                 {

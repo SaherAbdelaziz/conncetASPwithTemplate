@@ -4,6 +4,8 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using AdminPanel.Models;
@@ -108,11 +110,13 @@ namespace AdminPanel.Controllers
             return View(order);
         }
 
+
+        
         // POST: Orders/EditItems/5
         //public ActionResult EditItems(int id)
         //{
         //    var model = new ItemOrderModelCheckList(id, GetItems(id));
-            
+
         //    return View(model);
         //}
 
@@ -130,7 +134,7 @@ namespace AdminPanel.Controllers
 
         //        foreach (var i in model.SelectedItems)
         //        {
-                    
+
         //            var id = int.Parse(i);
         //            var item = db.Items
         //                .SingleOrDefault(e => e.Id == id);
@@ -180,7 +184,7 @@ namespace AdminPanel.Controllers
         //    return model;
         //}
 
-        
+
         // GET: Orders/Delete/5
         public ActionResult Delete(int? id)
         {

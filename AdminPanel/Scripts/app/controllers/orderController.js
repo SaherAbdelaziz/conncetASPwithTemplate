@@ -1,5 +1,5 @@
 ﻿var OrderController = function (orderService) {
-    var orders , count=0 , userId;
+    var orders , count=0;
     var getOrders = function (success, error) {
         console.log("start calling order api");
         orderService.callOrderGetApi(success, error);
@@ -32,13 +32,18 @@
 
     var successAccept = function (id) {
         console.log(` ${id} order accepted`);
-        //document.location.reload(true);
-        $('#orderDetailsModel').on('hidden.bs.modal',
+        $("#orderDetailsModel").on('hidden.bs.modal',
             function() {
                 location.reload();
             });
 
     };
+
+
+    //var successAcceptMail = function (id) {
+    //    console.log(` mail sent`);
+
+    //};
     var successReject = function (id) {
         console.log(` ${id} order rejected`);
         //document.location.reload(true);
@@ -48,11 +53,6 @@
                 location.reload();
             });
 
-        //$('#orderDetailsModel').on('show.bs.modal',
-        //    function () {
-        //        location.reload();
-        //    });
-       
 
     };
      var successUnlock = function (id) {
@@ -77,6 +77,11 @@
         document.location.reload(true);
 
     };
+    var successMailSent = function () {
+            alert(" Mail Sent");
+            //document.location.reload(true);
+
+        };
 
     var successSingle = function (order) {
         console.log(" order single retrieved ");
@@ -110,23 +115,38 @@
 
     };
 
-    var successSingleDetails = function (orderAndCheckItems) {
-        //call lock table for no use
-        //but first we have to check that no one else is opening that row at this time
-
-        //check is not opened 
-        console.log("if check is not opened ", orderAndCheckItems.order.id);
-        if (orderAndCheckItems.order.orderState ===0)
-            orderService.callCheckRow(successIsOpened, errorNotOpened, orderAndCheckItems.order.id, orderAndCheckItems);
+    var successSingleMail = function (orderAndCheckItems , state , message) {
+       //here we have order details and user details and we should use user mail to send  accept message
+        alert("here we sent mail");
+        console.log("orderAndCheckItems ", orderAndCheckItems);
+        console.log("email ", orderAndCheckItems.order.user.email);
+        
+        //here we sent mail
+        //check if accept or reject based on state
+        if(state)
+            orderService.callSendMail(successMailSent, error, orderAndCheckItems, state, message);
         else
-            successSingleDetailsImplement(orderAndCheckItems);
+            orderService.callSendMail(successMailSent, error, orderAndCheckItems, state, message);
 
 
     };
+     var successSingleDetails = function (orderAndCheckItems) {
+            //call lock table for no use
+            //but first we have to check that no one else is opening that row at this time
+
+            //check is not opened 
+            console.log("if check is not opened ", orderAndCheckItems.order.id);
+            if (orderAndCheckItems.order.orderState ===0)
+                orderService.callCheckRow(successIsOpened, errorNotOpened, orderAndCheckItems.order.id, orderAndCheckItems);
+            else
+                successSingleDetailsImplement(orderAndCheckItems);
+
+
+        };
 
     var successSingleDetailsImplement = function (orderAndCheckItems) {
 
-        $('#orderDetailsModel .modal-body').html("");
+        $('#orderDetailsModel .modal-body-up').html("");
 
         $('#orderDetailsModel .modal-footer').html(""); 
         console.log(" order single details retrieved ");
@@ -167,6 +187,9 @@
 
 
                 </div>`;
+
+        window.localStorage["reject"] = $(".rejectionmessage").val();
+        console.log(window.localStorage["reject"]);
         var buttons =
             `
                 <button type="button" class ="btn btn-secondary js-btn-CloseModelOrderDetails" data-dismiss="modal" data-order-id="${
@@ -177,7 +200,7 @@
                     orderAndCheckItems.order.id}">Accept </button>
 
                 `;
-        $('#orderDetailsModel .modal-body').html(text);
+        $('#orderDetailsModel .modal-body-up').html(text);
         if (orderAndCheckItems.order.orderState === 0)
              $('#orderDetailsModel .modal-footer').html(buttons);
         $("#orderDetailsModel").modal();
@@ -243,12 +266,22 @@
     //}
     var acceptNewOrder = function(id , e) {
         console.log("accept new order" + id);
-        orderService.callAcceptOrder(successAccept, error, id , e);
+        orderService.callAcceptOrder(successAccept, error, id, e);
+        // retrieve data for that order and user
+
+        var message = "some message for acceptance ";
+        orderService.callDataForMail(successSingleMail , error, 1 , message, id);
 
     }
     var rejectNewOrder = function (id, e) {
         console.log("reject new order" + id);
         orderService.callRejectOrder(successReject, error, id, e);
+        // retrieve data for that order and user
+        var message = $(".rejectionmessage").val();
+        if (message == null)
+            message = "some message for reject";
+            //"some message for reject";
+        orderService.callDataForMail(successSingleMail , error , 0 , message , id);
     
     }
     var closeModelOrderDetails = function (id, e) {
@@ -277,8 +310,9 @@
         }
 
     var init = function (ordersCount) {
-        console.log("userId" , userId);
+        var x = window.localStorage.getItem('user');
         console.log("start order controller");
+        console.log(x);
         console.log(ordersCount);
         getOrders(success, error);
         //getOrderedItems(success, error);
@@ -296,8 +330,7 @@
         editOrder: editOrder,
         orderDetails: orderDetails,
         editItemsOrder:editItemsOrder,
-        showData: showData,
-        userId: userId
+        showData: showData
 
     }
 }(OrderService)

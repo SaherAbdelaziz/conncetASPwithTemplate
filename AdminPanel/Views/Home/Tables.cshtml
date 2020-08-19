@@ -4,6 +4,7 @@
 @model AdminPanel.ViewModels.OrdersViewModel
 @{
     ViewBag.Title = "title";
+    //ViewBag.mail = Membership.GetUser().Email;
     Layout = "~/Views/Shared/_adminPanel.cshtml";
 }
 
@@ -215,16 +216,19 @@
 <!-- inline scripts related to this page -->
 <script>
     $(document).ready(function () {
-        var loggedUser = '@User.Identity.GetUserId()';
-        OrderController.userId = loggedUser;
-        //console.log("user name ", loggedUser);
+        var loggedUser = '@HttpContext.Current.User.Identity.GetUserEmail()';
+        console.log(loggedUser);
+        window.localStorage.setItem('user', loggedUser);
+        var x =window.localStorage.getItem('user');
+        
+        console.log("user name ", x);
         setInterval(getOrdersCount, 4000);
         OrderController.showData();
         function getOrdersCount() {
             //console.log($('#tableBodyOrders').attr('ordersCount'));
             var ordersCount = $('#NewOrderBody').attr('ordersCount');
             OrderController.init(ordersCount);
-            
+
             OrderController.changedNumberOfOrders(ordersCount);
             //console.log(OrderController.count);
         }
@@ -274,9 +278,11 @@
 
             console.log("unlock order");
             var id = $(".js-btn-CloseModelOrderDetails").attr("data-order-id");
-            if(id!=null)
+            if (id != null)
                 OrderController.closeModelOrderDetails(id);
-            });
+        });
+
+
 
         //$('.js-btn-RejectOrder').on('click', function (e) {
         //    var icon = $(e.target);
@@ -287,27 +293,27 @@
         //});
 
         $('.js-btn-EditOrder').on('click', function (e) {
-                   var icon = $(e.target);
-                   //console.log(icon);
-                   var id = icon.attr("data-order-id");
-                   OrderController.editOrder(id, e);
+            var icon = $(e.target);
+            //console.log(icon);
+            var id = icon.attr("data-order-id");
+            OrderController.editOrder(id, e);
 
         });
         $('.js-btn-orderDetails').on('click', function (e) {
-                    var icon = $(e.target);
-                    //console.log(icon);
-                    var id = icon.attr("data-order-id");
-                    OrderController.orderDetails(id, e);
+            var icon = $(e.target);
+            //console.log(icon);
+            var id = icon.attr("data-order-id");
+            OrderController.orderDetails(id, e);
 
-                });
+        });
 
         $('.js-btn-EditItemsOrder').on('click', function (e) {
-                   var icon = $(e.target);
-                   //console.log(icon);
-                   var id = icon.attr("data-order-id");
-                   OrderController.editItemsOrder(id, e);
+            var icon = $(e.target);
+            //console.log(icon);
+            var id = icon.attr("data-order-id");
+            OrderController.editItemsOrder(id, e);
 
-               });
+        });
 
 
 

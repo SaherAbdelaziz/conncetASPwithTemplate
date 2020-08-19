@@ -6,8 +6,11 @@ using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Mail;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using System.Web.Mvc;
 using AdminPanel.Models;
 using Microsoft.AspNet.Identity;
 
@@ -119,35 +122,16 @@ namespace AdminPanel.Controllers.API
         [ResponseType(typeof(Order))]
         public IHttpActionResult PostOrder(Order order)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return BadRequest(ModelState);
-            //}
+            if (ModelState.IsValid)
+            {
 
-            //string tmp = "";
-            //var Idd = User.Identity.GetUserId();
-            //var cartItems = _context.MyCartItems.Where(c => c.CartId == Idd).Include(c => c.Item).ToList();
-            //foreach (var cart in cartItems)
-            //{
-            //    tmp += cart.Item.Name + " ";
-            //}
-            //Order myOrder = new Order()
-            //{
-            //    CartId = User.Identity.GetUserId(),
-            //    CustomerName = User.Identity.GetUserName(),
-            //    Details = tmp,
-            //    DeliveryTimeIndex = order.DeliveryTimeIndex,
-            //    Delivery = order.Delivery,
-            //    Price = order.Price,
-            //    TotalPrice = order.TotalPrice
-
-            //};
-
-            //_context.Orders.Add(myOrder);
-            //_context.SaveChanges();
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);
         }
+
+        
+
 
         // DELETE: api/Orders/5
         [ResponseType(typeof(Order))]
