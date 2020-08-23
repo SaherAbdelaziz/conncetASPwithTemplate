@@ -12,9 +12,11 @@ namespace AdminPanel.Models
         [StringLength(10)]
         public string Code { get; set; }
 
+        [Required]
         [StringLength(150)]
         public string Name { get; set; }
 
+        [Required]
         [StringLength(150)]
         public string Name2 { get; set; }
 
@@ -30,8 +32,10 @@ namespace AdminPanel.Models
         public Web_Preset WebPreset { get; set; }
         public int WebPresetId { get; set; }
 
+        [Required]
         public bool? IsModifier { get; set; }
 
+        [Required]
         public bool? StandAlone { get; set; }
 
         public bool? PrintOnChick { get; set; }
@@ -53,6 +57,7 @@ namespace AdminPanel.Models
 
         public bool? OpenPrice { get; set; }
 
+        [Required]
         public double? StaticPrice { get; set; }
 
         [StringLength(200)]
@@ -102,8 +107,11 @@ namespace AdminPanel.Models
 
         public bool? Pre_Paid_Card { get; set; }
 
+        [Required]
         public bool WebOrder { get; set; }
+        [Required]
         public bool Listed { get; set; }
+        [Required]
         public int Available { get; set; }
 
         public Item()

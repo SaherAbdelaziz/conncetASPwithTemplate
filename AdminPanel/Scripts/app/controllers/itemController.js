@@ -6,7 +6,7 @@
         return items;
     }
     
-    var success = function (items) {
+    var successGetItems = function (items) {
         console.log("retrieved items");
         //console.log(items);
         ItemController.items = items;
@@ -19,8 +19,18 @@
         //return items;
     };
 
-    var error = function () {
+    var errorGetItems = function () {
         alert("Something failed! in getting items");
+    };
+    var successEdit = function (items) {
+        console.log("edited item");
+        //console.log(items);
+
+        //return items;
+    };
+
+    var errorEdit = function () {
+        alert("Something failed! in edit item");
     };
         
     var showData = function () {
@@ -50,14 +60,26 @@
 
     var init = function () {
         console.log("start item controller");
-        getItems(success, error);
+        getItems(successGetItems, errorGetItems);
         return this.items;
 
     };
 
+    var editItem = function(id , e) {
+        console.log("start edit item");
+        itemService.callEditItem(successEdit, errorEdit , id);
+    }
+
+    var listItemUnAvailable = function (id, e, available) {
+            console.log("List Item unavailable");
+            itemService.callItemUnAvailable(successEdit, errorEdit , id , available);
+        }
+
+
     return {
         init: init,
-        success: success,
+        editItem: editItem,
+        listItemUnAvailable: listItemUnAvailable,
         items: items
     }
 }(ItemService)

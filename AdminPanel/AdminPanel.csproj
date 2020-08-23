@@ -212,10 +212,12 @@
     <Compile Include="Controllers\API\EmailFormModelController.cs" />
     <Compile Include="Controllers\API\ItemController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
-    <Compile Include="Controllers\ItemsController.cs" />
+    <Compile Include="Controllers\ChecksItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\OrderssController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -707,12 +709,22 @@
     <Content Include="Views\Orders\Edit.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
     <Content Include="Views\Orders\EditItems.cshtml" />
+    <Content Include="Views\Home\Sent.cshtml" />
+    <Content Include="Views\Orderss\Create.cshtml" />
+    <Content Include="Views\Orderss\Delete.cshtml" />
+    <Content Include="Views\Orderss\Details.cshtml" />
+    <Content Include="Views\Orderss\Edit.cshtml" />
+    <Content Include="Views\Orderss\Index.cshtml" />
+    <Content Include="Views\ChecksItems\Create.cshtml" />
+    <Content Include="Views\ChecksItems\Delete.cshtml" />
+    <Content Include="Views\ChecksItems\Details.cshtml" />
+    <Content Include="Views\ChecksItems\Edit.cshtml" />
+    <Content Include="Views\ChecksItems\Index.cshtml" />
     <Content Include="Views\Items\Create.cshtml" />
     <Content Include="Views\Items\Delete.cshtml" />
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
-    <Content Include="Views\Home\Sent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,322 @@
+﻿@model IEnumerable<AdminPanel.Models.ChecksItem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminPanel.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Item.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QTY)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DicountValue)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax_Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adj_Value)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NetPrice)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fired_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voided)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voided_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voided_Reason)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_On_Check)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Complement)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsModifier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ref_Mod_Item)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsAssimbly)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Ref_Ass_Item)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Taxable)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NoServiceCharge)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Num_Fired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Num_Print)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Server_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.P_On_Report)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Check_ID_Combine)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Round_Check_Fired)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Void_Effect_Invn)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Promo_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Orig_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Officer)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comp_Reason_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.End_Serial_Count)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disc_Reason_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hold)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Hold_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voided_By)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comp_By)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disc_By)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Preparation_Time)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Disc_Reason_Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Comp_Reason_Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Void_Reason_Comment)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ModifierGroup_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pick_Follow_Item_Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Modifier_Pick)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pre_Paid_Card)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Item.Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.QTY)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.UnitPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DicountValue)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tax_Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Adj_Value)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NetPrice)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Fired_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voided)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voided_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voided_Reason)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_On_Check)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Complement)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsModifier)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ref_Mod_Item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsAssimbly)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Ref_Ass_Item)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Taxable)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NoServiceCharge)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Num_Fired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Num_Print)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Server_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.P_On_Report)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Check_ID_Combine)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Round_Check_Fired)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Void_Effect_Invn)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Promo_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Orig_Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Officer)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comp_Reason_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.End_Serial_Count)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Discount_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disc_Reason_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hold)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Hold_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voided_By)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comp_By)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disc_By)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Preparation_Time)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Disc_Reason_Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Comp_Reason_Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Void_Reason_Comment)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ModifierGroup_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pick_Follow_Item_Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Modifier_Pick)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pre_Paid_Card)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>

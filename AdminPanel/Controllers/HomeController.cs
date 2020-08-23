@@ -60,53 +60,6 @@ namespace AdminPanel.Controllers
             //return View("Tables" , orderedItems);
 
         }
-
-        public ActionResult SendMail()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> SendMail(EmailFormModel model)
-        {
-            if (ModelState.IsValid)
-            {
-                var body = "<p>Email From: {0} ({1})</p><p>Message:</p><p>{2}</p>";
-                var message = new MailMessage();
-                message.To.Add(new MailAddress(model.FromEmail));  // replace with valid value 
-                message.From = new MailAddress("advbtech2000@gmail.com");  // replace with valid value
-                message.Subject = "Your email subject";
-                message.Body = string.Format(body, model.FromName, model.FromEmail, model.Message);
-                message.IsBodyHtml = true;
-
-                using (var smtp = new SmtpClient())
-                {
-                    smtp.UseDefaultCredentials = false;
-                    var credential = new NetworkCredential
-                    {
-                        UserName = "advbtech2000@gmail.com",  // replace with valid value
-                        Password = "ABTech123456"  // replace with valid value
-                    };
-                    smtp.Credentials = credential;
-                    smtp.Host = "smtp.gmail.com";
-                    smtp.Port = 587;
-                    smtp.EnableSsl = true;
-                    
-
-                    await smtp.SendMailAsync(message);
-                    return RedirectToAction("Sent");
-                }
-            }
-            return View(model);
-        }
-
-        public ActionResult Sent()
-        {
-            return View();
-        }
         
 
         public ActionResult Contact()
@@ -117,8 +70,6 @@ namespace AdminPanel.Controllers
         }
         public ActionResult Tables()
         {
-
-
             var orders = _context.Orders
                 .Include(o => o.User)
                 .Include(o => o.User.Outlet)

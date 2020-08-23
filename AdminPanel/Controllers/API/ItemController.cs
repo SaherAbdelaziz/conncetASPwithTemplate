@@ -70,6 +70,26 @@ namespace AdminPanel.Controllers.API
             return StatusCode(HttpStatusCode.NoContent);
         }
 
+        // PUT: api/Item/5
+
+        [ResponseType(typeof(void))]
+        public void PutEldahanItems(Item itemModel)
+        {
+            var item = _context.Items
+                .SingleOrDefault(o => o.Id == itemModel.Id);
+
+            if (item == null)
+            {
+                return;
+            }
+
+            item.Available = itemModel.Available; // 0 for available 1 or others for not available
+
+            _context.SaveChanges();
+
+
+        }
+
         // POST: api/Item
         [ResponseType(typeof(Item))]
         public IHttpActionResult PostEldahanItems(Item item)

@@ -18,12 +18,16 @@
                         Items
                     </small>
                 </h1>
+               
             </div>
             
             @*<p>
                 @Html.ActionLink("Create New", "Create" , "Item")
             </p>*@
         </div>
+        <p>
+            @Html.ActionLink("Create New", "Create" , "Items")
+        </p>
         <!-- /.page-header -->
             <!-- main table my orders-->
             <!-- main table my orders-->
@@ -44,9 +48,9 @@
                                         <th> Name </th>
                                         <th> Arabic Name </th>
                                         <th > Price </th>
-                                        @*<th > Listed </th>
+                                        <th> Action</th>
+                                        <th > Listed </th>
                                         <th > Available </th>
-                                        <th >  </th>*@
 
                                     </tr>
                                 </thead>
@@ -71,66 +75,32 @@
                                         </td>
                                         <td> @item.Name2 </td>
                                         <td > @item.StaticPrice </td>
-                                        @*<td>
-        <div class="btn-group">
-            <button class="btn btn-xs btn-success">
-                <i class="ace-icon fa fa-check bigger-120"></i>
-            </button>
-
-            <button class="btn btn-xs btn-success">
-                <i class="ace-icon fa fa-check bigger-120"></i>
-            </button>
-
-            <button class="btn btn-xs btn-success">
-                <i class="ace-icon fa fa-check bigger-120"></i>
-            </button>
-
-            <button class="btn btn-xs btn-success">
-                <i class="ace-icon fa fa-check bigger-120"></i>
-            </button>
-
-            <button class="btn btn-xs btn-success">
-                <i class="ace-icon fa fa-check bigger-120"></i>
-            </button>
-        </div>
-    </td>
-
                                         <td>
-                                            <div class="btn-group">
-                                                <button class="btn btn-xs btn-success">
-                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                </button>
+                                            <button class="btn btn-xs btn-info js-btn-EditItem" data-item-id="@item.Id">
+                                                <i class="ace-icon fa fa-pencil bigger-120" data-item-id="@item.Id"></i>
+                                            </button>
+                                        </td>
+                                        <td>
 
-                                                <button class="btn btn-xs btn-success">
-                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                </button>
+                                            <button class="btn btn-xs btn-success js-btn-Listed" data-item-id="@item.Id">
+                                                <i class="ace-icon fa fa-check bigger-120" data-item-id="@item.Id"></i>
+                                            </button>
 
-                                                <button class="btn btn-xs btn-success">
-                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                </button>
-
-                                                <button class="btn btn-xs btn-success">
-                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                </button>
-
-                                                <button class="btn btn-xs btn-success">
-                                                    <i class="ace-icon fa fa-check bigger-120"></i>
-                                                </button>
-                                            </div>
                                         </td>
 
-                                        <td>
-                                            <button class="btn btn-xs btn-info js-btn-EditOrder" data-order-id="">
-                                                <i class="ace-icon fa fa-pencil bigger-120" data-order-id=""></i>
+                                        <td> 
+                                            <button class="btn btn-xs btn-success js-btn-Available" data-item-id="@item.Id">
+                                                <i class="ace-icon fa fa-check bigger-120" data-item-id="@item.Id"></i>
                                             </button>
-                                        </td>*@
+
+                                         </td>
 
 
                                     </tr>
                                 }
 
                                 </tbody>
-                            </table>
+                            </table>    
                     @*<div class="hr hr-18 dotted hr-double"></div>*@
 
 
@@ -143,6 +113,33 @@
         
         ItemController.init();
        
+
+        $('.js-btn-EditItem').on('click', function (e) {
+            var icon = $(e.target);
+            //
+            var id = icon.attr("data-item-id");
+            console.log(id);
+            ItemController.editItem(id, e);
+
+        });
+        $('.js-btn-Available').on('click', function (e) {
+            var icon = $(e.target);
+            console.log(icon);
+            if ($(e.target).get(0).tagName == "i.ace-icon") {
+                icon = $(e.target).parent();
+            } else {
+                icon = $(e.target);
+            }
+            console.log(icon);
+            //btn-success
+             var id = icon.attr("data-item-id");
+             console.log(id);
+
+             icon.toggleClass("btn-success").toggleClass("btn-danger");
+            var available = 1;
+            ItemController.listItemUnAvailable(id, e, available);
+
+        });
 
     })
 </script>

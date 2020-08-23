@@ -227,7 +227,7 @@
     var callEditOrder = function (successEdited, error, id, e) {
         console.log("start calling Edit order api");
 
-        var actionUrl = `/Orders/Edit/${id}`;
+        var actionUrl = `/Orderss/Edit/${id}`;
             window.open(actionUrl);
 
     }
@@ -239,10 +239,10 @@
         }
 
     var callEditOrderItem = function (successEdited, error, id, e) {
-        console.log("start calling Edit order api");
+        console.log("Edit start calling Edit order api");
 
-        var actionUrl = `/Orders/EditItems/${id}`;
-            window.open(actionUrl);
+        //var actionUrl = `/Orders/EditItems/${id}`;
+        //    window.open(actionUrl);
 
     }
     return {

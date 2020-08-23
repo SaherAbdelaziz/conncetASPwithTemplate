@@ -61,7 +61,6 @@
                         <th> Delivery </th>
                         <th>Status</th>
                         <th> Action</th>
-                        @*<th> Action</th>*@
                     </tr>
                     </thead>
                     <tbody id="NewOrderBody" ordersCount="@Model.Orders.Count">
@@ -265,6 +264,16 @@
 
         });
 
+        $('body').on('click', '.js-btn-EditOrderItems', function (e) {
+            console.log("dsdsadasfasfasfasfasfas");
+            var icon = $(e.target);
+            //console.log(icon);
+            var id = icon.attr("data-order-id");
+            OrderController.editOrderItems(id, e);
+
+        });
+
+
         //$('body').on('click', '.js-btn-CloseModelOrderDetails', function (e) {
         //    var icon = $(e.target);
         //    console.log("unlock order");
@@ -299,6 +308,7 @@
             OrderController.editOrder(id, e);
 
         });
+       
         $('.js-btn-orderDetails').on('click', function (e) {
             var icon = $(e.target);
             //console.log(icon);
@@ -307,13 +317,13 @@
 
         });
 
-        $('.js-btn-EditItemsOrder').on('click', function (e) {
-            var icon = $(e.target);
-            //console.log(icon);
-            var id = icon.attr("data-order-id");
-            OrderController.editItemsOrder(id, e);
+        //$('.js-btn-EditItemsOrder').on('click', function (e) {
+        //    var icon = $(e.target);
+        //    //console.log(icon);
+        //    var id = icon.attr("data-order-id");
+        //    OrderController.editItemsOrder(id, e);
 
-        });
+        //});
 
 
 

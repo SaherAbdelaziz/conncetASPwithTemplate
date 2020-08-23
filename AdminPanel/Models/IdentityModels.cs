@@ -142,6 +142,6 @@ namespace AdminPanel.Models
             //    .WillCascadeOnDelete(false);
         }
 
-       
+        public System.Data.Entity.DbSet<AdminPanel.Models.Check> Checks { get; set; }
     }
 }

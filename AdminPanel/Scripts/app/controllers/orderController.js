@@ -193,11 +193,13 @@
         var buttons =
             `
                 <button type="button" class ="btn btn-secondary js-btn-CloseModelOrderDetails" data-dismiss="modal" data-order-id="${
-                    orderAndCheckItems.order.id}">Close</button>
+                orderAndCheckItems.order.id}">Close</button>
+                <button type="button" class ="btn btn-info js-btn-EditOrderItems" data-dismiss="modal" data-order-id="${
+                orderAndCheckItems.order.id}">Edit</button>
                 <button type="button" class ="btn btn-danger js-btn-RejectOrder" data-dismiss="modal" data-order-id="${
-                    orderAndCheckItems.order.id}">Reject</button>
+                orderAndCheckItems.order.id}">Reject</button>
                 <button type="button" class ="btn btn-success js-btn-AcceptOrder" data-dismiss="modal" data-order-id="${
-                    orderAndCheckItems.order.id}">Accept </button>
+                orderAndCheckItems.order.id}">Accept </button>
 
                 `;
         $('#orderDetailsModel .modal-body-up').html(text);
@@ -278,7 +280,7 @@
         orderService.callRejectOrder(successReject, error, id, e);
         // retrieve data for that order and user
         var message = $(".rejectionmessage").val();
-        if (message == null)
+        if (message == null || message==="")
             message = "some message for reject";
             //"some message for reject";
         orderService.callDataForMail(successSingleMail , error , 0 , message , id);
@@ -292,22 +294,29 @@
     
     }
 
-    var editOrder = function (id, e) {
-            console.log("edit order" + id);
-            orderService.callEditOrder(successEdited, error, id, e);
-    
-    }
     var orderDetails = function (id, e) {
         console.log("orderDetails" + id);
         orderService.callOrderAndHisChecksItems(successSingleDetails, error, id);
 
     }
 
-    var editItemsOrder = function (id, e) {
-            console.log("edit orderItem" + id);
-            orderService.callEditOrderItem(successEdited, error, id, e);
+
+    var editOrder = function (id, e) {
+            console.log("edit order" + id);
+            orderService.callEditOrder(successEdited, error, id, e);
     
-        }
+    }
+   
+    //var editItemsOrder = function (id, e) {
+    //        console.log("edit orderItem" + id);
+    //        orderService.callEditOrderItem(successEdited, error, id, e);
+    
+    //    }
+    var editOrderItems = function (id, e) {
+        console.log("edit Order Items" + id);
+        orderService.callEditOrderItem(successEdited, error, id, e);
+        
+            }
 
     var init = function (ordersCount) {
         var x = window.localStorage.getItem('user');
@@ -329,7 +338,8 @@
         closeModelOrderDetails: closeModelOrderDetails,
         editOrder: editOrder,
         orderDetails: orderDetails,
-        editItemsOrder:editItemsOrder,
+        //editItemsOrder:editItemsOrder,
+        editOrderItems: editOrderItems,
         showData: showData
 
     }

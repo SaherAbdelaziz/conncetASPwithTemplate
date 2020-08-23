@@ -7,7 +7,6 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AdminPanel.Models;
-using AdminPanel.ViewModels;
 
 namespace AdminPanel.Controllers
 {
@@ -15,14 +14,14 @@ namespace AdminPanel.Controllers
     {
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
 
-        // GET: Item
+        // GET: Items
         public ActionResult Index()
         {
-            var eldahanItems = _context.Items.Include(e => e.WebPreset);
-            return View(eldahanItems.ToList());
+            var items = _context.Items.Include(i => i.WebPreset);
+            return View(items.ToList());
         }
 
-        // GET: Item/Details/5
+        // GET: Items/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -37,79 +36,65 @@ namespace AdminPanel.Controllers
             return View(item);
         }
 
-        // GET: Item/Create
+        // GET: Items/Create
         public ActionResult Create()
         {
-            ViewBag.EldahanPresetId = new SelectList(_context.WebPresets, "Id", "Name");
+            ViewBag.WebPresetId = new SelectList(_context.WebPresets, "Id", "Code");
             return View();
         }
 
-        // POST: Item/Create
+        // POST: Items/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(ItemViewModel model)
+        public ActionResult Create([Bind(Include = "Id,Code,Name,Name2,BarCode,CrossCode,Taxable,Assimbly,WebPresetId,IsModifier,StandAlone,PrintOnChick,PrintOnReport,FollowItem,Image_Item,BackColor,fontColor,Cost,OpenPrice,StaticPrice,Description1,Description2,Description3,Description4,ModPrice_0,ItemFont,UseItemTimer,ItemTimerValue,Active,CreateDate,ModifiedDate,User_ID,NoServiceCharge,Market_Price,Item_Track,PrintItemOnCheck,IsParent,Rest_ID_Active,Open_Food,Mod_Price,Pre_Paid_Card,WebOrder,Listed,Available")] Item item)
         {
-
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                ViewBag.EldahanPresetId = new SelectList(_context.WebPresets, "Id", "Name", model.EldahanPresetId);
-
-                return View(model);
+                _context.Items.Add(item);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
 
-            var item = new Item(model);
-            _context.Items.Add(item);
-            _context.SaveChanges();
-
-            return RedirectToAction("Index");
+            ViewBag.WebPresetId = new SelectList(_context.WebPresets, "Id", "Code", item.WebPresetId);
+            return View(item);
         }
 
-        // GET: Item/Edit/5
+        // GET: Items/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-
             Item item = _context.Items.Find(id);
             if (item == null)
             {
                 return HttpNotFound();
             }
-
-
-            ViewBag.EldahanPresetId = new SelectList(_context.WebPresets, "Id", "Name", item.WebPresetId);
-            var viewModel = new ItemViewModel(item);
-
-            return View(viewModel);
+            ViewBag.WebPresetId = new SelectList(_context.WebPresets, "Id", "Name", item.WebPresetId);
+            return View(item);
         }
 
-        // POST: Item/Edit/5
+        // POST: Items/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(ItemViewModel model)
+        public ActionResult Edit([Bind(Include = "Id,Code,Name,Name2,BarCode,CrossCode,Taxable,Assimbly,WebPresetId,IsModifier,StandAlone,PrintOnChick,PrintOnReport,FollowItem,Image_Item,BackColor,fontColor,Cost,OpenPrice,StaticPrice,Description1,Description2,Description3,Description4,ModPrice_0,ItemFont,UseItemTimer,ItemTimerValue,Active,CreateDate,ModifiedDate,User_ID,NoServiceCharge,Market_Price,Item_Track,PrintItemOnCheck,IsParent,Rest_ID_Active,Open_Food,Mod_Price,Pre_Paid_Card,WebOrder,Listed,Available")] Item item)
         {
-            if (!ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-
-                ViewBag.EldahanPresetId = new SelectList(_context.WebPresets, "Id", "Name", model.EldahanPresetId);
-                return View(model);
-                
+                _context.Entry(item).State = EntityState.Modified;
+                _context.SaveChanges();
+                return RedirectToAction("Index");
             }
-
-            var eldahanItem = _context.Items.SingleOrDefault(e => e.Id == model.Id);
-            eldahanItem.Update(model);
-
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            ViewBag.WebPresetId = new SelectList(_context.WebPresets, "Id", "Code", item.WebPresetId);
+            return View(item);
         }
 
-        // GET: Item/Delete/5
+        // GET: Items/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -124,7 +109,7 @@ namespace AdminPanel.Controllers
             return View(item);
         }
 
-        // POST: Item/Delete/5
+        // POST: Items/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
