@@ -1,0 +1,266 @@
+﻿@model AdminPanel.ViewModels.EditOrderItemsViewModel
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_adminPanel.cshtml";
+    var serial = 1;
+}
+
+
+<div class="main-content">
+    <div class="main-content-inner">
+
+
+        <div class="page-content">
+
+            <div class="page-header">
+                <!-- Editable table -->
+                <div class="card">
+                    <h3 class="card-header text-center font-weight-bold text-uppercase py-4">Order Items</h3>
+                    <div class="card-body">
+                        <div id="table" class="table-editable">
+                            <table class="table table-bordered table-responsive-md table-striped text-center">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center"> Name </th>
+                                        <th class="text-center"> Arabic Name </th>
+                                        <th class="text-center"> Price</th>
+                                        <th class="text-center"> Q </th>
+                                        <th class="text-center">Remove</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                @foreach (var item in Model.OrderViewModel.ChecksItems)
+                                {
+                                    
+                                    if (item.Ref_Mod_Item == 0)
+                                    {
+                                        <tr>
+                                            <td class=""> @item.Item.Name</td>
+                                            <td class=""> @item.Item.Name2</td>
+                                            <td class=""> @item.Item.StaticPrice</td>
+                                            <td class=""> @item.QTY</td>
+                                            <td>
+                                                <span class="table-remove">
+                                                    <button type="button"
+                                                            class="btn btn-danger rounded btn-sm my-0 js-CheckId" 
+                                                            data-checkItem-id="@Model.OrderViewModel.Order.CheckId"
+                                                            data-checkItem-serial="@item.Serial">
+                                                        Remove
+                                                    </button>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    }
+                                    else if (item.QTY == 0)
+                                    {
+                                        <tr>
+                                            <td class=""> *@item.Status</td>
+                                            <td class=""> *@item.Status</td>
+                                            <td class=""> </td>
+                                            <td class=""> </td>
+
+                                        </tr>
+                                    }
+
+                                    else
+                                    {
+                                        <tr>
+                                            <td class=""> * @item.Item.Name</td>
+                                            <td class=""> * @item.Item.Name2</td>
+                                            <td class=""> </td>
+                                            <td class=""> </td>
+
+                                        </tr>
+                                    }
+                                    serial++;
+                                }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Editable table -->
+
+
+            </div>
+
+        </div>
+        <table id="simple-table-Items" class="table  table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center">
+                        <label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span>
+                        </label>
+                    </th>
+                    <th> Preset </th>
+                    <th> Name </th>
+                    <th> Arabic Name </th>
+                    <th> Price </th>
+                    <th> Action</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.Items)
+                {
+                    <tr>
+                        <td class="center">
+                            <label class="pos-rel">
+                                <input type="checkbox" class="ace" />
+                                <span class="lbl"></span>
+                            </label>
+                        </td>
+
+                        <td class="center">
+                            @item.WebPreset.Name
+                        </td>
+
+                        <td>
+                            @item.Name
+                        </td>
+                        <td> @item.Name2 </td>
+                        <td> @item.StaticPrice </td>
+                        <td>
+                            <button class="btn btn-xs btn-info js-btn-AddItem"
+                                    data-item-id="@item.Id"
+                                    data-target="#productModal" data-toggle="modal">
+                                <i class="ace-icon fa fa-plus bigger-120" data-item-id="@item.Id"></i>
+                            </button>
+                        </td>
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        @*<div class="hr hr-18 dotted hr-double"></div>*@
+
+
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.page-content -->
+</div><!-- /.main-content -->
+
+
+<script>
+    $(document).ready(function() {
+
+        ItemController.init();
+        ModifiersGroupsController.init();
+
+
+        $(document).on("click", ".js-btn-AddItem", function (e) {
+            var button = $(e.target);
+            console.log("add item to order");
+            let id = button.attr("data-item-id");
+            let checkId = $(".js-CheckId").attr("data-checkitem-id");
+            console.log(id);
+            console.log(checkId);
+            ModifiersGroupsController.showItem(id, checkId, e);
+            
+        });
+
+
+        $(document).on("click", ".js-add-cart", function (e) {
+
+            var idModifiers = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
+            var isModi = $("#productModal .js-add-cart").attr("data-is-modiefier");
+            //console.log("isModi" , isModi);
+            //console.log("idModifiers" , idModifiers);
+
+
+            idModifiers = JSON.parse("[" + idModifiers + "]");
+            //console.log("idModList.Count" , idModList.length);
+
+            if (isModi !== 0) {
+                console.log("in condetion ");
+                for (let i = 0; i < isModi; i++) {
+                    //console.log(idModifiers);
+                    if (idModifiers[i] === -1) {
+                        alert("Please choose all salads");
+                        return;
+                    }
+                }
+
+            }
+
+            var button = $(e.target);
+            if ($(e.target).get(0).tagName == "SPAN") {
+                button = $(e.target).parent();
+            } else {
+                button = $(e.target);
+            }
+
+            var id = $("#productModal .js-add-cart").attr("data-item-id");
+            var checkId = $("#productModal .js-add-cart").attr("data-check-id");
+            var detailsMessage = $("#productModal .js-item-message").val();
+
+            var quantity = $("#productModal .js-item-quantity").val();
+            // now close the model
+            //location.reload();
+            //$('#productModal').remove();
+            //$('#productModal').modal('hide');
+
+
+            var cartItemDto = {
+                ItemId: id,
+                ItemsId: idModifiers,
+                Details: detailsMessage,
+                Quantity: quantity,
+                CheckId: checkId
+                // phone: $("#id-phone").val()
+            }
+
+            console.log(cartItemDto);
+
+            $.ajax({
+                url: "/api/ChecksItems",
+                method: "POST",   
+                data: JSON.stringify(cartItemDto),
+                contentType: 'application/json; charset=utf-8',
+                dataType: "Json"
+            })
+                .done(function () {
+                    console.log("got in adding items has modifiers ");
+                    console.log(button.attr("data-item-id"));
+                    location.reload();
+                })
+                .fail(function () {
+                    alert("Something failed! in adding item to cart");
+                });
+
+             //$("#productModal").removeClass('show');
+        });
+
+        $(document).on("click", ".table-remove", function (e) {
+            console.log("got on delete");
+            //if ($('.js-cancel-item').length > 0) {
+            console.log(e.target);
+            //$(".js-cancel-item").click(function(e) {
+
+            var link = $(e.target);
+            let id = link.attr("data-checkItem-id");
+            let serial = link.attr("data-checkItem-serial");
+
+            $.ajax({
+                url: `/api/ChecksItems/${id}/${serial}`,
+                //headers: { "id": id, "serial": serial },
+                    method: "DELETE"
+                })
+                .done(function () {
+                    link.parents("tr").fadeOut(function () {
+                        location.reload();
+                    });
+                })
+                .fail(function () {
+                    alert("Something failed! in deleting order");
+                });
+        });
+
+    })
+</script>

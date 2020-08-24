@@ -8,6 +8,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
+using AdminPanel.Dtos;
 using AdminPanel.Models;
 using AdminPanel.ViewModels;
 
@@ -85,48 +86,101 @@ namespace AdminPanel.Controllers.API
 
         // POST: api/ChecksItems
         [ResponseType(typeof(ChecksItem))]
-        public IHttpActionResult PostChecksItem(ChecksItem checksItem)
+        public IHttpActionResult PostChecksItem(CartItemDto cartItemDto)//(ChecksItem checksItem)
         {
-            if (!ModelState.IsValid)
+            var ch = _context.ChecksItems
+                .Where(ce => ce.Check_ID == cartItemDto.CheckId)
+                .OrderByDescending(ce => ce.Serial)
+                .FirstOrDefault();
+            var serial = 1;
+            var serialFirstItem = 1;
+            if (ch != null)
             {
-                return BadRequest(ModelState);
+                serial = ch.Serial + 1;
+                serialFirstItem = serial;
             }
 
-            _context.ChecksItems.Add(checksItem);
+            var item = _context.Items
+                .SingleOrDefault(e => e.Id == cartItemDto.ItemId);
+            var total = item.StaticPrice + 20;
 
-            try
+            // main item
+            var checkItem = new ChecksItem(cartItemDto.CheckId, cartItemDto.ItemId, cartItemDto.Quantity,
+                item.StaticPrice, total, 0, 0,
+                0, total, serial, true, false,
+                "Preparing", false, 0);
+
+            _context.ChecksItems.Add(checkItem);
+            //special message from customer
+            if (cartItemDto.Details != "")
             {
-                _context.SaveChanges();
+                var checkItem2 = new ChecksItem(cartItemDto.CheckId, cartItemDto.ItemId, 0,
+                    0, 0, 0, 0,
+                    0, 0, serial + 1, true, false,
+                    cartItemDto.Details, true, serialFirstItem);
+                serial++;
+                _context.ChecksItems.Add(checkItem2);
             }
-            catch (DbUpdateException)
+
+
+
+            if (cartItemDto.ItemsId[0] != -1)
             {
-                if (ChecksItemExists(checksItem.Check_ID))
+                //add modified items
+                foreach (var id in cartItemDto.ItemsId)
                 {
-                    return Conflict();
-                }
-                else
-                {
-                    throw;
+                    if (id == -1)
+                        continue;
+                    serial++;
+                    checkItem = new ChecksItem(cartItemDto.CheckId, id, cartItemDto.Quantity,
+                        0, 0, 0, 0,
+                        0, 0, serial, true, false,
+                        "Preparing", true, serialFirstItem);
+                    _context.ChecksItems.Add(checkItem);
                 }
             }
 
-            return CreatedAtRoute("DefaultApi", new { id = checksItem.Check_ID }, checksItem);
+
+
+            // we should update order price based on new added check item
+
+            _context.ChecksItems.Add(checkItem);
+            _context.SaveChanges();
+
+
+            return Ok(checkItem);
         }
 
         // DELETE: api/ChecksItems/5
-        [ResponseType(typeof(ChecksItem))]
-        public IHttpActionResult DeleteChecksItem(long id)
+        //[ResponseType(typeof(ChecksItem))]
+        [Route("api/ChecksItems/{id:long}/{serial:int}")]
+        public IHttpActionResult DeleteChecksItem(long id , int serial)
         {
-            ChecksItem checksItem = _context.ChecksItems.Find(id);
-            if (checksItem == null)
+            //var checksItems = _context.ChecksItems
+            //    .Where(ch => ch.Check_ID == id).ToList();
+
+            var checkItems = _context.ChecksItems
+                .Where(ch => ch.Check_ID == id && 
+                             (ch.Serial == serial || ch.Ref_Mod_Item == serial))
+                .ToList();
+
+            //ChecksItem checksItem = _context.ChecksItems
+            //    .SingleOrDefault(ch => ch.Check_ID == id && ch.Serial == serial);
+
+            //if (checksItem == null)
+            //{
+            //    return NotFound();
+            //}
+
+            foreach (var checksItem in checkItems)
             {
-                return NotFound();
+                _context.ChecksItems.Remove(checksItem);
+
             }
 
-            _context.ChecksItems.Remove(checksItem);
             _context.SaveChanges();
 
-            return Ok(checksItem);
+            return Ok();
         }
 
         protected override void Dispose(bool disposing)

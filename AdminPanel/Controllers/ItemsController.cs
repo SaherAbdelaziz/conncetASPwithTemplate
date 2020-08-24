@@ -6,7 +6,9 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AdminPanel.Controllers.API;
 using AdminPanel.Models;
+using AdminPanel.ViewModels;
 
 namespace AdminPanel.Controllers
 {
@@ -17,8 +19,29 @@ namespace AdminPanel.Controllers
         // GET: Items
         public ActionResult Index()
         {
-            var items = _context.Items.Include(i => i.WebPreset);
-            return View(items.ToList());
+            var order = _context.Orders
+                .Include(o=>o.Check)
+                .FirstOrDefault();
+
+            var items = _context.Items
+                .Include(i => i.WebPreset).ToList();
+
+           // EditOrderItemsViewModel orderItems=new EditOrderItemsViewModel(order , items);
+            return View(items);
+        }
+
+        // GET: Items/OrderItems
+        public ActionResult OrderItems(int id)
+        {
+            //var controller = DependencyResolver.Current.GetService<API.ChecksItemsController>();
+            //controller.ControllerContext = new ControllerContext(this.Request.RequestContext, controller);
+            OrderViewModel orderViewModel = new API.ChecksItemsController().GetChecksItem(id);
+
+            var items = _context.Items
+                .Include(i => i.WebPreset).ToList();
+
+            EditOrderItemsViewModel orderItems = new EditOrderItemsViewModel(orderViewModel, items);
+            return View(orderItems);
         }
 
         // GET: Items/Details/5

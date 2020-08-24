@@ -130,16 +130,25 @@
 
 
     };
-     var successSingleDetails = function (orderAndCheckItems) {
-            //call lock table for no use
-            //but first we have to check that no one else is opening that row at this time
+     var successSingleDetails = function (orderAndCheckItems) { // for edit to open new window not the pop up for details
 
-            //check is not opened 
-            console.log("if check is not opened ", orderAndCheckItems.order.id);
-            if (orderAndCheckItems.order.orderState ===0)
-                orderService.callCheckRow(successIsOpened, errorNotOpened, orderAndCheckItems.order.id, orderAndCheckItems);
-            else
-                successSingleDetailsImplement(orderAndCheckItems);
+
+         if (false) {
+             //orderService.callget(s, e, data);
+         }
+         else
+         {
+                //call lock table for no use
+                //but first we have to check that no one else is opening that row at this time
+
+                //check is not opened 
+                console.log("if check is not opened ", orderAndCheckItems.order.id);
+                if (orderAndCheckItems.order.orderState === 0)
+                    orderService.callCheckRow(successIsOpened, errorNotOpened, orderAndCheckItems.order.id, orderAndCheckItems);
+                else
+                    successSingleDetailsImplement(orderAndCheckItems);
+            }
+           
 
 
         };

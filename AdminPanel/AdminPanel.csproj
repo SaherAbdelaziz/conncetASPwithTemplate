@@ -211,6 +211,7 @@
     <Compile Include="Controllers\API\ChecksItemsController.cs" />
     <Compile Include="Controllers\API\EmailFormModelController.cs" />
     <Compile Include="Controllers\API\ItemController.cs" />
+    <Compile Include="Controllers\API\ModifiersGroupsController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
     <Compile Include="Controllers\ChecksItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -218,6 +219,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\OrderssController.cs" />
+    <Compile Include="Dtos\CartItemDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -247,6 +249,8 @@
     <Compile Include="Models\WebPreset.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EditOrderItemsViewModel.cs" />
+    <Compile Include="ViewModels\ItemsAndGroupCount.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\OrdersViewModel.cs" />
     <Compile Include="ViewModels\OrderViewModel.cs" />
@@ -550,8 +554,10 @@
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\app\controllers\itemController.js" />
+    <Content Include="Scripts\app\controllers\modifiersGroupsController.js" />
     <Content Include="Scripts\app\controllers\orderController.js" />
     <Content Include="Scripts\app\services\itemService.js" />
+    <Content Include="Scripts\app\services\modifiersGroupsService.js" />
     <Content Include="Scripts\app\services\orderService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -725,6 +731,7 @@
     <Content Include="Views\Items\Details.cshtml" />
     <Content Include="Views\Items\Edit.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
+    <Content Include="Views\Items\OrderItems.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

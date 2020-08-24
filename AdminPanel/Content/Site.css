@@ -1,6 +1,6 @@
 ﻿body {
-    /*padding-top: 50px;
-    padding-bottom: 20px;*/
+    padding-top: 50px;
+    padding-bottom: 20px;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -34,3 +34,128 @@ textarea {
 .nav-tabs>li>a.info {
     background-color: #2F4F4F;
 }*/
+
+/* for pop up item*/
+.custom-control {
+    min-height: 1.5em;
+    padding-left: 1.9em;
+    margin-right: 1em;
+}
+
+/* Panel Details */
+.panel-details:not(:last-child) {
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.panel-details .panel-details-title {
+    margin: 0;
+    padding: 1.25rem 0;
+}
+
+.panel-details .panel-details-title > label {
+    top: -0.25em;
+    margin-bottom: 0;
+    margin-right: 0;
+    display: inline-block;
+    vertical-align: middle;
+    float: left;
+    pointer-events: none;
+}
+
+.panel-details .panel-details-content {
+    padding: 1.25rem 2rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+
+
+/* 6.9 Modals
+----------------------------------------------------------*/
+.modal.fade .modal-dialog {
+    -webkit-transform: scale(0.9, 0.9);
+    -moz-transform: scale(0.9, 0.9);
+    -ms-transform: scale(0.9, 0.9);
+    -o-transform: scale(0.9, 0.9);
+    transform: scale(0.9, 0.9);
+}
+
+.modal.show .modal-dialog {
+    -webkit-transform: scale(1, 1);
+    -moz-transform: scale(1, 1);
+    -ms-transform: scale(1, 1);
+    -o-transform: scale(1, 1);
+    transform: scale(1, 1);
+}
+
+.modal-content {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
+    -webkit-box-shadow: 5px 5px 50px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 5px 5px 50px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 5px 5px 50px 0px rgba(0, 0, 0, 0.3);
+    border: none;
+    overflow: hidden;
+}
+
+.modal-header {
+    position: relative;
+    padding: 2rem;
+}
+
+.modal-header.modal-header-lg {
+    padding: 7rem 2rem 1.5rem;
+}
+
+.modal-header > .close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 2;
+}
+
+.modal > .close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.modal-btn:hover, .modal-btn:focus {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.modal-product-details {
+    background-color: #f3f4f4;
+    padding: 1.5rem 2rem;
+}
+
+.modal-body {
+    padding: 1.5rem 2rem;
+}
+
+.modal-footer {
+    padding: 1.5rem 2rem;
+}
+
+.modal-backdrop {
+    background-color: #282b2e;
+}
+
+.modal-backdrop.show {
+    filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=40);
+    opacity: 0.4;
+}
+
+
+.align-items-center {
+    -webkit-box-align: center !important;
+    -webkit-align-items: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
+}

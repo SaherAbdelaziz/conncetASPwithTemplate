@@ -65,6 +65,8 @@
 
     };
 
+
+
     var editItem = function(id , e) {
         console.log("start edit item");
         itemService.callEditItem(successEdit, errorEdit , id);

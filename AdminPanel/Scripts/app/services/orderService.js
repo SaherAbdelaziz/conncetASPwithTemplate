@@ -241,8 +241,8 @@
     var callEditOrderItem = function (successEdited, error, id, e) {
         console.log("Edit start calling Edit order api");
 
-        //var actionUrl = `/Orders/EditItems/${id}`;
-        //    window.open(actionUrl);
+        var actionUrl = `/items/OrderItems/${id}`;
+            window.open(actionUrl);
 
     }
     return {
