@@ -50,6 +50,15 @@
                                                         Remove
                                                     </button>
                                                 </span>
+                                                
+                                                @*<span class="table-edit">
+                                                    <button type="button"
+                                                            class="btn btn-primary rounded btn-sm my-0 js-CheckId"
+                                                            data-checkItem-id="@Model.OrderViewModel.Order.CheckId"
+                                                            data-checkItem-serial="@item.Serial">
+                                                        Edit
+                                                    </button>
+                                                </span>*@
                                             </td>
                                         </tr>
                                     }
@@ -167,81 +176,11 @@
 
 
         $(document).on("click", ".js-add-cart", function (e) {
-
-            var idModifiers = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
-            var isModi = $("#productModal .js-add-cart").attr("data-is-modiefier");
-            //console.log("isModi" , isModi);
-            //console.log("idModifiers" , idModifiers);
-
-
-            idModifiers = JSON.parse("[" + idModifiers + "]");
-            //console.log("idModList.Count" , idModList.length);
-
-            if (isModi !== 0) {
-                console.log("in condetion ");
-                for (let i = 0; i < isModi; i++) {
-                    //console.log(idModifiers);
-                    if (idModifiers[i] === -1) {
-                        alert("Please choose all salads");
-                        return;
-                    }
-                }
-
-            }
-
-            var button = $(e.target);
-            if ($(e.target).get(0).tagName == "SPAN") {
-                button = $(e.target).parent();
-            } else {
-                button = $(e.target);
-            }
-
-            var id = $("#productModal .js-add-cart").attr("data-item-id");
-            var checkId = $("#productModal .js-add-cart").attr("data-check-id");
-            var detailsMessage = $("#productModal .js-item-message").val();
-
-            var quantity = $("#productModal .js-item-quantity").val();
-            // now close the model
-            //location.reload();
-            //$('#productModal').remove();
-            //$('#productModal').modal('hide');
-
-
-            var cartItemDto = {
-                ItemId: id,
-                ItemsId: idModifiers,
-                Details: detailsMessage,
-                Quantity: quantity,
-                CheckId: checkId
-                // phone: $("#id-phone").val()
-            }
-
-            console.log(cartItemDto);
-
-            $.ajax({
-                url: "/api/ChecksItems",
-                method: "POST",   
-                data: JSON.stringify(cartItemDto),
-                contentType: 'application/json; charset=utf-8',
-                dataType: "Json"
-            })
-                .done(function () {
-                    console.log("got in adding items has modifiers ");
-                    console.log(button.attr("data-item-id"));
-                    location.reload();
-                })
-                .fail(function () {
-                    alert("Something failed! in adding item to cart");
-                });
-
-             //$("#productModal").removeClass('show');
+            ModifiersGroupsController.addItem();
         });
 
         $(document).on("click", ".table-remove", function (e) {
             console.log("got on delete");
-            //if ($('.js-cancel-item').length > 0) {
-            console.log(e.target);
-            //$(".js-cancel-item").click(function(e) {
 
             var link = $(e.target);
             let id = link.attr("data-checkItem-id");
@@ -262,5 +201,25 @@
                 });
         });
 
+        
+            $(".js-qtyincrease").on('click',
+                function (e) {
+                    var val = parseInt($(".js-item-quantity").val());
+                    console.log(val);
+                    $(".js-item-quantity").val(val+1);
+
+                });
+
+            $(".js-qtydecrease").on('click',
+            function(e) {
+                var val = parseInt($(".js-item-quantity").val());
+                console.log(val);
+                if(val != 1)
+                    $(".js-item-quantity").val(val-1);
+
+
+
+
+            });
     })
 </script>

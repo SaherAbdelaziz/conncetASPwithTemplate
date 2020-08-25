@@ -121,10 +121,51 @@
         modifiersGroupsService.callShowItem(showItemModel, errorShow, id, checkId);
     }
 
+    var addItem = function (id, checkId , e) {
+        console.log("start Add item");
+
+        var idModifiers = $("#productModal .js-add-cart").attr("data-selected-modiefier-id");
+        var isModi = $("#productModal .js-add-cart").attr("data-is-modiefier");
+
+
+        idModifiers = JSON.parse("[" + idModifiers + "]");
+        //console.log("idModList.Count" , idModList.length);
+
+        if (isModi !== 0) {
+            console.log("in condetion ");
+            for (let i = 0; i < isModi; i++) {
+                //console.log(idModifiers);
+                if (idModifiers[i] === -1) {
+                    alert("Please choose all salads");
+                    return;
+                }
+            }
+
+        }
+
+        var id = $("#productModal .js-add-cart").attr("data-item-id");
+        var checkId = $("#productModal .js-add-cart").attr("data-check-id");
+        var detailsMessage = $("#productModal .js-item-message").val();
+        var quantity = $("#productModal .js-item-quantity").val();
+
+
+        var cartItemDto = {
+            ItemId: id,
+            ItemsId: idModifiers,
+            Details: detailsMessage,
+            Quantity: quantity,
+            CheckId: checkId
+        }
+
+        console.log(cartItemDto);
+        modifiersGroupsService.callAddItem(cartItemDto);
+    }
+
     
 return {
     init: init,
-    showItem: showItem
+    showItem: showItem,
+    addItem: addItem
    
 }
 }(ModifiersGroupsService)

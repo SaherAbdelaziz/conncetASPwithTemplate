@@ -15,7 +15,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 {
     public class OrdersController : ApiController
     {
-        private ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly ApplicationDbContext _context = new ApplicationDbContext();
         public string UserId;
         public Cart Cart { get; set; }
 

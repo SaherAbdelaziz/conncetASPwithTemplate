@@ -19,26 +19,12 @@ namespace AdminPanel.Models
 
         public long CheckId { get; set; }
         public Check Check { get; set; }
-
-        //public string CustomerName { get; set; }
-        //public string CustomerPhone { get; set; }
-        //public string CustomerAddress1 { get; set; }
-        //public string CustomerAddress2 { get; set; }
-        //public string CustomerStreet { get; set; }
-        //public string CustomerBuilding { get; set; }
-        //public string CustomerFloor { get; set; }
-        //public string CustomerApartment { get; set; }
-        //public string CustomerSpecialMark { get; set; }
+        
         public DateTime? DateCreated { get; set; }
         public double Price { get; set; }
         public double Delivery { get; set; }
         public double TotalPrice { get; set; }
-        //public OutLet OutLet { get; set; }
-        //public int OutLetId { get; set; }
-        //public HD_Areas HdAreas { get; set; }
-        //public int HdAreasId { get; set; }
-        //public HD_Areas_Services Services { get; set; }
-        //public int ServicesId { get; set; }
+
         public int CartId { get; set; }
         public Cart Cart { get; set; }
         public int DeliveryTimeIndex { get; set; }
@@ -48,22 +34,43 @@ namespace AdminPanel.Models
 
         public int OrderState { get; set; }
         public int OrderPrepare { get; set; }
-        //public List<int> CartItemsId { get; set; }
-        //public List<CartItem> CartItems { get; set; }
 
-        //public Order()
-        //{
-        //    CartItems = new List<CartItem>();
-        //}
+        public Order()
+        {
+            
+        }
 
-        //public Order(int id, string customerName, string cartId, List<int> cartItemsId, List<CartItem> cartItems)
-        //{
-        //    Id = id;
-        //    CustomerName = customerName;
-        //    CartId = cartId;
-        //    CartItemsId = cartItemsId;
-        //    CartItems = cartItems;
-        //}
+
+
+
+        public Order(int id, string userId, ApplicationUser user, string adminId, ApplicationUser admin, long checkId, Check check, DateTime? dateCreated, double price, double delivery, double totalPrice, int cartId, Cart cart, int deliveryTimeIndex, string deliveryTypeIndex, string details, int orderState, int orderPrepare)
+        {
+            Id = id;
+            UserId = userId;
+            User = user;
+            AdminId = adminId;
+            Admin = admin;
+            CheckId = checkId;
+            Check = check;
+            DateCreated = dateCreated;
+            Price = price;
+            Delivery = delivery;
+            TotalPrice = totalPrice;
+            CartId = cartId;
+            Cart = cart;
+            DeliveryTimeIndex = deliveryTimeIndex;
+            DeliveryTypeIndex = deliveryTypeIndex;
+            Details = details;
+            OrderState = orderState;
+            OrderPrepare = orderPrepare;
+        }
+
+
+        public void Update(double? price)
+        {
+            Price = (double) price;
+            TotalPrice = (double) (price + Delivery);
+        }
 
 
     }

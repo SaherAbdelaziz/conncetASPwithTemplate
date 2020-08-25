@@ -102,15 +102,25 @@ namespace AdminPanel.Controllers.API
 
             var item = _context.Items
                 .SingleOrDefault(e => e.Id == cartItemDto.ItemId);
-            var total = item.StaticPrice + 20;
+            var price = item.StaticPrice ;
 
             // main item
             var checkItem = new ChecksItem(cartItemDto.CheckId, cartItemDto.ItemId, cartItemDto.Quantity,
-                item.StaticPrice, total, 0, 0,
-                0, total, serial, true, false,
+                price, price, 0, 0,
+                0, price, serial, true, false,
                 "Preparing", false, 0);
 
             _context.ChecksItems.Add(checkItem);
+            double? totalPrice = _context.ChecksItems
+                .Where(c => c.Check_ID == cartItemDto.CheckId)
+                .Sum(c => c.TotalPrice);
+
+
+            // here we need to update order based on new add item
+            var order = _context.Orders
+                .SingleOrDefault(o => o.CheckId == checkItem.Check_ID);
+            order.Update(totalPrice);
+
             //special message from customer
             if (cartItemDto.Details != "")
             {

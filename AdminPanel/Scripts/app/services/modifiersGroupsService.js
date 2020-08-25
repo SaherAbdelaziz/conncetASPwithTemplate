@@ -29,8 +29,33 @@
 
 
     }
+
+    var callAddItem = function (cartItemDto) {
+
+        $.ajax({
+            url: "/api/ChecksItems",
+            method: "POST",
+            data: JSON.stringify(cartItemDto),
+            contentType: 'application/json; charset=utf-8',
+            dataType: "Json"
+        })
+            .done(function () {
+                console.log("got in adding items has modifiers ");
+                location.reload();
+            })
+            .fail(function () {
+                alert("Something failed! in adding item to cart");
+            });
+
+        //$("#productModal").removeClass('show');
+
+
+        }
+
+
     return {
         callShowItem: callShowItem,
+        callAddItem: callAddItem,
 
     }
 

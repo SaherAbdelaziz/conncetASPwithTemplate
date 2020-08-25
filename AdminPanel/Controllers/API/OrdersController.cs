@@ -54,7 +54,7 @@ namespace AdminPanel.Controllers.API
         
 
         // PUT: api/Orders/5
-        [ResponseType(typeof(void))]
+        [ResponseType(typeof(Order))]
         public IHttpActionResult PutOrder(int id, Order order)
         {
             if (!ModelState.IsValid)
@@ -85,7 +85,39 @@ namespace AdminPanel.Controllers.API
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            return Ok(order);
+        }
+
+        // PUT: api/Orders/5
+        [ResponseType(typeof(Order))]
+        public IHttpActionResult PutOrder(long checkId, double? totalPrice)
+        {
+            var order = _context.Orders
+                .SingleOrDefault(o => o.CheckId == checkId);
+
+            order.Price = (double) totalPrice;
+            order.TotalPrice = order.Price + order.Delivery;
+
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            
+
+            _context.Entry(order).State = EntityState.Modified;
+
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                    throw;
+                
+            }
+
+            return Ok(order);
         }
 
         [ResponseType(typeof(void))]
