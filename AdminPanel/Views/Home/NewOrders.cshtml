@@ -53,7 +53,7 @@
 
                 else if (Model.Orders[i].DeliveryTimeIndex == 3)
                 {
-                <div>in three hour></div>
+                <div>in three hour</div>
                 }
                 
                 <div>@Model.Orders[i].DeliveryTypeIndex</div>
@@ -73,8 +73,8 @@
                         <i class="ace-icon fa fa-remove bigger-120 " data-order-id="@Model.Orders[i].Id"></i>
                     </button>*@
 
-                    <button class="btn btn-xs btn-info js-btn-EditOrder" data-order-id="@Model.Orders[i].Id">
-                        <i class="ace-icon fa fa-pencil bigger-120" data-order-id="@Model.Orders[i].Id"></i>
+                    <button class="btn btn-xs btn-info js-btn-EditOrder" data-order-id="@Model.Orders[i].User.Id">
+                        <i class="ace-icon fa fa-pencil bigger-120" data-order-id="@Model.Orders[i].User.Id"></i>
                     </button>
 
 

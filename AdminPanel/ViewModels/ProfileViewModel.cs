@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.ComponentModel.DataAnnotations;
-using conncetASPwithTemplate.Models;
+using AdminPanel.Models;
 
-namespace conncetASPwithTemplate.ViewModels
+namespace AdminPanel.ViewModels
 {
     public class ProfileViewModel
     {
@@ -55,7 +58,7 @@ namespace conncetASPwithTemplate.ViewModels
 
         public ProfileViewModel()
         {
-
+            
         }
 
 

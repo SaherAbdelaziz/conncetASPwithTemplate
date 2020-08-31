@@ -64,9 +64,15 @@ namespace conncetASPwithTemplate.Controllers
             var user =  UserManager.FindById(User.Identity.GetUserId());
             user.Name = model.Name;
             user.Phone = model.Phone;
-            user.Adress = model.Adress;
-            user.Adress2 = model.Adress2;
+            user.Adress = model.Address;
+            user.Adress2 = model.Address2;
             user.Email = model.Email;
+
+            user.Street = model.Street;
+            user.Building = model.Building;
+            user.Floor = model.Floor;
+            user.Apartment = model.Apartment;
+            user.SpecialMark = model.SpecialMark;
 
             
 

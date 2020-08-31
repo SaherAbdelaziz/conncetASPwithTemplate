@@ -41,9 +41,9 @@
                                     <input name="radio_title_size${i}" type="radio" class="custom-control-input">
                                     <span class="custom-control-indicator"></span>
                                     </label>
-                                    <a href="#panelDetailsSize${i}" data-toggle="collapse">Salad${i + 1}</a>
+                                    <span href="#panelDetailsSize${i}" >Salad${i +1}</span>
                                     </h5>
-                                    <div id="panelDetailsSize${i}" class="collapse">
+                                    <div id="panelDetailsSize${i}" >
                                     <form>
                                     <div class="panel-details-content">
 
@@ -51,7 +51,9 @@
                                     </form>
                                     </div>`;
                 $('#js-panel-details-modi').append(dataSize);
-
+                //
+                //
+                //data-toggle="collapse"   class="collapse"
                 for (let j = 1; j < data.items.length; j++)//data.length
                 {
 

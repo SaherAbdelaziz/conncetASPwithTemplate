@@ -1,57 +1,74 @@
 ﻿@for (var i = 0; i < Model.Orders.Count; i++)
             {
-    <tr>
-        <td> @Model.Orders[i].User.Name </td>
-        <td> @Model.Orders[i].User.Phone </td>
-        <td> @Model.Orders[i].Details </td>
-        <td>
-            Price : @Model.Orders[i].Price <br>
-            Delivery : @Model.Orders[i].Delivery <br>
-            TotalPrice :@Model.Orders[i].TotalPrice
-        </td>
-        <td> @Model.Orders[i].User.Outlet.Name </td>
-        <td> @Model.Orders[i].User.Area.Name </td>
-        <td> تفاصيل العنوان</td>
+                <tr>
+                    <td> @Model.Orders[i].DateCreated.ToString("dd/MM/yyyy hh:mm tt") </td>
+                    <td> @Model.Orders[i].User.Name </td>
+                    <td> @Model.Orders[i].User.Phone </td>
+                    <td>
+                        <button class="btn btn-info btn-sm js-btn-orderDetails"
+                                data-order-id="@Model.Orders[i].Id">View Order Details </button>
+                    </td>
+                    <td>
+                        Price : @Model.Orders[i].Price <br>
+                        Delivery : @Model.Orders[i].Delivery <br>
+                        TotalPrice :@Model.Orders[i].TotalPrice
+                    </td>
+                    <td> @Model.Orders[i].User.Outlet.Name </td>
+                    <td> @Model.Orders[i].User.Area.Name </td>
+                    <td>
+                        <div>
+                            Address
+                            @Model.Orders[i].User.Adress
+                            @Model.Orders[i].User.Adress2
+                            <div> Street @Model.Orders[i].User.Street </div>
+                            <div> Building @Model.Orders[i].User.Building </div>
+                            <div> Floor @Model.Orders[i].User.Floor </div>
+                            <div> Apartment @Model.Orders[i].User.Apartment </div>
+                            <div> SpecialMark @Model.Orders[i].User.SpecialMark </div>
+                        </div>
 
-        @if (Model.Orders[i].DeliveryTimeIndex == 0)
-        {
-            <td> as fast as possible </td>
-        }
+                    </td>
 
-        else if (Model.Orders[i].DeliveryTimeIndex == 1)
-        {
-            <td> in one hour </td>
-        }
-        else
-        {
-            <td> in two hour </td>
+                    @if (Model.Orders[i].DeliveryTimeIndex == 0)
+                    {
+                        <td> as fast as possible </td>
+                    }
 
-        }
+                    else if (Model.Orders[i].DeliveryTimeIndex == 1)
+                    {
+                        <td> in one hour </td>
+                    }
+                    else
+                    {
+                        <td> in two hour </td>
 
-        @if (Model.Orders[i].OrderState == 0)
-        {
-            <td class="hidden-480">
-                <span class="label label-sm label-success"> New </span>
-            </td>
-        }
+                    }
 
-        else if (Model.Orders[i].OrderState == 1)
-        {
-            <td class="hidden-480">
-                <span class="label label-sm label-warning"> Pending </span>
-            </td>
+                    @if (Model.Orders[i].OrderState == 0)
+                    {
+                        <td class="hidden-480">
+                            <span class="label label-sm label-success"> New </span>
+                        </td>
+                    }
 
-        }
+                    else if (Model.Orders[i].OrderState == 1)
+                    {
+                        <td class="hidden-480">
+                            <span class="label label-sm label-warning"> Preparing </span>
+                        </td>
 
-        else if (Model.Orders[i].OrderState == 2)
-        {
-            <td class="hidden-480">
-                <span class="label label-sm label-danger"> Rejected </span>
-            </td>
-        }
+                    }
 
-        <td>
-            <div class="hidden-sm hidden-xs btn-group">
+                    else if (Model.Orders[i].OrderState == 2)
+                    {
+                        <td class="hidden-480">
+                            <span class="label label-sm label-danger"> Rejected </span>
+                        </td>
+                    }
+
+                    <td>
+
+                        @*<div class="hidden-sm hidden-xs btn-group">
                 <button class="btn btn-xs btn-success">
                     <i class="ace-icon fa fa-check bigger-120"></i>
                 </button>
@@ -67,41 +84,8 @@
                 <button class="btn btn-xs btn-warning">
                     <i class="ace-icon fa fa-flag bigger-120"></i>
                 </button>
-            </div>
+            </div>*@
 
-            <div class="hidden-md hidden-lg">
-                <div class="inline pos-rel">
-                    <button class="btn btn-minier btn-primary dropdown-toggle" data-toggle="dropdown" data-position="auto">
-                        <i class="ace-icon fa fa-cog icon-only bigger-110"></i>
-                    </button>
-
-                    <ul class="dropdown-menu dropdown-only-icon dropdown-yellow dropdown-menu-right dropdown-caret dropdown-close">
-                        <li>
-                            <a href="#" class="tooltip-info" data-rel="tooltip" title="View">
-                                <span class="blue">
-                                    <i class="ace-icon fa fa-search-plus bigger-120"></i>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="tooltip-success" data-rel="tooltip" title="Edit">
-                                <span class="green">
-                                    <i class="ace-icon fa fa-pencil-square-o bigger-120"></i>
-                                </span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="#" class="tooltip-error" data-rel="tooltip" title="Delete">
-                                <span class="red">
-                                    <i class="ace-icon fa fa-trash-o bigger-120"></i>
-                                </span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </td>
-    </tr>
+                    </td>
+                </tr>
 }

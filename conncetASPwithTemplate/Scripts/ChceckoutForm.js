@@ -44,7 +44,12 @@
                     .done(function () {
                         console.log("added new order ");
                         AJAXRequest();
-                        document.location.reload(true);
+                        //var actionUrl = `/Home/Index/`;
+                        //var actionUrl = '@Url.Action("Index", "Home")';
+
+                        var actionUrl = `/Home/Index/`;
+                        window.open(actionUrl, "_self");
+                        //document.location.reload(true);
                         //$.ajax({
                         //        url: "/api/ShoppingCarts",
                         //        method: "put",

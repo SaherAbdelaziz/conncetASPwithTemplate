@@ -227,7 +227,7 @@
     var callEditOrder = function (successEdited, error, id, e) {
         console.log("start calling Edit order api");
 
-        var actionUrl = `/Orderss/Edit/${id}`;
+        var actionUrl = `/Manage/UpdateUser/${id}`;
             window.open(actionUrl);
 
     }

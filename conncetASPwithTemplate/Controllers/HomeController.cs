@@ -133,14 +133,8 @@ namespace conncetASPwithTemplate.Controllers
             var myUser=_context.Users
                 .FirstOrDefault(u => u.Id == userId);
 
-            var profileViewModel = new ProfileViewModel()
-            {
-                Name = myUser.Name,
-                Email = myUser.Email,
-                Phone = myUser.Phone,
-                Adress = myUser.Adress,
-                Adress2 = myUser.Adress2,
-            };
+            var profileViewModel = new ProfileViewModel(myUser);
+
             return View(profileViewModel);
         }
 

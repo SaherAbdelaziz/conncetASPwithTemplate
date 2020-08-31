@@ -203,7 +203,7 @@
             `
                 <button type="button" class ="btn btn-secondary js-btn-CloseModelOrderDetails" data-dismiss="modal" data-order-id="${
                 orderAndCheckItems.order.id}">Close</button>
-                <button type="button" class ="btn btn-info js-btn-EditOrderItems" data-dismiss="modal" data-order-id="${
+                <button type="button" class ="btn btn-info js-btn-EditOrderItems" data-order-id="${
                 orderAndCheckItems.order.id}">Edit</button>
                 <button type="button" class ="btn btn-danger js-btn-RejectOrder" data-dismiss="modal" data-order-id="${
                 orderAndCheckItems.order.id}">Reject</button>

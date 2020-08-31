@@ -103,14 +103,17 @@ namespace AdminPanel.Controllers.API
             var item = _context.Items
                 .SingleOrDefault(e => e.Id == cartItemDto.ItemId);
             var price = item.StaticPrice ;
+            var tPrice = price * cartItemDto.Quantity;
 
             // main item
             var checkItem = new ChecksItem(cartItemDto.CheckId, cartItemDto.ItemId, cartItemDto.Quantity,
-                price, price, 0, 0,
-                0, price, serial, true, false,
+                price, tPrice, 0, 0,
+                0, tPrice, serial, true, false,
                 "Preparing", false, 0);
 
             _context.ChecksItems.Add(checkItem);
+            _context.SaveChanges();
+
             double? totalPrice = _context.ChecksItems
                 .Where(c => c.Check_ID == cartItemDto.CheckId)
                 .Sum(c => c.TotalPrice);
@@ -182,6 +185,8 @@ namespace AdminPanel.Controllers.API
             //    return NotFound();
             //}
 
+
+
             foreach (var checksItem in checkItems)
             {
                 _context.ChecksItems.Remove(checksItem);
@@ -190,6 +195,16 @@ namespace AdminPanel.Controllers.API
 
             _context.SaveChanges();
 
+            double? totalPrice = _context.ChecksItems
+                .Where(c => c.Check_ID == id)
+                .Sum(c => c.TotalPrice);
+
+
+            // here we need to update order based on new add item
+            var order = _context.Orders
+                .SingleOrDefault(o => o.CheckId == id);
+            order.Update(totalPrice);
+            _context.SaveChanges();
             return Ok();
         }
 

@@ -158,15 +158,18 @@
                     <h4 class="modal-title">Specify your dish</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ti-close"></i></button>
                 </div>*@
-                <div class="modal-product-details">
-                    <div class="row align-items-center">
+                <div class="modal-product-details padding-2">
+                    <div class="row align-items-center" style="padding: 32px;">
                         <div class="col-9">
                             <!-- first and second name-->
                             <h6 class="mb-0 js-item-name1" js-item-name1=""><!-- first name--></h6>
-                            <span class="text js-item-name2" js-item-name2=""><!-- second name--></span>
+                            <span class="text js-item-name2" js-item-name2=""><!-- second name--></span><br/>
+                            <span class="col-3 text-lg text-right js-item-staticPrice"><!-- price --></span>
                         </div>
                         <!-- price -->
-                        <div class="col-3 text-lg text-right js-item-staticPrice"><!-- price --></div>
+                        @*<div class="col-3 text-lg text-right js-item-staticPrice">*@
+                            <!-- price -->
+                        @*</div>*@
                     </div>
                     <!-- Panel Details / Size -->
                     <!--whe will show it from js -->
@@ -234,10 +237,13 @@
         } else {
             console.log("Here we not start");
         }
-        
+
+        $('body').on('click', 'collapse', function (e) {
 
 
-     
+            });
+
+
     });
 </script>
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -7,6 +8,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AdminPanel.Models;
+using AdminPanel.ViewModels;
 
 namespace AdminPanel.Controllers
 {
@@ -15,15 +17,19 @@ namespace AdminPanel.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext _context;
+
 
         public ManageController()
         {
+            _context = new ApplicationDbContext();
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            _context = new ApplicationDbContext();
         }
 
         public ApplicationSignInManager SignInManager
@@ -48,6 +54,52 @@ namespace AdminPanel.Controllers
             {
                 _userManager = value;
             }
+        }
+
+
+        [HttpGet]
+        public ActionResult UpdateUser(string id)
+        {
+            var user = UserManager.FindById(id);
+            var model = new ProfileViewModel(user)
+                { Areas = _context.HdAreas.ToList(), Outlets = _context.OutLets.ToList(), Area = user.AreaId, Outlet = user.OutletId };
+            return View(model);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UpdateUser(ProfileViewModel model)
+        {
+            //get current user and update
+
+            
+            var user = UserManager.FindById(model.Id);
+            user.Name = model.Name;
+            user.Phone = model.Phone;
+            user.Adress = model.Address;
+            user.Adress2 = model.Address2;
+            user.Street = model.Street;
+            user.Building = model.Building;
+            user.Floor = model.Floor;
+            user.Apartment = model.Apartment;
+            user.SpecialMark = model.SpecialMark;
+
+            user.AreaId = model.Area;
+            user.OutletId = model.Outlet;
+
+
+
+            var updateResult = await UserManager.UpdateAsync(user);
+            if (updateResult.Succeeded)
+            {
+                await _context.SaveChangesAsync();
+                return RedirectToAction("index", "Home", model);
+                
+            }
+
+            return RedirectToAction("index", "Home");
+            //failed - do something else and return
         }
 
         //
@@ -298,6 +350,7 @@ namespace AdminPanel.Controllers
                 OtherLogins = otherLogins
             });
         }
+
 
         //
         // POST: /Manage/LinkLogin
