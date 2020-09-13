@@ -12,7 +12,11 @@ namespace conncetASPwithTemplate.Models
         public ApplicationUser ApplicationUser { get; set; }
         public string SessionId { get; set; }
         public double TotalPrice { get; set; }
-        
+
+        public bool HasPromoCode { get; set; }
+        public int? PromoId { get; set; }
+        public Promo Promo { get; set; }
+
         private List<CartItem> _cartItems;
 
 

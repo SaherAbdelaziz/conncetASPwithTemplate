@@ -31,6 +31,7 @@ namespace conncetASPwithTemplate.Models
         public string SpecialMark { get; set; }
         [Required]
         public int AreaId { get; set; }
+
         [Required]
         public int OutletId { get; set; }
 
@@ -132,6 +133,7 @@ namespace conncetASPwithTemplate.Models
         public virtual DbSet<Modifier> Modifiers { get; set; }
         public virtual DbSet<ModifiersGroup> ModifiersGroups { get; set; }
         public virtual DbSet<OutLet> OutLets { get; set; }
+        public virtual DbSet<Promo> Promos { get; set; }
 
 
         public DbSet<Check> Checks { get; set; }

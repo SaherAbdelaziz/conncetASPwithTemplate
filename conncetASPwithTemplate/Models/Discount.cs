@@ -1,11 +1,9 @@
-namespace conncetASPwithTemplate.Models.others_unused_tables
-{
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Data.Entity.Spatial;
+using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
+namespace conncetASPwithTemplate.Models
+{
     public partial class Discount
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]

@@ -8,6 +8,7 @@ using System.Web.Http;
 using System.Web.Http.Results;
 using conncetASPwithTemplate.Dtos;
 using conncetASPwithTemplate.Models;
+using conncetASPwithTemplate.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 namespace conncetASPwithTemplate.Controllers.Api
@@ -24,7 +25,8 @@ namespace conncetASPwithTemplate.Controllers.Api
            _context = new ApplicationDbContext();
            UserId = User.Identity.GetUserId();
            Cart =  _context.Carts
-                .SingleOrDefault(c => c.ApplicationUserId == UserId);
+               .Include(c=>c.Promo)
+               .SingleOrDefault(c => c.ApplicationUserId == UserId);
            if (Cart == null)
            {
                Cart = new Cart()
@@ -37,14 +39,26 @@ namespace conncetASPwithTemplate.Controllers.Api
         }
 
         // GET: api/ShoppingCarts
-        public IEnumerable<CartItem> Get()
+        public ShoppingCartViewModel Get()
         {
-          var items = _context.CartItems
+            double? disValue=0;
+            string disName="";
+            if (Cart.HasPromoCode)
+            {
+                var discountId = Cart.Promo.DiscountId;
+                disName = Cart.Promo.Code;
+                var discount = _context.Discounts.SingleOrDefault(d=>d.ID == discountId);
+                disValue =  discount.DisValue;
+            }
+
+            List<CartItem> items = _context.CartItems
             .Where(c => c.ShoppingCartId == Cart.Id && !c.Removed && !c.Ordered)
             .Include(c => c.Item).ToList();
 
+            ShoppingCartViewModel shoppingCartViewModel =
+                new ShoppingCartViewModel(disValue , disName , items);
 
-          return items;
+          return shoppingCartViewModel;
         }
 
         // GET: api/ShoppingCarts/5

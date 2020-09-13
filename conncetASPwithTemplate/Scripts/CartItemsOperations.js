@@ -1,16 +1,22 @@
 ﻿
 // with this function we call api to retrive all cartItems belongs to current loged in user
 
-function AJAXRequest() {
+function AJAXRequest(discount) {
     //js-shopping-cart
     // here we get cart items from api and put in in table in cart
-
 
     $.ajax({
         url: "/api/shoppingcarts",
         type: "GET",
         dataType: 'json',
-        success: function (notifications) {
+        success: function (data) {
+            notifications = data.items;
+            var disCount = data.disValue;
+            var disName = data.disName;
+            console.log("Retrived data");
+            console.log(disCount);
+            console.log(disName);
+            console.log(data);
             console.log("called " + notifications);
             console.log("called " + notifications[0]);
             
@@ -48,7 +54,7 @@ function AJAXRequest() {
                     `;
 
                 price += notifications[i].item.staticPrice * notifications[i].quantity;
-                totalPrice = price + delivery;
+                totalPrice = price + delivery - disCount;
                 $('.seed_items').append(data1);
 
             }
@@ -64,10 +70,13 @@ function AJAXRequest() {
             <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
                         Total: </div> <div class="col-5 total" total=${totalPrice}><strong> ${totalPrice}LE </strong></div> </div>`;
 
+            var data3 = `<div>${disName} promo code is applied</div>`;
+
             // price beside cart
             $(".js-notifications-price").val(totalPrice.toFixed(2));
             $(".js-notifications-price").text(totalPrice.toFixed(2) + " LE");
             $('.seed_price').append(data2);
+            $('.js-Coupon-show').append(data3);
         },
         error: function (xhr, status, error) {
             //

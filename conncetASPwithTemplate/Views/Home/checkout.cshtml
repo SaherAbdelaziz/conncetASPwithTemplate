@@ -34,7 +34,18 @@
                         <div class="cart-summary seed_price">
 
                         </div>
+                        <div>
+                            <input class="p-md-2 mb-2 js-Coupon" placeholder="Enter Coupon" />
+                            <button class="btn btn-sm btn-primary js-Coupon-but"> <span> Apply </span> </button>
+                            <text class="d-block  js-Coupon_warText"></text>
+                        </div>
+                        
+                        <div class="js-Coupon-show">
+                            
+
+                        </div>
                     </div>
+                    
                 </div>
                 <div class="col-xl-8 pull-xl-4 col-lg-7 pull-lg-5">
                     <div class="bg-white p-4 p-md-5 mb-4">
@@ -240,6 +251,13 @@
                         $('.js-btn-save').addClass('d-none');
                         editmode = true;
                     }
+
+                });
+
+            $('.js-Coupon-but').on('click',
+                function () {
+                    var probmoCode = $('.js-Coupon').val();
+                    PromoController.init(probmoCode);
 
                 });
 

@@ -43,7 +43,7 @@
                 })
                     .done(function () {
                         console.log("added new order ");
-                        AJAXRequest();
+                        AJAXRequest(0);
                         //var actionUrl = `/Home/Index/`;
                         //var actionUrl = '@Url.Action("Index", "Home")';
 

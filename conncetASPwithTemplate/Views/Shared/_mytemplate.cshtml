@@ -408,6 +408,8 @@
     @*<script src="@Url.Content("~/Scripts/HelloReact.jsx")"></script>*@
 
 @*@Scripts.Render("~/bundles/jquery")*@
+@Scripts.Render("~/bundles/app");
+
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 
@@ -419,7 +421,7 @@
             //ViewBag.Delivery
 
 
-            AJAXRequest();
+            AJAXRequest(0);
 
             //Get the button:
             mybutton = document.getElementById("back-to-topBtn");
@@ -662,7 +664,7 @@
                     .done(function() {
                         console.log("got in adding items has modifiers ");
                         console.log(button.attr("data-item-id"));
-                        AJAXRequest();
+                        AJAXRequest(0);
                     })
                     .fail(function() {
                         alert("Something failed! in adding item to cart");

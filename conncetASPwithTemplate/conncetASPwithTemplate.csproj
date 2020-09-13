@@ -194,11 +194,13 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\Api\CartsController.cs" />
     <Compile Include="Controllers\Api\EldahanItemsController.cs" />
     <Compile Include="Controllers\Api\ItemsModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersGroupsController.cs" />
     <Compile Include="Controllers\Api\OrdersController.cs" />
+    <Compile Include="Controllers\Api\PromoesController.cs" />
     <Compile Include="Controllers\Api\ShoppingCartsController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -361,6 +363,14 @@
     <Compile Include="Migrations\202008131458410_refactorDataBase4.Designer.cs">
       <DependentUpon>202008131458410_refactorDataBase4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202009081058344_AddPromosTable.cs" />
+    <Compile Include="Migrations\202009081058344_AddPromosTable.Designer.cs">
+      <DependentUpon>202009081058344_AddPromosTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009091201069_AddPromoCoulToCart.cs" />
+    <Compile Include="Migrations\202009091201069_AddPromoCoulToCart.Designer.cs">
+      <DependentUpon>202009091201069_AddPromoCoulToCart.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AvailableTable.cs" />
@@ -368,6 +378,7 @@
     <Compile Include="Models\ChecksItem.cs" />
     <Compile Include="Models\ChecksItemsSettlesSummary.cs" />
     <Compile Include="Models\ChecksTaxAdjTip.cs" />
+    <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\EldahanItems2.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\OrderedItem.cs" />
@@ -401,7 +412,6 @@
     <Compile Include="Models\others unused tables\Design_DiningRooms_Tables.cs" />
     <Compile Include="Models\others unused tables\DiningRoom.cs" />
     <Compile Include="Models\others unused tables\Disable_Table.cs" />
-    <Compile Include="Models\others unused tables\Discount.cs" />
     <Compile Include="Models\others unused tables\DiscountsCatrgory.cs" />
     <Compile Include="Models\others unused tables\Discount_Reasons.cs" />
     <Compile Include="Models\others unused tables\dtproperty.cs" />
@@ -542,6 +552,7 @@
     <Compile Include="Models\others unused tables\VoidReason.cs" />
     <Compile Include="Models\others unused tables\Voucher.cs" />
     <Compile Include="Models\others unused tables\VoucherItem.cs" />
+    <Compile Include="Models\Promo.cs" />
     <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
@@ -561,6 +572,7 @@
     <Compile Include="Models\SubCategory.cs" />
     <Compile Include="ViewModels\ItemsCategories.cs" />
     <Compile Include="ViewModels\ProfileViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\mytemplate\assets\css\prettify.css" />
@@ -1306,6 +1318,8 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\AddItemButton.js" />
+    <Content Include="Scripts\app\controllers\promoController.js" />
+    <Content Include="Scripts\app\services\promoService.js" />
     <Content Include="Scripts\bootbox.js" />
     <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -1702,7 +1716,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\app\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -1831,6 +1844,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202008131458410_refactorDataBase4.resx">
       <DependentUpon>202008131458410_refactorDataBase4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009081058344_AddPromosTable.resx">
+      <DependentUpon>202009081058344_AddPromosTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009091201069_AddPromoCoulToCart.resx">
+      <DependentUpon>202009091201069_AddPromoCoulToCart.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
