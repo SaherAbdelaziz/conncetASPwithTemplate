@@ -27,6 +27,9 @@ namespace AdminPanel.Controllers
                 .Include(o => o.User)
                 .Include(o => o.User.Outlet)
                 .Include(o => o.User.Area)
+                .Include(o=>o.Check)
+                .Include(o => o.Check.PromoCode)
+                .Include(o => o.Check.PromoCode.Discount)
                 .ToList();
 
             var cartItems = _context.CartItems
@@ -74,6 +77,9 @@ namespace AdminPanel.Controllers
                 .Include(o => o.User)
                 .Include(o => o.User.Outlet)
                 .Include(o => o.User.Area)
+                .Include(o => o.Check)
+                .Include(o => o.Check.PromoCode)
+                .Include(o => o.Check.PromoCode.Discount)
                 .ToList();
 
 
@@ -113,7 +119,14 @@ namespace AdminPanel.Controllers
 
             return View(items);
         }
-        
+
+        public ActionResult Presets()
+        {
+            var presets = _context.WebPresets.ToList();
+
+            return View(presets);
+        }
+
 
         public ActionResult test()
         {

@@ -48,7 +48,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
                 Cart.PromoId = cart.PromoId;
                 Cart.HasPromoCode = cart.HasPromoCode;
-
+                new ChecksController().PutCheck(Cart.PromoId);
                 _context.SaveChanges();
 
             }

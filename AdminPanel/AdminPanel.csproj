@@ -219,6 +219,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\OrderssController.cs" />
+    <Compile Include="Controllers\Web_PresetController.cs" />
     <Compile Include="Dtos\CartItemDto.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -228,10 +229,12 @@
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\Check.cs" />
     <Compile Include="Models\ChecksItem.cs" />
+    <Compile Include="Models\Discount.cs" />
     <Compile Include="Models\EmailFormModel.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ItemOrderModelCheckList.cs" />
     <Compile Include="Models\OrderedItem.cs" />
+    <Compile Include="Models\Promo.cs" />
     <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
@@ -734,6 +737,12 @@
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\Items\OrderItems.cshtml" />
     <Content Include="Views\Manage\UpdateUser.cshtml" />
+    <Content Include="Views\Home\Presets.cshtml" />
+    <Content Include="Views\Web_Preset\Create.cshtml" />
+    <Content Include="Views\Web_Preset\Delete.cshtml" />
+    <Content Include="Views\Web_Preset\Details.cshtml" />
+    <Content Include="Views\Web_Preset\Edit.cshtml" />
+    <Content Include="Views\Web_Preset\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,36 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Web;
 
 namespace AdminPanel.Models
 {
-    public class Web_Preset
+    public class Discount
     {
-        [Key]
-        public int Id { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        public int ID { get; set; }
 
-        [StringLength(50)]
+        [StringLength(10)]
         public string Code { get; set; }
 
-        [Required]
         [StringLength(50)]
         public string Name { get; set; }
-        [Required]
+
         [StringLength(50)]
         public string Name2 { get; set; }
+
         [StringLength(50)]
+        public string DiscountStauts { get; set; }
+
+        public double? DisValue { get; set; }
+
+        public bool? Catrgories { get; set; }
+
+        [StringLength(250)]
         public string Description { get; set; }
-        [Column(TypeName = "image")]
-        public byte[] ImagePreset { get; set; }
+
         public bool? Active { get; set; }
 
         public DateTime? CreateDate { get; set; }
+
         public DateTime? ModifiedDate { get; set; }
-        public int? UserId { get; set; }
-        public int? RestIdActive { get; set; }
-        public int? OutLetIdActive { get; set; }
-        public bool? ByTime { get; set; }
-        public int? StartTime { get; set; }
-        public int? EndTime { get; set; }
+
+        public int? User_ID { get; set; }
+
+        public int? Rest_ID_Active { get; set; }
+
+        public bool? Manager { get; set; }
     }
 }

@@ -134,6 +134,7 @@ namespace conncetASPwithTemplate.Models
         public virtual DbSet<ModifiersGroup> ModifiersGroups { get; set; }
         public virtual DbSet<OutLet> OutLets { get; set; }
         public virtual DbSet<Promo> Promos { get; set; }
+        public virtual DbSet<PromosUsedPerUser> PromosUsedPerUsers { get; set; }
 
 
         public DbSet<Check> Checks { get; set; }

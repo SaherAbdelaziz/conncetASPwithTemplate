@@ -61,22 +61,34 @@ function AJAXRequest(discount) {
 
             //<a href="#" class ="action-icon js-edit-item"> <i data-item-id=${notifications[i].id} class ="ti ti-pencil"></i></a>
 
-            // price and total
+            // price and delivery
             var data2 = ` <div class=" row"> <div class="col-7 text-right text-muted">
-                Order total: </div>  <div class="col-5 ordertotal" ordertotal=${price}><strong>  ${price}LE </strong></div>  </div>
+                Order total: </div>  <div class="col-5 ordertotal" ordertotal=${price}><strong>  ${price
+                }LE </strong></div>  </div>
             <div class="row"> <div class="col-7 text-right text-muted">
-                    Delivery: </div> <div class="col-5 delivery" delivery=${delivery}><strong> ${delivery}LE </strong></div>  </div>
+                    Delivery: </div> <div class="col-5 delivery" delivery=${delivery}><strong> ${delivery
+                }LE </strong></div>  </div>`;
 
-            <hr class="hr-sm"> <div class="row text-lg"> <div class="col-7 text-right text-muted">
+            // discount
+            if (disName !== "")
+            data2 += ` <div class="row"> <div class="col-7 text-right text-muted">
+                Discount: </div> <div class="col-5 disCount" disCount=${disCount}><strong> ${disCount
+                }LE </strong></div>  </div>`;
+            
+            //total
+            data2 +=`<hr class ="hr-sm"> <div class ="row text-lg"> <div class ="col-7 text-right text-muted">
                         Total: </div> <div class="col-5 total" total=${totalPrice}><strong> ${totalPrice}LE </strong></div> </div>`;
 
-            var data3 = `<div>${disName} promo code is applied</div>`;
+
+            // if promo code applied
+            var promoCode = `<div>${disName} promo code is applied</div>`;
 
             // price beside cart
             $(".js-notifications-price").val(totalPrice.toFixed(2));
             $(".js-notifications-price").text(totalPrice.toFixed(2) + " LE");
             $('.seed_price').append(data2);
-            $('.js-Coupon-show').append(data3);
+            if (disName!=="")
+                $('.js-Coupon-show').append(promoCode);
         },
         error: function (xhr, status, error) {
             //

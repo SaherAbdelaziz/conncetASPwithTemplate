@@ -147,15 +147,27 @@ namespace conncetASPwithTemplate.Controllers.Api
             
             _context.SaveChanges();
             
+
+
             check.Order_No = myOrder.Id;
             check.MyStatus = "Preparing";
             _context.Entry(check).State = EntityState.Modified;
+            // fire items to order them
             foreach (var checkItem in checkItems)
             {
                 checkItem.Fired = true;
                 if (checkItem.Status == "Open")
                     checkItem.Status = "Preparing";
             }
+
+            _context.SaveChanges();
+
+
+            // code for remove promo code from cart 
+
+
+            Cart.PromoId = null;
+            Cart.HasPromoCode = false;
 
             _context.SaveChanges();
             return CreatedAtRoute("DefaultApi", new { id = order.Id }, order);

@@ -1,0 +1,108 @@
+﻿@model List<AdminPanel.Models.Web_Preset>
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_adminPanel.cshtml";
+}
+
+<div class="main-content">
+    <div class="main-content-inner">
+
+
+        <div class="page-content">
+
+            <div class="page-header">
+                <h1>
+                    Tables
+                    <small>
+                        <i class="ace-icon fa fa-angle-double-right"></i>
+                        Presets
+                    </small>
+                </h1>
+
+            </div>
+
+            @*<p>
+                    @Html.ActionLink("Create New", "Create" , "Item")
+                </p>*@
+        </div>
+        <p>
+            @Html.ActionLink("Create New", "Create", "Web_Preset")
+        </p>
+        <!-- /.page-header -->
+        <!-- main table my orders-->
+        <!-- main table my orders-->
+        <!-- PAGE CONTENT BEGINS -->
+        <!-- main table my orders-->
+        <!-- main table my orders-->
+        <table id="simple-table-Items" class="table  table-bordered table-hover">
+            <thead>
+                <tr>
+                    <th class="center">
+                        <label class="pos-rel">
+                            <input type="checkbox" class="ace" />
+                            <span class="lbl"></span>
+                        </label>
+                    </th>
+                    <th> id </th>
+                    <th> Name </th>
+                    <th> Arabic Name </th>
+                    <th> Action </th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var preset in Model)
+                {
+                    <tr>
+                        <td class="center">
+                            <label class="pos-rel">
+                                <input type="checkbox" class="ace" />
+                                <span class="lbl"></span>
+                            </label>
+                        </td>
+
+                        <td class="center">
+                            @preset.Id
+                        </td>
+
+                        <td>
+                            @preset.Name
+                        </td>
+                        <td> @preset.Name2 </td>
+                        <td>
+                            <button class="btn btn-xs btn-info js-btn-EditPreset" data-preset-id="@preset.Id">
+                                <i class="ace-icon fa fa-pencil bigger-120" data-item-id="@preset.Id"></i>
+                            </button>
+                        </td>
+
+
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+        @*<div class="hr hr-18 dotted hr-double"></div>*@
+
+
+        <!-- PAGE CONTENT ENDS -->
+    </div><!-- /.page-content -->
+</div><!-- /.main-content -->
+<!-- inline scripts related to this page -->
+<script>
+    $(document).ready(function () {
+
+        ItemController.init();
+
+
+        $('.js-btn-EditPreset').on('click', function (e) {
+            var icon = $(e.target);
+            //
+            var id = icon.attr("data-preset-id");
+            console.log(id);
+            //PresetController.editPreset(id, e);
+
+        });
+       
+    })
+</script>

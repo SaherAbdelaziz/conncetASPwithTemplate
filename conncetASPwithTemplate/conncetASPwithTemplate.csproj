@@ -195,6 +195,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\CartsController.cs" />
+    <Compile Include="Controllers\Api\ChecksController.cs" />
     <Compile Include="Controllers\Api\EldahanItemsController.cs" />
     <Compile Include="Controllers\Api\ItemsModifiersController.cs" />
     <Compile Include="Controllers\Api\ModifiersController.cs" />
@@ -370,6 +371,18 @@
     <Compile Include="Migrations\202009091201069_AddPromoCoulToCart.cs" />
     <Compile Include="Migrations\202009091201069_AddPromoCoulToCart.Designer.cs">
       <DependentUpon>202009091201069_AddPromoCoulToCart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009231508026_addPropertiesToPromos.cs" />
+    <Compile Include="Migrations\202009231508026_addPropertiesToPromos.Designer.cs">
+      <DependentUpon>202009231508026_addPropertiesToPromos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009241137128_AddPromoCodeToCheck.cs" />
+    <Compile Include="Migrations\202009241137128_AddPromoCodeToCheck.Designer.cs">
+      <DependentUpon>202009241137128_AddPromoCodeToCheck.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202009290953364_AddPromosUsedPerUserTable.cs" />
+    <Compile Include="Migrations\202009290953364_AddPromosUsedPerUserTable.Designer.cs">
+      <DependentUpon>202009290953364_AddPromosUsedPerUserTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -553,6 +566,7 @@
     <Compile Include="Models\others unused tables\Voucher.cs" />
     <Compile Include="Models\others unused tables\VoucherItem.cs" />
     <Compile Include="Models\Promo.cs" />
+    <Compile Include="Models\PromosUsedPerUser.cs" />
     <Compile Include="Models\Web_Preset.cs" />
     <Compile Include="Models\HD_Areas.cs" />
     <Compile Include="Models\HD_Areas_Services.cs" />
@@ -1850,6 +1864,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202009091201069_AddPromoCoulToCart.resx">
       <DependentUpon>202009091201069_AddPromoCoulToCart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009231508026_addPropertiesToPromos.resx">
+      <DependentUpon>202009231508026_addPropertiesToPromos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009241137128_AddPromoCodeToCheck.resx">
+      <DependentUpon>202009241137128_AddPromoCodeToCheck.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202009290953364_AddPromosUsedPerUserTable.resx">
+      <DependentUpon>202009290953364_AddPromosUsedPerUserTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

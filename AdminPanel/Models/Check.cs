@@ -114,6 +114,9 @@ namespace AdminPanel.Models
         [StringLength(20)]
         public string PrePaid_Serial { get; set; }
 
+        public int? PromoCodeId { get; set; }
+        public Promo PromoCode { get; set; }
+        public bool HasPromoCode { get; set; }
 
         public Check()
         {

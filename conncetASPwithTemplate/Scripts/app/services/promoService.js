@@ -54,10 +54,15 @@
         });
     }
 
+    var callCheckUserUsage = function (success, error, promoId) { //(success, errorSingle, code) {
+
+
+    }
+
     return {
         
         callPromoCheck: callPromoCheck,
-        callAddPromoToCart: callAddPromoToCart
+        callCheckUserUsage: callCheckUserUsage
     }
 
 }()

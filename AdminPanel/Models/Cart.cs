@@ -15,6 +15,9 @@ namespace AdminPanel.Models
 
         private List<CartItem> _cartItems;
 
+        public bool HasPromoCode { get; set; }
+        public int? PromoId { get; set; }
+        public Promo Promo { get; set; }
 
         public Cart()
         {

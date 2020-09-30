@@ -250,12 +250,22 @@
                     <button class="close" data-toggle="panel-cart"><i class="ti ti-close"></i></button>
                 </div>
                 <div class="panel-cart-content">
-                    <table class="table-cart seed_items" >
-                        
-
+                    <table class="table-cart seed_items">
 
                     </table>
+
                     <div class="cart-summary seed_price">
+
+                    </div>
+                    
+                    <div>
+                        <input class="p-md-2 mb-2 js-Coupon" placeholder="Enter Coupon" />
+                        <button class="btn btn-sm btn-primary js-Coupon-but"> <span> Apply </span> </button>
+                        <text class="d-block  js-Coupon_warText"></text>
+                    </div>
+                        
+                    <div class="js-Coupon-show">
+                            
 
                     </div>
                 </div>
@@ -526,7 +536,7 @@
                                     </label>
                                     <a href="#panelDetailsSize${i}" data-toggle="collapse">Salad${i+1}</a>
                                     </h5>
-                                    <div id="panelDetailsSize${i}" class="collapse">
+                                    <div id="panelDetailsSize${i}" class="collapse show">
                                     <form>
                                     <div class="panel-details-content">
 
