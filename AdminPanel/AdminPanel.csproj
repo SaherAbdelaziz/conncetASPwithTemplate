@@ -213,6 +213,7 @@
     <Compile Include="Controllers\API\ItemController.cs" />
     <Compile Include="Controllers\API\ModifiersGroupsController.cs" />
     <Compile Include="Controllers\API\OrdersController.cs" />
+    <Compile Include="Controllers\API\Web_PresetController.cs" />
     <Compile Include="Controllers\ChecksItemsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />

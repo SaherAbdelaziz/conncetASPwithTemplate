@@ -23,11 +23,11 @@
     };
 
     var errorEdit = function () {
-        alert("Something failed! in edit item");
+        alert("Something failed! in edit preset");
     };
 
     var showData = function () {
-        console.log("showData retrieved items");
+        console.log("showData retrieved presets");
         console.log(PresetController.presets);
         $("#simple-table-Presets").DataTable({
 

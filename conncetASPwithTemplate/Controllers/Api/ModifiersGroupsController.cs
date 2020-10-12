@@ -34,7 +34,6 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             var item = _context.Items.FirstOrDefault(i => i.Id == id);
             var itemsModifiers = _context.ItemsModifiers.ToList();
-            var modifierGroupId = 0;
             foreach (var itemsModifier in itemsModifiers)
             {
                 if (item != null && itemsModifier.ItemId == item.Id)

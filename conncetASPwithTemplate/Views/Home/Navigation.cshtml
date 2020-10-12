@@ -17,18 +17,18 @@
     // private int categriesCount=6 ;
     // private List<string> idsStrings = new List<string>() { "Burgers", "Pasta" , "Pizza" ,
     //     "Sushi" , "Desserts" , "Drinks" };
-    private List<string> surcs = new List<string>() { "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pizza.jpg" ,
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-desserts.jpg",
-                                                        "../../Content/mytemplate/assets/img/photos/menu-title-pasta.jpg",
+    private List<string> surcs = new List<string>() { "../../Content/mytemplate/assets/img/photos/101_Grills.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/102_tajin.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/103_Meals.jpg" ,
+                                                        "../../Content/mytemplate/assets/img/photos/101.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/105_Main_Plates.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/106_sides.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/107_sandwiches.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/108_soups.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/109_salads.jpg" ,
+                                                        "../../Content/mytemplate/assets/img/photos/110_kids_meal.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/111_drinks.jpg",
+                                                        "../../Content/mytemplate/assets/img/photos/112_sweets.jpg",
                                                         "../../Content/mytemplate/assets/img/photos/menu-title-burgers.jpg",
     };
 }
@@ -59,6 +59,10 @@
                         @{
                             for (int i = 0; i< Model.Presets.Count; i++)
                             {
+                                if (Model.Presets[i].Name == "Modifiers")
+                                {
+                                    continue;
+                                }
                                 <li><a href="#@Model.Presets[i].Name">@Model.Presets[i].Name</a></li>
                             }
                         }
@@ -69,6 +73,11 @@
             @{
                 for (int i = 0; i < Model.Presets.Count; i++)
                 {
+                    if (Model.Presets[i].Name == "Modifiers")
+                    {
+                        continue;
+                    }
+
                     <div id="@Model.Presets[i].Name" class="menu-category">
                         <div class="menu-category-title">
                             <div class="bg-image"><img src="@surcs[i]" alt=""></div>
@@ -99,7 +108,7 @@
                                              
                                                 <div class="col-sm-6 text-sm-right">
                                                     <span class="text-md mr-1"><span class="text-muted"></span> @Model.Items[j].StaticPrice LE</span>
-                                                    @if (Model.Items[j].Available == 0)
+                                                    @if (Model.Items[j].Available == 0 || true) //remove true when implement Availability from admin side
                                                     {
                                                         <button
                                                             class="btn btn-outline-secondary btn-sm js-chosen-item "

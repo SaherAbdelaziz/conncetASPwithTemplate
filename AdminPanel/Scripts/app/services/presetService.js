@@ -1,10 +1,10 @@
-﻿var ItemService = function () {
+﻿var PresetService = function () {
 
 
     var callPresetsGetApi = function (success, error) {
         console.log("start calling presets inside function api");
         $.ajax({
-            url: "/api/Preset",
+            url: "/api/Web_Preset",
             type: "GET",
             dataType: "json",
             success: success,

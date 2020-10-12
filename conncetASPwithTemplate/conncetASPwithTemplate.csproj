@@ -639,6 +639,17 @@
     <Content Include="Content\mytemplate\assets\img\logo-horizontal-light.svg" />
     <Content Include="Content\mytemplate\assets\img\logo-light-red.svg" />
     <Content Include="Content\mytemplate\assets\img\logo-light.svg" />
+    <Content Include="Content\mytemplate\assets\img\photos\101_Grills.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\102_tajin.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\103_Meals.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\105_Main_Plates.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\106_sides.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\107_sandwiches.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\108_soups.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\109_salads.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\110_kids_meal.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\111_drinks.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\112_sweets.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\bg-burger.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\bg-burger2.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\bg-chef.jpg" />
@@ -664,6 +675,7 @@
     <Content Include="Content\mytemplate\assets\img\photos\menu-title-sushi.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\modal-add.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\modal-review.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\Ready to cook.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\service-birthday.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\service-engagement.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\service-weddings.jpg" />
