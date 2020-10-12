@@ -560,9 +560,11 @@
     <Content Include="Scripts\app\controllers\itemController.js" />
     <Content Include="Scripts\app\controllers\modifiersGroupsController.js" />
     <Content Include="Scripts\app\controllers\orderController.js" />
+    <Content Include="Scripts\app\controllers\presetController.js" />
     <Content Include="Scripts\app\services\itemService.js" />
     <Content Include="Scripts\app\services\modifiersGroupsService.js" />
     <Content Include="Scripts\app\services\orderService.js" />
+    <Content Include="Scripts\app\services\presetService.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
