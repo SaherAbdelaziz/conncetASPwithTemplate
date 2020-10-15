@@ -25,7 +25,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
         // GET: api/ModifiersGroups/5
         //[ResponseType(typeof(ModifiersGroup))]
-        // first retruferd id is the selected item and other ids is modifiers
+        // first retrieved id is the selected item and other ids is modifiers
         public ItemsAndGroupCount GetModifiersGroup(int id)
         {
             List<int> itemsIds = new List<int>();

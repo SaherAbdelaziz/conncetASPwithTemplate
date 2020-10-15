@@ -171,23 +171,23 @@
                             <h5 class="text-muted">فروع الدهان</h5>
                             <ul class="list-posts">
                                 <li>
-                                    <a href="https://goo.gl/maps/hdtdLfTrtKEtE72b6" class="title">El Rehab مشويات الدهان فرع الرحاب</a>
+                                    <a href="https://goo.gl/maps/hdtdLfTrtKEtE72b6" class="title">El Rehab الدهان للمشويات فرع الرحاب</a>
                                     <span>Shop no. 163 & 164 Service area, Al Rehab Souk</span>
                                     <p>Telephone : 26078965, 01225959100</p>
                                 </li>
                                 <li>
-                                    <a href="https://goo.gl/maps/A4kDZwgtA9pa6tQP9" class="title">El Rehab 2 مشويات الدهان فرع الرحاب</a>
+                                    <a href="https://goo.gl/maps/A4kDZwgtA9pa6tQP9" class="title">El Rehab 2 الدهان للمشويات فرع الرحاب</a>
                                     <span>The Open Food court</span>
                                     <p>Telephone : 26071964, 01203111585</p>
                                 </li>
                                 <li>
-                                    <a href="https://goo.gl/maps/MFnyVqSXpVDmRqTNA" class="title">5th settelment مشويات الدهان فرع  التجمع الخامس</a>
+                                    <a href="https://goo.gl/maps/MFnyVqSXpVDmRqTNA" class="title">5th settelment الدهان للمشويات فرع التجمع الخامس</a>
                                     <span>Silver Star Mall, Akhnaton St., First District</span>
                                     <p>Telephone : 26183383, 01225555050</p>
                                 </li>
 
                                 <li>
-                                    <a href="https://goo.gl/maps/R6v6i4qabFMFt3q37" class="title">Heliopolis مشويات الدهان فرع مصر الجديدة</a>
+                                    <a href="https://goo.gl/maps/R6v6i4qabFMFt3q37" class="title">Heliopolis الدهان للمشويات فرع مصر الجديدة</a>
                                     <span>70 El Marghany St.</span>
                                     <p>Telephone : 26901601, 01277711867</p>
                                 </li>
@@ -197,22 +197,22 @@
                             <h5 class="text-muted"></h5>
                             <ul class="list-posts">
                                 <li>
-                                    <a href="https://goo.gl/maps/gwZTSWXQ7SWyQSvr5" class="title">Mohandessin مشويات الدهان فرع المهندسين</a>
+                                    <a href="https://goo.gl/maps/gwZTSWXQ7SWyQSvr5" class="title">Mohandessin الدهان للمشويات فرع المهندسين</a>
                                     <span>38 Gameet Eldowal Elarabia St.</span>
                                     <p>Telephone : 33035755, 01210107042</p>
                                 </li>
                                 <li>
-                                    <a href="https://goo.gl/maps/Y9FPrLCEjxYFtppw9" class="title">Madinaty مشويات الدهان فرع  مدينتي  </a>
+                                    <a href="https://goo.gl/maps/Y9FPrLCEjxYFtppw9" class="title">Madinaty الدهان للمشويات فرع  مدينتي  </a>
                                     <span>South Park Food Court</span>
                                     <p>Telephone : 01111105787</p>
                                 </li>
                                 <li>
-                                    <a class="title">El Hussein مشويات الدهان فرع الحسين</a>
+                                    <a class="title">El Hussein الدهان للمشويات فرع الحسين</a>
                                     <span>16 Gawhar Elkaek=d St., Shopping Mall.</span>
                                     <p>Telephone : 25939325</p>
                                 </li>
                                 <li>
-                                    <a href="https://goo.gl/maps/GUkH7tcaHTNVH2hcA" class="title">Nasr City مشويات الدهان فرع مدينة نصر</a>
+                                    <a href="https://goo.gl/maps/GUkH7tcaHTNVH2hcA" class="title">Nasr City الدهان للمشويات فرع مدينة نصر</a>
                                     <span>84 hassan Elmaamon</span>
                                     <p>Telephone : 26774444, 26774440</p>
                                 </li>
@@ -494,13 +494,15 @@
                     console.log($("#productModal .js-add-cart").data("data-item-id"));
                     console.log("myId" + myId);
 
-                    //first retruferd id is the selected item and other ids is modifiers
+                    //first retrieved id is the selected item and other ids is modifiers
                     $.ajax({ url: "/api/ModifiersGroups/" + myId, method: "GET" })
                         .done(function(data) {
                             var cartItemDto;
                             console.log("Got in modifiers");
                             console.log(data);
 
+
+                            //This is the Pop Up Format filler
                             $(".modal-product-details .js-item-name1").text(data.items[0].name);
                             $(".modal-product-details .js-item-name2").text(data.items[0].name2);
                             $(".modal-product-details .js-item-staticPrice").text(data.items[0].staticPrice);
@@ -511,7 +513,7 @@
 
                             //first item is the chosen item
 
-                            if (data.items.length == 1) {
+                            if (data.items.length == 1) { //Dto used for getting some attributes of class
                                 cartItemDto = {
                                     ItemId: myId,
                                     ItemsId: [-1 , -1 , -1 , -1] // there is no modifiers for this item
@@ -576,6 +578,9 @@
                                 //        //$("#productModal .js-add-cart").attr("data-selected-modiefier-id", data[index].id);
                                 //    });
                                 //}
+
+
+                                // This shit is for making sure i selected the right number of RadioButtons "salads"
                                 var index0 = 0, index1 = 0, index2 = 0, index3 = 0;
                                 $("#productModal .js-add-cart").attr("data-selected-modiefier-id", [index0 !==0 ? data.items[index0].id: -1, index1 !==0 ? data.items[index1].id: -1, index2 !==0 ? data.items[index2].id: -1, index3 !==0 ? data.items[index3].id: -1]);
 
@@ -652,8 +657,8 @@
 
                 var id = $("#productModal .js-add-cart").attr("data-item-id");
                 var detailsMessage = $("#productModal .js-item-message").val();
-
                 var quantity = $("#productModal .js-item-quantity").val();
+
                 // now close the model
                 $('#productModal').modal('hide');
 

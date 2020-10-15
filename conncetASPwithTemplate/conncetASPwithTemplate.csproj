@@ -675,7 +675,7 @@
     <Content Include="Content\mytemplate\assets\img\photos\menu-title-sushi.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\modal-add.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\modal-review.jpg" />
-    <Content Include="Content\mytemplate\assets\img\photos\Ready to cook.jpg" />
+    <Content Include="Content\mytemplate\assets\img\photos\Ready_to_cook.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\service-birthday.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\service-engagement.jpg" />
     <Content Include="Content\mytemplate\assets\img\photos\service-weddings.jpg" />
@@ -1670,6 +1670,7 @@
     <Content Include="Content\mytemplate\assets\scss\_widgets.scss" />
     <Content Include="Content\mytemplate\sound\piece-of-cake.m4r" />
     <None Include="Properties\PublishProfiles\ABTech.pubxml" />
+    <None Include="Properties\PublishProfiles\ElDahanSite.pubxml" />
     <None Include="Properties\PublishProfiles\mySite.pubxml" />
     <Content Include="Scripts\HelloReact.jsx" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />

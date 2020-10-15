@@ -151,7 +151,7 @@ namespace conncetASPwithTemplate.Controllers.Api
 
             check.Order_No = myOrder.Id;
             check.MyStatus = "Preparing";
-            _context.Entry(check).State = EntityState.Modified;
+            _context.Entry(check).State = EntityState.Modified; //This is the equivalent of _context.Add but for editing
             // fire items to order them
             foreach (var checkItem in checkItems)
             {

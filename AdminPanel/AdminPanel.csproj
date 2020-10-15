@@ -584,6 +584,9 @@
     <Content Include="Content\DataTables\css\common.scss" />
     <Content Include="Content\AdminPanel\assets\sound\piece-of-cake.m4r" />
     <None Include="Properties\PublishProfiles\AdminPanel.pubxml" />
+    <None Include="Properties\PublishProfiles\ElDanhanAdmin.pubxml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -672,7 +675,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
